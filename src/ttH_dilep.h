@@ -16,7 +16,120 @@
 using std::cout;
 using std::endl;
 
-
+extern Int_t myEVE_Total;
+//....semileptonic....
+extern Int_t myEVE_semi_ele;
+extern Int_t myEVE_semi_mu;
+extern Int_t myEVE_semi_nontau_ele;
+extern Int_t myEVE_semi_nontau_mu;
+extern Int_t myEVE_semi_tau;
+extern Int_t myEVE_semi_leptau;
+extern Int_t myEVE_semi_eletau;
+extern Int_t myEVE_semi_mutau;
+//....dileptonic............with taus....
+extern Int_t myEVE_di_eleele;
+extern Int_t myEVE_di_mumu;
+extern Int_t myEVE_di_elemu;
+//....dileptonic............without taus....
+extern Int_t myEVE_di_nontau_eleele;
+extern Int_t myEVE_di_nontau_elemu;
+extern Int_t myEVE_di_nontau_eletau;
+extern Int_t myEVE_di_nontau_mumu;
+extern Int_t myEVE_di_nontau_mutau;
+extern Int_t myEVE_di_nontau_tautau;
+//....multileptons............
+extern Int_t myEVE_0leptons;
+extern Int_t myEVE_3leptons;
+extern Int_t myEVE_4leptons;
+extern Int_t myEVE_more4leptons;
+//...top quarks
+extern Int_t myEVE_ttbar;
+extern Int_t myEVE_4tops;
+extern Int_t myEVE_nonttbar;
+//.....................discriminate what ttbar events do we have.....
+extern Int_t myttbar_00;
+extern Int_t myttbar_01;
+extern Int_t myttbar_02;
+extern Int_t myttbar_03;
+extern Int_t myttbar_10;
+extern Int_t myttbar_11;
+extern Int_t myttbar_12;
+extern Int_t myttbar_13;
+extern Int_t myttbar_20;
+extern Int_t myttbar_21;
+extern Int_t myttbar_22;
+extern Int_t myttbar_23;
+extern Int_t myttbar_30;
+extern Int_t myttbar_31;
+extern Int_t myttbar_32;
+extern Int_t myttbar_33;
+//...W bosons
+extern Int_t myEVE_WW;
+extern Int_t myEVE_4W;
+extern Int_t myEVE_nonWW;
+//.....................discriminate what bbbar events do we have.....
+extern Int_t mybbbar_00;
+extern Int_t mybbbar_01;
+extern Int_t mybbbar_02;
+extern Int_t mybbbar_03;
+extern Int_t mybbbar_10;
+extern Int_t mybbbar_11;
+extern Int_t mybbbar_12;
+extern Int_t mybbbar_13;
+extern Int_t mybbbar_20;
+extern Int_t mybbbar_21;
+extern Int_t mybbbar_22;
+extern Int_t mybbbar_23;
+extern Int_t mybbbar_30;
+extern Int_t mybbbar_31;
+extern Int_t mybbbar_32;
+extern Int_t mybbbar_33;
+//...b quarks
+extern Int_t myEVE_bb;
+extern Int_t myEVE_4b;
+extern Int_t myEVE_nonbb;
+//.....................discriminate what ssbar events do we have.....
+extern Int_t myssbar_00;
+extern Int_t myssbar_01;
+extern Int_t myssbar_02;
+extern Int_t myssbar_03;
+extern Int_t myssbar_10;
+extern Int_t myssbar_11;
+extern Int_t myssbar_12;
+extern Int_t myssbar_13;
+extern Int_t myssbar_20;
+extern Int_t myssbar_21;
+extern Int_t myssbar_22;
+extern Int_t myssbar_23;
+extern Int_t myssbar_30;
+extern Int_t myssbar_31;
+extern Int_t myssbar_32;
+extern Int_t myssbar_33;
+//...s quarks
+extern Int_t myEVE_ss;
+extern Int_t myEVE_4s;
+extern Int_t myEVE_nonss;
+//.....................discriminate what ddbar events do we have.....
+extern Int_t myddbar_00;
+extern Int_t myddbar_01;
+extern Int_t myddbar_02;
+extern Int_t myddbar_03;
+extern Int_t myddbar_10;
+extern Int_t myddbar_11;
+extern Int_t myddbar_12;
+extern Int_t myddbar_13;
+extern Int_t myddbar_20;
+extern Int_t myddbar_21;
+extern Int_t myddbar_22;
+extern Int_t myddbar_23;
+extern Int_t myddbar_30;
+extern Int_t myddbar_31;
+extern Int_t myddbar_32;
+extern Int_t myddbar_33;
+//...d quarks
+extern Int_t myEVE_dd;
+extern Int_t myEVE_4d;
+extern Int_t myEVE_nondd;
 // #############################################################################
 class ttH_dilep : public LipMiniAnalysis {
 // #############################################################################
@@ -144,10 +257,10 @@ public:
         // #####################################################################
         // Miguel Fiolhais 10 Nov 2010  
         // #####################################################################
-        int NbtagJet;
+       /* int NbtagJet;
         std::vector<TLorentzVectorWFlags> MyGoodJetVec;
         std::vector<TLorentzVectorWFlags> MyGoodBtaggedJetVec;
-        std::vector<TLorentzVectorWFlags> MyGoodNonBtaggedJetVec;
+        std::vector<TLorentzVectorWFlags> MyGoodNonBtaggedJetVec;*/
         std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
 
 	// ######################################################################################
@@ -155,40 +268,15 @@ public:
 	// ######################################################################################
 
 	// measured variables
-	double Ht;
-	double Hz; //samor
-
-	double Ml1b1;
-	double Ml2b2;
-	double Ml1b2;
-	double Ml2b1;
-
-	double Ml1b1_truth;
-	double Ml2b2_truth;
-	double Ml1b2_truth;
-	double Ml2b1_truth;
+	/*double Ht;
+	double Hz; //samor*/
 
         double pnupanu[4];
 
         // ======================================================================================
 	// truth variables.......................................................................
         // ======================================================================================
-        //_____objects_____
-	TLorentzVector 	TruthT,    TruthB,    TruthWp, TruthLepP,    TruthNeu, 
-			TruthTbar, TruthBbar, TruthWn, TruthLepN,    TruthNeubar; 
-        //_____Boost to top_____
-	TLorentzVector 	TruthB_BoostedtoT,       TruthWp_BoostedtoT,    TruthLepP_BoostedtoT,       TruthNeu_BoostedtoT, 
-			TruthBbar_BoostedtoTbar, TruthWn_BoostedtoTbar, TruthLepN_BoostedtoTbar,    TruthNeubar_BoostedtoTbar; 
-        //_____Boost to ttbar_____
-	TLorentzVector  TruthT_Boostedtottbar, TruthTbar_Boostedtottbar;
-        //_____angles______
-	double XX, YY, TruthHasSolution, 
-			TruthCos_LepP_T_BoostedtoT,       TruthCos_Neu_T_BoostedtoT,          TruthCos_B_T_BoostedtoT,
-			TruthCos_LepN_Tbar_BoostedtoTbar, TruthCos_Neubar_Tbar_BoostedtoTbar, TruthCos_Bbar_Tbar_BoostedtoTbar,
-			TruthCos_LepP_B_BoostedtoWp, TruthCos_LepN_Bbar_BoostedtoWn;
-        //_____Boost to W+-_____
-	TLorentzVector 	TruthB_BoostedtoWp,    TruthLepP_BoostedtoWp,       TruthNeu_BoostedtoWp, 
-			TruthBbar_BoostedtoWn, TruthLepN_BoostedtoWn,    TruthNeubar_BoostedtoWn; 
+        
 
 	double Truth_WCosTheta1, Truth_WCosTheta2;
         
@@ -233,24 +321,9 @@ public:
         // Truth Leptons Reconstructed Correctly.................................................
         // ======================================================================================
         Int_t  Dilep_Truth_Reco_Match;
-        Int_t  myTruth_WtauDecay;
-        std::vector<TLorentzVectorWFlags> myTruthLepVec;
-        std::vector<TLorentzVectorWFlags> myTruthNeuVec;
-        std::vector<TLorentzVectorWFlags> myTruth_t_Vec;
-        std::vector<TLorentzVectorWFlags> myTruth_W_Vec;
-        std::vector<TLorentzVectorWFlags> myTruth_b_Vec;
-
         // ======================================================================================
         // Matched Truth with Reconstructed Leptons, jets and missing for Resolution Studies.....
         // ======================================================================================
-	// Truth information
-        std::vector<TLorentzVectorWFlags> myResolution_Truth_Lep;
-        std::vector<TLorentzVectorWFlags> myResolution_Truth_Jet;
-        std::vector<TLorentzVectorWFlags> myResolution_Truth_Mis;
-	// Reconstructed information
-        std::vector<TLorentzVectorWFlags> myResolution_Reco_Lep;
-        std::vector<TLorentzVectorWFlags> myResolution_Reco_Jet;
-        std::vector<TLorentzVectorWFlags> myResolution_Reco_Mis;
 
 	// Random variables
 	TRandom3 rnd;
@@ -294,7 +367,7 @@ public:
         // ===== AO 8 Oct 2010 ===================== below =========
         // =========================================================
 
-        Int_t myRunNumber;       //...run number
+       /* Int_t myRunNumber;       //...run number
 
         //.................t
         Int_t my_ITQ;            //...line for top quark
@@ -369,136 +442,23 @@ public:
         Int_t my_pdgID_Wn_dw;    //...Code of 1st W- Daughter
         Int_t my_pdgID_Wn_up;    //...Code of 2nd W- Daughter
         TLorentzVector my_Wnf1;
-        TLorentzVector my_Wnf2;
+        TLorentzVector my_Wnf2;*/
         // =========================================================
         // ===== AO 8 Oct 2010 ===================== above =========
         // =========================================================
-        Int_t myEVE_Total;
-        //....semileptonic....
-        Int_t myEVE_semi_ele;
-        Int_t myEVE_semi_mu;
-        Int_t myEVE_semi_nontau_ele;
-        Int_t myEVE_semi_nontau_mu;
-        Int_t myEVE_semi_tau;
-        Int_t myEVE_semi_leptau;
-        Int_t myEVE_semi_eletau;
-        Int_t myEVE_semi_mutau;
-        //....dileptonic............with taus....
-        Int_t myEVE_di_eleele;
-        Int_t myEVE_di_mumu;
-        Int_t myEVE_di_elemu;
-        //....dileptonic............without taus....
-        Int_t myEVE_di_nontau_eleele;
-        Int_t myEVE_di_nontau_elemu;
-        Int_t myEVE_di_nontau_eletau;
-        Int_t myEVE_di_nontau_mumu;
-        Int_t myEVE_di_nontau_mutau;
-        Int_t myEVE_di_nontau_tautau;
-        //....multileptons............
-        Int_t myEVE_0leptons;
-        Int_t myEVE_3leptons;
-        Int_t myEVE_4leptons;
-        Int_t myEVE_more4leptons;
-        //...top quarks
-	Int_t myEVE_ttbar;
-        Int_t myEVE_4tops;
-        Int_t myEVE_nonttbar;
-        //.....................discriminate what ttbar events do we have.....
-        Int_t myttbar_00;
-        Int_t myttbar_01;
-        Int_t myttbar_02;
-        Int_t myttbar_03;
-        Int_t myttbar_10;
-        Int_t myttbar_11;
-        Int_t myttbar_12;
-        Int_t myttbar_13;
-        Int_t myttbar_20;
-        Int_t myttbar_21;
-        Int_t myttbar_22;
-        Int_t myttbar_23;
-        Int_t myttbar_30;
-        Int_t myttbar_31;
-        Int_t myttbar_32;
-        Int_t myttbar_33;
-        //...W bosons
-	Int_t myEVE_WW;
-        Int_t myEVE_4W;
-        Int_t myEVE_nonWW;
-        //.....................discriminate what bbbar events do we have.....
-        Int_t mybbbar_00;
-        Int_t mybbbar_01;
-        Int_t mybbbar_02;
-        Int_t mybbbar_03;
-        Int_t mybbbar_10;
-        Int_t mybbbar_11;
-        Int_t mybbbar_12;
-        Int_t mybbbar_13;
-        Int_t mybbbar_20;
-        Int_t mybbbar_21;
-        Int_t mybbbar_22;
-        Int_t mybbbar_23;
-        Int_t mybbbar_30;
-        Int_t mybbbar_31;
-        Int_t mybbbar_32;
-        Int_t mybbbar_33;
-        //...b quarks
-        Int_t myEVE_bb;
-        Int_t myEVE_4b;
-        Int_t myEVE_nonbb;
-        //.....................discriminate what ssbar events do we have.....
-        Int_t myssbar_00;
-        Int_t myssbar_01;
-        Int_t myssbar_02;
-        Int_t myssbar_03;
-        Int_t myssbar_10;
-        Int_t myssbar_11;
-        Int_t myssbar_12;
-        Int_t myssbar_13;
-        Int_t myssbar_20;
-        Int_t myssbar_21;
-        Int_t myssbar_22;
-        Int_t myssbar_23;
-        Int_t myssbar_30;
-        Int_t myssbar_31;
-        Int_t myssbar_32;
-        Int_t myssbar_33;
-        //...s quarks
-        Int_t myEVE_ss;
-        Int_t myEVE_4s;
-        Int_t myEVE_nonss;
-        //.....................discriminate what ddbar events do we have.....
-        Int_t myddbar_00;
-        Int_t myddbar_01;
-        Int_t myddbar_02;
-        Int_t myddbar_03;
-        Int_t myddbar_10;
-        Int_t myddbar_11;
-        Int_t myddbar_12;
-        Int_t myddbar_13;
-        Int_t myddbar_20;
-        Int_t myddbar_21;
-        Int_t myddbar_22;
-        Int_t myddbar_23;
-        Int_t myddbar_30;
-        Int_t myddbar_31;
-        Int_t myddbar_32;
-        Int_t myddbar_33;
-        //...d quarks
-        Int_t myEVE_dd;
-        Int_t myEVE_4d;
-        Int_t myEVE_nondd;
+        
         // =========================================================
         // ===== AO 8 Oct 2010 ===================== above =========
         // =========================================================
 	// ######################################################################################
 
-  Int_t ntruthlep;
+  /*Int_t ntruthlep;
   Int_t ntruthele;
   Int_t ntruthmu;
   Int_t ntrutheletau;
   Int_t ntruthmutau;
   Int_t ntruthtau;
-  Int_t ntruthleptau;
+  Int_t ntruthleptau;*/
 
   Double_t NonbJet1_weight;
   Double_t NonbJet2_weight;
@@ -508,8 +468,8 @@ public:
   Double_t jet_weight[30];
   Int_t jet_ntracks[30];
 
-  TLorentzVector ll;
-  TLorentzVector llmiss;
+  /*TLorentzVector ll;
+  TLorentzVector llmiss;*/
 
   Int_t           PassedEF_mu20;
   Int_t           PassedEF_e20_loose;
