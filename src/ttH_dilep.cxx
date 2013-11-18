@@ -6476,7 +6476,7 @@ void ttH_dilep::PostLoopCalculations(){
         // =========================================================
         // ===== AO 8 Oct 2010 ===================== above =========
         // =========================================================
-        if ( ( isData == 0 ) && ( events[Event::event_counter].myRunNumber ==105200 ) ){
+        if ( ( isData == 0 ) && ( events[0].myRunNumber ==105200 ) ){
 
                 cout << "    " << endl;
                 cout << "    " << endl;
