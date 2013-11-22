@@ -3556,6 +3556,7 @@ void ttH_dilep::first_DoCuts(){
         events[Event::event_counter].LastCut++; // LastCut=1
 
         // Needed calculations to fill the variables
+        #pragma omp critical
         events[Event::event_counter].Calculations();
         //=============================================
         //=============================================
@@ -5730,7 +5731,7 @@ void ttH_dilep::ttDilepKinFit(){
 			ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size(); 	// value range: [2; events[Event::event_counter].MyGoodJetVec.size()]        
 		}
         	if (ttDKF_njets < 4){
-			cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
+			//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
 			ttDKF_JetCombChoice = 0; // does not compute kinematic fit
 		}
 
