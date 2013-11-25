@@ -265,9 +265,7 @@ int sign[2] = {-1, +1};
 int ncand(0);
 
 
-vector<TLorentzVector> *neutrinoContainer_a = new std::vector<TLorentzVector>;
-vector<TLorentzVector> *neutrinoContainer_b = new std::vector<TLorentzVector>;
-vector<myvector> *neutrinoContainer = new std::vector<myvector>; //// must use new
+vector<myvector> neutrinoContainer = new std::vector<myvector>; //// must use new
 
 //////////////////////////////////////////////////
 //// please replace your code starting from here 
@@ -325,7 +323,7 @@ for (int j=0; j<8; j+=2){
          //cout<< m_w1->M()<<" "<<m_w2->M()<<" "<< m_t1->M() <<" "<< m_t2->M() <<endl;
 
          if ( m_good_eq1 && m_good_eq2 && m_good_eq3 && m_good_eq4 && m_good_eq5 && m_good_eq6 ) {
-	    neutrinoContainer->push_back( myvector(rec_x1, rec_y1, rec_z1, rec_z2) );
+	    neutrinoContainer.push_back( myvector(rec_x1, rec_y1, rec_z1, rec_z2) );
            ncand++;
          } else {
 	    cout<<" One solution is found to be out of range: "<< m_w1->M()<<" "<<m_w2->M()<<" "<< m_t1->M() <<" "<< m_t2->M()<<endl;
@@ -334,84 +332,8 @@ for (int j=0; j<8; j+=2){
     }
 }
 
-return neutrinoContainer;
-//return;
-//}  //// end of function
+return &neutrinoContainer;
 
-//// the replacement ends here 
-//////////////////////////////////////////////////
-//////////////////////////////////////////////////
- for (int j=0; j<8; j+=2){
-    delta = k_1*output[j]*output[j] + k_2*output[j] + k_3;
-			
-	if ( output[j+1]==0 && delta>=0) {
-	  if ( (fx_1 + fx_2*output[j])!=0 ) {
-	       	double rec_x1 = (fx_3*pow(output[j],2) + fx_4*output[j] + fx_5)/(fx_1 + fx_2*output[j]); 
-	       	double rec_y1 = output[j];
-	       	double rec_z1 = G_8/G_7 - G_5*rec_x1/G_7 - G_6*rec_y1/G_7;
-		double rec_e1 = sqrt(rec_x1*rec_x1 + rec_y1*rec_y1 + rec_z1*rec_z1);
-	       	double rec_x2 = S - rec_x1;
-	      	double rec_y2 = T - rec_y1;
-	      	double rec_z2 = G_12/G_11 - G_9*rec_x2/G_11 - G_10*rec_y2/G_11;
-		double rec_e2 = sqrt(rec_x2*rec_x2 + rec_y2*rec_y2 + rec_z2*rec_z2);
-
-//		TVector3 rv;
-//		rv.SetXYZ(rec_x1, rec_y1, rec_z1);
-		myvector sol(rec_x1, rec_y1, rec_z1, rec_z2 );
-//		cout <<sol.Px()<<" "<<sol.Py()<<" "<<sol.Pz()<<" "<<sol.apz()<<endl;
-		neutrinoContainer->push_back( sol );		
-	
-//		TLorentzVector rv_1, rv_2;
-//		rv_1.SetXYZM(rec_x1, rec_y1, rec_z1, 0.);
-//		rv_2.SetXYZM(rec_x2, rec_y2, rec_z2, 0.);
-//		neutrinoContainer_a->push_back(rv_1);
-//		neutrinoContainer_b->push_back(rv_2);
-		
-
-	  } else {
-
-/////////     for (int sn=0; sn<2; sn++ ){
-	       //// calculation this way will give up to 8 answers, most of 
-	       //// them will be the background again to the signal. Personally 
-	       //// this event will NOT be a good event anyway because of the huge
-	       //// signal to background ratio. 
-	       //// Therefore, the 8(?) answers will be reduced to 4 anyway. 
-	       //// This means only one of +/- sqrt(delta) will be used. Take +;
-	        
-/////////       double rec_x1 = sign[sn]*sqrt(delta)+k_4+k_5*output[j]; 
-	       	double rec_x1 = sqrt(delta)+k_4+k_5*output[j];
-	       	double rec_y1 = output[j];
-	       	double rec_z1 = G_8/G_7 - G_5*rec_x1/G_7 - G_6*rec_y1/G_7;
-	       	double rec_x2 = S - rec_x1;
-	      	double rec_y2 = T - rec_y1;
-	      	double rec_z2 = G_12/G_11 - G_9*rec_x2/G_11 - G_10*rec_y2/G_11;
-
-		TVector3 rv;
-		rv.SetXYZ(rec_x1, rec_y1, rec_z1);
-		myvector sol( rv.X(), rv.Y(), rv.Z(), rec_z2 );
-
-		neutrinoContainer->push_back( sol );
-
-//////////      }
-	 }  
-//	   if (_test) {
-//		 if (rec_x1-xx<0.1 && rec_y1-yy <0.1 && rec_x2-_xx<0.1 && rec_y2-_yy<0.1) {
-//	      	  printf(" %3d  recon. x1  y1  z1  are:  %3.3f (%3.3f) %3.3f (%3.3f)  %3.3f (%3.3f) \n" , 
-//	      		ncand+1, rec_x1, (rec_x1-xx), rec_y1, (rec_y1-yy), rec_z1, (rec_z1-zz) ); 	  
-//	      	  printf(" %3d  recon. x2  y2  z2  are:  %3.3f (%3.3f) %3.3f (%3.3f)  %3.3f (%3.3f) \n" , 
-//	      		ncand+1, rec_x2, (rec_x2-_xx), rec_y2, (rec_y2-_yy), rec_z2, (rec_z2-_zz) );  }
-//	   } else {
-//	      	  printf(" %3d  recon. x1  y1  z1  are:  %3.3f  %3.3f  %3.3f \n" , 
-//	      		ncand+1, rec_x1, rec_y1, rec_z1 ); 	  
-//	      	  printf(" %3d  recon. x2  y2  z2  are:  %3.3f %3.3f %3.3f \n" , 
-//	      		ncand+1, rec_x2, rec_y2,rec_z2 );
-//	   }	
-    ncand++; 
-     }
- }
-
-return neutrinoContainer;
-//return;
 }  //// end of function
 
 //////////////////////////////////////
