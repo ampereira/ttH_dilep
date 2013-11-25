@@ -265,7 +265,7 @@ int sign[2] = {-1, +1};
 int ncand(0);
 
 
-vector<myvector> neutrinoContainer = new std::vector<myvector>; //// must use new
+vector<myvector> neutrinoContainer; //// must use new
 
 //////////////////////////////////////////////////
 //// please replace your code starting from here 
