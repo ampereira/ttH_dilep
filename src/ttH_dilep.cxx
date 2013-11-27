@@ -23,6 +23,7 @@ using namespace std;
 
 #include <cmath>
 
+#include <omp.h>
 
 // #############################################################################
 ttH_dilep::ttH_dilep():LipMiniAnalysis(){
@@ -5720,6 +5721,8 @@ void ttH_dilep::ttDilepKinFit(){
 	// -----------------------------------------------------------------
 	if ( ttDKF_JetCombChoice == 1 ){
 		for ( Int_t jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
+			#pragma omp critical
+			cout << "tid: " << omp_get_thread_num() << " - " << events[Event::event_counter].MyGoodJetVec.size() << endl;
 			MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
 		}		
 		// -----------------------------------------------------------------
