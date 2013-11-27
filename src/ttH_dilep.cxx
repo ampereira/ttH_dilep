@@ -5702,10 +5702,11 @@ void ttH_dilep::ttDilepKinFit(){
     // =================================================================
     // Identify Leptons: z_lep=Highest pT lepton, c_lep=Lowest pT lepton
     // =================================================================
-    z_lep       = events[Event::event_counter].LeptonVec[0]; // to be use ONLY as TLorentzVector
-    z_lepWFlags = events[Event::event_counter].LeptonVec[0]; // extended TLorentzVector
-    c_lep       = events[Event::event_counter].LeptonVec[1]; // to be use ONLY as TLorentzVector
     c_lepWFlags = events[Event::event_counter].LeptonVec[1]; // extended TLorentzVector
+    z_lepWFlags = events[Event::event_counter].LeptonVec[0]; // extended TLorentzVector
+    
+    z_lep       = events[Event::event_counter].LeptonVec[0]; // to be use ONLY as TLorentzVector
+    c_lep       = events[Event::event_counter].LeptonVec[1]; // to be use ONLY as TLorentzVector
 
 
     // =================================================================
