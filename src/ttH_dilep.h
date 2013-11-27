@@ -283,7 +283,7 @@ public:
         // ======================================================================================
 	// reconstructed variables...............................................................
         // ======================================================================================
-        double HasSolution, NumberGoodSolutions, NumberGoodEvents, CosTheta1, CosTheta2;
+        double NumberGoodSolutions, NumberGoodEvents, CosTheta1, CosTheta2;
 	TLorentzVector Lepton1, Lepton2, B1, B2, Neutrino, Antineutrino, Top1, Top2;
 
         //_____objects_____
@@ -326,7 +326,7 @@ public:
         // ======================================================================================
 
 	// Random variables
-	TRandom3 rnd;
+	//TRandom3 rnd;
 
 	// ######################################################################################
 
