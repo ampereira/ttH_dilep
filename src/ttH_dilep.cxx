@@ -2338,8 +2338,9 @@ void ttH_dilep::FillHistograms(THistos &histo){
 			double myWei = 1.;			
 			int kh = 0;
 			int kl = 1;
+
+            cout << "Event: " << Event::event_counter << endl;
             cout << "1 -> " << events[Event::event_counter].myTruthLepVec[0].Pt() << endl;
-            cout << "2 -> " << events[Event::event_counter].myTruthLepVec[1].Pt() << endl;
 			if ( events[Event::event_counter].myTruthLepVec[1].Pt() > events[Event::event_counter].myTruthLepVec[0].Pt() ) { kh = 1 ; kl = 0 ;}
 			// Highest pT lepton l1-------------------------------------------
 			int ip = kh;
