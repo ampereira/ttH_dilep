@@ -5702,11 +5702,11 @@ void ttH_dilep::ttDilepKinFit(){
     // =================================================================
     // Identify Leptons: z_lep=Highest pT lepton, c_lep=Lowest pT lepton
     // =================================================================
-    c_lepWFlags = events[Event::event_counter].LeptonVec[1]; // extended TLorentzVector
-    z_lepWFlags = events[Event::event_counter].LeptonVec[0]; // extended TLorentzVector
+    //c_lepWFlags = events[Event::event_counter].LeptonVec[1]; // extended TLorentzVector
+    //z_lepWFlags = events[Event::event_counter].LeptonVec[0]; // extended TLorentzVector
     
-    z_lep       = events[Event::event_counter].LeptonVec[0]; // to be use ONLY as TLorentzVector
-    c_lep       = events[Event::event_counter].LeptonVec[1]; // to be use ONLY as TLorentzVector
+    //z_lep       = events[Event::event_counter].LeptonVec[0]; // to be use ONLY as TLorentzVector
+    //c_lep       = events[Event::event_counter].LeptonVec[1]; // to be use ONLY as TLorentzVector
 
 
     // =================================================================
@@ -5842,7 +5842,7 @@ void ttH_dilep::ttDilepKinFit(){
                                     // Define number of experiments for resolution
                                     // loop over several resolution experiments
 
-                                    DilepInput di (z_lep, c_lep, z_bj, c_bj, z_bjWFlags, c_bjWFlags, z_lepWFlags, c_lepWFlags, jet1_HiggsWFlags, jet2_HiggsWFlags, in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
+                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], z_bj, c_bj, z_bjWFlags, c_bjWFlags, events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], jet1_HiggsWFlags, jet2_HiggsWFlags, in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
                                     inputs.push_back(di);
                                 }
                             }
