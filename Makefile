@@ -43,11 +43,8 @@ build/dilep_input.o: src/dilep_input.cxx src/dilep_input.h
 build/neut.o: src/neut/neut.cxx src/myvector.h src/neut/neut.h
 	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c src/neut/neut.cxx -o build/neut.o
 
-build/utilities.o: src/utilities.cxx src/utilities.h
-	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c src/utilities.cxx -o build/utilities.o
-
-bin/ttH_dilep: src/ttH_dilep.cxx src/ttH_dilep.h build/neut.o build/dilep_input.o build/utilities.o $(LipMiniAnalysis)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -o bin/ttH_dilep -I$(INCLUDES) src/ttH_dilep.cxx build/neut.o build/dilep_input.o build/utilities.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+bin/ttH_dilep: src/ttH_dilep.cxx src/ttH_dilep.h build/neut.o build/dilep_input.o $(LipMiniAnalysis)/libLipMiniAnalysis.a
+	$(CXX) $(CXXFLAGS) -o bin/ttH_dilep -I$(INCLUDES) src/ttH_dilep.cxx build/neut.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
 	rm -rf build/*.o bin/*

@@ -9,7 +9,6 @@ using namespace std;
 #include "myvector.h"
 #include "neut/neut.h"
 #include "dilep_input.h"
-#include "utilities.h"
 
 extern int dilep_iterations;
 
@@ -6476,9 +6475,6 @@ double ttH_dilep::DeltaR2( double eta1, double eta2, double phi1, double phi2){
 // #############################################################################
 Int_t main(Int_t argc, char *argv[]){
 // #############################################################################
-
-    ttH::defineDilepIterations();
-    ttH::defineNumThreads();
 
 	// run the analysis
 	ttH_dilep *t = new ttH_dilep();
