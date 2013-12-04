@@ -15,7 +15,6 @@
 #include <sstream>
 #include "../myvector.h"
 #include "../dilep_input.h"
-#include "../utilities.h"
 
 namespace Dilep {
 	namespace CPU {
