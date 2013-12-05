@@ -5797,6 +5797,7 @@ void ttH_dilep::ttDilepKinFit(){
 
     std::vector<DilepInput> inputs;
 
+    #pragma omp critical
     if ( ttDKF_JetCombChoice == 1 ){ 
         for ( int j1=0; j1 < ttDKF_njets ; j1++){
             for ( int j2=0; j2 < ttDKF_njets ; j2++){
