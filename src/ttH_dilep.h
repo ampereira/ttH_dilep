@@ -263,29 +263,13 @@ public:
 	// reconstructed variables...............................................................
         // ======================================================================================
         double NumberGoodSolutions, NumberGoodEvents, CosTheta1, CosTheta2;
-	TLorentzVector Lepton1, Lepton2, B1, B2, Neutrino, Antineutrino, Top1, Top2;
+	TLorentzVector Lepton1, Lepton2, B1, B2, Top1, Top2;
 
-        //_____objects_____
-	TLorentzVector 	RecT,    RecB,    RecWp, RecLepP,    RecNeu, 
-			RecTbar, RecBbar, RecWn, RecLepN,    RecNeubar,
-			RecTTbar, RecHiggs, RecHiggsB1, RecHiggsB2;
-        //_____Boost to top_____
-	TLorentzVector 	RecB_BoostedtoT,       RecWp_BoostedtoT,    RecLepP_BoostedtoT,       RecNeu_BoostedtoT, 
-			RecBbar_BoostedtoTbar, RecWn_BoostedtoTbar, RecLepN_BoostedtoTbar,    RecNeubar_BoostedtoTbar; 
-        //_____Boost to ttbar_____
-	TLorentzVector  RecT_Boostedtottbar, RecTbar_Boostedtottbar;
-        //_____angles______
-	double 		RecCos_LepP_T_BoostedtoT,       RecCos_Neu_T_BoostedtoT,          RecCos_B_T_BoostedtoT,
-			RecCos_LepN_Tbar_BoostedtoTbar, RecCos_Neubar_Tbar_BoostedtoTbar, RecCos_Bbar_Tbar_BoostedtoTbar,
-			RecCos_LepP_B_BoostedtoWp, RecCos_LepN_Bbar_BoostedtoWn;
-        //_____Boost to W+-_____
-	TLorentzVector 	RecB_BoostedtoWp,    RecLepP_BoostedtoWp,       RecNeu_BoostedtoWp, 
-			RecBbar_BoostedtoWn, RecLepN_BoostedtoWn,    RecNeubar_BoostedtoWn; 
+        
 
 	double WCosTheta1, WCosTheta2;
 
         //_____Higgs Masses______
-	double 		RecMassHiggsJet1,	RecMassHiggsJet2, 	RecProbTotal_ttH;
 
 
         // ======================================================================================

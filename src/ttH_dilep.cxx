@@ -720,7 +720,7 @@ void ttH_dilep::BookHistograms(THistos &histo){
     		histo[i][205] = new TH1D(c(n,i,"_pdf_pt__l1"),       	c(t,i,": pdf l1  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][206] = new TH1D(c(n,i,"_pdf_eta_l1"),       	c(t,i,": pdf l1 #eta         "),     		80, -4.0, 4.0);
     		histo[i][207] = new TH1D(c(n,i,"_pdf_phi_l1"),      	c(t,i,": pdf l1 #phi         "),     		80, -4.0, 4.0);
-		// Neutrino for (l1)
+		// events[Event::event_counter].Neutrino for (l1)
     		histo[i][208] = new TH1D(c(n,i,"_pdf_e___n1"),       	c(t,i,": pdf n1 Energy [GeV]"),  		bPt,  lPt, hPt);
     		histo[i][209] = new TH1D(c(n,i,"_pdf_pt__n1"),       	c(t,i,": pdf n1  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][225] = new TH1D(c(n,i,"_pdf_eta_n1"),       	c(t,i,": pdf n1 #eta         "),     		80, -4.0, 4.0);
@@ -747,7 +747,7 @@ void ttH_dilep::BookHistograms(THistos &histo){
     		histo[i][279] = new TH1D(c(n,i,"_pdf_pt__l2"),       	c(t,i,": pdf l2  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][280] = new TH1D(c(n,i,"_pdf_eta_l2"),       	c(t,i,": pdf l2 #eta         "),     		80, -4.0, 4.0);
     		histo[i][281] = new TH1D(c(n,i,"_pdf_phi_l2"),      	c(t,i,": pdf l2 #phi         "),     		80, -4.0, 4.0);
-		// Neutrino for (l2)
+		// events[Event::event_counter].Neutrino for (l2)
     		histo[i][282] = new TH1D(c(n,i,"_pdf_e___n2"),       	c(t,i,": pdf n2 Energy [GeV]"),  		bPt,  lPt, hPt);
     		histo[i][283] = new TH1D(c(n,i,"_pdf_pt__n2"),       	c(t,i,": pdf n2  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][284] = new TH1D(c(n,i,"_pdf_eta_n2"),       	c(t,i,": pdf n2 #eta         "),     		80, -4.0, 4.0);
@@ -781,10 +781,10 @@ void ttH_dilep::BookHistograms(THistos &histo){
                 // ::					             from 300 - 399 							        ::
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		// reconstructed information
-		histo[i][300] = new TH1D(c(n, i, "_pt_neutrino"),      c(t, i, ": pt Neutrino "),           bPt,  lPt, hPt);
-		histo[i][301] = new TH1D(c(n, i, "_e_neutrino"),       c(t, i, ": E  Neutrino "),           bPt,  lPt, hPt);
-		histo[i][302] = new TH1D(c(n, i, "_pt_AntiNeutrino"),  c(t, i, ": pt Anti Neutrino "),      bPt,  lPt, hPt);
-		histo[i][303] = new TH1D(c(n, i, "_e_AntiNeutrino"),   c(t, i, ": E  Anti Neutrino "),      bPt,  lPt, hPt);
+		histo[i][300] = new TH1D(c(n, i, "_pt_neutrino"),      c(t, i, ": pt events[Event::event_counter].Neutrino "),           bPt,  lPt, hPt);
+		histo[i][301] = new TH1D(c(n, i, "_e_neutrino"),       c(t, i, ": E  events[Event::event_counter].Neutrino "),           bPt,  lPt, hPt);
+		histo[i][302] = new TH1D(c(n, i, "_pt_AntiNeutrino"),  c(t, i, ": pt Anti events[Event::event_counter].Neutrino "),      bPt,  lPt, hPt);
+		histo[i][303] = new TH1D(c(n, i, "_e_AntiNeutrino"),   c(t, i, ": E  Anti events[Event::event_counter].Neutrino "),      bPt,  lPt, hPt);
 
                 // top quarks,  W bosons, Higgs  _____________________________________________________________________
     		histo[i][310] = new TH1D(c(n,i,"_m_Wp"),       	c(t,i,": m W+ [GeV]"),            100, 0.0,  500.0);
@@ -963,11 +963,11 @@ void ttH_dilep::BookHistograms(THistos &histo){
                 histo[i][568] = new TH1D(c(n, i, "_Resol_Wpol_coslnB"),                         c(t, i, ": Resolution cos(l-,b) in W-"),      100,   -2.,   2.);
                 histo[i][569] = new TH1D(c(n, i, "_Resol_Wpol_coslB"),                          c(t, i, ": Resolution cos(l,b) in W  "),      100,   -2.,   2.);
                 // neutrino......
-                histo[i][570] = new TH1D(c(n, i, "_Resol_pT_neutrino"),                         c(t, i, ": Resolution pT Neutrino  "),        100,   -20.,   20.);
-                histo[i][571] = new TH1D(c(n, i, "_Resol_pZ_neutrino"),                         c(t, i, ": Resolution pZ Neutrino  "),        100,  -100.,  100.);
+                histo[i][570] = new TH1D(c(n, i, "_Resol_pT_neutrino"),                         c(t, i, ": Resolution pT events[Event::event_counter].Neutrino  "),        100,   -20.,   20.);
+                histo[i][571] = new TH1D(c(n, i, "_Resol_pZ_neutrino"),                         c(t, i, ": Resolution pZ events[Event::event_counter].Neutrino  "),        100,  -100.,  100.);
                 // neutrino......
-                histo[i][572] = new TH1D(c(n, i, "_Resol_pT_Anti_neutrino"),                    c(t, i, ": Resolution pT Anti-Neutrino  "),        100,   -20.,   20.);
-                histo[i][573] = new TH1D(c(n, i, "_Resol_pZ_Anti_neutrino"),                    c(t, i, ": Resolution pZ Anti-Neutrino  "),        100,  -100.,  100.);
+                histo[i][572] = new TH1D(c(n, i, "_Resol_pT_Anti_neutrino"),                    c(t, i, ": Resolution pT Anti-events[Event::event_counter].Neutrino  "),        100,   -20.,   20.);
+                histo[i][573] = new TH1D(c(n, i, "_Resol_pZ_Anti_neutrino"),                    c(t, i, ": Resolution pZ Anti-events[Event::event_counter].Neutrino  "),        100,  -100.,  100.);
 
 
 		// Mlb mass distributions Reconstruction Level 
@@ -2825,8 +2825,8 @@ void ttH_dilep::FillHistograms(THistos &histo){
                         // ------------------------------------------
 			// Calculate Mlb.............................
                         // ------------------------------------------
- 			mylb_lp  = (RecLepP + RecB);
- 			mylb_ln  = (RecLepN + RecBbar);
+ 			mylb_lp  = (events[Event::event_counter].RecLepP + events[Event::event_counter].RecB);
+ 			mylb_ln  = (events[Event::event_counter].RecLepN + events[Event::event_counter].RecBbar);
                         //..l+
     			histo[i][415]->Fill( mylb_lp.M()/GeV,events[Event::event_counter].Weight);
     			histo[i][430]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),events[Event::event_counter].Weight);
@@ -3036,18 +3036,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][190]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-                               histo[i][190]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                               histo[i][190]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][190]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
                                if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,events[Event::event_counter].Weight); }
                                else                   {  histo[i][191]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
                                if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,events[Event::event_counter].Weight); }
@@ -3075,18 +3075,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][194]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-                               histo[i][194]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                               histo[i][194]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][194]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
                                if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,events[Event::event_counter].Weight); }
                                else                   {  histo[i][195]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
                                if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,events[Event::event_counter].Weight); }
@@ -3157,18 +3157,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][192]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-                               histo[i][192]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                               histo[i][192]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][192]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
                                if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,events[Event::event_counter].Weight); }
                                else                   {  histo[i][193]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
                                if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,events[Event::event_counter].Weight); }
@@ -3196,18 +3196,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
                 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][196]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-                               histo[i][196]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                               histo[i][196]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][196]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
                                if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,events[Event::event_counter].Weight); }
                                else                   {  histo[i][197]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
                                if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,events[Event::event_counter].Weight); }
                                else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,events[Event::event_counter].Weight); }
                                else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,events[Event::event_counter].Weight); }
@@ -3381,85 +3381,85 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
 		// reconstructed information...........................................
 		if( events[Event::event_counter].HasSolution > 0 ){
-			histo[i][300]->Fill(Neutrino.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][301]->Fill(Neutrino.E()/GeV, events[Event::event_counter].Weight);
-			histo[i][302]->Fill(Antineutrino.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][303]->Fill(Antineutrino.E()/GeV, events[Event::event_counter].Weight);
+			histo[i][300]->Fill(events[Event::event_counter].Neutrino.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][301]->Fill(events[Event::event_counter].Neutrino.E()/GeV, events[Event::event_counter].Weight);
+			histo[i][302]->Fill(events[Event::event_counter].Antineutrino.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][303]->Fill(events[Event::event_counter].Antineutrino.E()/GeV, events[Event::event_counter].Weight);
 
                         //____Mass PLots_____
-			histo[i][310]->Fill(           RecWp.M()/GeV, events[Event::event_counter].Weight);
-			histo[i][311]->Fill(           RecWn.M()/GeV, events[Event::event_counter].Weight);
-			histo[i][312]->Fill(            RecT.M()/GeV, events[Event::event_counter].Weight);
-			histo[i][313]->Fill(         RecTbar.M()/GeV, events[Event::event_counter].Weight);
-			histo[i][314]->Fill(  (RecT+RecTbar).M()/GeV, events[Event::event_counter].Weight);
-			histo[i][325]->Fill(        RecHiggs.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][310]->Fill(           events[Event::event_counter].RecWp.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][311]->Fill(           events[Event::event_counter].RecWn.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][312]->Fill(            events[Event::event_counter].RecT.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][313]->Fill(         events[Event::event_counter].RecTbar.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][314]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).M()/GeV, events[Event::event_counter].Weight);
+			histo[i][325]->Fill(        events[Event::event_counter].RecHiggs.M()/GeV, events[Event::event_counter].Weight);
 			//samor
-			histo[i][361]->Fill(        RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
-			histo[i][362]->Fill(        RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
+			histo[i][361]->Fill(        events[Event::event_counter].RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
+			histo[i][362]->Fill(        events[Event::event_counter].RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
 			// Mass Higgs From the 2 jets -> 2 entries!! 
-			histo[i][363]->Fill(        RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
-			histo[i][363]->Fill(        RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
+			histo[i][363]->Fill(        events[Event::event_counter].RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
+			histo[i][363]->Fill(        events[Event::event_counter].RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
 
                         //____Pt PLots_____
-			histo[i][315]->Fill(           RecWp.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][316]->Fill(           RecWn.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][317]->Fill(            RecT.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][318]->Fill(         RecTbar.Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][319]->Fill(  (RecT+RecTbar).Pt()/GeV, events[Event::event_counter].Weight);
-			histo[i][326]->Fill(        RecHiggs.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][315]->Fill(           events[Event::event_counter].RecWp.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][316]->Fill(           events[Event::event_counter].RecWn.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][317]->Fill(            events[Event::event_counter].RecT.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][318]->Fill(         events[Event::event_counter].RecTbar.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][319]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][326]->Fill(        events[Event::event_counter].RecHiggs.Pt()/GeV, events[Event::event_counter].Weight);
 
-			histo[i][364]->Fill(  RecHiggsB1.DeltaR(RecHiggsB2), events[Event::event_counter].Weight);
-			histo[i][365]->Fill(         -log(RecProbTotal_ttH), events[Event::event_counter].Weight);
+			histo[i][364]->Fill(  events[Event::event_counter].RecHiggsB1.DeltaR(events[Event::event_counter].RecHiggsB2), events[Event::event_counter].Weight);
+			histo[i][365]->Fill(         -log(events[Event::event_counter].RecProbTotal_ttH), events[Event::event_counter].Weight);
 
                         //____Eta PLots_____
-			histo[i][320]->Fill(           RecWp.Eta(), events[Event::event_counter].Weight);
-			histo[i][321]->Fill(           RecWn.Eta(), events[Event::event_counter].Weight);
-			histo[i][322]->Fill(            RecT.Eta(), events[Event::event_counter].Weight);
-			histo[i][323]->Fill(         RecTbar.Eta(), events[Event::event_counter].Weight);
-			histo[i][324]->Fill(  (RecT+RecTbar).Eta(), events[Event::event_counter].Weight);
-			histo[i][327]->Fill(        RecHiggs.Eta(), events[Event::event_counter].Weight);
+			histo[i][320]->Fill(           events[Event::event_counter].RecWp.Eta(), events[Event::event_counter].Weight);
+			histo[i][321]->Fill(           events[Event::event_counter].RecWn.Eta(), events[Event::event_counter].Weight);
+			histo[i][322]->Fill(            events[Event::event_counter].RecT.Eta(), events[Event::event_counter].Weight);
+			histo[i][323]->Fill(         events[Event::event_counter].RecTbar.Eta(), events[Event::event_counter].Weight);
+			histo[i][324]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).Eta(), events[Event::event_counter].Weight);
+			histo[i][327]->Fill(        events[Event::event_counter].RecHiggs.Eta(), events[Event::event_counter].Weight);
 
 
 			// Reco spin correlations
 	                //___cos(l+)cos(l-)________________
-			histo[i][330]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][334]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][330]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][334]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(b)cos(l-)________________
-			histo[i][331]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][335]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][331]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][335]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(l+)cos(bbar)________________
-			histo[i][332]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][336]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][332]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][336]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 			//___cos(l)cos(b)________________
-			histo[i][333]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][337]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][333]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
-			histo[i][337]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][333]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][337]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][333]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][337]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	
 			// W polarizations
 	                //___cos(l+,b)________________
-			histo[i][340]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-			histo[i][343]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][340]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][343]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
 	                //___cos(l-,bbar)_____________
-			histo[i][341]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
-			histo[i][344]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][341]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][344]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 
 	                //____2 entries per event_____
-			histo[i][342]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-			histo[i][345]->Fill(RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-			histo[i][342]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
-			histo[i][345]->Fill(RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][342]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][345]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][342]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][345]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 
 	                //____4 entries per event_____
                         Double_t   ynew = 0.587401052;
                         //      ....(l+,b)....
-			Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
+			Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
      			if(ctheta < -ynew)     {  histo[i][346]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.75,events[Event::event_counter].Weight); }
      			else if(ctheta < 0. )  {  histo[i][346]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.25,events[Event::event_counter].Weight); }
      			else if(ctheta < ynew) {  histo[i][346]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.25,events[Event::event_counter].Weight); }
      			else                   {  histo[i][346]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.75,events[Event::event_counter].Weight); }
                         //      ....(l-,bbar)....
-			ctheta = RecCos_LepN_Bbar_BoostedtoWn;
+			ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
      			if(ctheta < -ynew)     {  histo[i][347]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.75,events[Event::event_counter].Weight); }
      			else if(ctheta < 0. )  {  histo[i][347]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.25,events[Event::event_counter].Weight); }
      			else if(ctheta < ynew) {  histo[i][347]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.25,events[Event::event_counter].Weight); }
@@ -3470,51 +3470,51 @@ void ttH_dilep::FillHistograms(THistos &histo){
                 // ::                                     Histograms for Truth versus Reconstructed                                             ::
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                 if ( events[Event::event_counter].TruthHasSolution > 0 && events[Event::event_counter].HasSolution > 0 ){
-//                        ((TH2D*)histo[i][500])->Fill( (TruthT+TruthTbar).M()/GeV , (RecT+RecTbar).M()/GeV, Weight);
+//                        ((TH2D*)histo[i][500])->Fill( (TruthT+TruthTbar).M()/GeV , (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).M()/GeV, Weight);
 
-                        // Resolution plots for Neutrino and Anti-neutrino pT and pZ
-                        if (     events[Event::event_counter].TruthNeu.Pt() != 0.) histo[i][570]->Fill(  (     Neutrino.Pt() - events[Event::event_counter].TruthNeu.Pt()    )/events[Event::event_counter].TruthNeu.Pt(), events[Event::event_counter].Weight);
-                        if (     events[Event::event_counter].TruthNeu.Pz() != 0.) histo[i][571]->Fill(  (     Neutrino.Pz() - events[Event::event_counter].TruthNeu.Pz()    )/events[Event::event_counter].TruthNeu.Pz(), events[Event::event_counter].Weight);
-                        if (  events[Event::event_counter].TruthNeubar.Pt() != 0.) histo[i][572]->Fill(  ( Antineutrino.Pt() - events[Event::event_counter].TruthNeubar.Pt() )/events[Event::event_counter].TruthNeubar.Pt(), events[Event::event_counter].Weight);
-                        if (  events[Event::event_counter].TruthNeubar.Pz() != 0.) histo[i][573]->Fill(  ( Antineutrino.Pz() - events[Event::event_counter].TruthNeubar.Pz() )/events[Event::event_counter].TruthNeubar.Pz(), events[Event::event_counter].Weight);
+                        // Resolution plots for events[Event::event_counter].Neutrino and Anti-neutrino pT and pZ
+                        if (     events[Event::event_counter].TruthNeu.Pt() != 0.) histo[i][570]->Fill(  (     events[Event::event_counter].Neutrino.Pt() - events[Event::event_counter].TruthNeu.Pt()    )/events[Event::event_counter].TruthNeu.Pt(), events[Event::event_counter].Weight);
+                        if (     events[Event::event_counter].TruthNeu.Pz() != 0.) histo[i][571]->Fill(  (     events[Event::event_counter].Neutrino.Pz() - events[Event::event_counter].TruthNeu.Pz()    )/events[Event::event_counter].TruthNeu.Pz(), events[Event::event_counter].Weight);
+                        if (  events[Event::event_counter].TruthNeubar.Pt() != 0.) histo[i][572]->Fill(  ( events[Event::event_counter].Antineutrino.Pt() - events[Event::event_counter].TruthNeubar.Pt() )/events[Event::event_counter].TruthNeubar.Pt(), events[Event::event_counter].Weight);
+                        if (  events[Event::event_counter].TruthNeubar.Pz() != 0.) histo[i][573]->Fill(  ( events[Event::event_counter].Antineutrino.Pz() - events[Event::event_counter].TruthNeubar.Pz() )/events[Event::event_counter].TruthNeubar.Pz(), events[Event::event_counter].Weight);
 
                         // Spin Correlations
                         //___cos(l+)cos(l-)________________
-//                        ((TH2D*)histo[i][530])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][534])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][530])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][534])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
                         //___cos(b)cos(l-)________________
-//                        ((TH2D*)histo[i][531])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][535])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][531])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][535])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
                         //___cos(l+)cos(bbar)________________
-//                        ((TH2D*)histo[i][532])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][536])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][532])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][536])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
                         //___cos(l)cos(b)________________
-//                        ((TH2D*)histo[i][533])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][537])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][533])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][537])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][533])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][537])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][533])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][537])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
 
                         // W polarizations
                         //___cos(l+,b)________________
-//                        ((TH2D*)histo[i][540])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][543])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][540])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][543])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
                         //___cos(l-,bbar)_____________
-//                        ((TH2D*)histo[i][541])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
-//                        ((TH2D*)histo[i][544])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][541])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][544])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
                         //____2 entries per event_____
-//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
-//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
 
                         //___Resolution Plots_________
                         if (events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp != 0. ) {
-                                histo[i][567]->Fill( (RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
-                                histo[i][569]->Fill( (RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                                histo[i][567]->Fill( (events[Event::event_counter].RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                                histo[i][569]->Fill( (events[Event::event_counter].RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
                         }
                         if (events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn != 0. ) {
-                                histo[i][568]->Fill( (RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
-                                histo[i][569]->Fill( (RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                                histo[i][568]->Fill( (events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                                histo[i][569]->Fill( (events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                         }
 
                         //___cos(l+,b)__from_Mlb____
@@ -3966,29 +3966,29 @@ void ttH_dilep::second_DoCuts() {
         if( isData == 1 ){
 /*
                 cout << "=========================event was reconstructed successfully=======================" << endl;
-                cout << "     Lepton=l0 :  Px=" << RecLepP.Px() << " Py=" << RecLepP.Py() << " Pz=" << RecLepP.Pz() << " E=" << RecLepP.E() <<
-                                         " Pt=" << RecLepP.Pt() << " Eta=" << RecLepP.Eta() << " Phi=" << RecLepP.Phi() << endl;
-                cout << "     Lepton=l1 :  Px=" << RecLepN.Px() << " Py=" << RecLepN.Py() << " Pz=" << RecLepN.Pz() << " E=" << RecLepN.E() <<
-                                         " Pt=" << RecLepN.Pt() << " Eta=" << RecLepN.Eta() << " Phi=" << RecLepN.Phi() << endl;
-                cout << "          b(l0):  Px=" << RecB.Px() << " Py=" << RecB.Py() << " Pz=" << RecB.Pz() << " E=" << RecB.E() << " M=" << RecB.M() <<
-                                         " Pt=" << RecB.Pt() << " Eta=" << RecB.Eta() << " Phi=" << RecB.Phi() << endl;
-                cout << "          b(l1):  Px=" << RecBbar.Px() << " Py=" << RecBbar.Py() << " Pz=" << RecBbar.Pz() << " E=" << RecBbar.E() << " M=" << RecBbar.M() <<
-                                         " Pt=" << RecBbar.Pt() << " Eta=" << RecBbar.Eta() << " Phi=" << RecBbar.Phi() << endl;
-                cout << "   Neutrino(l0):  Px=" << RecNeu.Px() << " Py=" << RecNeu.Py() << " Pz=" << RecNeu.Pz() << " E=" << RecNeu.E() <<
-                                         " Pt=" << RecNeu.Pt() << " Eta=" << RecNeu.Eta() << " Phi=" << RecNeu.Phi() << endl;
-                cout << "   Neutrino(l1):  Px=" << RecNeubar.Px() << " Py=" << RecNeubar.Py() << " Pz=" << RecNeubar.Pz() << " E=" << RecNeubar.E() <<
-                                         " Pt=" << RecNeubar.Pt() << " Eta=" << RecNeubar.Eta() << " Phi=" << RecNeubar.Phi() << endl;
-                cout << "          W(l0):  Px=" << RecWp.Px() << " Py=" << RecWp.Py() << " Pz=" << RecWp.Pz() << " E=" << RecWp.E() << " M=" << RecWp.M() <<
-                                         " Pt=" << RecWp.Pt() << " Eta=" << RecWp.Eta() << " Phi=" << RecWp.Phi() << endl;
-                cout << "          W(l1):  Px=" << RecWn.Px() << " Py=" << RecWn.Py() << " Pz=" << RecWn.Pz() << " E=" << RecWn.E() << " M=" << RecWn.M() <<
-                                         " Pt=" << RecWn.Pt() << " Eta=" << RecWn.Eta() << " Phi=" << RecWn.Phi() << endl;
-                cout << "          t(l0):  Px=" << RecT.Px() << " Py=" << RecT.Py() << " Pz=" << RecT.Pz() << " E=" << RecT.E() << " M=" << RecT.M() <<
-                                         " Pt=" << RecT.Pt() << " Eta=" << RecT.Eta() << " Phi=" << RecT.Phi() << endl;
-                cout << "          t(l1):  Px=" << RecTbar.Px() << " Py=" << RecTbar.Py() << " Pz=" << RecTbar.Pz() << " E=" << RecTbar.E() << " M=" << RecTbar.M() <<
-                                         " Pt=" << RecTbar.Pt() << " Eta=" << RecTbar.Eta() << " Phi=" << RecTbar.Phi() << endl;
+                cout << "     Lepton=l0 :  Px=" << events[Event::event_counter].RecLepP.Px() << " Py=" << events[Event::event_counter].RecLepP.Py() << " Pz=" << events[Event::event_counter].RecLepP.Pz() << " E=" << events[Event::event_counter].RecLepP.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepP.Pt() << " Eta=" << events[Event::event_counter].RecLepP.Eta() << " Phi=" << events[Event::event_counter].RecLepP.Phi() << endl;
+                cout << "     Lepton=l1 :  Px=" << events[Event::event_counter].RecLepN.Px() << " Py=" << events[Event::event_counter].RecLepN.Py() << " Pz=" << events[Event::event_counter].RecLepN.Pz() << " E=" << events[Event::event_counter].RecLepN.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepN.Pt() << " Eta=" << events[Event::event_counter].RecLepN.Eta() << " Phi=" << events[Event::event_counter].RecLepN.Phi() << endl;
+                cout << "          b(l0):  Px=" << events[Event::event_counter].RecB.Px() << " Py=" << events[Event::event_counter].RecB.Py() << " Pz=" << events[Event::event_counter].RecB.Pz() << " E=" << events[Event::event_counter].RecB.E() << " M=" << events[Event::event_counter].RecB.M() <<
+                                         " Pt=" << events[Event::event_counter].RecB.Pt() << " Eta=" << events[Event::event_counter].RecB.Eta() << " Phi=" << events[Event::event_counter].RecB.Phi() << endl;
+                cout << "          b(l1):  Px=" << events[Event::event_counter].RecBbar.Px() << " Py=" << events[Event::event_counter].RecBbar.Py() << " Pz=" << events[Event::event_counter].RecBbar.Pz() << " E=" << events[Event::event_counter].RecBbar.E() << " M=" << events[Event::event_counter].RecBbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecBbar.Pt() << " Eta=" << events[Event::event_counter].RecBbar.Eta() << " Phi=" << events[Event::event_counter].RecBbar.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l0):  Px=" << events[Event::event_counter].RecNeu.Px() << " Py=" << events[Event::event_counter].RecNeu.Py() << " Pz=" << events[Event::event_counter].RecNeu.Pz() << " E=" << events[Event::event_counter].RecNeu.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeu.Pt() << " Eta=" << events[Event::event_counter].RecNeu.Eta() << " Phi=" << events[Event::event_counter].RecNeu.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l1):  Px=" << events[Event::event_counter].RecNeubar.Px() << " Py=" << events[Event::event_counter].RecNeubar.Py() << " Pz=" << events[Event::event_counter].RecNeubar.Pz() << " E=" << events[Event::event_counter].RecNeubar.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeubar.Pt() << " Eta=" << events[Event::event_counter].RecNeubar.Eta() << " Phi=" << events[Event::event_counter].RecNeubar.Phi() << endl;
+                cout << "          W(l0):  Px=" << events[Event::event_counter].RecWp.Px() << " Py=" << events[Event::event_counter].RecWp.Py() << " Pz=" << events[Event::event_counter].RecWp.Pz() << " E=" << events[Event::event_counter].RecWp.E() << " M=" << events[Event::event_counter].RecWp.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWp.Pt() << " Eta=" << events[Event::event_counter].RecWp.Eta() << " Phi=" << events[Event::event_counter].RecWp.Phi() << endl;
+                cout << "          W(l1):  Px=" << events[Event::event_counter].RecWn.Px() << " Py=" << events[Event::event_counter].RecWn.Py() << " Pz=" << events[Event::event_counter].RecWn.Pz() << " E=" << events[Event::event_counter].RecWn.E() << " M=" << events[Event::event_counter].RecWn.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWn.Pt() << " Eta=" << events[Event::event_counter].RecWn.Eta() << " Phi=" << events[Event::event_counter].RecWn.Phi() << endl;
+                cout << "          t(l0):  Px=" << events[Event::event_counter].RecT.Px() << " Py=" << events[Event::event_counter].RecT.Py() << " Pz=" << events[Event::event_counter].RecT.Pz() << " E=" << events[Event::event_counter].RecT.E() << " M=" << events[Event::event_counter].RecT.M() <<
+                                         " Pt=" << events[Event::event_counter].RecT.Pt() << " Eta=" << events[Event::event_counter].RecT.Eta() << " Phi=" << events[Event::event_counter].RecT.Phi() << endl;
+                cout << "          t(l1):  Px=" << events[Event::event_counter].RecTbar.Px() << " Py=" << events[Event::event_counter].RecTbar.Py() << " Pz=" << events[Event::event_counter].RecTbar.Pz() << " E=" << events[Event::event_counter].RecTbar.E() << " M=" << events[Event::event_counter].RecTbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecTbar.Pt() << " Eta=" << events[Event::event_counter].RecTbar.Eta() << " Phi=" << events[Event::event_counter].RecTbar.Phi() << endl;
                 cout << "================================= Debug Equations ==================================" << endl;
-                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (RecNeu.Px() + RecNeubar.Px()) << endl;
-                cout << "                   Py=" << MissPy - (RecNeu.Py() + RecNeubar.Py()) << endl;
+                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (events[Event::event_counter].RecNeu.Px() + events[Event::event_counter].RecNeubar.Px()) << endl;
+                cout << "                   Py=" << MissPy - (events[Event::event_counter].RecNeu.Py() + events[Event::event_counter].RecNeubar.Py()) << endl;
                 cout << "====================================================================================" << endl;
 */
         }
@@ -4429,29 +4429,29 @@ void ttH_dilep::DoCuts(){
         if( isData == 1 ){
 /*
                 cout << "=========================event was reconstructed successfully=======================" << endl;
-                cout << "     Lepton=l0 :  Px=" << RecLepP.Px() << " Py=" << RecLepP.Py() << " Pz=" << RecLepP.Pz() << " E=" << RecLepP.E() <<
-                                         " Pt=" << RecLepP.Pt() << " Eta=" << RecLepP.Eta() << " Phi=" << RecLepP.Phi() << endl;
-                cout << "     Lepton=l1 :  Px=" << RecLepN.Px() << " Py=" << RecLepN.Py() << " Pz=" << RecLepN.Pz() << " E=" << RecLepN.E() <<
-                                         " Pt=" << RecLepN.Pt() << " Eta=" << RecLepN.Eta() << " Phi=" << RecLepN.Phi() << endl;
-                cout << "          b(l0):  Px=" << RecB.Px() << " Py=" << RecB.Py() << " Pz=" << RecB.Pz() << " E=" << RecB.E() << " M=" << RecB.M() <<
-                                         " Pt=" << RecB.Pt() << " Eta=" << RecB.Eta() << " Phi=" << RecB.Phi() << endl;
-                cout << "          b(l1):  Px=" << RecBbar.Px() << " Py=" << RecBbar.Py() << " Pz=" << RecBbar.Pz() << " E=" << RecBbar.E() << " M=" << RecBbar.M() <<
-                                         " Pt=" << RecBbar.Pt() << " Eta=" << RecBbar.Eta() << " Phi=" << RecBbar.Phi() << endl;
-                cout << "   Neutrino(l0):  Px=" << RecNeu.Px() << " Py=" << RecNeu.Py() << " Pz=" << RecNeu.Pz() << " E=" << RecNeu.E() <<
-                                         " Pt=" << RecNeu.Pt() << " Eta=" << RecNeu.Eta() << " Phi=" << RecNeu.Phi() << endl;
-                cout << "   Neutrino(l1):  Px=" << RecNeubar.Px() << " Py=" << RecNeubar.Py() << " Pz=" << RecNeubar.Pz() << " E=" << RecNeubar.E() <<
-                                         " Pt=" << RecNeubar.Pt() << " Eta=" << RecNeubar.Eta() << " Phi=" << RecNeubar.Phi() << endl;
-                cout << "          W(l0):  Px=" << RecWp.Px() << " Py=" << RecWp.Py() << " Pz=" << RecWp.Pz() << " E=" << RecWp.E() << " M=" << RecWp.M() <<
-                                         " Pt=" << RecWp.Pt() << " Eta=" << RecWp.Eta() << " Phi=" << RecWp.Phi() << endl;
-                cout << "          W(l1):  Px=" << RecWn.Px() << " Py=" << RecWn.Py() << " Pz=" << RecWn.Pz() << " E=" << RecWn.E() << " M=" << RecWn.M() <<
-                                         " Pt=" << RecWn.Pt() << " Eta=" << RecWn.Eta() << " Phi=" << RecWn.Phi() << endl;
-                cout << "          t(l0):  Px=" << RecT.Px() << " Py=" << RecT.Py() << " Pz=" << RecT.Pz() << " E=" << RecT.E() << " M=" << RecT.M() <<
-                                         " Pt=" << RecT.Pt() << " Eta=" << RecT.Eta() << " Phi=" << RecT.Phi() << endl;
-                cout << "          t(l1):  Px=" << RecTbar.Px() << " Py=" << RecTbar.Py() << " Pz=" << RecTbar.Pz() << " E=" << RecTbar.E() << " M=" << RecTbar.M() <<
-                                         " Pt=" << RecTbar.Pt() << " Eta=" << RecTbar.Eta() << " Phi=" << RecTbar.Phi() << endl;
+                cout << "     Lepton=l0 :  Px=" << events[Event::event_counter].RecLepP.Px() << " Py=" << events[Event::event_counter].RecLepP.Py() << " Pz=" << events[Event::event_counter].RecLepP.Pz() << " E=" << events[Event::event_counter].RecLepP.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepP.Pt() << " Eta=" << events[Event::event_counter].RecLepP.Eta() << " Phi=" << events[Event::event_counter].RecLepP.Phi() << endl;
+                cout << "     Lepton=l1 :  Px=" << events[Event::event_counter].RecLepN.Px() << " Py=" << events[Event::event_counter].RecLepN.Py() << " Pz=" << events[Event::event_counter].RecLepN.Pz() << " E=" << events[Event::event_counter].RecLepN.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepN.Pt() << " Eta=" << events[Event::event_counter].RecLepN.Eta() << " Phi=" << events[Event::event_counter].RecLepN.Phi() << endl;
+                cout << "          b(l0):  Px=" << events[Event::event_counter].RecB.Px() << " Py=" << events[Event::event_counter].RecB.Py() << " Pz=" << events[Event::event_counter].RecB.Pz() << " E=" << events[Event::event_counter].RecB.E() << " M=" << events[Event::event_counter].RecB.M() <<
+                                         " Pt=" << events[Event::event_counter].RecB.Pt() << " Eta=" << events[Event::event_counter].RecB.Eta() << " Phi=" << events[Event::event_counter].RecB.Phi() << endl;
+                cout << "          b(l1):  Px=" << events[Event::event_counter].RecBbar.Px() << " Py=" << events[Event::event_counter].RecBbar.Py() << " Pz=" << events[Event::event_counter].RecBbar.Pz() << " E=" << events[Event::event_counter].RecBbar.E() << " M=" << events[Event::event_counter].RecBbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecBbar.Pt() << " Eta=" << events[Event::event_counter].RecBbar.Eta() << " Phi=" << events[Event::event_counter].RecBbar.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l0):  Px=" << events[Event::event_counter].RecNeu.Px() << " Py=" << events[Event::event_counter].RecNeu.Py() << " Pz=" << events[Event::event_counter].RecNeu.Pz() << " E=" << events[Event::event_counter].RecNeu.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeu.Pt() << " Eta=" << events[Event::event_counter].RecNeu.Eta() << " Phi=" << events[Event::event_counter].RecNeu.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l1):  Px=" << events[Event::event_counter].RecNeubar.Px() << " Py=" << events[Event::event_counter].RecNeubar.Py() << " Pz=" << events[Event::event_counter].RecNeubar.Pz() << " E=" << events[Event::event_counter].RecNeubar.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeubar.Pt() << " Eta=" << events[Event::event_counter].RecNeubar.Eta() << " Phi=" << events[Event::event_counter].RecNeubar.Phi() << endl;
+                cout << "          W(l0):  Px=" << events[Event::event_counter].RecWp.Px() << " Py=" << events[Event::event_counter].RecWp.Py() << " Pz=" << events[Event::event_counter].RecWp.Pz() << " E=" << events[Event::event_counter].RecWp.E() << " M=" << events[Event::event_counter].RecWp.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWp.Pt() << " Eta=" << events[Event::event_counter].RecWp.Eta() << " Phi=" << events[Event::event_counter].RecWp.Phi() << endl;
+                cout << "          W(l1):  Px=" << events[Event::event_counter].RecWn.Px() << " Py=" << events[Event::event_counter].RecWn.Py() << " Pz=" << events[Event::event_counter].RecWn.Pz() << " E=" << events[Event::event_counter].RecWn.E() << " M=" << events[Event::event_counter].RecWn.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWn.Pt() << " Eta=" << events[Event::event_counter].RecWn.Eta() << " Phi=" << events[Event::event_counter].RecWn.Phi() << endl;
+                cout << "          t(l0):  Px=" << events[Event::event_counter].RecT.Px() << " Py=" << events[Event::event_counter].RecT.Py() << " Pz=" << events[Event::event_counter].RecT.Pz() << " E=" << events[Event::event_counter].RecT.E() << " M=" << events[Event::event_counter].RecT.M() <<
+                                         " Pt=" << events[Event::event_counter].RecT.Pt() << " Eta=" << events[Event::event_counter].RecT.Eta() << " Phi=" << events[Event::event_counter].RecT.Phi() << endl;
+                cout << "          t(l1):  Px=" << events[Event::event_counter].RecTbar.Px() << " Py=" << events[Event::event_counter].RecTbar.Py() << " Pz=" << events[Event::event_counter].RecTbar.Pz() << " E=" << events[Event::event_counter].RecTbar.E() << " M=" << events[Event::event_counter].RecTbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecTbar.Pt() << " Eta=" << events[Event::event_counter].RecTbar.Eta() << " Phi=" << events[Event::event_counter].RecTbar.Phi() << endl;
                 cout << "================================= Debug Equations ==================================" << endl;
-                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (RecNeu.Px() + RecNeubar.Px()) << endl;
-                cout << "                   Py=" << MissPy - (RecNeu.Py() + RecNeubar.Py()) << endl;
+                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (events[Event::event_counter].RecNeu.Px() + events[Event::event_counter].RecNeubar.Px()) << endl;
+                cout << "                   Py=" << MissPy - (events[Event::event_counter].RecNeu.Py() + events[Event::event_counter].RecNeubar.Py()) << endl;
                 cout << "====================================================================================" << endl;
 */
         }
@@ -5310,14 +5310,14 @@ void EventData::Calculations(){
                 //	cout << "====================================================================================" << endl;
 		//	cout << " Truth Information Associated to HIGHEST pT Lepton (from Reconstruction):           " << endl; 
                 //	cout << "   Lepton   k0: Pt=" << MK_l.Pt()    << " Eta=" << MK_l.Eta()    << " Phi=" << MK_l.Phi()    << endl;
-                //	cout << "   Neutrino k0: Pt=" << MK_nu.Pt()   << " Eta=" << MK_nu.Eta()   << " Phi=" << MK_nu.Phi()   << endl;
+                //	cout << "   events[Event::event_counter].Neutrino k0: Pt=" << MK_nu.Pt()   << " Eta=" << MK_nu.Eta()   << " Phi=" << MK_nu.Phi()   << endl;
                 //	cout << "   W        k0: Pt=" << AO_Wp.Pt()   << " Eta=" << AO_Wp.Eta()   << " Phi=" << AO_Wp.Phi()   << endl;
                 //	cout << "   b        k0: Pt=" << MK_b.Pt()    << " Eta=" << MK_b.Eta()    << " Phi=" << MK_b.Phi()    << endl;
                 //	cout << "   t        k0: Pt=" << AO_t.Pt()    << " Eta=" << AO_t.Eta()    << " Phi=" << AO_t.Phi()    << endl;
 		//	cout << " -----------------------------------------------------------------------------------" << endl;
 		//	cout << " Truth Information Associated to LOWEST pT Lepton (from Reconstruction):            " << endl; 
                 //	cout << "   Lepton   k1: Pt=" << MK_lb.Pt()    << " Eta=" << MK_lb.Eta()    << " Phi=" << MK_lb.Phi()    << endl;
-                //	cout << "   Neutrino k1: Pt=" << MK_nub.Pt()   << " Eta=" << MK_nub.Eta()   << " Phi=" << MK_nub.Phi()   << endl;
+                //	cout << "   events[Event::event_counter].Neutrino k1: Pt=" << MK_nub.Pt()   << " Eta=" << MK_nub.Eta()   << " Phi=" << MK_nub.Phi()   << endl;
                 //	cout << "   W        k1: Pt=" << AO_Wn.Pt()    << " Eta=" << AO_Wn.Eta()    << " Phi=" << AO_Wn.Phi()    << endl;
                 //	cout << "   b        k1: Pt=" << MK_bb.Pt()    << " Eta=" << MK_bb.Eta()    << " Phi=" << MK_bb.Phi()    << endl;
                 //	cout << "   t        k1: Pt=" << AO_tbar.Pt()  << " Eta=" << AO_tbar.Eta()  << " Phi=" << AO_tbar.Phi()  << endl;
@@ -5630,7 +5630,7 @@ void ttH_dilep::ttDilepKinFit(){
     //                  (deal with ttbar and H->bb at the same time)  
     ttDKF_JetCombChoice     = 1;
     // ------------------------------------------------------------------------------------------------------------------
-    // Define method used to get the best solution of the Neutrino and Anti-neutrino: 
+    // Define method used to get the best solution of the events[Event::event_counter].Neutrino and Anti-neutrino: 
     //  ttDKF_SolutionChoice = 1    Lowest nupT1*nupT2 value 
     //  ttDKF_SolutionChoice = 2    nupT1,nupT2 p.d.fs used  
     // ttDKF_SolutionChoice = 1;
@@ -6177,36 +6177,36 @@ void ttH_dilep::ttDilepKinFit(){
 
 
         // -------------------------------------------------------------------
-        Neutrino     = n1_ttDKF[n_ttDKF_Best];      // Neutrino 1
-        Antineutrino = n2_ttDKF[n_ttDKF_Best];      // Neutrino 2       
+        events[Event::event_counter].Neutrino     = n1_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 1
+        events[Event::event_counter].Antineutrino = n2_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 2       
         // ###  leptons  ###
-        RecLepP     = l1_ttDKF[n_ttDKF_Best];
-        RecLepN     = l2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecLepP     = l1_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecLepN     = l2_ttDKF[n_ttDKF_Best];
         // ###  b-quarks ###
-        RecB        = b1_ttDKF[n_ttDKF_Best];
-        RecBbar     = b2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecB        = b1_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecBbar     = b2_ttDKF[n_ttDKF_Best];
         // ### Neutrinos ###
-        RecNeu      = n1_ttDKF[n_ttDKF_Best];
-        RecNeubar   = n2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecNeu      = n1_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecNeubar   = n2_ttDKF[n_ttDKF_Best];
         // ###  W bosons ###
-        RecWp       = W1_ttDKF[n_ttDKF_Best];
-        RecWn       = W2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecWp       = W1_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecWn       = W2_ttDKF[n_ttDKF_Best];
         // ###  t-quarks ###
-        RecT        = t1_ttDKF[n_ttDKF_Best];
-        RecTbar     = t2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecT        = t1_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecTbar     = t2_ttDKF[n_ttDKF_Best];
         // ###  ttbar system ###
-        RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
         // ###  Higgs system ###
-        RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
-        RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
-        RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
-        RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
-        RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
+        events[Event::event_counter].RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
 
-        RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
+        events[Event::event_counter].RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
 
 
-        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; RecMassHiggsJet1 " << RecMassHiggsJet1 << " ; RecMassHiggsJet2 " << RecMassHiggsJet2 << endl;
+        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; events[Event::event_counter].RecMassHiggsJet1 " << events[Event::event_counter].RecMassHiggsJet1 << " ; events[Event::event_counter].RecMassHiggsJet2 " << events[Event::event_counter].RecMassHiggsJet2 << endl;
         //      cout << "   " << endl;
 
         // -------------------------------------------------------------------
@@ -6219,72 +6219,72 @@ void ttH_dilep::ttDilepKinFit(){
         TVector3       t_boost, tb_boost, tt_boost;
 
         //...get top boosts................
-        t_boost  =  -(RecT).BoostVector();
-        tb_boost =  -(RecTbar).BoostVector();
-        tt_boost =  -(RecT + RecTbar).BoostVector();
+        t_boost  =  -(events[Event::event_counter].RecT).BoostVector();
+        tb_boost =  -(events[Event::event_counter].RecTbar).BoostVector();
+        tt_boost =  -(events[Event::event_counter].RecT + events[Event::event_counter].RecTbar).BoostVector();
 
         //.................................
         //...make boost  to t..............
         //.................................
         //___b____
-        RecB_BoostedtoT    = RecB;
-        RecB_BoostedtoT.Boost(t_boost);
+        events[Event::event_counter].RecB_BoostedtoT    = events[Event::event_counter].RecB;
+        events[Event::event_counter].RecB_BoostedtoT.Boost(t_boost);
         //___W+___
-        RecWp_BoostedtoT   = RecWp;
-        RecWp_BoostedtoT.Boost(t_boost);
+        events[Event::event_counter].RecWp_BoostedtoT   = events[Event::event_counter].RecWp;
+        events[Event::event_counter].RecWp_BoostedtoT.Boost(t_boost);
         //___l+___
-        RecLepP_BoostedtoT = RecLepP;
-        RecLepP_BoostedtoT.Boost(t_boost);
+        events[Event::event_counter].RecLepP_BoostedtoT = events[Event::event_counter].RecLepP;
+        events[Event::event_counter].RecLepP_BoostedtoT.Boost(t_boost);
         //___neu__
-        RecNeu_BoostedtoT  = RecNeu;
-        RecNeu_BoostedtoT.Boost(t_boost);
+        events[Event::event_counter].RecNeu_BoostedtoT  = events[Event::event_counter].RecNeu;
+        events[Event::event_counter].RecNeu_BoostedtoT.Boost(t_boost);
 
 
         //.................................
         //...make boost  to tbar...........
         //.................................
         //___bbar___
-        RecBbar_BoostedtoTbar   = RecBbar;
-        RecBbar_BoostedtoTbar.Boost(tb_boost);
+        events[Event::event_counter].RecBbar_BoostedtoTbar   = events[Event::event_counter].RecBbar;
+        events[Event::event_counter].RecBbar_BoostedtoTbar.Boost(tb_boost);
         //____W-____
-        RecWn_BoostedtoTbar     = RecWn;
-        RecWn_BoostedtoTbar.Boost(tb_boost);
+        events[Event::event_counter].RecWn_BoostedtoTbar     = events[Event::event_counter].RecWn;
+        events[Event::event_counter].RecWn_BoostedtoTbar.Boost(tb_boost);
         //____l-____
-        RecLepN_BoostedtoTbar   = RecLepN;
-        RecLepN_BoostedtoTbar.Boost(tb_boost);
+        events[Event::event_counter].RecLepN_BoostedtoTbar   = events[Event::event_counter].RecLepN;
+        events[Event::event_counter].RecLepN_BoostedtoTbar.Boost(tb_boost);
         //__neubar__
-        RecNeubar_BoostedtoTbar = RecNeubar;
-        RecNeubar_BoostedtoTbar.Boost(tb_boost);
+        events[Event::event_counter].RecNeubar_BoostedtoTbar = events[Event::event_counter].RecNeubar;
+        events[Event::event_counter].RecNeubar_BoostedtoTbar.Boost(tb_boost);
 
 
         //.................................
         //...make boost to ttbar...........
         //.................................
         //___t____
-        RecT_Boostedtottbar   =  RecT;
-        RecT_Boostedtottbar.Boost(tt_boost);
+        events[Event::event_counter].RecT_Boostedtottbar   =  events[Event::event_counter].RecT;
+        events[Event::event_counter].RecT_Boostedtottbar.Boost(tt_boost);
         //__tbar__
-        RecTbar_Boostedtottbar  =  RecTbar;
-        RecTbar_Boostedtottbar.Boost(tt_boost);
+        events[Event::event_counter].RecTbar_Boostedtottbar  =  events[Event::event_counter].RecTbar;
+        events[Event::event_counter].RecTbar_Boostedtottbar.Boost(tt_boost);
 
 
         //.................................
         //....Spin Correlations............
         //.................................
         //_____l+__in_t__________
-        RecCos_LepP_T_BoostedtoT = cos(  RecLepP_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_LepP_T_BoostedtoT = cos(  events[Event::event_counter].RecLepP_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
         //_____nu__in_t__________
-        RecCos_Neu_T_BoostedtoT  = cos(   RecNeu_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_Neu_T_BoostedtoT  = cos(   events[Event::event_counter].RecNeu_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
         //_____b__in_t___________
-        RecCos_B_T_BoostedtoT    = cos(     RecB_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_B_T_BoostedtoT    = cos(     events[Event::event_counter].RecB_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
 
 
         //_____l-__in_tbar_______
-        RecCos_LepN_Tbar_BoostedtoTbar    = cos(  RecLepN_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecLepN_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
         //_____nu__in_t__________
-        RecCos_Neubar_Tbar_BoostedtoTbar  = cos(RecNeubar_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_Neubar_Tbar_BoostedtoTbar  = cos(events[Event::event_counter].RecNeubar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
         //_____b__in_t___________
-        RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  RecBbar_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+        events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecBbar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
 
 
         // ################################
@@ -6294,42 +6294,42 @@ void ttH_dilep::ttDilepKinFit(){
         TVector3       Wp_boost, Wn_boost;
 
         //...get W+/- boosts................
-        Wp_boost  =  -(RecWp).BoostVector();
-        Wn_boost  =  -(RecWn).BoostVector();
+        Wp_boost  =  -(events[Event::event_counter].RecWp).BoostVector();
+        Wn_boost  =  -(events[Event::event_counter].RecWn).BoostVector();
 
         //.................................
         //...make boost  to W+.............
         //.................................
         //___l+___
-        RecLepP_BoostedtoWp = RecLepP;
-        RecLepP_BoostedtoWp.Boost(Wp_boost);
+        events[Event::event_counter].RecLepP_BoostedtoWp = events[Event::event_counter].RecLepP;
+        events[Event::event_counter].RecLepP_BoostedtoWp.Boost(Wp_boost);
         //___b____
-        RecB_BoostedtoWp    = RecB;
-        RecB_BoostedtoWp.Boost(Wp_boost);
+        events[Event::event_counter].RecB_BoostedtoWp    = events[Event::event_counter].RecB;
+        events[Event::event_counter].RecB_BoostedtoWp.Boost(Wp_boost);
         //__neu___
-        RecNeu_BoostedtoWp = RecNeu;
-        RecNeu_BoostedtoWp.Boost(Wp_boost);
+        events[Event::event_counter].RecNeu_BoostedtoWp = events[Event::event_counter].RecNeu;
+        events[Event::event_counter].RecNeu_BoostedtoWp.Boost(Wp_boost);
 
         //.................................
         //...make boost  to W-.............
         //.................................
         //____l-____
-        RecLepN_BoostedtoWn   = RecLepN;
-        RecLepN_BoostedtoWn.Boost(Wn_boost);
+        events[Event::event_counter].RecLepN_BoostedtoWn   = events[Event::event_counter].RecLepN;
+        events[Event::event_counter].RecLepN_BoostedtoWn.Boost(Wn_boost);
         //__bbar____
-        RecBbar_BoostedtoWn   = RecBbar;
-        RecBbar_BoostedtoWn.Boost(Wn_boost);
+        events[Event::event_counter].RecBbar_BoostedtoWn   = events[Event::event_counter].RecBbar;
+        events[Event::event_counter].RecBbar_BoostedtoWn.Boost(Wn_boost);
         //__neu___
-        RecNeubar_BoostedtoWn = RecNeubar;
-        RecNeubar_BoostedtoWn.Boost(Wn_boost);
+        events[Event::event_counter].RecNeubar_BoostedtoWn = events[Event::event_counter].RecNeubar;
+        events[Event::event_counter].RecNeubar_BoostedtoWn.Boost(Wn_boost);
 
         //.................................
         //....W Polarizations..............
         //.................................
         //_____(l+,b)__in_W+__________
-        RecCos_LepP_B_BoostedtoWp =  -cos(  RecLepP_BoostedtoWp   .Angle (  RecB_BoostedtoWp.Vect()));
+        events[Event::event_counter].RecCos_LepP_B_BoostedtoWp =  -cos(  events[Event::event_counter].RecLepP_BoostedtoWp   .Angle (  events[Event::event_counter].RecB_BoostedtoWp.Vect()));
         //_____(l-,bbar)__in_W-_______
-        RecCos_LepN_Bbar_BoostedtoWn =  -cos(  RecLepN_BoostedtoWn   .Angle (  RecBbar_BoostedtoWn.Vect()));
+        events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn =  -cos(  events[Event::event_counter].RecLepN_BoostedtoWn   .Angle (  events[Event::event_counter].RecBbar_BoostedtoWn.Vect()));
 
     }
 
