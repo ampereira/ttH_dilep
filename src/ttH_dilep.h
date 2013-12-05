@@ -211,32 +211,11 @@ public:
   int ttDKF_njet_UserValue; 
   int ttDKF_njets; 
   // top quark 1
-  std::vector<TLorentzVectorWFlags> b1_ttDKF;
-  std::vector<TLorentzVectorWFlags> l1_ttDKF;
-  std::vector<TLorentzVectorWFlags> n1_ttDKF;
-  std::vector<TLorentzVectorWFlags> W1_ttDKF;
-  std::vector<TLorentzVectorWFlags> t1_ttDKF;
-  // top quark 2
-  std::vector<TLorentzVectorWFlags> b2_ttDKF;
-  std::vector<TLorentzVectorWFlags> l2_ttDKF;
-  std::vector<TLorentzVectorWFlags> n2_ttDKF;
-  std::vector<TLorentzVectorWFlags> W2_ttDKF;
-  std::vector<TLorentzVectorWFlags> t2_ttDKF;
-  // ttbar system
-  std::vector<TLorentzVectorWFlags> ttbar_ttDKF;
-  // Higgs
-  std::vector<TLorentzVectorWFlags> b1_Higgs_ttDKF;
-  std::vector<TLorentzVectorWFlags> b2_Higgs_ttDKF;
-  std::vector<TLorentzVectorWFlags> Higgs_ttDKF;
-  std::vector<double> mHiggsJet1_ttDKF;
-  std::vector<double> mHiggsJet2_ttDKF;
+  
 
   // ======================================================================================
   // Probabilities for reconstruction ....... samor 16.Dec.2012 ...........................
   // ======================================================================================
-  std::vector<double> ProbHiggs_ttDKF;
-  std::vector<double> ProbTTbar_ttDKF;
-  std::vector<double> ProbTotal_ttDKF;
 
 
   // -----------------------------
@@ -261,7 +240,7 @@ public:
         std::vector<TLorentzVectorWFlags> MyGoodJetVec;
         std::vector<TLorentzVectorWFlags> MyGoodBtaggedJetVec;
         std::vector<TLorentzVectorWFlags> MyGoodNonBtaggedJetVec;*/
-        std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
+        
 
 	// ######################################################################################
 	// introduced by Miki + AO, Ocotber 17
