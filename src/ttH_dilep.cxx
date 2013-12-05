@@ -5725,18 +5725,18 @@ void ttH_dilep::ttDilepKinFit(){
     //  by: S.Amor 13.Dez.2012
     // -----------------------------------------------------------------
     if ( ttDKF_JetCombChoice == 1 ){
-        for ( Int_t jetID=0; jetID<MyGoodJetVec.size();  ++jetID){
-            MyChoiceJetVec.push_back(MyGoodJetVec[jetID]);
+        for ( Int_t jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
+            MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
         }       
         // -----------------------------------------------------------------
         // USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
         // -----------------------------------------------------------------
         ttDKF_njets = ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
 
-        if ( ttDKF_njets > MyGoodJetVec.size() ) {
+        if ( ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
             //cout << "WARNING: Number of Jets Higher than the Maximum Number of Jets in the Event." << endl;
             //cout << "         Setting ttDKF_njets = Total Number of Jets" << endl;
-            ttDKF_njets = MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
+            ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
         }
         if (ttDKF_njets < 4){
             //cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
