@@ -4458,7 +4458,7 @@ std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetC
 
 
 
-	//for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
+	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
     	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 		
@@ -4509,7 +4509,7 @@ std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetC
 		}
 
 
-	//}
+	}
 
 	return inputs;
 }
@@ -4539,7 +4539,6 @@ void ttH_dilep::ttDilepKinFit(){
     //
     // #############################################################################
 
-	preKinFit();
 
     // =================================================================================================================
     // =================================================================================================================
