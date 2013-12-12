@@ -4506,7 +4506,7 @@ void ttH_dilep::ttDilepKinFit(){
     //TLorentzVector      z_bl,       c_bl;
     //TLorentzVector          z_bj      , c_bj      , z_lep      , c_lep    ;
     //TLorentzVectorWFlags    z_bjWFlags, c_bjWFlags, z_lepWFlags, c_lepWFlags;
-    TLorentzVectorWFlags    jet1_HiggsWFlags, jet2_HiggsWFlags;
+    
     // result of kinematic fit
     std::vector<myvector> *result = new std::vector<myvector> ();
 
