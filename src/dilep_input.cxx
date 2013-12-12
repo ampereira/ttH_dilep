@@ -459,7 +459,7 @@ void DilepInput::applyVariance (float res) {
 
 
 // Builds the DilepInput vector with all events
-std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
+/*std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
 	std::vector<DilepInput> inputs;
 	unsigned event_size = event_vector.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
@@ -526,7 +526,7 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 	//}
 
 	return inputs;
-}
+}*/
 
 
 
