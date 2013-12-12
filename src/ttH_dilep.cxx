@@ -4514,7 +4514,7 @@ std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetC
 	return inputs;
 }
 
-void LipMiniAnalysis::preKinFit() {
+void ttH_dilep::preKinFit() {
 
     inputs = asdf (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
 }

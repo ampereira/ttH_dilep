@@ -161,6 +161,7 @@ public:
   virtual void BookPdfHistos(Int_t i_syst);
   virtual void PdfValues();
 
+  virtual void preKinFit();
   // stuf for likelihoods
   virtual void BookLikeHistos();
 
