@@ -4445,7 +4445,7 @@ void ttH_dilep::DoCuts(){
 }
 
 // Builds the DilepInput vector with all events
-std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
+std::vector<DilepInput> asdf (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
 	std::vector<DilepInput> inputs;
 	unsigned event_size = event_vector.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
@@ -4713,7 +4713,8 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jet for H->bbbar
     // ---------------------------------------
 
-    std::vector<DilepInput> inputs = buildDilepInputVector(events, 0.1, 0.1, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+    std::vector<DilepInput> inputs;
+    inputs = asdf (events, 0.1, 0.1, 1, 1, 1);
 /*
     #pragma omp critical
     if ( ttDKF_JetCombChoice == 1 ){ 
