@@ -10,6 +10,7 @@
 #include <iostream>
 #include <TH1.h>
 #include <TH2.h>
+#include "dilep_input.h"
 #include "Riostream.h"
 #include "../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
@@ -466,7 +467,7 @@ public:
   void Calculations2();
   void Calculations3();
   void ttDilepKinFit();
-  std::vector<DilepInput> asdf (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue);
+  void asdf (std::vector<DilepInput> & inputs, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue);
 
   //stuff for after events loop
   virtual void PostLoopCalculations();
