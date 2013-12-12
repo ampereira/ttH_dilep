@@ -3736,7 +3736,9 @@ void ttH_dilep::first_DoCuts(){
         // C5) At Least 1 lepton pt >= 25GeV
         //=============================================
         //=============================================
-        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) return;
+        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) 
+        	return;
+
         events[Event::event_counter].LastCut++; // LastCut=9
 //        cout << "C5) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
         //=============================================
@@ -3752,24 +3754,33 @@ void ttH_dilep::first_DoCuts(){
         for (Int_t i=0; i<events[Event::event_counter].LeptonVec.size(); ++i) {
                 Int_t ii = events[Event::event_counter].LeptonVec[i].idx;
                 // check leptons are trigger matched
-                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) HasElectronMatchingTrigger = 1;
-                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) HasMuonMatchingTrigger = 1;
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
+                	HasElectronMatchingTrigger = 1;
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
+                	HasMuonMatchingTrigger = 1;
         }
 
         Bool_t ElectronTriggerOK = ( events[Event::event_counter].ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
         Bool_t     MuonTriggerOK = (     events[Event::event_counter].MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
 
         if( lepSample==21 ){
-           if ( !ElectronTriggerOK ) return;
+           if ( !ElectronTriggerOK ) 
+           	return;
         }
         if( lepSample==22 ){
-           if ( !MuonTriggerOK     ) return;
+           if ( !MuonTriggerOK     ) 
+           	return;
         }
         if( lepSample==23 ){
           if ( isData == 1 ) {
-           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) return;
-           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) return;
-          } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) return;
+           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) 
+           	return;
+
+           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) 
+           	return;
+
+          } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) 
+          		return;
         }
         events[Event::event_counter].LastCut++; // LastCut=10
 //        cout << "C6 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
@@ -3779,7 +3790,9 @@ void ttH_dilep::first_DoCuts(){
         // C7) E-Mu Overlap removal
         //=============================================
         //=============================================
-        if (events[Event::event_counter].EleMuoOverlap !=0) return; 
+        if (events[Event::event_counter].EleMuoOverlap !=0) 
+        	return;
+
     events[Event::event_counter].LastCut++; // LastCut=11
 
     
@@ -3788,7 +3801,9 @@ void ttH_dilep::first_DoCuts(){
         // C8) Jet Cleaning
         //=============================================
         //=============================================
-    if (events[Event::event_counter].JetCleanning != 0) return;
+    if (events[Event::event_counter].JetCleanning != 0) 
+    	return;
+
     events[Event::event_counter].LastCut++;     //LastCut=12
         
 
@@ -3798,15 +3813,12 @@ void ttH_dilep::first_DoCuts(){
         //     events[Event::event_counter].Ht cut (emu)       
         //=============================================
         //=============================================
-        if( lepSample==21 ){ // ee sample
-          //if(MissPt <= 60.*GeV) return;
-        }
-        if( lepSample==22 ){ // mumu sample
-          //if(MissPt <= 60.*GeV) return;
-        }
+
         if( lepSample==23 ){ // e mu (+mu e) sample
-          if(events[Event::event_counter].Ht <= 130.*GeV) return;
+          if(events[Event::event_counter].Ht <= 130.*GeV) 
+          	return;
         }
+
         events[Event::event_counter].LastCut++; // LastCut=13
 //        cout << "C8 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
@@ -3815,7 +3827,9 @@ void ttH_dilep::first_DoCuts(){
         // C9) Njets>=2 from Minintuple (jet_n)
         //=============================================
         //=============================================
-        if ( events[Event::event_counter].jet_n_Mini != 2 ) return;
+        if ( events[Event::event_counter].jet_n_Mini != 2 ) 
+        	return;
+
         events[Event::event_counter].LastCut++; // LastCut=14
 //        cout << "C9 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
@@ -3824,7 +3838,9 @@ void ttH_dilep::first_DoCuts(){
         // C10) Two Opposite Sign (OS) Leptons 
         //=============================================
         //=============================================
-        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) return;
+        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) 
+        	return;
+
         events[Event::event_counter].LastCut++; // LastCut=15
 //        cout << "C10 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
@@ -3834,13 +3850,16 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
+          	return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
+          	return;
         }
         if( lepSample==23 ){ // mumu sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. )
+            return;
         }
         events[Event::event_counter].LastCut++; // LastCut=16
 //        cout << "C11) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
@@ -3852,8 +3871,10 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //=============================================
         if ( isData != 1  ){
-                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  return;
-                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  return;
+                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  
+                	return;
+                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  
+                	return;
         }
         events[Event::event_counter].LastCut++; // LastCut=17
 //        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
@@ -3864,10 +3885,12 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. ) return;
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
+          	return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. ) return;
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
+          	return;
         }
         events[Event::event_counter].LastCut++; // LastCut=18
 //        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
@@ -3908,7 +3931,9 @@ void ttH_dilep::first_DoCuts(){
         // C15) Exactly 2 jets and 2 btag 
         //=============================================
         //=============================================
-        if ( events[Event::event_counter].NbtagJet != 2 ) return;  
+        if ( events[Event::event_counter].NbtagJet != 2 )
+        	return;  
+        
         events[Event::event_counter].LastCut++; // LastCut=20
 //        cout << "C15 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
@@ -3919,27 +3944,7 @@ void ttH_dilep::first_DoCuts(){
         // END OF Dilepton Challenge
         //=============================================
         //=============================================
-        if( isData == 1 ){
-/*
-                cout << "  " << endl;
-                cout << "  " << endl;
-                cout << "====================================================================================" << endl;
-                cout << "========== New Event Sellected =====================================================" << endl;
-                cout << "====================================================================================" << endl;
-                cout << " runNumber = " << Isub << " Event Number =" << EveNumber << endl;
-                cout << "====================================================================================" << endl;
-                cout << "   Lepton=l0:   Px=" << LeptonVec[0].Px() << " Py=" << LeptonVec[0].Py() << " Pz=" << LeptonVec[0].Pz() << " E=" << LeptonVec[0].E() <<
-                                " Pt=" << LeptonVec[0].Pt() << " Eta=" << LeptonVec[0].Eta() << " Phi=" << LeptonVec[0].Phi() << " Charge=" << LeptonVec[0].isb << endl;
-                cout << "   Lepton=l1:   Px=" << LeptonVec[1].Px() << " Py=" << LeptonVec[1].Py() << " Pz=" << LeptonVec[1].Pz() << " E=" << LeptonVec[1].E() <<
-                                " Pt=" << LeptonVec[1].Pt() << " Eta=" << LeptonVec[1].Eta() << " Phi=" << LeptonVec[1].Phi() << " Charge=" << LeptonVec[1].isb << endl;
-                cout << " MyGoodJet 1:   Px=" << events[Event::event_counter].MyGoodJetVec[0].Px() << " Py=" << events[Event::event_counter].MyGoodJetVec[0].Py() << " Pz=" << events[Event::event_counter].MyGoodJetVec[0].Pz() << " E=" << events[Event::event_counter].MyGoodJetVec[0].E() <<
-                                " Pt=" << events[Event::event_counter].MyGoodJetVec[0].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[0].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[0].Phi() << endl;
-                cout << " MyGoodJet 2:   Px=" << events[Event::event_counter].MyGoodJetVec[1].Px() << " Py=" << events[Event::event_counter].MyGoodJetVec[1].Py() << " Pz=" << events[Event::event_counter].MyGoodJetVec[1].Pz() << " E=" << events[Event::event_counter].MyGoodJetVec[1].E() <<
-                                " Pt=" << events[Event::event_counter].MyGoodJetVec[1].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[1].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[1].Phi() << endl;
-                cout << "    Miss Px=    " << MissPx << "   Miss Py=   " << MissPy << endl;
-                cout << "====================================================================================" << endl;
-*/
-    }
+
 
         //=============================================
         //=============================================
@@ -3952,56 +3957,27 @@ void ttH_dilep::first_DoCuts(){
 }
 
 void ttH_dilep::second_DoCuts() {
-            ttDilepKinFit();
 
-        //=============================================
-        //=============================================
-        // C12) Check if there is a solution   ========
-        //=============================================
-        //=============================================
-        //if(HasSolution == 0) return;
-        events[Event::event_counter].LastCut++; // LastCut=22
-//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+	ttDilepKinFit();
 
-        if( isData == 1 ){
-/*
-                cout << "=========================event was reconstructed successfully=======================" << endl;
-                cout << "     Lepton=l0 :  Px=" << events[Event::event_counter].RecLepP.Px() << " Py=" << events[Event::event_counter].RecLepP.Py() << " Pz=" << events[Event::event_counter].RecLepP.Pz() << " E=" << events[Event::event_counter].RecLepP.E() <<
-                                         " Pt=" << events[Event::event_counter].RecLepP.Pt() << " Eta=" << events[Event::event_counter].RecLepP.Eta() << " Phi=" << events[Event::event_counter].RecLepP.Phi() << endl;
-                cout << "     Lepton=l1 :  Px=" << events[Event::event_counter].RecLepN.Px() << " Py=" << events[Event::event_counter].RecLepN.Py() << " Pz=" << events[Event::event_counter].RecLepN.Pz() << " E=" << events[Event::event_counter].RecLepN.E() <<
-                                         " Pt=" << events[Event::event_counter].RecLepN.Pt() << " Eta=" << events[Event::event_counter].RecLepN.Eta() << " Phi=" << events[Event::event_counter].RecLepN.Phi() << endl;
-                cout << "          b(l0):  Px=" << events[Event::event_counter].RecB.Px() << " Py=" << events[Event::event_counter].RecB.Py() << " Pz=" << events[Event::event_counter].RecB.Pz() << " E=" << events[Event::event_counter].RecB.E() << " M=" << events[Event::event_counter].RecB.M() <<
-                                         " Pt=" << events[Event::event_counter].RecB.Pt() << " Eta=" << events[Event::event_counter].RecB.Eta() << " Phi=" << events[Event::event_counter].RecB.Phi() << endl;
-                cout << "          b(l1):  Px=" << events[Event::event_counter].RecBbar.Px() << " Py=" << events[Event::event_counter].RecBbar.Py() << " Pz=" << events[Event::event_counter].RecBbar.Pz() << " E=" << events[Event::event_counter].RecBbar.E() << " M=" << events[Event::event_counter].RecBbar.M() <<
-                                         " Pt=" << events[Event::event_counter].RecBbar.Pt() << " Eta=" << events[Event::event_counter].RecBbar.Eta() << " Phi=" << events[Event::event_counter].RecBbar.Phi() << endl;
-                cout << "   events[Event::event_counter].Neutrino(l0):  Px=" << events[Event::event_counter].RecNeu.Px() << " Py=" << events[Event::event_counter].RecNeu.Py() << " Pz=" << events[Event::event_counter].RecNeu.Pz() << " E=" << events[Event::event_counter].RecNeu.E() <<
-                                         " Pt=" << events[Event::event_counter].RecNeu.Pt() << " Eta=" << events[Event::event_counter].RecNeu.Eta() << " Phi=" << events[Event::event_counter].RecNeu.Phi() << endl;
-                cout << "   events[Event::event_counter].Neutrino(l1):  Px=" << events[Event::event_counter].RecNeubar.Px() << " Py=" << events[Event::event_counter].RecNeubar.Py() << " Pz=" << events[Event::event_counter].RecNeubar.Pz() << " E=" << events[Event::event_counter].RecNeubar.E() <<
-                                         " Pt=" << events[Event::event_counter].RecNeubar.Pt() << " Eta=" << events[Event::event_counter].RecNeubar.Eta() << " Phi=" << events[Event::event_counter].RecNeubar.Phi() << endl;
-                cout << "          W(l0):  Px=" << events[Event::event_counter].RecWp.Px() << " Py=" << events[Event::event_counter].RecWp.Py() << " Pz=" << events[Event::event_counter].RecWp.Pz() << " E=" << events[Event::event_counter].RecWp.E() << " M=" << events[Event::event_counter].RecWp.M() <<
-                                         " Pt=" << events[Event::event_counter].RecWp.Pt() << " Eta=" << events[Event::event_counter].RecWp.Eta() << " Phi=" << events[Event::event_counter].RecWp.Phi() << endl;
-                cout << "          W(l1):  Px=" << events[Event::event_counter].RecWn.Px() << " Py=" << events[Event::event_counter].RecWn.Py() << " Pz=" << events[Event::event_counter].RecWn.Pz() << " E=" << events[Event::event_counter].RecWn.E() << " M=" << events[Event::event_counter].RecWn.M() <<
-                                         " Pt=" << events[Event::event_counter].RecWn.Pt() << " Eta=" << events[Event::event_counter].RecWn.Eta() << " Phi=" << events[Event::event_counter].RecWn.Phi() << endl;
-                cout << "          t(l0):  Px=" << events[Event::event_counter].RecT.Px() << " Py=" << events[Event::event_counter].RecT.Py() << " Pz=" << events[Event::event_counter].RecT.Pz() << " E=" << events[Event::event_counter].RecT.E() << " M=" << events[Event::event_counter].RecT.M() <<
-                                         " Pt=" << events[Event::event_counter].RecT.Pt() << " Eta=" << events[Event::event_counter].RecT.Eta() << " Phi=" << events[Event::event_counter].RecT.Phi() << endl;
-                cout << "          t(l1):  Px=" << events[Event::event_counter].RecTbar.Px() << " Py=" << events[Event::event_counter].RecTbar.Py() << " Pz=" << events[Event::event_counter].RecTbar.Pz() << " E=" << events[Event::event_counter].RecTbar.E() << " M=" << events[Event::event_counter].RecTbar.M() <<
-                                         " Pt=" << events[Event::event_counter].RecTbar.Pt() << " Eta=" << events[Event::event_counter].RecTbar.Eta() << " Phi=" << events[Event::event_counter].RecTbar.Phi() << endl;
-                cout << "================================= Debug Equations ==================================" << endl;
-                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (events[Event::event_counter].RecNeu.Px() + events[Event::event_counter].RecNeubar.Px()) << endl;
-                cout << "                   Py=" << MissPy - (events[Event::event_counter].RecNeu.Py() + events[Event::event_counter].RecNeubar.Py()) << endl;
-                cout << "====================================================================================" << endl;
-*/
-        }
+	//=============================================
+	//=============================================
+	// C12) Check if there is a solution   ========
+	//=============================================
+	//=============================================
+	//if(HasSolution == 0) return;
+	events[Event::event_counter].LastCut++; // LastCut=22
+	//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
-        //=============================================
-        //=============================================
-        // C13) At least 2 jets are required to be 
-    //      b-tagged (MV1 weight > 0.8119)
-        //=============================================
-        //=============================================
-    //if ( events[Event::event_counter].NbtagJet < 2) return; 
-        events[Event::event_counter].LastCut++; // LastCut=23
-//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+	//=============================================
+	//=============================================
+	// C13) At least 2 jets are required to be 
+	//      b-tagged (MV1 weight > 0.8119)
+	//=============================================
+	//=============================================
+	//if ( events[Event::event_counter].NbtagJet < 2) return; 
+	events[Event::event_counter].LastCut++; // LastCut=23
+	//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 }
 
 // #############################################################################
@@ -4468,1136 +4444,6 @@ void ttH_dilep::DoCuts(){
 
 }
 
-
-/*
-// #############################################################################
-void EventData::Calculations(){
-// #############################################################################
-//
-//  purpose: to do some calculations for event selection
-//
-//  authors: fveloso
-//  first version: 23.nov.2006
-//
-//  last change: 04.Nov.2012
-//  by: A.Onofre
-//
-// #############################################################################
-
-
-        // #####################################################################
-        // AO 11 Nov 2010
-        // #####################################################################
-
-        events[Event::event_counter].NbtagJet=0;
-
-        events[Event::event_counter].MyGoodJetVec.clear();
-    	// __AO 18 Outubro_______________________________
-	events[Event::event_counter].MyGoodBtaggedJetVec.clear();
-        MyGoodNonBtaggedJetVec.clear();
-    	// __AO 18 Outubro_______________________________
-
-        for( int i =0; i<events[Event::event_counter].JetVec.size(); i++){
-           if( events[Event::event_counter].JetVec[i].Pt()>events[Event::event_counter].PtCutJet && fabs(events[Event::event_counter].JetVec[i].Eta())<EtaCutJet ){
-              events[Event::event_counter].MyGoodJetVec.push_back(events[Event::event_counter].JetVec[i]);
-              if(abs(events[Event::event_counter].JetVec[i].isb) == 5) {
-		events[Event::event_counter].NbtagJet++;
-		events[Event::event_counter].MyGoodBtaggedJetVec.push_back(events[Event::event_counter].JetVec[i]);
-	      }
-              if(abs(events[Event::event_counter].JetVec[i].isb) != 5) {
-		MyGoodNonBtaggedJetVec.push_back(events[Event::event_counter].JetVec[i]);
-	      }
-           }
-        }
-
-
-
-
-	// =========================================================
-	// ===== AO 8 Oct 2010 ===================== below =========
-	// =========================================================
-	//   	     Get MY OWN variables out of the box
-	// =========================================================
-	// ===== AO 8 Oct 2010 ===================== below =========
-	// =========================================================
-
-        if ( isData == 0 ){ 
-
-  	    //...............Run Number.............................
-	    myRunNumber = events[Event::event_counter].RunNumber;
-
-            if ( myRunNumber == 105200 ){
-
-		//----------------------------------------------------------
-	       	//-----------------------initialize all new variables-------
-		//----------------------------------------------------------
-
-		//.................t
-		my_ITQ = 0;
-		my_IQ1 = 0;
-		my_t.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................tbar
-		my_ITB = 0;
-		my_IQ2 = 0;
-		my_tb.SetPxPyPzE(0., 0., 0., 0.); 
-
-  		//.................W+
-		my_IWP = 0;
-		my_IW1 = 0;
-		my_Wp.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................W-
-		my_IWN = 0;
-		my_IW2 = 0;
-		my_Wn.SetPxPyPzE(0., 0., 0., 0.);
-
-  		//.................b from t
-		my_IBQ = 0;
-		my_IB1 = 0;
-		my_b.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................bb from tb
-		my_IBB = 0;
-		my_IB2 = 0;
-		my_bb.SetPxPyPzE(0., 0., 0., 0.);
-
-  		//.................s from t
-		my_ISQ = 0;
-		my_IS1 = 0;
-		my_s.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................sb from tb
-		my_ISB = 0;
-		my_IS2 = 0;
-		my_sb.SetPxPyPzE(0., 0., 0., 0.);
-
-  		//.................d from t
-		my_IDWQ = 0;
-		my_IDW1 = 0;
-		my_dw.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................db from tb
-		my_IDWB = 0;
-		my_IDW2 = 0;
-		my_dwb.SetPxPyPzE(0., 0., 0., 0.);
-
-  		//.................W+->f1f2
-		my_IWPf1 = 0;
-		my_IWPf2 = 0;
-		my_IWPf1_Coun = 0;
-		my_IWPf2_Coun = 0;
-		my_IWPtau_Neu = 0;
-		my_IWPtau_elNeu = 0;
-		my_IWPtau_muNeu = 0;
-		my_pdgID_Wp_dw = 0;
-		my_pdgID_Wp_up = 0;
-		my_Wpf1.SetPxPyPzE(0., 0., 0., 0.);
-		my_Wpf2.SetPxPyPzE(0., 0., 0., 0.);
-  		//.................W-->f1f2
-		my_IWNf1 = 0;
-		my_IWNf2 = 0;
-		my_IWNf1_Coun = 0;
-		my_IWNf2_Coun = 0;
-		my_IWNtau_Neu = 0;
-		my_IWNtau_elNeu = 0;
-		my_IWNtau_muNeu = 0;
-		my_pdgID_Wn_dw = 0;
-		my_pdgID_Wn_up = 0;
-		my_Wnf1.SetPxPyPzE(0., 0., 0., 0.);
-		my_Wnf2.SetPxPyPzE(0., 0., 0., 0.);
-
-
-		//----------------------------------------------------------
-	       	//------------------------------Get all new variables-------
-		//----------------------------------------------------------
-
-        	// AO 14 Nov 2012 ***********************************************************************
-        	// -------------  No Truth Information Yet Available (lines below commented) ------------
-        	// AO 14 Nov 2012 ***********************************************************************
-		/*
-  		//.................t
-		my_ITQ = ((TopD3PDMaker170552*)nTuple)->ITQ;
-		my_IQ1 = ((TopD3PDMaker170552*)nTuple)->IQ1;
-		my_t   = ((TopD3PDMaker170552*)nTuple)->t;
-  		//.................tbar
-		my_ITB = ((TopD3PDMaker170552*)nTuple)->ITB;
-		my_IQ2 = ((TopD3PDMaker170552*)nTuple)->IQ2;
-		my_tb  = ((TopD3PDMaker170552*)nTuple)->tb;
-
-  		//.................W+
-		my_IWP = ((TopD3PDMaker170552*)nTuple)->IWP;
-		my_IW1 = ((TopD3PDMaker170552*)nTuple)->IW1;
-		my_Wp  = ((TopD3PDMaker170552*)nTuple)->Wp;
-  		//.................W-
-		my_IWN = ((TopD3PDMaker170552*)nTuple)->IWN;
-		my_IW2 = ((TopD3PDMaker170552*)nTuple)->IW2;
-		my_Wn  = ((TopD3PDMaker170552*)nTuple)->Wn;
-
-  		//.................b from t
-		my_IBQ = ((TopD3PDMaker170552*)nTuple)->IBQ;
-		my_IB1 = ((TopD3PDMaker170552*)nTuple)->IB1;
-		my_b  = ((TopD3PDMaker170552*)nTuple)->b;
-  		//.................bb from tb
-		my_IBB = ((TopD3PDMaker170552*)nTuple)->IBB;
-		my_IB2 = ((TopD3PDMaker170552*)nTuple)->IB2;
-		my_bb = ((TopD3PDMaker170552*)nTuple)->bb;
-
-  		//.................s from t
-		my_ISQ = ((TopD3PDMaker170552*)nTuple)->ISQ;
-		my_IS1 = ((TopD3PDMaker170552*)nTuple)->IS1;
-		my_s  = ((TopD3PDMaker170552*)nTuple)->s;
-  		//.................sb from tb
-		my_ISB = ((TopD3PDMaker170552*)nTuple)->ISB;
-		my_IS2 = ((TopD3PDMaker170552*)nTuple)->IS2;
-		my_sb = ((TopD3PDMaker170552*)nTuple)->sb;
-
-  		//.................d from t
-		my_IDWQ = ((TopD3PDMaker170552*)nTuple)->IDWQ;
-		my_IDW1 = ((TopD3PDMaker170552*)nTuple)->IDW1;
-		my_dw   = ((TopD3PDMaker170552*)nTuple)->dw;
-  		//.................db from tb
-		my_IDWB = ((TopD3PDMaker170552*)nTuple)->IDWB;
-		my_IDW2 = ((TopD3PDMaker170552*)nTuple)->IDW2;
-		my_dwb  = ((TopD3PDMaker170552*)nTuple)->dwb;
-
-  		//.................W+->f1f2
-		my_IWPf1 = ((TopD3PDMaker170552*)nTuple)->IWPf1;
-		my_IWPf2 = ((TopD3PDMaker170552*)nTuple)->IWPf2;
-		my_IWPf1_Coun = ((TopD3PDMaker170552*)nTuple)->IWPf1_Coun;
-		my_IWPf2_Coun = ((TopD3PDMaker170552*)nTuple)->IWPf2_Coun;
-		my_IWPtau_Neu = ((TopD3PDMaker170552*)nTuple)->IWPtau_Neu;
-		my_IWPtau_elNeu = ((TopD3PDMaker170552*)nTuple)->IWPtau_elNeu;
-		my_IWPtau_muNeu = ((TopD3PDMaker170552*)nTuple)->IWPtau_muNeu;
-		my_pdgID_Wp_dw = ((TopD3PDMaker170552*)nTuple)->pdgID_Wp_dw;
-		my_pdgID_Wp_up = ((TopD3PDMaker170552*)nTuple)->pdgID_Wp_up;
-		my_Wpf1 = ((TopD3PDMaker170552*)nTuple)->Wpf1;
-		my_Wpf2 = ((TopD3PDMaker170552*)nTuple)->Wpf2;
-        	//
-  		//.................W-->f1f2
-		my_IWNf1 = ((TopD3PDMaker170552*)nTuple)->IWNf1;
-		my_IWNf2 = ((TopD3PDMaker170552*)nTuple)->IWNf2;
-		my_IWNf1_Coun = ((TopD3PDMaker170552*)nTuple)->IWNf1_Coun;
-		my_IWNf2_Coun = ((TopD3PDMaker170552*)nTuple)->IWNf2_Coun;
-		my_IWNtau_Neu = ((TopD3PDMaker170552*)nTuple)->IWNtau_Neu;
-		my_IWNtau_elNeu = ((TopD3PDMaker170552*)nTuple)->IWNtau_elNeu;
-		my_IWNtau_muNeu = ((TopD3PDMaker170552*)nTuple)->IWNtau_muNeu;
-		my_pdgID_Wn_dw = ((TopD3PDMaker170552*)nTuple)->pdgID_Wn_dw;
-		my_pdgID_Wn_up = ((TopD3PDMaker170552*)nTuple)->pdgID_Wn_up;
-		my_Wnf1 = ((TopD3PDMaker170552*)nTuple)->Wnf1;
-		my_Wnf2 = ((TopD3PDMaker170552*)nTuple)->Wnf2;
-  		//
-  		// =========================================================
-  		// ===== AO 8 Oct 2010 ===================== above =========
-  		// =========================================================
-		*/
-        	// AO 14 Nov 2012 ***********************************************************************
-        	// -------------  No Truth Information Yet Available (lines above commented) ------------
-        	// AO 14 Nov 2012 ***********************************************************************
-/*
-	    }
-	}  
-
-
-	// get number of truth leptons
-	events[Event::event_counter].ntruthlep    = 0;
-	events[Event::event_counter].ntruthele    = 0;
-	events[Event::event_counter].ntruthmu     = 0;
-	events[Event::event_counter].ntruthtau    = 0;
-	events[Event::event_counter].ntrutheletau = 0;
-	events[Event::event_counter].ntruthmutau  = 0;
-	events[Event::event_counter].ntruthleptau = 0;
-
-        //-----------------------extract information from ntuple-------
-        //....do this only in case of MC simulation....................
-        //-----------------------extract information from ntuple-------
-        if ( isData == 0 ){
-		events[Event::event_counter].ntruthele    = events[Event::event_counter].TruthEleNumber; 	// nTuple Variable 
-		events[Event::event_counter].ntruthmu     = events[Event::event_counter].TruthMuonNumber; // nTuple Variable 
-		//events[Event::event_counter].ntruthtau    = ((TopD3PDMaker170552*)nTuple)->Truth0_Tau_N;
-		//events[Event::event_counter].ntruthleptau = ((TopD3PDMaker170552*)nTuple)->Truth0_lepTau_N;
-		//events[Event::event_counter].ntrutheletau = ((TopD3PDMaker170552*)nTuple)->Truth0_elTau_N;
-		//events[Event::event_counter].ntruthmutau  = ((TopD3PDMaker170552*)nTuple)->Truth0_muTau_N;
-
-		events[Event::event_counter].ntruthlep = events[Event::event_counter].ntruthele + events[Event::event_counter].ntruthmu + events[Event::event_counter].ntruthleptau;
-	}
-
-	// =========================================================
-	// ===== AO 8 Oct 2010 ===================== below =========
-	// =========================================================
-	//   	     Get MY OWN variables out of the box
-	// =========================================================
-	// ===== AO 8 Oct 2010 ===================== below =========
-	// =========================================================
-
-        if ( ( isData == 0 ) && (myRunNumber ==105200) ){
-
-	       	//-----------------------------Total Number of Events-------
-	        myEVE_Total++;
-
-                //
-	       	//-----------------------------Semileptonic Topology--------
-        	if ( (events[Event::event_counter].ntruthele + ntruthmu + ntruthtau) == 1  ){
-                   //
-        	   if (   ntruthele == 1 ) myEVE_semi_nontau_ele++;
-        	   if (   ntruthmu  == 1 ) myEVE_semi_nontau_mu++;
-        	   if (   ntruthtau == 1 ) myEVE_semi_tau++;
-                   //
-        	   //...with taus.......
-        	   if ( (ntruthele+ntrutheletau) == 1 ) myEVE_semi_ele++;
-        	   if ( (ntruthmu +ntruthmutau) == 1 ) myEVE_semi_mu++;
-                   //
-        	   if (     ntruthleptau == 1 ) {
-			myEVE_semi_leptau++;
-        	        if ( ntrutheletau>0 ) myEVE_semi_eletau++;
-        	        if ( ntruthmutau>0 ) myEVE_semi_mutau++;
-        	   }           
-        	}
-                //
-	       	//-------------------------------Dileptonic Topology--------
-        	if (  (ntruthele + ntruthmu + ntruthtau) == 2  ){
-        	   //
-        	   if (   ntruthele == 2 ) myEVE_di_nontau_eleele++;
-        	   if (   ntruthmu  == 2 ) myEVE_di_nontau_mumu++;
-        	   if ( ( ntruthele == 1 ) && ( ntruthmu  == 1 )  ) myEVE_di_nontau_elemu++;
-        	   if ( ( ntruthele == 1 ) && ( ntruthtau == 1 )  ) myEVE_di_nontau_eletau++;
-        	   if ( ( ntruthmu  == 1 ) && ( ntruthtau == 1 )  ) myEVE_di_nontau_mutau++;
-        	   if (   ntruthtau == 2 ) myEVE_di_nontau_tautau++;
-                   //
-        	   //...with taus.......
-        	   if ( (ntruthele+ntrutheletau)==2 ) myEVE_di_eleele++;
-        	   if ( (ntruthmu +ntruthmutau)==2 ) myEVE_di_mumu++;
-        	   if ( ((ntruthele+ntrutheletau)==1) && ((ntruthmu+ntruthmutau)==1)  ) myEVE_di_elemu++;
-        	}
-                if (  (ntruthele + ntruthmu + ntruthtau) == 0  ) myEVE_0leptons++;
-        	if (  (ntruthele + ntruthmu + ntruthtau) == 3  ) myEVE_3leptons++;
-        	if (  (ntruthele + ntruthmu + ntruthtau) == 4  ) myEVE_4leptons++;
-        	if (  (ntruthele + ntruthmu + ntruthtau)  > 4  ) myEVE_more4leptons++;
-                //
-		//...top quarks.............................................
-        	if ( my_IQ1*my_IQ2 == 1  ){
-       		       	myEVE_ttbar++;
-        	} else {
-			myEVE_nonttbar++;
-        	}
-		if ( (my_IQ1+my_IQ2) == 4 ) myEVE_4tops++;
-        	//.....................discriminate what ttbar events do we have..... 
-                if ( my_IQ1==0 && my_IQ2==0 ) myttbar_00++;
-                if ( my_IQ1==0 && my_IQ2==1 ) myttbar_01++;
-                if ( my_IQ1==0 && my_IQ2==2 ) myttbar_02++;
-                if ( my_IQ1==0 && my_IQ2==3 ) myttbar_03++;
-
-                if ( my_IQ1==1 && my_IQ2==0 ) myttbar_10++;
-                if ( my_IQ1==1 && my_IQ2==1 ) myttbar_11++;
-                if ( my_IQ1==1 && my_IQ2==2 ) myttbar_12++;
-                if ( my_IQ1==1 && my_IQ2==3 ) myttbar_13++;
-
-                if ( my_IQ1==2 && my_IQ2==0 ) myttbar_20++;
-                if ( my_IQ1==2 && my_IQ2==1 ) myttbar_21++;
-                if ( my_IQ1==2 && my_IQ2==2 ) myttbar_22++;
-                if ( my_IQ1==2 && my_IQ2==3 ) myttbar_23++;
-	
-                if ( my_IQ1==3 && my_IQ2==0 ) myttbar_30++;
-                if ( my_IQ1==3 && my_IQ2==1 ) myttbar_31++;
-                if ( my_IQ1==3 && my_IQ2==2 ) myttbar_32++;
-                if ( my_IQ1==3 && my_IQ2==3 ) myttbar_33++;
-
-        	//...W bosons...............................................
-        	if ( my_IQ1*my_IQ2 == 1  ){
-     			if ( my_IW1*my_IW2 ==1 ){
-				myEVE_WW++;
-			} else {	
-				myEVE_nonWW++;
-			}
-			if ( (my_IW1+my_IW2) == 4 ) myEVE_4W++;
-		}
-        	//...b quarks...............................................
-        	if ( my_IQ1*my_IQ2 == 1  ){
-        		if ( my_IB1*my_IB2 ==1 ){
-				myEVE_bb++;
-			} else {
-				myEVE_nonbb++;
-        		}	
-			if ( (my_IB1+my_IB2) == 4 ) myEVE_4b++;
-        		//.....................discriminate what bbbar events do we have..... 
-                	if ( my_IB1==0 && my_IB2==0 ) mybbbar_00++;
-               	 	if ( my_IB1==0 && my_IB2==1 ) mybbbar_01++;
-                	if ( my_IB1==0 && my_IB2==2 ) mybbbar_02++;
-                	if ( my_IB1==0 && my_IB2==3 ) mybbbar_03++;
-
-                	if ( my_IB1==1 && my_IB2==0 ) mybbbar_10++;
-                	if ( my_IB1==1 && my_IB2==1 ) mybbbar_11++;
-                	if ( my_IB1==1 && my_IB2==2 ) mybbbar_12++;
-                	if ( my_IB1==1 && my_IB2==3 ) mybbbar_13++;
-
-                	if ( my_IB1==2 && my_IB2==0 ) mybbbar_20++;
-                	if ( my_IB1==2 && my_IB2==1 ) mybbbar_21++;
-                	if ( my_IB1==2 && my_IB2==2 ) mybbbar_22++;
-                	if ( my_IB1==2 && my_IB2==3 ) mybbbar_23++;
-		
-        	        if ( my_IB1==3 && my_IB2==0 ) mybbbar_30++;
-                	if ( my_IB1==3 && my_IB2==1 ) mybbbar_31++;
-                	if ( my_IB1==3 && my_IB2==2 ) mybbbar_32++;
-                	if ( my_IB1==3 && my_IB2==3 ) mybbbar_33++;
-		}
-        	//...s quarks...............................................
-        	if ( my_IQ1*my_IQ2 == 1  ){
-        		if ( my_IS1*my_IS2 ==1 ){
-				myEVE_ss++;
-			} else {
-				myEVE_nonss++;
-        		}	
-			if ( (my_IS1+my_IS2) == 4 ) myEVE_4s++;
-        		//.....................discriminate what bbbar events do we have..... 
-                	if ( my_IS1==0 && my_IS2==0 ) myssbar_00++;
-               	 	if ( my_IS1==0 && my_IS2==1 ) myssbar_01++;
-                	if ( my_IS1==0 && my_IS2==2 ) myssbar_02++;
-                	if ( my_IS1==0 && my_IS2==3 ) myssbar_03++;
-
-                	if ( my_IS1==1 && my_IS2==0 ) myssbar_10++;
-                	if ( my_IS1==1 && my_IS2==1 ) myssbar_11++;
-                	if ( my_IS1==1 && my_IS2==2 ) myssbar_12++;
-                	if ( my_IS1==1 && my_IS2==3 ) myssbar_13++;
-
-                	if ( my_IS1==2 && my_IS2==0 ) myssbar_20++;
-                	if ( my_IS1==2 && my_IS2==1 ) myssbar_21++;
-                	if ( my_IS1==2 && my_IS2==2 ) myssbar_22++;
-                	if ( my_IS1==2 && my_IS2==3 ) myssbar_23++;
-		
-        	        if ( my_IS1==3 && my_IS2==0 ) myssbar_30++;
-                	if ( my_IS1==3 && my_IS2==1 ) myssbar_31++;
-                	if ( my_IS1==3 && my_IS2==2 ) myssbar_32++;
-                	if ( my_IS1==3 && my_IS2==3 ) myssbar_33++;
-		}
-        	//...d quarks...............................................
-        	if ( my_IQ1*my_IQ2 == 1  ){
-        		if ( my_IDW1*my_IDW2 ==1 ){
-				myEVE_dd++;
-			} else {
-				myEVE_nondd++;
-        		}	
-			if ( (my_IDW1+my_IDW2) == 4 ) myEVE_4d++;
-        		//.....................discriminate what ddbar events do we have..... 
-                	if ( my_IDW1==0 && my_IDW2==0 ) myddbar_00++;
-               	 	if ( my_IDW1==0 && my_IDW2==1 ) myddbar_01++;
-                	if ( my_IDW1==0 && my_IDW2==2 ) myddbar_02++;
-                	if ( my_IDW1==0 && my_IDW2==3 ) myddbar_03++;
-
-                	if ( my_IDW1==1 && my_IDW2==0 ) myddbar_10++;
-                	if ( my_IDW1==1 && my_IDW2==1 ) myddbar_11++;
-                	if ( my_IDW1==1 && my_IDW2==2 ) myddbar_12++;
-                	if ( my_IDW1==1 && my_IDW2==3 ) myddbar_13++;
-
-                	if ( my_IDW1==2 && my_IDW2==0 ) myddbar_20++;
-                	if ( my_IDW1==2 && my_IDW2==1 ) myddbar_21++;
-                	if ( my_IDW1==2 && my_IDW2==2 ) myddbar_22++;
-                	if ( my_IDW1==2 && my_IDW2==3 ) myddbar_23++;
-		
-        	        if ( my_IDW1==3 && my_IDW2==0 ) myddbar_30++;
-                	if ( my_IDW1==3 && my_IDW2==1 ) myddbar_31++;
-                	if ( my_IDW1==3 && my_IDW2==2 ) myddbar_32++;
-                	if ( my_IDW1==3 && my_IDW2==3 ) myddbar_33++;
-		}
-	}
-	// =========================================================
-	// ===== AO 8 Oct 2010 ===================== above =========
-	// =========================================================
-
-
-	//root1 = -999.;
-
-
-	// events[Event::event_counter].Ht from Minintuple
-	events[Event::event_counter].Ht = events[Event::event_counter].Ht_Mini;
-
-	// Lepton Lorentz vectors reconstruction
-	if(events[Event::event_counter].LeptonVec.size() > 1)
-	{
-		events[Event::event_counter].ll = events[Event::event_counter].LeptonVec[0] + events[Event::event_counter].LeptonVec[1];
-
-		llmiss.SetPxPyPzE(events[Event::event_counter].ll.Px() + events[Event::event_counter].MissPx, events[Event::event_counter].ll.Py() + events[Event::event_counter].MissPy, 0., events[Event::event_counter].ll.E() + events[Event::event_counter].MissPt);
-	}
-	else
-	{
-		events[Event::event_counter].ll.SetPxPyPzE(0., 0., 0., 0.);
-
-		llmiss.SetPxPyPzE(0., 0., 0., 0.);
-	}
-
-
-	// events[Event::event_counter].Hz calculation
-	events[Event::event_counter].Hz = 0.;
-	for(int i = 0; i<events[Event::event_counter].LeptonVec.size(); i++)     events[Event::event_counter].Hz = events[Event::event_counter].Hz+events[Event::event_counter].LeptonVec[i].Pz();
-	for (int i = 0; i<events[Event::event_counter].MyGoodJetVec.size(); i++) events[Event::event_counter].Hz = events[Event::event_counter].Hz+events[Event::event_counter].MyGoodJetVec[i].Pz();
-
-}*/
-
-
-// #############################################################################
-/*void ttH_dilep::Calculations2(){
-// #############################################################################
-//
-//  purpose: to do some calculations for event selection and reconstruction
-//           (only for events passing some cuts)
-//
-//  authors: fveloso
-//  first version: 23.nov.2006
-//
-//  last change: 05.Nov.2012
-//  by: A.Onofre
-//
-// #############################################################################
-
-
-	// ---------------------------------------------------------------------------
-	// vemos si se puede reconstruir el evento
-	// ---------------------------------------------------------------------------
-
-	// variables
-
-	int key = 0;
-
-	TLorentzVector MK_b, MK_bb, MK_l, MK_lb, MK_nu, MK_nub;
-        TLorentzVector AO_t, AO_tbar, AO_Wp, AO_Wn;
-
-	TruthHasSolution = 0;
-
-        // AO 11 Nov 2012 ***********************************************************************
-	// -------------  No Truth Information Yet Available (lines below commented) ------------
-        // AO 11 Nov 2012 ***********************************************************************
-        /*
-        // AO 15 Nov 2011 =======================================================================
-	// New Code for Truth Information for tt Events
-        // AO 15 Nov 2011 =======================================================================
-        // Get Truth variables
-    	Int_t                mc_n;                   mc_n            	= ((TopD3PDMaker170552*)nTuple)->mc_n;
-   	vector<float>        *mc_pt;                 mc_pt           	= ((TopD3PDMaker170552*)nTuple)->mc_pt;
-   	vector<float>        *mc_m;                  mc_m            	= ((TopD3PDMaker170552*)nTuple)->mc_m;
-   	vector<float>        *mc_eta;                mc_eta          	= ((TopD3PDMaker170552*)nTuple)->mc_eta;
-   	vector<float>        *mc_phi;                mc_phi          	= ((TopD3PDMaker170552*)nTuple)->mc_phi;
-   	vector<int>          *mc_status;             mc_status		= ((TopD3PDMaker170552*)nTuple)->mc_status;
-   	vector<int>          *mc_pdgId;              mc_pdgId        	= ((TopD3PDMaker170552*)nTuple)->mc_pdgId;
-   	vector<vector<int> > *mc_child_index;        mc_child_index  	= ((TopD3PDMaker170552*)nTuple)->mc_child_index;
-   	vector<vector<int> > *mc_parent_index;	     mc_parent_index 	= ((TopD3PDMaker170552*)nTuple)->mc_parent_index;
-        // ======================================================================================
-        */
-        // AO 11 Nov 2012 ***********************************************************************
-	// -------------  No Truth Information Yet Available (lines above commented) ------------
-        // AO 11 Nov 2012 ***********************************************************************
-
-
-
-        // ======================================================================================
-   	// Clear truth information for all objects
-        // ======================================================================================
-	/*events[Event::event_counter].myTruth_WtauDecay = 0;
-   	events[Event::event_counter].myTruthLepVec.clear();
-   	events[Event::event_counter].myTruthNeuVec.clear();
-   	events[Event::event_counter].myTruth_t_Vec.clear();
-   	events[Event::event_counter].myTruth_W_Vec.clear();
-   	events[Event::event_counter].myTruth_b_Vec.clear();
-        // ======================================================================================
-
-        // ======================================================================================
-        // Matched Truth with Reconstructed Leptons, jets and missing for Resolution Studies.....
-        // ======================================================================================
-        // Truth information
-	events[Event::event_counter].myResolution_Truth_Lep.clear();
-	events[Event::event_counter].myResolution_Truth_Jet.clear();
-	events[Event::event_counter].myResolution_Truth_Mis.clear();
-        // Reconstructed information
-	events[Event::event_counter].myResolution_Reco_Lep.clear();
-	events[Event::event_counter].myResolution_Reco_Jet.clear();
-	events[Event::event_counter].myResolution_Reco_Mis.clear();  
-        // ======================================================================================
-
-
-        // AO 11 Nov 2012 ***********************************************************************
-	// -------------  No Truth Information Yet Available (lines below commented) ------------
-        // AO 11 Nov 2012 ***********************************************************************
-        /*  
-	// cout << "   " << endl;
-	// cout << "   " << endl;
-        // cout << " ------------------------------------------------------------ " << endl;
-	// cout << "                    TRUTH  EVENT LISTINGS                     " << endl;  
-        // cout << " ------------------------------------------------------------ " << endl;
-	// Loop over truth particles (avoid data)
-	UInt_t  runNumber; runNumber = RunNumber;
-  	if( ( isData == 0 ) && ( runNumber == 119264 || runNumber == 119265 || runNumber == 119266 ) ){
-
-      
-                // Print out MC information
-	 	for (Int_t k=0; k< int( mc_pdgId->size() )   ; k++){
-		  Int_t myP = -1;
-		  Int_t myC = -1;
-		  if ( (*mc_parent_index)[k].size()>0 ) myP = (*mc_parent_index)[k][0];
-		  if ( (*mc_child_index)[k].size()>0  ) myC = (*mc_child_index)[k][0];
-		}
-	 	// Loop over truth particles and find charged leptons from W
-	 	for (Int_t k=0; k< int( mc_pdgId->size() )   ; k++){
-
-	         // Check particles have Father and Grand-Father otherwise dont consider the event
-		 if ( (*mc_parent_index)[k].size()>0  ){
-		  if ( (*mc_parent_index)[(*mc_parent_index)[k][0]].size()>0  ) {
-
-		    // Get Father and Grand-Father indecis
-		    Int_t kF          = (*mc_parent_index)[k][0];
-		    Int_t kGF         = (*mc_parent_index)[kF][0];
-
-		    // ----------------------------------------------------------------------------------------------------------------------------------------
-	 	    // Charged electrons, muons from W (make sure they have Father=W and GrandFather=top)------------------------------------------------------
-		    // ----------------------------------------------------------------------------------------------------------------------------------------
-             	    if( ( abs((*mc_pdgId)[k])==11 || abs((*mc_pdgId)[k])==13 ) && abs((*mc_pdgId)[kF])==24 && abs((*mc_pdgId)[kGF])==6 && (*mc_status)[k] ==3){
-			
-			// cout << "--- New Lepton Chain Found ---- k=" << k << endl;
-                      	TLorentzVector v;
-                      	v.SetPtEtaPhiM((*mc_pt)[k], (*mc_eta)[k], (*mc_phi)[k], (*mc_m)[k]);
-                      	TLorentzVectorWFlags v1(v,2,int((*mc_pdgId)[k]),999.,-1,-1);
-                      	events[Event::event_counter].myTruthLepVec.push_back(v1);  
- 			// cout << "---l--- Line=" << k << " PDG= " << (*mc_pdgId)[k] << " Father=" << (*mc_parent_index)[k][0] << " pT=" << (*mc_pt)[k] << " eta=" << (*mc_eta)[k] << " phi=" << (*mc_phi)[k] << endl;
-		      	key++;
-			// --------------------------------------------
-		      	// get W for this letpon ----------------------
-			// --------------------------------------------
-                      	TLorentzVector w;
-                      	w.SetPtEtaPhiM((*mc_pt)[kF], (*mc_eta)[kF], (*mc_phi)[kF], (*mc_m)[kF]);
-                      	TLorentzVectorWFlags w1(w,1,int((*mc_pdgId)[kF]),999.,-1,-1);
-                      	events[Event::event_counter].myTruth_W_Vec.push_back(w1);
- 			// cout << "---W--- Line=" << kF << " PDG= " << (*mc_pdgId)[kF] << " Father=" << (*mc_parent_index)[kF][0] << " pT=" << (*mc_pt)[kF] << " eta=" << (*mc_eta)[kF] << " phi=" << (*mc_phi)[kF] << endl;
-		      	key++;
-			// --------------------------------------------
-		      	// get the neutrino from this W decay
-			// --------------------------------------------
-		      	for (Int_t l=0; l< int( (*mc_child_index)[kF].size() )   ; l++){
-			    Int_t iC = (*mc_child_index)[kF][l];
- 			    if( abs((*mc_pdgId)[iC])==12 || abs((*mc_pdgId)[iC])==14 ) {
-                      		TLorentzVector n;
-                      		n.SetPtEtaPhiM((*mc_pt)[iC], (*mc_eta)[iC], (*mc_phi)[iC], (*mc_m)[iC]);
-                      		TLorentzVectorWFlags n1(n,2,int((*mc_pdgId)[iC]),999.,-1,-1);
-                      		events[Event::event_counter].myTruthNeuVec.push_back(n1);
- 				// cout << "--nu--- Line=" << iC << " PDG= " << (*mc_pdgId)[iC] << " Father=" << (*mc_parent_index)[iC][0] << " pT=" << (*mc_pt)[iC] << " eta=" << (*mc_eta)[iC] << " phi=" << (*mc_phi)[iC] << endl;
-	  		        key++;
-			    }
-		      	} 
-		    	// --------------------------------------------------
-		    	// Get t quark for this letpon-----------------------
-		    	// --------------------------------------------------
-                    	TLorentzVector t;
-                    	t.SetPtEtaPhiM((*mc_pt)[kGF], (*mc_eta)[kGF], (*mc_phi)[kGF], (*mc_m)[kGF]);
-                    	TLorentzVectorWFlags t1(t,0,int((*mc_pdgId)[kGF]),999.,-1,-1);
-                    	events[Event::event_counter].myTruth_t_Vec.push_back(t1);
- 		    	// cout << "---t--- Line=" << kGF << " PDG= " << (*mc_pdgId)[kGF] << " Father=" << (*mc_parent_index)[kGF][0] << " pT=" << (*mc_pt)[kGF] << " eta=" << (*mc_eta)[kGF] << " phi=" << (*mc_phi)[kGF] << endl;
-		    	key++;
-		    	// ---------------------------------------------------
-		    	// Get b quark from t decay for this letpon-----------
-		    	// ---------------------------------------------------
-		    	for (Int_t l=0; l< int( (*mc_child_index)[kGF].size() )   ; l++){
-			    Int_t iC = (*mc_child_index)[kGF][l];
- 			    if( abs((*mc_pdgId)[iC])==5 ) {
-                      		TLorentzVector b;
-                      		b.SetPtEtaPhiM((*mc_pt)[iC], (*mc_eta)[iC], (*mc_phi)[iC], (*mc_m)[iC]);
-                      		TLorentzVectorWFlags b1(b,1,int((*mc_pdgId)[iC]),999.,-1,-1);
-                      		events[Event::event_counter].myTruth_b_Vec.push_back(b1);
- 				// cout << "---b--- Line=" << iC << " PDG= " << (*mc_pdgId)[iC] << " Father=" << (*mc_parent_index)[iC][0] << " pT=" << (*mc_pt)[iC] << " eta=" << (*mc_eta)[iC] << " phi=" << (*mc_phi)[iC] << endl;
-		      		key++;			    
-			    }
-		    	} 
-		    }
-
-
-		    // ----------------------------------------------------------------------------------------------------------------------------------------
-	 	    // Charged electrons, muons BUT from tau decays and make sure W come from top quarks-------------------------------------------------------
-		    // ----------------------------------------------------------------------------------------------------------------------------------------
-             	    if( ( abs((*mc_pdgId)[k])==15 ) && abs((*mc_pdgId)[kF])==24 && abs((*mc_pdgId)[kGF])==6 && (*mc_status)[k] ==3){
-
-			// Increment tau decay counter 
-			events[Event::event_counter].myTruth_WtauDecay++;
-
-			// Keep eta and phi values of this tau
-	                double_t etaTau = (*mc_eta)[k];
-         	       	double_t phiTau = (*mc_phi)[k];
-			
-		      	// Check if taus have children
-                      	int myC = 999;
-			// ....yes they have..................
-			if ( (*mc_child_index)[k].size()>1 ) {
-                      		myC = (*mc_child_index)[k][1];
-			}
-			// ....No they dont!..................
-			if ( (*mc_child_index)[k].size()<1 ) {
-				// Loop once again over particles to catch the first 
-				// which is close to the first found and has children 
-                		for (Int_t jj=0; jj< int( mc_pdgId->size() )   ; jj++){
-				    	if (  ( jj != k ) && ( abs((*mc_pdgId)[jj])==15 ) && ((*mc_child_index)[jj].size()>1) 
-						&& ( abs(etaTau-(*mc_eta)[jj]) < 0.1 ) && ( abs(phiTau-(*mc_phi)[jj]) < 0.1 ) ){
-                      				myC = (*mc_child_index)[jj][1];
-					}	
-				}
-			}
-
-			// Update lepton values
-                     	if(  myC != 999 ){
-                     	   if(    (abs((*mc_pdgId)[myC])==11) || (abs((*mc_pdgId)[myC])==13) ){
-                     	   	TLorentzVector v;
-                      	   	v.SetPtEtaPhiM((*mc_pt)[myC], (*mc_eta)[myC], (*mc_phi)[myC], (*mc_m)[myC]);
-                      	   	TLorentzVectorWFlags v1(v,3,int((*mc_pdgId)[myC]),999.,-1,-1);
-                      	   	events[Event::event_counter].myTruthLepVec.push_back(v1);
- 			   	// cout << "-l-tau- Line=" << myC << " PDG= " << (*mc_pdgId)[myC] << " Father=" << (*mc_parent_index)[myC][0] << " pT=" << (*mc_pt)[myC] << " eta=" << (*mc_eta)[myC] << " phi=" << (*mc_phi)[myC] << endl;
-		      	   	key++;
-                     	   }
-			}
-			// --------------------------------------------
-		      	// get W for this letpon ----------------------
-			// --------------------------------------------
-                      	TLorentzVector w;
-                      	w.SetPtEtaPhiM((*mc_pt)[kF], (*mc_eta)[kF], (*mc_phi)[kF], (*mc_m)[kF]);
-                      	TLorentzVectorWFlags w1(w,1,int((*mc_pdgId)[kF]),999.,-1,-1);
-                      	events[Event::event_counter].myTruth_W_Vec.push_back(w1);
- 			// cout << "---W--- Line=" << kF << " PDG= " << (*mc_pdgId)[kF] << " Father=" << (*mc_parent_index)[kF][0] << " pT=" << (*mc_pt)[kF] << " eta=" << (*mc_eta)[kF] << " phi=" << (*mc_phi)[kF] << endl;
-		      	key++;
-			// --------------------------------------------
-		      	// get the neutrino from this W decay
-			// --------------------------------------------
-		      	for (Int_t l=0; l< int( (*mc_child_index)[kF].size() )   ; l++){
-			    Int_t iC = (*mc_child_index)[kF][l];
- 			    if( abs((*mc_pdgId)[iC])==16 ) {
-                      		TLorentzVector n;
-                      		n.SetPtEtaPhiM((*mc_pt)[iC], (*mc_eta)[iC], (*mc_phi)[iC], (*mc_m)[iC]);
-                      		TLorentzVectorWFlags n1(n,2,int((*mc_pdgId)[iC]),999.,-1,-1);
-                      		events[Event::event_counter].myTruthNeuVec.push_back(n1);
- 				// cout << "--nu--- Line=" << iC << " PDG= " << (*mc_pdgId)[iC] << " Father=" << (*mc_parent_index)[iC][0] << " pT=" << (*mc_pt)[iC] << " eta=" << (*mc_eta)[iC] << " phi=" << (*mc_phi)[iC] << endl;
-	  		        key++;
-			    }
-		      	} 
-		    	// --------------------------------------------------
-		    	// Get t quark for this letpon-----------------------
-		    	// --------------------------------------------------
-                    	TLorentzVector t;
-                    	t.SetPtEtaPhiM((*mc_pt)[kGF], (*mc_eta)[kGF], (*mc_phi)[kGF], (*mc_m)[kGF]);
-                    	TLorentzVectorWFlags t1(t,0,int((*mc_pdgId)[kGF]),999.,-1,-1);
-                    	events[Event::event_counter].myTruth_t_Vec.push_back(t1);
- 		    	// cout << "---t--- Line=" << kGF << " PDG= " << (*mc_pdgId)[kGF] << " Father=" << (*mc_parent_index)[kGF][0] << " pT=" << (*mc_pt)[kGF] << " eta=" << (*mc_eta)[kGF] << " phi=" << (*mc_phi)[kGF] << endl;
-		    	key++;
-		    	// ---------------------------------------------------
-		    	// Get b quark from t decay for this letpon-----------
-		    	// ---------------------------------------------------
-		    	for (Int_t l=0; l< int( (*mc_child_index)[kGF].size() )   ; l++){
-			    Int_t iC = (*mc_child_index)[kGF][l];
- 			    if( abs((*mc_pdgId)[iC])==5 ) {
-                      		TLorentzVector b;
-                      		b.SetPtEtaPhiM((*mc_pt)[iC], (*mc_eta)[iC], (*mc_phi)[iC], (*mc_m)[iC]);
-                      		TLorentzVectorWFlags b1(b,1,int((*mc_pdgId)[iC]),999.,-1,-1);
-                      		events[Event::event_counter].myTruth_b_Vec.push_back(b1);
- 				// cout << "---b--- Line=" << iC << " PDG= " << (*mc_pdgId)[iC] << " Father=" << (*mc_parent_index)[iC][0] << " pT=" << (*mc_pt)[iC] << " eta=" << (*mc_eta)[iC] << " phi=" << (*mc_phi)[iC] << endl;
-		      		key++;			    
-			    }
-		    	} 
-
-		    }
-
-                  }
-                 }
-		}		
-
-
-		// =======================================================
-   		// Matching Between Reconstructed Leptons to Truth Objects
-		//		    ASSUMED AT THE MOMENT
-   		// =======================================================
-
-                Dilep_Truth_Reco_Match = 0;
-
-                Int_t    k0=999;
-                Int_t    k1=999;
-
-                double_t dR0=999.;
-                double_t dR1=999.;
-
-                // cout << " ------- events[Event::event_counter].myTruthLepVec.size() =" << events[Event::event_counter].myTruthLepVec.size() << endl;
-                if ( events[Event::event_counter].myTruthLepVec.size() > 0 && LeptonVec.size() > 1 ){
-
-                        // check highest pT lepton
-                        for (Int_t k=0; k< events[Event::event_counter].myTruthLepVec.size()   ; k++){
-                                // check dR
-                                double_t dR = LeptonVec[0].DeltaR(events[Event::event_counter].myTruthLepVec[k]);
-                                Int_t pdgIDTru0 = abs( events[Event::event_counter].myTruthLepVec[k].isb );
-                                Int_t pdgIDRec0 = abs( LeptonVec[0].isb );
-                                if ( ( dR < dR0 ) && ( pdgIDTru0 == pdgIDRec0 ) && ( dR < 0.1 ) ) {
-                                        k0  =  k;
-                                        dR0 = dR;
-                                }
-                        }
-
-                        // check lowest pT lepton
-                        for (Int_t k=0; k< events[Event::event_counter].myTruthLepVec.size()   ; k++){
-                                if ( k != k0 ){
-                                        // check dR
-                                        Int_t pdgIDTru1 = abs( events[Event::event_counter].myTruthLepVec[k].isb );
-                                        Int_t pdgIDRec1 = abs( LeptonVec[1].isb );
-                                        double_t dR = LeptonVec[1].DeltaR(events[Event::event_counter].myTruthLepVec[k]);
-                                        if ( ( dR < dR1 ) && ( pdgIDTru1 == pdgIDRec1 ) && ( dR < 0.1 ) ) {
-                                                k1  =  k;
-                                                dR1 = dR;
-                                        }
-                                }
-                        }
-                }
-                if ( ( k0 != 999 ) && ( k1 != 999 ) ) Dilep_Truth_Reco_Match = 1;
-
-
-                // Matching hapened
-		if ( ( Dilep_Truth_Reco_Match == 1 ) && ( key == 10 ) ){
-		
-
-			// ===============================================
-		        // Truth and Reco information for Resolution Plots
-			// ===============================================
-			// -----------------------------------------------
-			//       L E P T O N S  +  M I S S I N G 
-			//               (jets are below)
-			// -----------------------------------------------
-			// ===============================================
-			// lepton [0] Truth+Reco
-        	        events[Event::event_counter].myResolution_Truth_Lep.push_back( events[Event::event_counter].myTruthLepVec[k0] );
-        	        events[Event::event_counter].myResolution_Reco_Lep.push_back( LeptonVec[0] );
-			//
-			// lepton [1] Truth+Reco
-        	        events[Event::event_counter].myResolution_Truth_Lep.push_back( events[Event::event_counter].myTruthLepVec[k1] );
-        	        events[Event::event_counter].myResolution_Reco_Lep.push_back( LeptonVec[1] );
-			//
-			// Missing (based on neutrinos information) Truth
-                	double miPx = events[Event::event_counter].myTruthNeuVec[k0].Px() + events[Event::event_counter].myTruthNeuVec[k1].Px();
-                	double miPy = events[Event::event_counter].myTruthNeuVec[k0].Py() + events[Event::event_counter].myTruthNeuVec[k1].Py();
-                	double miPz = events[Event::event_counter].myTruthNeuVec[k0].Pz() + events[Event::event_counter].myTruthNeuVec[k1].Pz();
-                	double miE  = sqrt( miPx*miPx + miPy*miPy + miPz*miPz );
-			TLorentzVector nMis;
-		        nMis.SetPxPyPzE(  miPx,   miPy,   miPz,  miE);
-			TLorentzVectorWFlags nMis1(nMis,0,999,999.,-1,-1);
-        		events[Event::event_counter].myResolution_Truth_Mis.push_back(nMis1);
-			// Missing (based on neutrinos information) Reco
-                	miPx = MissPx;
-                	miPy = MissPy;
-                	miPz = 0.;
-                	miE  = sqrt( miPx*miPx + miPy*miPy + miPz*miPz );
-			TLorentzVector rMis;
-		        rMis.SetPxPyPzE(  miPx,   miPy,   miPz,  miE);
-			TLorentzVectorWFlags rMis1(rMis,0,999,999.,-1,-1);
-        		events[Event::event_counter].myResolution_Reco_Mis.push_back(rMis1);
-			// ===============================================
-
-
-			// Assign Truth vectors to Reco vectors
-			MK_l   = events[Event::event_counter].myTruthLepVec[k0];
-			MK_nu  = events[Event::event_counter].myTruthNeuVec[k0];
-			MK_b   = events[Event::event_counter].myTruth_b_Vec[k0];
-			AO_Wp  = events[Event::event_counter].myTruth_W_Vec[k0];
-			AO_t   = events[Event::event_counter].myTruth_t_Vec[k0];
-
-			MK_lb  = events[Event::event_counter].myTruthLepVec[k1];
-			MK_nub = events[Event::event_counter].myTruthNeuVec[k1];
-			MK_bb  = events[Event::event_counter].myTruth_b_Vec[k1];
-			AO_Wn  = events[Event::event_counter].myTruth_W_Vec[k1];
-			AO_tbar= events[Event::event_counter].myTruth_t_Vec[k1];
-
-		
-		//	cout << "====================================================================================" << endl;
-                //	cout << " runNumber = " << Isub << " Event Number =" << EveNumber << "; LumiBlock = " << LumiBlock << endl;
-                //	cout << "====================================================================================" << endl;
-		//	cout << "               R E C O N S T R U C T E D    I N F O R M A T I O N                   " << endl;
-                //	cout << "====================================================================================" << endl;
-                //	cout << "   Lepton=l0: Pt=" << LeptonVec[0].Pt()    << " Eta=" << LeptonVec[0].Eta()    << " Phi=" << LeptonVec[0].Phi()    << " Charge=" << LeptonVec[0].isb << endl;
-                //	cout << "   Lepton=l1: Pt=" << LeptonVec[1].Pt()    << " Eta=" << LeptonVec[1].Eta()    << " Phi=" << LeptonVec[1].Phi()    << " Charge=" << LeptonVec[1].isb << endl;
-                //	cout << " MyGoodJet 1: Pt=" << events[Event::event_counter].MyGoodJetVec[0].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[0].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[0].Phi() << endl;
-                //	cout << " MyGoodJet 2: Pt=" << events[Event::event_counter].MyGoodJetVec[1].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[1].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[1].Phi() << endl;
-                //	cout << "    Miss Px=    " << MissPx << "   Miss Py=   " << MissPy << endl;
-                //	cout << "====================================================================================" << endl;
-		//	cout << "                           T R U T H     I N F O R M A T I O N                      " << endl;
-                //	cout << "====================================================================================" << endl;
-		//	cout << " Truth Information Associated to HIGHEST pT Lepton (from Reconstruction):           " << endl; 
-                //	cout << "   Lepton   k0: Pt=" << MK_l.Pt()    << " Eta=" << MK_l.Eta()    << " Phi=" << MK_l.Phi()    << endl;
-                //	cout << "   events[Event::event_counter].Neutrino k0: Pt=" << MK_nu.Pt()   << " Eta=" << MK_nu.Eta()   << " Phi=" << MK_nu.Phi()   << endl;
-                //	cout << "   W        k0: Pt=" << AO_Wp.Pt()   << " Eta=" << AO_Wp.Eta()   << " Phi=" << AO_Wp.Phi()   << endl;
-                //	cout << "   b        k0: Pt=" << MK_b.Pt()    << " Eta=" << MK_b.Eta()    << " Phi=" << MK_b.Phi()    << endl;
-                //	cout << "   t        k0: Pt=" << AO_t.Pt()    << " Eta=" << AO_t.Eta()    << " Phi=" << AO_t.Phi()    << endl;
-		//	cout << " -----------------------------------------------------------------------------------" << endl;
-		//	cout << " Truth Information Associated to LOWEST pT Lepton (from Reconstruction):            " << endl; 
-                //	cout << "   Lepton   k1: Pt=" << MK_lb.Pt()    << " Eta=" << MK_lb.Eta()    << " Phi=" << MK_lb.Phi()    << endl;
-                //	cout << "   events[Event::event_counter].Neutrino k1: Pt=" << MK_nub.Pt()   << " Eta=" << MK_nub.Eta()   << " Phi=" << MK_nub.Phi()   << endl;
-                //	cout << "   W        k1: Pt=" << AO_Wn.Pt()    << " Eta=" << AO_Wn.Eta()    << " Phi=" << AO_Wn.Phi()    << endl;
-                //	cout << "   b        k1: Pt=" << MK_bb.Pt()    << " Eta=" << MK_bb.Eta()    << " Phi=" << MK_bb.Phi()    << endl;
-                //	cout << "   t        k1: Pt=" << AO_tbar.Pt()  << " Eta=" << AO_tbar.Eta()  << " Phi=" << AO_tbar.Phi()  << endl;
-                //	cout << "====================================================================================" << endl;
-		
-		}
-	}
-        // AO 15 Nov 2011 ==============================================================
-
-        */
-        // AO 11 Nov 2012 ***********************************************************************
-	// -------------  No Truth Information Yet Available (lines above commented) ------------
-        // AO 11 Nov 2012 ***********************************************************************
-
-
-	// --------------------------------------------------------------------------
-	// vemos si se puede reconstruir el evento
-	// --------------------------------------------------------------------------
-/*	if ( key == 10 ) TruthHasSolution++;
-
-
-	// ===============================================
-	// Truth and Reco information for Resolution Plots
-	// ===============================================
-	// -----------------------------------------------
-	//                     J E T s  
-	//         (leptons and miss. are above)
-	// -----------------------------------------------
-	// ===============================================
-	if( events[Event::event_counter].MyGoodJetVec.size() > 1  &&  events[Event::event_counter].myTruth_b_Vec.size() > 1  &&  TruthHasSolution > 0 ){
-
-		Int_t    k0=999;
-		Int_t    k1=999;
-
-   		double_t dR0=999.;
-   		double_t dR1=999.;
-
-		// check reco jet for:  events[Event::event_counter].myTruth_b_Vec[0]
-                for( int k =0; k<events[Event::event_counter].MyGoodJetVec.size(); k++){
-                	double_t dR = events[Event::event_counter].MyGoodJetVec[k].DeltaR( events[Event::event_counter].myTruth_b_Vec[0] );
-                	if (  ( dR < dR0 )  && ( dR < 0.4 ) ) {
-                	       	k0  =  k;
-                	       	dR0 = dR;
-                	}
-                }
-		// check reco jet for:  events[Event::event_counter].myTruth_b_Vec[1]
-        	for ( int k=0; k<events[Event::event_counter].MyGoodJetVec.size(); k++){
-        		if ( k != k0 ){
-        	        	double_t dR = events[Event::event_counter].MyGoodJetVec[k].DeltaR( events[Event::event_counter].myTruth_b_Vec[1] );
-        	        	if ( ( dR < dR1 ) && ( dR < 0.4 ) ) {
-        	                	k1  =  k;
-        	                	dR1 = dR;
-        	        	}
-	           	}
-		}
-		// Check if both jets are matched
-		if ( ( k0 != 999 ) && ( k1 != 999 ) ){
-			// Jet [0] Truth+Reco
-        		events[Event::event_counter].myResolution_Truth_Jet.push_back( events[Event::event_counter].myTruth_b_Vec[0] );
-        		events[Event::event_counter].myResolution_Reco_Jet.push_back( events[Event::event_counter].MyGoodJetVec[k0] );
-			// Jet [1] Truth+Reco
-        		events[Event::event_counter].myResolution_Truth_Jet.push_back( events[Event::event_counter].myTruth_b_Vec[1] );
-        		events[Event::event_counter].myResolution_Reco_Jet.push_back( events[Event::event_counter].MyGoodJetVec[k1] );
-		}
-	}
-	// ===============================================
-
-
-	// Reconstructed information
-        events[Event::event_counter].Ml1b1 = 0.; 
-        events[Event::event_counter].Ml2b2 = 0.; 
-        events[Event::event_counter].Ml1b2 = 0.; 
-        events[Event::event_counter].Ml2b1 = 0.; 
-	// Truth information
-        events[Event::event_counter].Ml1b1_truth = 0.; 
-        events[Event::event_counter].Ml2b2_truth = 0.; 
-        events[Event::event_counter].Ml1b2_truth = 0.; 
-        events[Event::event_counter].Ml2b1_truth = 0.; 
-
-        TLorentzVector l1, l2, b1, b2;
-
-	if(events[Event::event_counter].LeptonVec.size() > 1 && events[Event::event_counter].MyGoodJetVec.size() > 1 && TruthHasSolution > 0 )
-	{
-	// Reconstructed information
-		// leptons (choice is obvious)
-		l1 = events[Event::event_counter].LeptonVec[0];
-		l2 = events[Event::event_counter].LeptonVec[1];
-		// b jets (choose based on proximity criteria with truth b)		
-		Int_t iCase;
-                double_t dR;
-                double_t dRmin = 999.;
-		for (Int_t i=0; i<4   ; i++){
-		   if ( i == 0 ) dR = events[Event::event_counter].MyGoodJetVec[0].DeltaR(MK_b); 
-		   if ( i == 1 ) dR = events[Event::event_counter].MyGoodJetVec[0].DeltaR(MK_bb); 
-		   if ( i == 2 ) dR = events[Event::event_counter].MyGoodJetVec[1].DeltaR(MK_b); 
-		   if ( i == 3 ) dR = events[Event::event_counter].MyGoodJetVec[1].DeltaR(MK_bb); 
-		   // check which value is lower
-		   if ( dR < dRmin ){
-			dRmin = dR ;
-			iCase = i  ;			
-		   }
-		}
-		if ( ( iCase == 0 ) || ( iCase == 3 ) ) b1 = events[Event::event_counter].MyGoodJetVec[0], b2 = events[Event::event_counter].MyGoodJetVec[1];
-		if ( ( iCase == 1 ) || ( iCase == 2 ) ) b1 = events[Event::event_counter].MyGoodJetVec[1], b2 = events[Event::event_counter].MyGoodJetVec[0];
-		// build combinations
-		events[Event::event_counter].Ml1b1 = (l1+b1).M()/GeV; 
-		events[Event::event_counter].Ml2b2 = (l2+b2).M()/GeV; 
-		events[Event::event_counter].Ml1b2 = (l1+b2).M()/GeV; 
-		events[Event::event_counter].Ml2b1 = (l2+b1).M()/GeV; 
-
-	// Truth information
-		// build combinations
-		events[Event::event_counter].Ml1b1_truth = (MK_l  + MK_b ).M()/GeV; 
-		events[Event::event_counter].Ml2b2_truth = (MK_lb + MK_bb).M()/GeV; 
-		events[Event::event_counter].Ml1b2_truth = (MK_l  + MK_bb).M()/GeV; 
-		events[Event::event_counter].Ml2b1_truth = (MK_lb + MK_b ).M()/GeV; 
-
-	}
-	// ---------------------------------------------------------------------------
-	// si se puede reconstruir, lo reconstruimos
-	// ---------------------------------------------------------------------------
-	if(TruthHasSolution > 0)
-	{
-
-		// ### LEPTONS ###
-		TruthLepP = MK_l;
-		TruthLepN = MK_lb;
-
-		// ### BS ###
-		TruthB    = MK_b;
-		TruthBbar = MK_bb;
-
-		// ### NEUTRINOS ###
-		TruthNeu    = MK_nu;
-		TruthNeubar = MK_nub;
-
-		// ### W BOSONS ###
-		TruthWp    = AO_Wp;
-		TruthWn    = AO_Wn;
-
-		// ### TOPS ###
-		TruthT    = AO_t;
-		TruthTbar = AO_tbar;
-
-	        // ---------------------------------------------------------------------------
-	        // calculamos los observables para los eventos reconstruidos
-	        // ---------------------------------------------------------------------------
-
-                // ################################
-		// ###        COS_THETAS        ###
-                // ################################
-
-
-                // ################################
-                // ##    t(tbar) c.m. systems    ##
-                // ################################
-                //...t/tbar...
-		TVector3       t_boost, tb_boost, tt_boost;
-
-		//...get top boosts................
-		t_boost  =  -(TruthT).BoostVector();
-		tb_boost =  -(TruthTbar).BoostVector();
-		tt_boost =  -(TruthT + TruthTbar).BoostVector();
-
-
-                //.................................
-		//...make boost  to t..............
-                //.................................
-                //___b____
-		TruthB_BoostedtoT    = TruthB;
-		TruthB_BoostedtoT.Boost(t_boost);
-                //___W+___
-		TruthWp_BoostedtoT   = TruthWp;
-		TruthWp_BoostedtoT.Boost(t_boost);
-                //___l+___
-		TruthLepP_BoostedtoT = TruthLepP;
-		TruthLepP_BoostedtoT.Boost(t_boost);
-                //___neu__
-		TruthNeu_BoostedtoT  = TruthNeu;
-		TruthNeu_BoostedtoT.Boost(t_boost);
-
-
-                //.................................
-		//...make boost  to tbar...........
-                //.................................
-                //___bbar___
-		TruthBbar_BoostedtoTbar   = TruthBbar;
-		TruthBbar_BoostedtoTbar.Boost(tb_boost);
-                //____W-____
-		TruthWn_BoostedtoTbar     = TruthWn;
-		TruthWn_BoostedtoTbar.Boost(tb_boost);
-                //____l-____
-		TruthLepN_BoostedtoTbar   = TruthLepN;
-		TruthLepN_BoostedtoTbar.Boost(tb_boost);
-                //__neubar__
-		TruthNeubar_BoostedtoTbar = TruthNeubar;
-		TruthNeubar_BoostedtoTbar.Boost(tb_boost);
-
-
-                //.................................
-		//...make boost to ttbar...........
-                //.................................
-                //___t____
-		TruthT_Boostedtottbar   =  TruthT;
-		TruthT_Boostedtottbar.Boost(tt_boost);
-                //__tbar__
-		TruthTbar_Boostedtottbar  =  TruthTbar;
-		TruthTbar_Boostedtottbar.Boost(tt_boost);
-
-
-                //.................................
-		//....Spin Correlations............
-                //.................................
-	        //_____l+__in_t__________
-		TruthCos_LepP_T_BoostedtoT = cos(  TruthLepP_BoostedtoT   .Angle (    TruthT_Boostedtottbar.Vect()));
-	        //_____nu__in_t__________
-		TruthCos_Neu_T_BoostedtoT  = cos(   TruthNeu_BoostedtoT   .Angle (    TruthT_Boostedtottbar.Vect()));
-	        //_____b__in_t___________
-		TruthCos_B_T_BoostedtoT    = cos(     TruthB_BoostedtoT   .Angle (    TruthT_Boostedtottbar.Vect()));
-
-
-	        //_____l-__in_tbar_______
-		TruthCos_LepN_Tbar_BoostedtoTbar    = cos(  TruthLepN_BoostedtoTbar   .Angle ( TruthTbar_Boostedtottbar.Vect()));
-	        //_____nu__in_t__________
-		TruthCos_Neubar_Tbar_BoostedtoTbar  = cos(TruthNeubar_BoostedtoTbar   .Angle ( TruthTbar_Boostedtottbar.Vect()));
-	        //_____b__in_t___________
-		TruthCos_Bbar_Tbar_BoostedtoTbar    = cos(  TruthBbar_BoostedtoTbar   .Angle ( TruthTbar_Boostedtottbar.Vect()));
-
-
-                // ################################
-                // ##     W+/- c.m. systems      ##
-                // ################################
-                //...W+/-...
-		TVector3       Wp_boost, Wn_boost;
-
-		//...get W+/- boosts................
-		Wp_boost  =  -(TruthWp).BoostVector();
-		Wn_boost  =  -(TruthWn).BoostVector();
-
-                //.................................
-		//...make boost  to W+.............
-                //.................................
-                //___l+___
-		TruthLepP_BoostedtoWp = TruthLepP;
-		TruthLepP_BoostedtoWp.Boost(Wp_boost);
-                //___b____
-		TruthB_BoostedtoWp    = TruthB;
-		TruthB_BoostedtoWp.Boost(Wp_boost);
-                //__neu___
-		TruthNeu_BoostedtoWp = TruthNeu;
-		TruthNeu_BoostedtoWp.Boost(Wp_boost);
-
-                //.................................
-		//...make boost  to W-.............
-                //.................................
-                //____l-____
-		TruthLepN_BoostedtoWn   = TruthLepN;
-		TruthLepN_BoostedtoWn.Boost(Wn_boost);
-                //__bbar____
-		TruthBbar_BoostedtoWn   = TruthBbar;
-		TruthBbar_BoostedtoWn.Boost(Wn_boost);
-                //__neu___
-		TruthNeubar_BoostedtoWn = TruthNeubar;
-		TruthNeubar_BoostedtoWn.Boost(Wn_boost);
-
-                //.................................
-		//....W Polarizations..............
-                //.................................
-	        //_____(l+,b)__in_W+__________
-		TruthCos_LepP_B_BoostedtoWp =  -cos(  TruthLepP_BoostedtoWp   .Angle (  TruthB_BoostedtoWp.Vect()));
-	        //_____(l-,bbar)__in_W-_______
-		TruthCos_LepN_Bbar_BoostedtoWn =  -cos(  TruthLepN_BoostedtoWn   .Angle (  TruthBbar_BoostedtoWn.Vect()));
-
-
-	}
-
-
-
-}*/
-
 void ttH_dilep::ttDilepKinFit(){
     // #############################################################################
     //
@@ -5649,11 +4495,13 @@ void ttH_dilep::ttDilepKinFit(){
     // Define usefull variables 
     // =================================================================================================================
     int  nTSol =  0;            // initialize Total number of solutions counter
-    double    t_m[2] = {mt, mt};        // initialize top quarks masses
-    double    w_m[2] = {mW, mW};        // initialize W bosons masses
-    double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
-    double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
-    double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
+    
+    //double    t_m[2] = {mt, mt};        // initialize top quarks masses
+    //double    w_m[2] = {mW, mW};        // initialize W bosons masses
+    //double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
+    //double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
+    //double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
+    
     // auxiliar variables TLorentzVectors and extended TLorentzVectors
     TLorentzVector      z_bl,       c_bl;
     TLorentzVector          z_bj      , c_bj      , z_lep      , c_lep    ;
@@ -5815,10 +4663,6 @@ void ttH_dilep::ttDilepKinFit(){
                     //     Note: z_bj is associated with z_lep 
                     //           c_bj is associated with c_lep
                     // ---------------------------------------
-                    z_bj       = MyChoiceJetVec[j1]; // to be use ONLY as TLorentz Vector               
-                    z_bjWFlags = MyChoiceJetVec[j1]; // extended TLorentzVector             
-                    c_bj       = MyChoiceJetVec[j2]; // to be use ONLY as TLorentz Vector
-                    c_bjWFlags = MyChoiceJetVec[j2]; // extended TLorentzVector
 
                     for ( int j3=0; j3 < ttDKF_njets-1 ; j3++){
                         if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
@@ -5843,7 +4687,7 @@ void ttH_dilep::ttDilepKinFit(){
                                     // Define number of experiments for resolution
                                     // loop over several resolution experiments
 
-                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], z_bj, c_bj, z_bjWFlags, c_bjWFlags, events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], jet1_HiggsWFlags, jet2_HiggsWFlags, in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
+                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], jet1_HiggsWFlags, jet2_HiggsWFlags, in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
                                     inputs.push_back(di);
                                 }
                             }

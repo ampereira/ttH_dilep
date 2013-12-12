@@ -457,6 +457,20 @@ void DilepInput::applyVariance (float res) {
 	#endif
 }
 
+
+// Builds the DilepInput vector with all events
+/*std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector) {
+	std::vector<DilepInput> inputs;
+	unsigned event_size = event_vector.size();
+
+	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
+		
+	}
+}*/
+
+
+
+
 // Getters
 
 TLorentzVector DilepInput::getZlep (void) const {

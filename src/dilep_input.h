@@ -96,5 +96,6 @@ public:
 
 void applyVariance (vector<DilepInput> &vdi, float res, int amount);
 vector<DilepInput> applyVariance (vector<DilepInput> &vdi, float res, int amount, int seed);
+std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector);
 
 #endif
