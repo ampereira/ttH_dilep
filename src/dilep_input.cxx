@@ -478,8 +478,8 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 
 
 	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
-    	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
-    	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
+    	double in_mpx[2] = {event_vector[Event::event_counter].MissPx, event_vector[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
+    	double in_mpy[2] = {event_vector[Event::event_counter].MissPy, event_vector[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 		
 		// -----------------------------------------------------------------
 		//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
@@ -489,16 +489,16 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 		//  by: S.Amor 13.Dez.2012
 		// -----------------------------------------------------------------
 		if ( ttDKF_JetCombChoice == 1 ){
-			for (int jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
-				MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
+			for (int jetID=0; jetID<event_vector[Event::event_counter].MyGoodJetVec.size();  ++jetID){
+				MyChoiceJetVec.push_back(event_vector[Event::event_counter].MyGoodJetVec[jetID]);
 			}
 			// -----------------------------------------------------------------
 			// USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
 			// -----------------------------------------------------------------
 			ttDKF_njets = ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
 
-			if ( ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
-				ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
+			if ( ttDKF_njets > event_vector[Event::event_counter].MyGoodJetVec.size() ) {
+				ttDKF_njets = event_vector[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
 			}
 			if (ttDKF_njets < 4){
 				//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
@@ -516,7 +516,7 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 								for ( int j4=j3+1; j4 < ttDKF_njets ; j4++){
 									if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
 
-										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
+										DilepInput di (event_vector[Event::event_counter].LeptonVec[0], event_vector[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], event_vector[Event::event_counter].LeptonVec[0], event_vector[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, event_vector[Event::event_counter].MissPx, event_vector[Event::event_counter].MissPy, t_m, w_m);
 										inputs.push_back(di);
 									}
 								}
