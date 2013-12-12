@@ -4643,7 +4643,8 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jet for H->bbbar
     // ---------------------------------------
 
-    std::vector<DilepInput> inputs = buildDilepInputVector(events, mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+    std::vector<DilepInput> inputs;
+    buildDilepInputVector(events, mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
 /*
     #pragma omp critical
     if ( ttDKF_JetCombChoice == 1 ){ 
