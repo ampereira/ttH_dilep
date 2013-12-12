@@ -152,6 +152,7 @@ public:
   virtual void DoCuts();
   virtual void first_DoCuts();
   virtual void second_DoCuts();
+  virtual void preKinFit();
 
   // stuff for histograms
   virtual void BookHistograms(THistos&);
@@ -161,7 +162,6 @@ public:
   virtual void BookPdfHistos(Int_t i_syst);
   virtual void PdfValues();
 
-  virtual void preKinFit();
   // stuf for likelihoods
   virtual void BookLikeHistos();
 
