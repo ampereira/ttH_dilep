@@ -130,14 +130,6 @@ extern Int_t myddbar_33;
 extern Int_t myEVE_dd;
 extern Int_t myEVE_4d;
 extern Int_t myEVE_nondd;
-
-
-  int ttDKF_JetCombChoice; 
-  // Choice of Jet Combination Scheme
- // Choice of Number of Jets for Permutations
-  int ttDKF_njet_UserValue; 
-  int ttDKF_njets; 
-  
 // #############################################################################
 class ttH_dilep : public LipMiniAnalysis {
 // #############################################################################
@@ -212,8 +204,12 @@ public:
   // Solution Choice
   int ttDKF_SolutionChoice;
   // Choice of Jet Combination Scheme
+  int ttDKF_JetCombChoice; 
+  // Choice of Jet Combination Scheme
   int ttDKF_HiggsChoice; 
- 
+  // Choice of Number of Jets for Permutations
+  int ttDKF_njet_UserValue; 
+  int ttDKF_njets; 
   // top quark 1
   
 

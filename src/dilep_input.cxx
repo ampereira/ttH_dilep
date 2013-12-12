@@ -464,16 +464,16 @@ extern double mt;
 extern double mW;
 
 // Builds the DilepInput vector with all events
-std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector) {
+std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
 	std::vector<DilepInput> inputs;
 	unsigned event_size = event_vector.size();
-    double t_m[2] = {mt, mt};        	// initialize top quarks masses
-    double w_m[2] = {mW, mW};        	// initialize W bosons masses
+    double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
+    double w_m[2] = {_mW, _mW};        	// initialize W bosons masses
     double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
     std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
 
 	// Some global settings
-	ttDKF_JetCombChoice = 1;
+	_ttDKF_JetCombChoice = 1;
 
 
 
@@ -488,32 +488,32 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 		//               (do nothing but pass the vectors)
 		//  by: S.Amor 13.Dez.2012
 		// -----------------------------------------------------------------
-		if ( ttDKF_JetCombChoice == 1 ){
+		if ( _ttDKF_JetCombChoice == 1 ){
 			for (int jetID=0; jetID<event_vector[Event::event_counter].MyGoodJetVec.size();  ++jetID){
 				MyChoiceJetVec.push_back(event_vector[Event::event_counter].MyGoodJetVec[jetID]);
 			}
 			// -----------------------------------------------------------------
 			// USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
 			// -----------------------------------------------------------------
-			ttDKF_njets = ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
+			_ttDKF_njets = _ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
 
-			if ( ttDKF_njets > event_vector[Event::event_counter].MyGoodJetVec.size() ) {
-				ttDKF_njets = event_vector[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
+			if ( _ttDKF_njets > event_vector[Event::event_counter].MyGoodJetVec.size() ) {
+				_ttDKF_njets = event_vector[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
 			}
-			if (ttDKF_njets < 4){
+			if (_ttDKF_njets < 4){
 				//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
-				ttDKF_JetCombChoice = 0; // does not compute kinematic fit
+				_ttDKF_JetCombChoice = 0; // does not compute kinematic fit
 			}
     	}
 
 		// build the structure
-		if ( ttDKF_JetCombChoice == 1 ){ 
-			for ( int j1=0; j1 < ttDKF_njets ; j1++){
-				for ( int j2=0; j2 < ttDKF_njets ; j2++){
+		if ( _ttDKF_JetCombChoice == 1 ){ 
+			for ( int j1=0; j1 < _ttDKF_njets ; j1++){
+				for ( int j2=0; j2 < _ttDKF_njets ; j2++){
 					if (j1!=j2){
-						for ( int j3=0; j3 < ttDKF_njets-1 ; j3++){
+						for ( int j3=0; j3 < _ttDKF_njets-1 ; j3++){
 							if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
-								for ( int j4=j3+1; j4 < ttDKF_njets ; j4++){
+								for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
 									if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
 
 										DilepInput di (event_vector[Event::event_counter].LeptonVec[0], event_vector[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], event_vector[Event::event_counter].LeptonVec[0], event_vector[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, event_vector[Event::event_counter].MissPx, event_vector[Event::event_counter].MissPy, t_m, w_m);

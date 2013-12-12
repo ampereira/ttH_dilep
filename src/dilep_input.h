@@ -97,6 +97,6 @@ public:
 
 void applyVariance (vector<DilepInput> &vdi, float res, int amount);
 vector<DilepInput> applyVariance (vector<DilepInput> &vdi, float res, int amount, int seed);
-std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector);
+std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue);
 
 #endif
