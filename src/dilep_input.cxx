@@ -477,7 +477,7 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 
 
 
-	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
+	//for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
     	double in_mpx[2] = {event_vector[Event::event_counter].MissPx, event_vector[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     	double in_mpy[2] = {event_vector[Event::event_counter].MissPy, event_vector[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 		
@@ -528,7 +528,9 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 		}
 
 
-	}
+	//}
+
+	return inputs;
 }
 
 

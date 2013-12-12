@@ -4495,13 +4495,13 @@ void ttH_dilep::ttDilepKinFit(){
     // Define usefull variables 
     // =================================================================================================================
     int  nTSol =  0;            // initialize Total number of solutions counter
-    
+/*    
     double    t_m[2] = {mt, mt};        // initialize top quarks masses
     double    w_m[2] = {mW, mW};        // initialize W bosons masses
     double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
     double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
-    
+   */ 
     // auxiliar variables TLorentzVectors and extended TLorentzVectors
     //TLorentzVector      z_bl,       c_bl;
     //TLorentzVector          z_bj      , c_bj      , z_lep      , c_lep    ;
@@ -4563,7 +4563,7 @@ void ttH_dilep::ttDilepKinFit(){
     //              combinations deal with ttbar and 
     //              H->bbbar at the same time
     // =================================================================
-    std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
+    /*std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
 
     // -----------------------------------------------------------------
     //  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
@@ -4592,7 +4592,7 @@ void ttH_dilep::ttDilepKinFit(){
         }
 
     }
-
+*/
 
     // =================================================================  \\
     //                  Kinematic Fit to tt System                \\
@@ -4643,8 +4643,8 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jet for H->bbbar
     // ---------------------------------------
 
-    std::vector<DilepInput> inputs;
-
+    std::vector<DilepInput> inputs = buildDilepInputVector(events, mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+/*
     #pragma omp critical
     if ( ttDKF_JetCombChoice == 1 ){ 
         for ( int j1=0; j1 < ttDKF_njets ; j1++){
@@ -4694,7 +4694,7 @@ void ttH_dilep::ttDilepKinFit(){
             }
         }
     }
-
+*/
     // WARNING: numa primeira fase apenas para num combos == num parallel tasks
 
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
