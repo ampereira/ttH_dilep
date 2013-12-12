@@ -4712,7 +4712,7 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jets for ttbar
     //               2 jet for H->bbbar
     // ---------------------------------------
-
+    cout << "Event " << Event::event_counter << endl;
     std::vector<DilepInput> inputs = asdf (events, mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
 /*
     #pragma omp critical
