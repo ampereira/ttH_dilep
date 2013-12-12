@@ -4653,10 +4653,10 @@ void ttH_dilep::ttDilepKinFit(){
                     // ---------------------------------------
                     // Initialize top quark and W boson masses
                     // ---------------------------------------
-                    t_m[0]      = mt;
-                    t_m[1]      = mt;
-                    w_m[0]   = mW;
-                    w_m[1]   = mW;
+                    //t_m[0]      = mt;
+                    //t_m[1]      = mt;
+                    //w_m[0]   = mW;
+                    //w_m[1]   = mW;
 
                     // ---------------------------------------
                     // Initialize Jet Permutations  
@@ -4668,9 +4668,6 @@ void ttH_dilep::ttDilepKinFit(){
                         if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
                             for ( int j4=j3+1; j4 < ttDKF_njets ; j4++){
                                 if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
-
-                                    jet1_HiggsWFlags = MyChoiceJetVec[j3]; // Jet from Higgs Decay (H->bbbar)
-                                    jet2_HiggsWFlags = MyChoiceJetVec[j4]; // Jet from Higgs Decay (H->bbbar)
 
                                     // ###################################################################
                                     //   C H A N G E   O B J E C T S   W I T H I N   R E S O L U T I O N #
@@ -4687,7 +4684,7 @@ void ttH_dilep::ttDilepKinFit(){
                                     // Define number of experiments for resolution
                                     // loop over several resolution experiments
 
-                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], jet1_HiggsWFlags, jet2_HiggsWFlags, in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
+                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
                                     inputs.push_back(di);
                                 }
                             }
@@ -4827,15 +4824,15 @@ void ttH_dilep::ttDilepKinFit(){
             //   Higgs system reconstruction
             // -------------------------------
             // jet 1 from Higgs
-            b1_Higgs_ttDKF.push_back( jet1_HiggsWFlags );
+            b1_Higgs_ttDKF.push_back( di.jet1_HiggsWFlags );
             // jet 2 from Higgs
-            b2_Higgs_ttDKF.push_back( jet2_HiggsWFlags );
+            b2_Higgs_ttDKF.push_back( di.jet2_HiggsWFlags );
             // Higgs itself
             TLorentzVector myHiggs;
-            myHiggs.SetPxPyPzE( jet1_HiggsWFlags.Px() + jet2_HiggsWFlags.Px(), 
-                    jet1_HiggsWFlags.Py() + jet2_HiggsWFlags.Py(), 
-                    jet1_HiggsWFlags.Pz() + jet2_HiggsWFlags.Pz(), 
-                    jet1_HiggsWFlags.E()  + jet2_HiggsWFlags.E() );
+            myHiggs.SetPxPyPzE( di.jet1_HiggsWFlags.Px() + di.jet2_HiggsWFlags.Px(), 
+                    di.jet1_HiggsWFlags.Py() + di.jet2_HiggsWFlags.Py(), 
+                    di.jet1_HiggsWFlags.Pz() + di.jet2_HiggsWFlags.Pz(), 
+                    di.jet1_HiggsWFlags.E()  + di.jet2_HiggsWFlags.E() );
             TLorentzVectorWFlags Higgs(myHiggs,0, 25 ,999.,-1,-1);
             Higgs_ttDKF.push_back( Higgs );
 
@@ -4879,8 +4876,8 @@ void ttH_dilep::ttDilepKinFit(){
             // Try to compute ttbar. without NU !! CHECK!!
             TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (events[Event::event_counter].Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
             // Test jets for Higgs
-            TVector3  jet1_vec( jet1_HiggsWFlags.Px(), jet1_HiggsWFlags.Py(), jet1_HiggsWFlags.Pz() );
-            TVector3  jet2_vec( jet2_HiggsWFlags.Px(), jet2_HiggsWFlags.Py(), jet2_HiggsWFlags.Pz() );
+            TVector3  jet1_vec( di.jet1_HiggsWFlags.Px(), di.jet1_HiggsWFlags.Py(), di.jet1_HiggsWFlags.Pz() );
+            TVector3  jet2_vec( di.jet2_HiggsWFlags.Px(), di.jet2_HiggsWFlags.Py(), di.jet2_HiggsWFlags.Pz() );
             // check jet angle with respect to ttbar direction
             theta_jet1_HiggsFromTTbar = jet1_vec.Angle( HiggsFromTTbar );
             theta_jet2_HiggsFromTTbar = jet2_vec.Angle( HiggsFromTTbar );
@@ -4888,8 +4885,8 @@ void ttH_dilep::ttDilepKinFit(){
             if ( sin(theta_jet1_HiggsFromTTbar)*sin(theta_jet2_HiggsFromTTbar) ) { 
                 fac_j1j2H_ttbar = 1. + ( 1. - cos(theta_jet1_HiggsFromTTbar)*cos(theta_jet2_HiggsFromTTbar) ) 
                     / ( sin(theta_jet1_HiggsFromTTbar)*sin(theta_jet2_HiggsFromTTbar) ) ;
-                mass_j1H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet1_HiggsFromTTbar ) * jet1_HiggsWFlags.P()  ;
-                mass_j2H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet2_HiggsFromTTbar ) * jet2_HiggsWFlags.P()  ;
+                mass_j1H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet1_HiggsFromTTbar ) * di.jet1_HiggsWFlags.P()  ;
+                mass_j2H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet2_HiggsFromTTbar ) * di.jet2_HiggsWFlags.P()  ;
 
                 higgs_sele_ang  = fabs( ( mass_j1H_ttbar + mass_j2H_ttbar ) / ( mass_j1H_ttbar - mass_j2H_ttbar ) ) ;
             }
