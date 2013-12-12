@@ -10,7 +10,6 @@
 #include <iostream>
 #include <TH1.h>
 #include <TH2.h>
-#include "dilep_input.h"
 #include "Riostream.h"
 #include "../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
