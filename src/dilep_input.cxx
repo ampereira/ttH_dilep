@@ -458,6 +458,10 @@ void DilepInput::applyVariance (float res) {
 }
 
 extern int ttDKF_JetCombChoice;
+extern int ttDKF_njets;
+extern int ttDKF_njet_UserValue;
+extern double mt;
+extern double mW;
 
 // Builds the DilepInput vector with all events
 std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector) {
@@ -523,7 +527,7 @@ std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> ev
 			}
 		}
 
-		
+
 	}
 }
 
