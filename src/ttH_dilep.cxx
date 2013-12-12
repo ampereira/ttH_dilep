@@ -4514,6 +4514,11 @@ std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetC
 	return inputs;
 }
 
+void ttH_dilep::preKinFit() {
+
+    inputs = asdf (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+}
+
 void ttH_dilep::ttDilepKinFit(){
     // #############################################################################
     //
@@ -4534,6 +4539,7 @@ void ttH_dilep::ttDilepKinFit(){
     //
     // #############################################################################
 
+	preKinFit();
 
     // =================================================================================================================
     // =================================================================================================================
@@ -4565,18 +4571,7 @@ void ttH_dilep::ttDilepKinFit(){
     // Define usefull variables 
     // =================================================================================================================
     int  nTSol =  0;            // initialize Total number of solutions counter
-/*    
-    double    t_m[2] = {mt, mt};        // initialize top quarks masses
-    double    w_m[2] = {mW, mW};        // initialize W bosons masses
-    double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
-    double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
-    double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
-   */ 
-    // auxiliar variables TLorentzVectors and extended TLorentzVectors
-    //TLorentzVector      z_bl,       c_bl;
-    //TLorentzVector          z_bj      , c_bj      , z_lep      , c_lep    ;
-    //TLorentzVectorWFlags    z_bjWFlags, c_bjWFlags, z_lepWFlags, c_lepWFlags;
-    
+
     // result of kinematic fit
     std::vector<myvector> *result = new std::vector<myvector> ();
 
@@ -4617,52 +4612,7 @@ void ttH_dilep::ttDilepKinFit(){
 	std::vector<double> ProbTTbar_ttDKF;
 	std::vector<double> ProbTotal_ttDKF;
 
-    // =================================================================
-    // Identify Leptons: z_lep=Highest pT lepton, c_lep=Lowest pT lepton
-    // =================================================================
-    //c_lepWFlags = events[Event::event_counter].LeptonVec[1]; // extended TLorentzVector
-    //z_lepWFlags = events[Event::event_counter].LeptonVec[0]; // extended TLorentzVector
-    
-    //z_lep       = events[Event::event_counter].LeptonVec[0]; // to be use ONLY as TLorentzVector
-    //c_lep       = events[Event::event_counter].LeptonVec[1]; // to be use ONLY as TLorentzVector
 
-
-    // =================================================================
-    // Identify Jets candidates (MyChoiceJetVec,ordered by pT)
-    //  i) ttDKF_JetCombChoice = 1: Use N jets (ttDKF_njets) to test 
-    //              combinations deal with ttbar and 
-    //              H->bbbar at the same time
-    // =================================================================
-    /*std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
-
-    // -----------------------------------------------------------------
-    //  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
-    //               NOTE: pass MyChoiceJetVec  to the tool 
-    //                     pass ttDKF_njets = number of jets  
-    //               (do nothing but pass the vectors)
-    //  by: S.Amor 13.Dez.2012
-    // -----------------------------------------------------------------
-    if ( ttDKF_JetCombChoice == 1 ){
-        for ( Int_t jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
-            MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
-        }       
-        // -----------------------------------------------------------------
-        // USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
-        // -----------------------------------------------------------------
-        ttDKF_njets = ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
-
-        if ( ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
-            //cout << "WARNING: Number of Jets Higher than the Maximum Number of Jets in the Event." << endl;
-            //cout << "         Setting ttDKF_njets = Total Number of Jets" << endl;
-            ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
-        }
-        if (ttDKF_njets < 4){
-            //cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
-            ttDKF_JetCombChoice = 0; // does not compute kinematic fit
-        }
-
-    }
-*/
 
     // =================================================================  \\
     //                  Kinematic Fit to tt System                \\
@@ -4712,59 +4662,7 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jets for ttbar
     //               2 jet for H->bbbar
     // ---------------------------------------
-    cout << "Event " << Event::event_counter << endl;
-    std::vector<DilepInput> inputs = asdf (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
-/*
-    #pragma omp critical
-    if ( ttDKF_JetCombChoice == 1 ){ 
-        for ( int j1=0; j1 < ttDKF_njets ; j1++){
-            for ( int j2=0; j2 < ttDKF_njets ; j2++){
-                if (j1!=j2){                 // no repetition of jets
-                    // ---------------------------------------
-                    // Initialize top quark and W boson masses
-                    // ---------------------------------------
-                    //t_m[0]      = mt;
-                    //t_m[1]      = mt;
-                    //w_m[0]   = mW;
-                    //w_m[1]   = mW;
 
-                    // ---------------------------------------
-                    // Initialize Jet Permutations  
-                    //     Note: z_bj is associated with z_lep 
-                    //           c_bj is associated with c_lep
-                    // ---------------------------------------
-
-                    for ( int j3=0; j3 < ttDKF_njets-1 ; j3++){
-                        if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
-                            for ( int j4=j3+1; j4 < ttDKF_njets ; j4++){
-                                if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
-
-                                    // ###################################################################
-                                    //   C H A N G E   O B J E C T S   W I T H I N   R E S O L U T I O N #
-                                    // ###################################################################
-                                    // WARNING:  myNumResTest  = 1 => no resolution study apllied 
-                                    //                   Normal Running Mode
-                                    //  
-                                    //        myNumResTest >= 1 => samples the resolution distributions 
-                                    //              of objects and calls  reconstruction 
-                                    //              routine for each Jet combination;
-                                    //              Here, Resolution values MUST BE !=0
-                                    //              (ONLY EXAMPLES ARE SHOWN; USER CHOICES!)
-                                    // ###################################################################
-                                    // Define number of experiments for resolution
-                                    // loop over several resolution experiments
-
-                                    DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
-                                    inputs.push_back(di);
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-*/
     // WARNING: numa primeira fase apenas para num combos == num parallel tasks
 
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
