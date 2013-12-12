@@ -8,7 +8,6 @@ using namespace std;
 
 #include "myvector.h"
 #include "neut/neut.h"
-#include "dilep_input.h"
 
 extern int dilep_iterations;
 
@@ -4444,9 +4443,10 @@ void ttH_dilep::DoCuts(){
 
 }
 
+
 // Builds the DilepInput vector with all events
-void ttH_dilep::asdf (std::vector<DilepInput> & inputs, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
-	//std::vector<DilepInput> inputs;
+std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
+	std::vector<DilepInput> inputs;
 	unsigned event_size = events.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
     double w_m[2] = {_mW, _mW};        	// initialize W bosons masses
@@ -4511,7 +4511,7 @@ void ttH_dilep::asdf (std::vector<DilepInput> & inputs, double _mt, double _mW, 
 
 	//}
 
-	//return inputs;
+	return inputs;
 }
 
 void ttH_dilep::ttDilepKinFit(){
