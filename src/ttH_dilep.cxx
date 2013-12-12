@@ -4824,15 +4824,15 @@ void ttH_dilep::ttDilepKinFit(){
             //   Higgs system reconstruction
             // -------------------------------
             // jet 1 from Higgs
-            b1_Higgs_ttDKF.push_back( di.getJet1HiddsW() );
+            b1_Higgs_ttDKF.push_back( di.getJet1HiggsW() );
             // jet 2 from Higgs
-            b2_Higgs_ttDKF.push_back( di.getJet2HiddsW() );
+            b2_Higgs_ttDKF.push_back( di.getJet2HiggsW() );
             // Higgs itself
             TLorentzVector myHiggs;
-            myHiggs.SetPxPyPzE( di.getJet1HiddsW().Px() + di.getJet2HiddsW().Px(), 
-                    di.getJet1HiddsW().Py() + di.getJet2HiddsW().Py(), 
-                    di.getJet1HiddsW().Pz() + di.getJet2HiddsW().Pz(), 
-                    di.getJet1HiddsW().E()  + di.getJet2HiddsW().E() );
+            myHiggs.SetPxPyPzE( di.getJet1HiggsW().Px() + di.getJet2HiggsW().Px(), 
+                    di.getJet1HiggsW().Py() + di.getJet2HiggsW().Py(), 
+                    di.getJet1HiggsW().Pz() + di.getJet2HiggsW().Pz(), 
+                    di.getJet1HiggsW().E()  + di.getJet2HiggsW().E() );
             TLorentzVectorWFlags Higgs(myHiggs,0, 25 ,999.,-1,-1);
             Higgs_ttDKF.push_back( Higgs );
 
@@ -4876,8 +4876,8 @@ void ttH_dilep::ttDilepKinFit(){
             // Try to compute ttbar. without NU !! CHECK!!
             TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (events[Event::event_counter].Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
             // Test jets for Higgs
-            TVector3  jet1_vec( di.getJet1HiddsW().Px(), di.getJet1HiddsW().Py(), di.getJet1HiddsW().Pz() );
-            TVector3  jet2_vec( di.getJet2HiddsW().Px(), di.getJet2HiddsW().Py(), di.getJet2HiddsW().Pz() );
+            TVector3  jet1_vec( di.getJet1HiggsW().Px(), di.getJet1HiggsW().Py(), di.getJet1HiggsW().Pz() );
+            TVector3  jet2_vec( di.getJet2HiggsW().Px(), di.getJet2HiggsW().Py(), di.getJet2HiggsW().Pz() );
             // check jet angle with respect to ttbar direction
             theta_jet1_HiggsFromTTbar = jet1_vec.Angle( HiggsFromTTbar );
             theta_jet2_HiggsFromTTbar = jet2_vec.Angle( HiggsFromTTbar );
@@ -4885,8 +4885,8 @@ void ttH_dilep::ttDilepKinFit(){
             if ( sin(theta_jet1_HiggsFromTTbar)*sin(theta_jet2_HiggsFromTTbar) ) { 
                 fac_j1j2H_ttbar = 1. + ( 1. - cos(theta_jet1_HiggsFromTTbar)*cos(theta_jet2_HiggsFromTTbar) ) 
                     / ( sin(theta_jet1_HiggsFromTTbar)*sin(theta_jet2_HiggsFromTTbar) ) ;
-                mass_j1H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet1_HiggsFromTTbar ) * di.getJet1HiddsW().P()  ;
-                mass_j2H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet2_HiggsFromTTbar ) * di.getJet2HiddsW().P()  ;
+                mass_j1H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet1_HiggsFromTTbar ) * di.getJet1HiggsW().P()  ;
+                mass_j2H_ttbar  = sqrt( 2. * fac_j1j2H_ttbar ) * sin( theta_jet2_HiggsFromTTbar ) * di.getJet2HiggsW().P()  ;
 
                 higgs_sele_ang  = fabs( ( mass_j1H_ttbar + mass_j2H_ttbar ) / ( mass_j1H_ttbar - mass_j2H_ttbar ) ) ;
             }
