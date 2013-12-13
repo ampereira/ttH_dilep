@@ -73,7 +73,7 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 
 	hasSolution = 0;
 
-	event_id_ = _event_id;
+	event_id = _event_id;
 
 }
 
