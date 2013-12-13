@@ -117,10 +117,10 @@ DilepInput::DilepInput (const DilepInput &other) {
 }
 
 // Constructor
-DilepInput::DilepInput (void) {
+/*DilepInput::DilepInput (void) {
 	//t_rnd.SetSeed(SEED);
 	hasSolution = 0;
-}
+}*/
 // Print the private variables of the class for debug purposes
 void DilepInput::print (char* filename) {
 	ofstream file (filename, fstream::app);

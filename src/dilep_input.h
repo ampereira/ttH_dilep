@@ -58,7 +58,6 @@ public:
 				double _in_mpx[], double _in_mpy[], double _in_mpz[], double _MissPx,
 				double _MissPy, double _t_mass[], double _w_mass[], TRandom3 &_t_rnd);
 	DilepInput (const DilepInput &other);
-	DilepInput (void);
 
 	void print (char* filename);
 	void applyVariance (float res);
