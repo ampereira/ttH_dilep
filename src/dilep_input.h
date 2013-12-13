@@ -40,10 +40,10 @@ class DilepInput {
 	int hasSolution;
 
 	vector<myvector> result;
-	unsigned ev_id;
+	unsigned event_id;
 
 public:
-	DilepInput () : event_id(ev_id) {
+	DilepInput () : event_id() {
 	}
 
 	DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVector _z_bj, TLorentzVector _c_bj, 
