@@ -4450,7 +4450,6 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, in
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
     double w_m[2] = {_mW, _mW};        	// initialize W bosons masses
     double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
-    std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
 
 
 	// Some global settings
@@ -4461,7 +4460,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, in
 	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
     	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
-		
+    	std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
 		// -----------------------------------------------------------------
 		//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
 		//               NOTE: pass MyChoiceJetVec  to the tool 
