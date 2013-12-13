@@ -40,14 +40,17 @@ class DilepInput {
 	int hasSolution;
 
 	vector<myvector> result;
+	unsigned ev_id;
 
 public:
+	DilepInput () : event_id(ev_id) {
+	}
 
 	DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVector _z_bj, TLorentzVector _c_bj, 
 				TLorentzVectorWFlags _z_bjWFlags, TLorentzVectorWFlags _c_bjWFlags, TLorentzVectorWFlags _z_lepWFlags,
 				TLorentzVectorWFlags _c_lepWFlags, TLorentzVectorWFlags _jet1_HiggsWFlags, TLorentzVectorWFlags _jet2_HiggsWFlags, 
 				double _in_mpx[], double _in_mpy[], double _in_mpz[], double _MissPx,
-				double _MissPy, double _t_mass[], double _w_mass[]);
+				double _MissPy, double _t_mass[], double _w_mass[], unsigned _event_id);
 
 	DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVector _z_bj, TLorentzVector _c_bj, 
 				TLorentzVectorWFlags _z_bjWFlags, TLorentzVectorWFlags _c_bjWFlags, TLorentzVectorWFlags _z_lepWFlags,

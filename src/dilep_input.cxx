@@ -42,7 +42,7 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 						TLorentzVectorWFlags _z_bjWFlags, TLorentzVectorWFlags _c_bjWFlags, TLorentzVectorWFlags _z_lepWFlags,
 						TLorentzVectorWFlags _c_lepWFlags, TLorentzVectorWFlags _jet1_HiggsWFlags, TLorentzVectorWFlags _jet2_HiggsWFlags,
 						double _in_mpx[], double _in_mpy[], double _in_mpz[], double _MissPx,
-						double _MissPy, double _t_mass[], double _w_mass[]) {
+						double _MissPy, double _t_mass[], double _w_mass[], unsigned _event_id) {
 
 	z_lep = _z_lep;
 	c_lep = _c_lep;
@@ -72,6 +72,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	w_mass[1] = _w_mass[1];
 
 	hasSolution = 0;
+
+	ev_id = _event_id;
 
 }
 
