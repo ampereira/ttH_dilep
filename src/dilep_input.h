@@ -43,6 +43,7 @@ class DilepInput {
 	unsigned event_id_;
 
 public:
+	const int& event_id;
 	DilepInput () : event_id(event_id) {
 	}
 
