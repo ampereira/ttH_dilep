@@ -4445,13 +4445,13 @@ void ttH_dilep::DoCuts(){
 
 
 // Builds the DilepInput vector with all events
-std::vector<DilepInput> ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
-	std::vector<DilepInput> inputs;
+void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
 	unsigned event_size = events.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
     double w_m[2] = {_mW, _mW};        	// initialize W bosons masses
     double in_mpz[2] = {0., 0.};        // initialize neutrinos Pz to zero
     std::vector<TLorentzVectorWFlags> MyChoiceJetVec;
+
 
 	// Some global settings
 	_ttDKF_JetCombChoice = 1;
@@ -4461,7 +4461,6 @@ std::vector<DilepInput> ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDK
     	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 		
-		cout << endl << "Entrou " << Event::event_counter << " - " << events.size() << endl << endl;
 		// -----------------------------------------------------------------
 		//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
 		//               NOTE: pass MyChoiceJetVec  to the tool 
@@ -4507,17 +4506,15 @@ std::vector<DilepInput> ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDK
 				}
 			}
 		}
-
-
 	}
 
-	return inputs;
+	cout << endl << "Entrou " << Event::event_counter << " - " << events.size() << " - " << inputs.size() << endl << endl;
 }
 
 
 void ttH_dilep::preKinFit() {
 
-	inputs = buildDIVec (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+	buildDIVec (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
 }
 
 void ttH_dilep::ttDilepKinFit(){
