@@ -4516,7 +4516,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 
 void ttH_dilep::preKinFit() {
 
-	buildDIVec (mt, mW, ttDKF_JetCombChoice, ttDKF_njet_UserValue);
+	buildDIVec (mt, mW, ttDKF_njet_UserValue);
 }
 
 void ttH_dilep::ttDilepKinFit(){
