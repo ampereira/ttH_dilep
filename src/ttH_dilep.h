@@ -471,7 +471,7 @@ public:
   void Calculations3();
   void ttDilepKinFit();
 
-  std::vector<DilepInput> asdf (double, double, int, int, int);
+  std::vector<DilepInput> buildDIVec (double, double, int, int, int);
 
   //stuff for after events loop
   virtual void PostLoopCalculations();

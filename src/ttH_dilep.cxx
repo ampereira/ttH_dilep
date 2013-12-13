@@ -4445,7 +4445,7 @@ void ttH_dilep::DoCuts(){
 
 
 // Builds the DilepInput vector with all events
-std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
+std::vector<DilepInput> ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
 	std::vector<DilepInput> inputs;
 	unsigned event_size = events.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
@@ -4517,7 +4517,7 @@ std::vector<DilepInput> ttH_dilep::asdf (double _mt, double _mW, int _ttDKF_JetC
 
 void ttH_dilep::preKinFit() {
 
-	inputs = asdf (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
+	inputs = buildDIVec (mt, mW, ttDKF_JetCombChoice, ttDKF_njets, ttDKF_njet_UserValue);
 }
 
 void ttH_dilep::ttDilepKinFit(){
@@ -4540,8 +4540,8 @@ void ttH_dilep::ttDilepKinFit(){
     //
     // #############################################################################
 
-	//if(Event::event_counter == 0)
-		cout << endl << "SIZE: " << inputs.size() << endl << endl;
+	if(Event::event_counter == 0)
+		cout << endl << "SIZE: " << events.size() << " - " << inputs.size() << endl << endl;
 
     // =================================================================================================================
     // =================================================================================================================
