@@ -3965,18 +3965,20 @@ void ttH_dilep::second_DoCuts() {
 	//=============================================
 	//=============================================
 	//if(HasSolution == 0) return;
-	events[Event::event_counter].LastCut++; // LastCut=22
-	//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+	for(Event::event_counter = 0; Event::event_counter < events.size(); Event::event_counter++) { 
+		events[Event::event_counter].LastCut++; // LastCut=22
+		//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
-	//=============================================
-	//=============================================
-	// C13) At least 2 jets are required to be 
-	//      b-tagged (MV1 weight > 0.8119)
-	//=============================================
-	//=============================================
-	//if ( events[Event::event_counter].NbtagJet < 2) return; 
-	events[Event::event_counter].LastCut++; // LastCut=23
-	//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+		//=============================================
+		//=============================================
+		// C13) At least 2 jets are required to be 
+		//      b-tagged (MV1 weight > 0.8119)
+		//=============================================
+		//=============================================
+		//if ( events[Event::event_counter].NbtagJet < 2) return; 
+		events[Event::event_counter].LastCut++; // LastCut=23
+		//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+	}
 }
 
 // #############################################################################
@@ -4571,6 +4573,38 @@ void ttH_dilep::ttDilepKinFit(){
     // =================================================================================================================
     // Define usefull variables 
     // =================================================================================================================
+    
+
+    // ---------------------------------------
+    // by: S.Amor 13.Dez.2012
+    //
+    // ttDKF_JetCombChoice = 1  
+    //               N jets = ttDKF_njets
+    //               2 jets for ttbar
+    //               2 jet for H->bbbar
+    // ---------------------------------------
+
+    // WARNING: numa primeira fase apenas para num combos == num parallel tasks
+
+    // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
+    float task_id;
+    DilepInput di;
+
+    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
+        // Calculates the new id of the task
+        task_id = (float) counter / (float) dilep_iterations;
+
+        // Check if it needs to pick a new combo
+        if (task_id == (int) task_id)
+            di = inputs[counter];
+        
+        // Apply the variance
+        di.applyVariance(RESOLUTION);
+
+        // Run the dileptonic reconstruction 
+        Dilep::CPU::dilep(di);
+    }
+
     int  nTSol =  0;            // initialize Total number of solutions counter
 
     // result of kinematic fit
@@ -4629,7 +4663,7 @@ void ttH_dilep::ttDilepKinFit(){
     // =================================================================  \\
     // initialize Best Solution Methods (ttDKF_SolutionChoice = 1 and = 2)
     // index of best solution (if any)
-    int n_ttDKF_Best = -999;
+    /*int n_ttDKF_Best = -999;
 
     // ttbar Probability Factors
     double nu_sele_pt   =  10e+15;
@@ -4653,46 +4687,101 @@ void ttH_dilep::ttDilepKinFit(){
     double theta_jet2_HiggsFromTTbar;
     double fac_j1j2H_ttbar;
     double mass_j1H_ttbar;
-    double mass_j2H_ttbar;
-
-    // ---------------------------------------
-    // by: S.Amor 13.Dez.2012
-    //
-    // ttDKF_JetCombChoice = 1  
-    //               N jets = ttDKF_njets
-    //               2 jets for ttbar
-    //               2 jet for H->bbbar
-    // ---------------------------------------
-
-    // WARNING: numa primeira fase apenas para num combos == num parallel tasks
-
-    // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
-    float task_id;
-    DilepInput di;
-
-    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
-        // Calculates the new id of the task
-        task_id = (float) counter / (float) dilep_iterations;
-
-        // Check if it needs to pick a new combo
-        if (task_id == (int) task_id)
-            di = inputs[counter];
-        
-        // Apply the variance
-        di.applyVariance(RESOLUTION);
-
-        // Run the dileptonic reconstruction 
-        Dilep::CPU::dilep(di);
-
+    double mass_j2H_ttbar;*/
 
         // ---------------------------------------
         // Get info from all possible solutions
         // ---------------------------------------
 
+    int prev_ev_id = -1;
+
+    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
+		int n_ttDKF_Best = -999;
+
+	    // ttbar Probability Factors
+	    double nu_sele_pt   =  10e+15;
+	    double nu_sele_pdf  = -10e+15;
+	    // H->bbar Probability Factors
+	    double higgs_sele_pt    =   0.;
+	    double higgs_sele_ang   = -10e+15;
+
+	    // ttH->lnublnubbbar Probability Factors
+	    double MaxTotalProb = -10e+15;
+	    double MaxHiggsProb = -10e+15;
+
+	    // ttbar variables
+	    double myttbar_px;
+	    double myttbar_py;
+	    double myttbar_pz;
+	    double myttbar_E;
+
+	    // Higgs helpfull variables
+	    double theta_jet1_HiggsFromTTbar;
+	    double theta_jet2_HiggsFromTTbar;
+	    double fac_j1j2H_ttbar;
+	    double mass_j1H_ttbar;
+	    double mass_j2H_ttbar;
+
+    	task_id = (float) counter / (float) dilep_iterations;
+
+        // Check if it needs to pick a new combo
+        if (task_id == (int) task_id)
+            di = inputs[counter];
+
+        unsigned ev_id = di.event_id;
+
+        if (prev_ev_id != ev_id) {
+        	prev_ev_id = ev_id;
+
+
+        	nTSol =  0;            // initialize Total number of solutions counter
+
+		    // result of kinematic fit
+		    delete result;
+		    result = new std::vector<myvector> ();
+
+		    // =================================================================
+		    // Initialize Solutions Flag
+		    // =================================================================
+		    events[ev_id].HasSolution = 0;
+
+		    // =================================================================
+		    // Reset all solutions for tt Dileptonic Kinematical Fit:
+		    // If solutions exist:  -There are 4 of them per combination
+		    //           (solutions from quartic equations due to
+		    //           momentum-energy conservation + mW + mT)
+		    // =================================================================
+		    // top quark 1
+		    
+			b1_ttDKF.clear();
+			l1_ttDKF.clear();
+			n1_ttDKF.clear();
+			W1_ttDKF.clear();
+			t1_ttDKF.clear();
+			// top quark 2
+			b2_ttDKF.clear();
+			l2_ttDKF.clear();
+			n2_ttDKF.clear();
+			W2_ttDKF.clear();
+			t2_ttDKF.clear();
+			// ttbar system
+			ttbar_ttDKF.clear();
+			// Higgs
+			b1_Higgs_ttDKF.clear();
+			b2_Higgs_ttDKF.clear();
+			Higgs_ttDKF.clear();
+			mHiggsJet1_ttDKF.clear();
+			mHiggsJet2_ttDKF.clear();
+
+			ProbHiggs_ttDKF.clear();
+			ProbTTbar_ttDKF.clear();
+			ProbTotal_ttDKF.clear();
+
+        }
 
         // result on local variable since it will be accessed plenty of times
         *result = di.getResult();
-        events[Event::event_counter].HasSolution += di.getHasSol();
+        events[ev_id].HasSolution += di.getHasSol();
 
         std::vector<myvector>::iterator pp;
 
@@ -4843,7 +4932,7 @@ void ttH_dilep::ttDilepKinFit(){
             // Higgs Momenta from ttbar system
             //TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (Hz - ttbar.Pz()) ); 
             // Try to compute ttbar. without NU !! CHECK!!
-            TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (events[Event::event_counter].Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
+            TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (events[ev_id].Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
             // Test jets for Higgs
             TVector3  jet1_vec( di.getJet1HiggsW().Px(), di.getJet1HiggsW().Py(), di.getJet1HiggsW().Pz() );
             TVector3  jet2_vec( di.getJet2HiggsW().Px(), di.getJet2HiggsW().Py(), di.getJet2HiggsW().Pz() );
@@ -4978,46 +5067,46 @@ void ttH_dilep::ttDilepKinFit(){
     // -------------------------------------------------------------------
     // Redefine HasSolution if no other reconstruction criteria met
     // -------------------------------------------------------------------
-    events[Event::event_counter].HasSolution = (n_ttDKF_Best >= 0) ? events[Event::event_counter].HasSolution : 0;
+    events[ev_id].HasSolution = (n_ttDKF_Best >= 0) ? events[ev_id].HasSolution : 0;
 
     // -------------------------------------------------------------------
     // Make sure backward compatibility is preserved + Few Calculations
     // -------------------------------------------------------------------
-    if(  events[Event::event_counter].HasSolution > 0  )
+    if(  events[ev_id].HasSolution > 0  )
     {
 
 
         // -------------------------------------------------------------------
-        events[Event::event_counter].Neutrino     = n1_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 1
-        events[Event::event_counter].Antineutrino = n2_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 2       
+        events[ev_id].Neutrino     = n1_ttDKF[n_ttDKF_Best];      // events[ev_id].Neutrino 1
+        events[ev_id].Antineutrino = n2_ttDKF[n_ttDKF_Best];      // events[ev_id].Neutrino 2       
         // ###  leptons  ###
-        events[Event::event_counter].RecLepP     = l1_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecLepN     = l2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecLepP     = l1_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecLepN     = l2_ttDKF[n_ttDKF_Best];
         // ###  b-quarks ###
-        events[Event::event_counter].RecB        = b1_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecBbar     = b2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecB        = b1_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecBbar     = b2_ttDKF[n_ttDKF_Best];
         // ### Neutrinos ###
-        events[Event::event_counter].RecNeu      = n1_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecNeubar   = n2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecNeu      = n1_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecNeubar   = n2_ttDKF[n_ttDKF_Best];
         // ###  W bosons ###
-        events[Event::event_counter].RecWp       = W1_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecWn       = W2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecWp       = W1_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecWn       = W2_ttDKF[n_ttDKF_Best];
         // ###  t-quarks ###
-        events[Event::event_counter].RecT        = t1_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecTbar     = t2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecT        = t1_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecTbar     = t2_ttDKF[n_ttDKF_Best];
         // ###  ttbar system ###
-        events[Event::event_counter].RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
         // ###  Higgs system ###
-        events[Event::event_counter].RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
-        events[Event::event_counter].RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
-        events[Event::event_counter].RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
+        events[ev_id].RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
 
-        events[Event::event_counter].RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
+        events[ev_id].RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
 
 
-        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; events[Event::event_counter].RecMassHiggsJet1 " << events[Event::event_counter].RecMassHiggsJet1 << " ; events[Event::event_counter].RecMassHiggsJet2 " << events[Event::event_counter].RecMassHiggsJet2 << endl;
+        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; events[ev_id].RecMassHiggsJet1 " << events[ev_id].RecMassHiggsJet1 << " ; events[ev_id].RecMassHiggsJet2 " << events[ev_id].RecMassHiggsJet2 << endl;
         //      cout << "   " << endl;
 
         // -------------------------------------------------------------------
@@ -5030,72 +5119,72 @@ void ttH_dilep::ttDilepKinFit(){
         TVector3       t_boost, tb_boost, tt_boost;
 
         //...get top boosts................
-        t_boost  =  -(events[Event::event_counter].RecT).BoostVector();
-        tb_boost =  -(events[Event::event_counter].RecTbar).BoostVector();
-        tt_boost =  -(events[Event::event_counter].RecT + events[Event::event_counter].RecTbar).BoostVector();
+        t_boost  =  -(events[ev_id].RecT).BoostVector();
+        tb_boost =  -(events[ev_id].RecTbar).BoostVector();
+        tt_boost =  -(events[ev_id].RecT + events[ev_id].RecTbar).BoostVector();
 
         //.................................
         //...make boost  to t..............
         //.................................
         //___b____
-        events[Event::event_counter].RecB_BoostedtoT    = events[Event::event_counter].RecB;
-        events[Event::event_counter].RecB_BoostedtoT.Boost(t_boost);
+        events[ev_id].RecB_BoostedtoT    = events[ev_id].RecB;
+        events[ev_id].RecB_BoostedtoT.Boost(t_boost);
         //___W+___
-        events[Event::event_counter].RecWp_BoostedtoT   = events[Event::event_counter].RecWp;
-        events[Event::event_counter].RecWp_BoostedtoT.Boost(t_boost);
+        events[ev_id].RecWp_BoostedtoT   = events[ev_id].RecWp;
+        events[ev_id].RecWp_BoostedtoT.Boost(t_boost);
         //___l+___
-        events[Event::event_counter].RecLepP_BoostedtoT = events[Event::event_counter].RecLepP;
-        events[Event::event_counter].RecLepP_BoostedtoT.Boost(t_boost);
+        events[ev_id].RecLepP_BoostedtoT = events[ev_id].RecLepP;
+        events[ev_id].RecLepP_BoostedtoT.Boost(t_boost);
         //___neu__
-        events[Event::event_counter].RecNeu_BoostedtoT  = events[Event::event_counter].RecNeu;
-        events[Event::event_counter].RecNeu_BoostedtoT.Boost(t_boost);
+        events[ev_id].RecNeu_BoostedtoT  = events[ev_id].RecNeu;
+        events[ev_id].RecNeu_BoostedtoT.Boost(t_boost);
 
 
         //.................................
         //...make boost  to tbar...........
         //.................................
         //___bbar___
-        events[Event::event_counter].RecBbar_BoostedtoTbar   = events[Event::event_counter].RecBbar;
-        events[Event::event_counter].RecBbar_BoostedtoTbar.Boost(tb_boost);
+        events[ev_id].RecBbar_BoostedtoTbar   = events[ev_id].RecBbar;
+        events[ev_id].RecBbar_BoostedtoTbar.Boost(tb_boost);
         //____W-____
-        events[Event::event_counter].RecWn_BoostedtoTbar     = events[Event::event_counter].RecWn;
-        events[Event::event_counter].RecWn_BoostedtoTbar.Boost(tb_boost);
+        events[ev_id].RecWn_BoostedtoTbar     = events[ev_id].RecWn;
+        events[ev_id].RecWn_BoostedtoTbar.Boost(tb_boost);
         //____l-____
-        events[Event::event_counter].RecLepN_BoostedtoTbar   = events[Event::event_counter].RecLepN;
-        events[Event::event_counter].RecLepN_BoostedtoTbar.Boost(tb_boost);
+        events[ev_id].RecLepN_BoostedtoTbar   = events[ev_id].RecLepN;
+        events[ev_id].RecLepN_BoostedtoTbar.Boost(tb_boost);
         //__neubar__
-        events[Event::event_counter].RecNeubar_BoostedtoTbar = events[Event::event_counter].RecNeubar;
-        events[Event::event_counter].RecNeubar_BoostedtoTbar.Boost(tb_boost);
+        events[ev_id].RecNeubar_BoostedtoTbar = events[ev_id].RecNeubar;
+        events[ev_id].RecNeubar_BoostedtoTbar.Boost(tb_boost);
 
 
         //.................................
         //...make boost to ttbar...........
         //.................................
         //___t____
-        events[Event::event_counter].RecT_Boostedtottbar   =  events[Event::event_counter].RecT;
-        events[Event::event_counter].RecT_Boostedtottbar.Boost(tt_boost);
+        events[ev_id].RecT_Boostedtottbar   =  events[ev_id].RecT;
+        events[ev_id].RecT_Boostedtottbar.Boost(tt_boost);
         //__tbar__
-        events[Event::event_counter].RecTbar_Boostedtottbar  =  events[Event::event_counter].RecTbar;
-        events[Event::event_counter].RecTbar_Boostedtottbar.Boost(tt_boost);
+        events[ev_id].RecTbar_Boostedtottbar  =  events[ev_id].RecTbar;
+        events[ev_id].RecTbar_Boostedtottbar.Boost(tt_boost);
 
 
         //.................................
         //....Spin Correlations............
         //.................................
         //_____l+__in_t__________
-        events[Event::event_counter].RecCos_LepP_T_BoostedtoT = cos(  events[Event::event_counter].RecLepP_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_LepP_T_BoostedtoT = cos(  events[ev_id].RecLepP_BoostedtoT   .Angle (    events[ev_id].RecT_Boostedtottbar.Vect()));
         //_____nu__in_t__________
-        events[Event::event_counter].RecCos_Neu_T_BoostedtoT  = cos(   events[Event::event_counter].RecNeu_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_Neu_T_BoostedtoT  = cos(   events[ev_id].RecNeu_BoostedtoT   .Angle (    events[ev_id].RecT_Boostedtottbar.Vect()));
         //_____b__in_t___________
-        events[Event::event_counter].RecCos_B_T_BoostedtoT    = cos(     events[Event::event_counter].RecB_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_B_T_BoostedtoT    = cos(     events[ev_id].RecB_BoostedtoT   .Angle (    events[ev_id].RecT_Boostedtottbar.Vect()));
 
 
         //_____l-__in_tbar_______
-        events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecLepN_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_LepN_Tbar_BoostedtoTbar    = cos(  events[ev_id].RecLepN_BoostedtoTbar   .Angle ( events[ev_id].RecTbar_Boostedtottbar.Vect()));
         //_____nu__in_t__________
-        events[Event::event_counter].RecCos_Neubar_Tbar_BoostedtoTbar  = cos(events[Event::event_counter].RecNeubar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_Neubar_Tbar_BoostedtoTbar  = cos(events[ev_id].RecNeubar_BoostedtoTbar   .Angle ( events[ev_id].RecTbar_Boostedtottbar.Vect()));
         //_____b__in_t___________
-        events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecBbar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
+        events[ev_id].RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  events[ev_id].RecBbar_BoostedtoTbar   .Angle ( events[ev_id].RecTbar_Boostedtottbar.Vect()));
 
 
         // ################################
@@ -5105,42 +5194,42 @@ void ttH_dilep::ttDilepKinFit(){
         TVector3       Wp_boost, Wn_boost;
 
         //...get W+/- boosts................
-        Wp_boost  =  -(events[Event::event_counter].RecWp).BoostVector();
-        Wn_boost  =  -(events[Event::event_counter].RecWn).BoostVector();
+        Wp_boost  =  -(events[ev_id].RecWp).BoostVector();
+        Wn_boost  =  -(events[ev_id].RecWn).BoostVector();
 
         //.................................
         //...make boost  to W+.............
         //.................................
         //___l+___
-        events[Event::event_counter].RecLepP_BoostedtoWp = events[Event::event_counter].RecLepP;
-        events[Event::event_counter].RecLepP_BoostedtoWp.Boost(Wp_boost);
+        events[ev_id].RecLepP_BoostedtoWp = events[ev_id].RecLepP;
+        events[ev_id].RecLepP_BoostedtoWp.Boost(Wp_boost);
         //___b____
-        events[Event::event_counter].RecB_BoostedtoWp    = events[Event::event_counter].RecB;
-        events[Event::event_counter].RecB_BoostedtoWp.Boost(Wp_boost);
+        events[ev_id].RecB_BoostedtoWp    = events[ev_id].RecB;
+        events[ev_id].RecB_BoostedtoWp.Boost(Wp_boost);
         //__neu___
-        events[Event::event_counter].RecNeu_BoostedtoWp = events[Event::event_counter].RecNeu;
-        events[Event::event_counter].RecNeu_BoostedtoWp.Boost(Wp_boost);
+        events[ev_id].RecNeu_BoostedtoWp = events[ev_id].RecNeu;
+        events[ev_id].RecNeu_BoostedtoWp.Boost(Wp_boost);
 
         //.................................
         //...make boost  to W-.............
         //.................................
         //____l-____
-        events[Event::event_counter].RecLepN_BoostedtoWn   = events[Event::event_counter].RecLepN;
-        events[Event::event_counter].RecLepN_BoostedtoWn.Boost(Wn_boost);
+        events[ev_id].RecLepN_BoostedtoWn   = events[ev_id].RecLepN;
+        events[ev_id].RecLepN_BoostedtoWn.Boost(Wn_boost);
         //__bbar____
-        events[Event::event_counter].RecBbar_BoostedtoWn   = events[Event::event_counter].RecBbar;
-        events[Event::event_counter].RecBbar_BoostedtoWn.Boost(Wn_boost);
+        events[ev_id].RecBbar_BoostedtoWn   = events[ev_id].RecBbar;
+        events[ev_id].RecBbar_BoostedtoWn.Boost(Wn_boost);
         //__neu___
-        events[Event::event_counter].RecNeubar_BoostedtoWn = events[Event::event_counter].RecNeubar;
-        events[Event::event_counter].RecNeubar_BoostedtoWn.Boost(Wn_boost);
+        events[ev_id].RecNeubar_BoostedtoWn = events[ev_id].RecNeubar;
+        events[ev_id].RecNeubar_BoostedtoWn.Boost(Wn_boost);
 
         //.................................
         //....W Polarizations..............
         //.................................
         //_____(l+,b)__in_W+__________
-        events[Event::event_counter].RecCos_LepP_B_BoostedtoWp =  -cos(  events[Event::event_counter].RecLepP_BoostedtoWp   .Angle (  events[Event::event_counter].RecB_BoostedtoWp.Vect()));
+        events[ev_id].RecCos_LepP_B_BoostedtoWp =  -cos(  events[ev_id].RecLepP_BoostedtoWp   .Angle (  events[ev_id].RecB_BoostedtoWp.Vect()));
         //_____(l-,bbar)__in_W-_______
-        events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn =  -cos(  events[Event::event_counter].RecLepN_BoostedtoWn   .Angle (  events[Event::event_counter].RecBbar_BoostedtoWn.Vect()));
+        events[ev_id].RecCos_LepN_Bbar_BoostedtoWn =  -cos(  events[ev_id].RecLepN_BoostedtoWn   .Angle (  events[ev_id].RecBbar_BoostedtoWn.Vect()));
 
     }
 
