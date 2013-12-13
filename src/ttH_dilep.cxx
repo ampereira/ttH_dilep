@@ -4455,6 +4455,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, in
 
 	// Some global settings
 	_ttDKF_JetCombChoice = 1;
+	unsigned counter = 0;
 
 
 	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
@@ -4495,6 +4496,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, in
 							if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
 								for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
 									if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
+										counter++;
 
 										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
 										inputs.push_back(di);
@@ -4508,7 +4510,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_JetCombChoice, in
 		}
 	}
 
-	cout << endl << "Entrou " << Event::event_counter << " - " << events.size() << " - " << inputs.size() << endl << endl;
+	cout << endl << "Entrou " << counter << " - " << events.size() << " - " << inputs.size() << endl << endl;
 }
 
 
