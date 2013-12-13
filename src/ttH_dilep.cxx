@@ -4458,7 +4458,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	unsigned counter = 0;
 
 
-	for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
+	//for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
     	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
     	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 		
@@ -4498,8 +4498,8 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 									if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
 										counter++;
 
-										DilepInput *di = new DilepInput (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
-										inputs.push_back(*di);
+										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m);
+										inputs.push_back(di);
 									}
 								}
 							}
@@ -4508,7 +4508,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 				}
 			}
 		}
-	}
+	//}
 
 	cout << endl << "Entrou " << counter << " - " << events.size() << " - " << inputs.size() << endl << endl;
 }
@@ -4539,8 +4539,8 @@ void ttH_dilep::ttDilepKinFit(){
     //
     // #############################################################################
 
-	//if(Event::event_counter == 0)
-	//	cout << endl << "SIZE: " << events.size() << " - " << inputs.size() << endl << endl;
+	if(Event::event_counter == 0)
+		cout << endl << "SIZE: " << events.size() << " - " << inputs.size() << endl << endl;
 
     // =================================================================================================================
     // =================================================================================================================
