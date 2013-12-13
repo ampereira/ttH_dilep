@@ -471,7 +471,7 @@ public:
   void Calculations3();
   void ttDilepKinFit();
 
-  void buildDIVec (double, double, int, int, int);
+  void buildDIVec (double, double, int);
 
   //stuff for after events loop
   virtual void PostLoopCalculations();
