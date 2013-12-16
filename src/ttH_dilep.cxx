@@ -4596,9 +4596,7 @@ void ttH_dilep::ttDilepKinFit(){
     {
     	float task_id;
     	DilepInput di;
-
-    	#pragma omp critical
-    	cout << "Thread: " << omp_get_thread_num() << endl;
+    	int c = 0;
 
     	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
@@ -4608,13 +4606,15 @@ void ttH_dilep::ttDilepKinFit(){
 	        // Check if it needs to pick a new combo
 	        //if (task_id == (int) task_id)
 	            di = inputs[counter];
-	        
+	        c++;
 	        // Apply the variance
 	        //di.applyVariance(RESOLUTION);
 
 	        // Run the dileptonic reconstruction 
 	        Dilep::CPU::dilep(di);
 	    }
+    	#pragma omp critical
+    	cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
 
     
