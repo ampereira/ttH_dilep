@@ -4752,6 +4752,7 @@ void ttH_dilep::ttDilepKinFit(){
 
 	        // Check if it needs to pick a new combo
 	       // if (task_id == (int) task_id)
+	    	cout << inputs.size() << " - " << total_counter << endl;
 	        DilepInput di = inputs[total_counter];
 
 
