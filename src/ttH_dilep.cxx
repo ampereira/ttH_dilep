@@ -4591,9 +4591,10 @@ void ttH_dilep::ttDilepKinFit(){
 
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
     
+    long long int tp = LIP::KinFit::startTimer();
 
-    	int c = 0;
-    #pragma omp parallel reduction(+:c)
+    	//int c = 0;
+    #pragma omp parallel// reduction(+:c)
     {
     	float task_id;
     	DilepInput di;
@@ -4605,18 +4606,18 @@ void ttH_dilep::ttDilepKinFit(){
 
 	        // Check if it needs to pick a new combo
 	        //if (task_id == (int) task_id)
-	            di = inputs[counter];
-	        c++;
+	        //    di = inputs[counter];
+	        //c++;
 	        // Apply the variance
 	        //di.applyVariance(RESOLUTION);
 
 	        // Run the dileptonic reconstruction 
-	        Dilep::CPU::dilep(di);
+	        Dilep::CPU::dilep(inputs[counter]);
 	    }
-    	#pragma omp critical
-    	cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
+    	//#pragma omp critical
+    	//cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
-    	cout << "Total: " << inputs.size() << " - " << c << endl;
+    	cout << "Total: " << LIP::KinFit::stopTimer(tp) << " us" << endl;
 
     
 
