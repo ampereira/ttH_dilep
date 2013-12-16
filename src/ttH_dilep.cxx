@@ -4588,11 +4588,12 @@ void ttH_dilep::ttDilepKinFit(){
     // WARNING: numa primeira fase apenas para num combos == num parallel tasks
 
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
-    float task_id;
-    DilepInput di;
+    
 
     #pragma omp parallel
     {
+    	float task_id;
+    	DilepInput di;
     	#pragma omp single
     	cout << "Kinfit with " << omp_get_num_threads() << " threads" << endl;
     	#pragma omp for
@@ -4664,6 +4665,7 @@ void ttH_dilep::ttDilepKinFit(){
     unsigned total_counter = 0;
 
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
+    	DilepInput di;
 		int n_ttDKF_Best = -999;
 
 	    // ttbar Probability Factors
