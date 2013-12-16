@@ -4592,6 +4592,7 @@ void ttH_dilep::ttDilepKinFit(){
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
     
     long long int tp = LIP::KinFit::startTimer();
+    cout << "tau " << tp << endl;
 
     	//int c = 0;
     #pragma omp parallel// reduction(+:c)
@@ -4617,8 +4618,9 @@ void ttH_dilep::ttDilepKinFit(){
     	//#pragma omp critical
     	//cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
+	#pragma omp barrier
 	long long int res = LIP::KinFit::stopTimer(tp);
-    	cout << "Total: " << res << " us" << endl;
+    cout << "Total: " << res << " us" << endl;
 
     
 
