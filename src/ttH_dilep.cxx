@@ -4573,7 +4573,8 @@ void ttH_dilep::ttDilepKinFit(){
     // Define usefull variables 
     // =================================================================================================================
     
-
+    if (Event::event_counter == 0)
+    	cout << "Tamanho: " << inputs.size() << endl;
     // ---------------------------------------
     // by: S.Amor 13.Dez.2012
     //
