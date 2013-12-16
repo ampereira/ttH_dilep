@@ -4734,7 +4734,7 @@ void ttH_dilep::ttDilepKinFit(){
 	            di = inputs[total_counter];
 
 
-	        cout << "Event: " << Event::event_counter << " partial: " << partial_counter << " total " << total_counter << endl;
+	        //cout << "Event: " << Event::event_counter << " partial: " << partial_counter << " total " << total_counter << endl;
 
 	        
 
