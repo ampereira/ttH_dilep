@@ -4597,6 +4597,9 @@ void ttH_dilep::ttDilepKinFit(){
     	float task_id;
     	DilepInput di;
 
+    	#pragma omp critical
+    	cout << "Thread: " << omp_get_thread_num() << endl;
+
     	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
 	        // Calculates the new id of the task
@@ -4665,7 +4668,7 @@ void ttH_dilep::ttDilepKinFit(){
     int prev_ev_id = -1;
     unsigned total_counter = 0;
 
-    #pragma omp parallel
+  //  #pragma omp parallel
     {
 	    // ttbar variables
 	    double myttbar_px;
@@ -4679,7 +4682,7 @@ void ttH_dilep::ttDilepKinFit(){
 	    double fac_j1j2H_ttbar;
 	    double mass_j1H_ttbar;
 	    double mass_j2H_ttbar;
-    #pragma omp for schedule(dynamic) nowait
+   // #pragma omp for schedule(dynamic) nowait
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
     	DilepInput di;
 		int n_ttDKF_Best = -999;
