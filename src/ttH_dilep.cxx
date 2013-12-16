@@ -4594,8 +4594,7 @@ void ttH_dilep::ttDilepKinFit(){
     {
     	float task_id;
     	DilepInput di;
-    	#pragma omp single
-    	cout << "Kinfit with " << omp_get_num_threads() << " threads" << endl;
+
     	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
 	        // Calculates the new id of the task
@@ -4664,6 +4663,21 @@ void ttH_dilep::ttDilepKinFit(){
     int prev_ev_id = -1;
     unsigned total_counter = 0;
 
+    #pragma omp parallel
+    {
+	    // ttbar variables
+	    double myttbar_px;
+	    double myttbar_py;
+	    double myttbar_pz;
+	    double myttbar_E;
+
+	    // Higgs helpfull variables
+	    double theta_jet1_HiggsFromTTbar;
+	    double theta_jet2_HiggsFromTTbar;
+	    double fac_j1j2H_ttbar;
+	    double mass_j1H_ttbar;
+	    double mass_j2H_ttbar;
+    	#pragma omp for schedule(dynamic) nowait
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
     	DilepInput di;
 		int n_ttDKF_Best = -999;
@@ -4679,18 +4693,6 @@ void ttH_dilep::ttDilepKinFit(){
 	    double MaxTotalProb = -10e+15;
 	    double MaxHiggsProb = -10e+15;
 
-	    // ttbar variables
-	    double myttbar_px;
-	    double myttbar_py;
-	    double myttbar_pz;
-	    double myttbar_E;
-
-	    // Higgs helpfull variables
-	    double theta_jet1_HiggsFromTTbar;
-	    double theta_jet2_HiggsFromTTbar;
-	    double fac_j1j2H_ttbar;
-	    double mass_j1H_ttbar;
-	    double mass_j2H_ttbar;
 	    int  nTSol =  0;            // initialize Total number of solutions counter
 
 	    // result of kinematic fit
@@ -5200,6 +5202,7 @@ void ttH_dilep::ttDilepKinFit(){
 	        events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn =  -cos(  events[Event::event_counter].RecLepN_BoostedtoWn   .Angle (  events[Event::event_counter].RecBbar_BoostedtoWn.Vect()));
 
 	    }
+	}
 	}
 
 }
