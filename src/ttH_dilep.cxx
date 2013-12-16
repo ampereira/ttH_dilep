@@ -4596,7 +4596,7 @@ void ttH_dilep::ttDilepKinFit(){
     	DilepInput di;
     	#pragma omp single
     	cout << "Kinfit with " << omp_get_num_threads() << " threads" << endl;
-    	#pragma omp for
+    	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
 	        // Calculates the new id of the task
 	        task_id = (float) counter / (float) dilep_iterations;
