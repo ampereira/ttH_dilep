@@ -4574,7 +4574,7 @@ void ttH_dilep::ttDilepKinFit(){
     // =================================================================================================================
     
     if (Event::event_counter == 5703)
-    	cout << "Tamanho: " << inputs.size() << endl;
+    	cout << "Tamanho: " << inputs.size() << " - " << sizeof(inputs[0]) << endl;
     // ---------------------------------------
     // by: S.Amor 13.Dez.2012
     //
