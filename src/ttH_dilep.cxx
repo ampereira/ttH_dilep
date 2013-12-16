@@ -4417,6 +4417,7 @@ void ttH_dilep::first_DoCuts(){
         //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
         events[Event::event_counter].LastCut++; // LastCut=21
 //        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+        buildDIVec(mt, mW, ttDKF_njet_UserValue);
 }
 
 void ttH_dilep::second_DoCuts() {
@@ -4504,7 +4505,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 
 										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
 										di.applyVariance(RESOLUTION);
-										#pragma omp critical
+										//#pragma omp critical
 										inputs.push_back(di);
 									}
 								}
