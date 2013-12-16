@@ -4617,7 +4617,8 @@ void ttH_dilep::ttDilepKinFit(){
     	//#pragma omp critical
     	//cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
-    	cout << "Total: " << LIP::KinFit::stopTimer(tp) << " us" << endl;
+	long long int res = LIP::KinFit::stopTimer(tp);
+    	cout << "Total: " << res << " us" << endl;
 
     
 
