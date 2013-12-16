@@ -4598,12 +4598,12 @@ void ttH_dilep::ttDilepKinFit(){
     	DilepInput di;
 
     	#pragma omp for schedule(dynamic) nowait
-	    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
+	    for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
 	        // Calculates the new id of the task
-	        task_id = (float) counter / (float) dilep_iterations;
+	        //task_id = (float) counter / (float) dilep_iterations;
 
 	        // Check if it needs to pick a new combo
-	        if (task_id == (int) task_id)
+	        //if (task_id == (int) task_id)
 	            di = inputs[counter];
 	        
 	        // Apply the variance
