@@ -4592,11 +4592,11 @@ void ttH_dilep::ttDilepKinFit(){
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
     
 
-    #pragma omp parallel
+    	int c = 0;
+    #pragma omp parallel reduction(+:c)
     {
     	float task_id;
     	DilepInput di;
-    	int c = 0;
 
     	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
@@ -4616,6 +4616,7 @@ void ttH_dilep::ttDilepKinFit(){
     	#pragma omp critical
     	cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
+    	cout << "Total: " << inputs.size() << " - " << c << endl;
 
     
 
