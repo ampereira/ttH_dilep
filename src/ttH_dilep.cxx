@@ -3541,446 +3541,6 @@ void ttH_dilep::FillHistograms(THistos &histo){
 	}
 }
 
-void ttH_dilep::first_DoCuts(){
-    // #############################################################################
-//
-//  purpose: to do the selection cuts
-//
-//  authors: fveloso
-//  first version: 15.nov.2006
-//
-//  last change: 02.Jan.2013
-//  by: A.Onofre
-//
-// #############################################################################
-
-
-        //=============================================
-        //     Do Not Consider Zero Weight Events
-        //=============================================
-        if(events[Event::event_counter].Weight==0) return; 
-        //if(  ( isData == 1 ) && ( alldata_ele == 1 ) && ( ElectronTrigger != 1 ) )  return; // Egamma stream
-        //if(  ( isData == 1 ) && ( alldata_muo == 1 ) && (     MuonTrigger != 1 ) )  return; // Muon   stream
-        events[Event::event_counter].LastCut++; // LastCut=1
-
-        // Needed calculations to fill the variables
-        #pragma omp critical
-        events[Event::event_counter].Calculations();
-        //=============================================
-        //=============================================
-        //   Find Signal True dilepton events in MC
-        //   Note: this cut was applied in the past 
-    //         to ttbar events from MC@NLO samples
-    //         with semi+dilep events
-    //     -> this required separation at MC
-    //        to compute dilep efficiencies
-    //   Flag used (passed from *.sh script): 
-    //  leptonSep != 0  yes, separation required     
-        //=============================================
-        //=============================================
-
-        //=============================================
-        //        Example from ttbar...No problem
-    //     to keep this code here once by default
-    //                leptonSep == 0
-        //  (perform channel separation if necessary)
-        //  ......Calculations2 is called here........
-        //=============================================
-        if( lepSample==21 ){ // ee sample
-            if(leptonSep == 1)
-            {
-               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 2) return;
-               //_____get truth information_____________ 
-               events[Event::event_counter].Calculations2();
-            }
-            else if(leptonSep == 2)
-            {
-               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 2) return;
-            }
-        }
-        if( lepSample==22 ){ // mumu sample
-            if(leptonSep == 1)
-            {
-               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 2) return;
-               //_____get truth information_____________ 
-               events[Event::event_counter].Calculations2();
-            }
-            else if(leptonSep == 2)
-            {
-               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 2) return;
-            }
-        }
-        if( lepSample==23 ){ // e mu (+mu e) sample
-            if(leptonSep == 1)
-            {
-               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 1 || (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 1) return;
-               //_____get truth information_____________ 
-               events[Event::event_counter].Calculations2();
-            }
-            else if(leptonSep == 2)
-            {
-               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 1 && (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 1) return;
-            }
-        }
-        events[Event::event_counter].LastCut++; // LastCut=2
-//        cout << "Truth Separation:   runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C0) Select events which pass a good runs list
-        //     Veto duplicate events
-    //     (duplicate = events with same Run and
-    //  Event number; nothing else here)
-        //=============================================
-        //=============================================
-        if(  ( isData == 1 ) && ( events[Event::event_counter].GoodRL == 0 ) )  return;
-        events[Event::event_counter].LastCut++; // LastCut=3
-//       cout << "C0 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C1) Require Trigger
-        //=============================================
-        //=============================================
-        // trigger CutTriggerXXX < 0 means that no cut is applied
-        if( CutTriggerEle >= 0){
-            if( events[Event::event_counter].ElectronTrigger != CutTriggerEle ) return;
-        }
-        if( CutTriggerMuo >= 0){
-            if(     events[Event::event_counter].MuonTrigger != CutTriggerMuo ) return;
-        }
-        if( CutTriggerEleMuo > 0){
-            if( events[Event::event_counter].ElectronTrigger != 1 && events[Event::event_counter].MuonTrigger != 1  ) return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=4
-//        cout << "C1 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-
-        //=============================================
-        //=============================================
-        // C2) Apply the cosmic event rejection 
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].Cosmic ) return;
-        events[Event::event_counter].LastCut++; // LastCut=5
-//        cout << "C2 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C3) Number of Vertices with  
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].Vtx.size() == 0 ) return;
-        events[Event::event_counter].LastCut++; // LastCut=6
-//        cout << "C3 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C4) Request Two Leptons with pt > 15GeV
-        // a) at least 2 lep && separation in ee, mumu and emu 
-        // b) exactly 2 lept 
-        //=============================================
-        //=============================================
-        if( events[Event::event_counter].LeptonVec.size() < 2 )        return;
-        // Separation in ee, em and mumu channels
-        if( lepSample==21 ){ // ee sample
-            int nele = 0;
-            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
-               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
-            }
-            if (nele < 2) return;
-        }
-        if( lepSample==22 ){ // mumu sample
-            int nmuo = 0;
-            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
-               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
-            }
-            if (nmuo < 2) return;
-        }
-        if( lepSample==23 ){ // e mu (+mu e) sample
-            int nele = 0;
-            int nmuo = 0;
-            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
-               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
-               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
-            }
-            if (nele < 1) return;
-            if (nmuo < 1) return;
-        }
-
-        events[Event::event_counter].LastCut++; // LastCut=7
-//        cout << "C4 a) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C4) b) Require exactly 2 isolated leptons 
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].LeptonVec.size() != 2 )        return;
-
-        if( lepSample==21 ){ // ee sample
-            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) return;
-        }
-        if( lepSample==22 ){ // mumu sample
-            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) return;
-        }
-        if( lepSample==23 ){ // e mu (+mu e) sample
-            if( (abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) && (abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) ) return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=8
-//        cout << "C4 b) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C5) At Least 1 lepton pt >= 25GeV
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) 
-        	return;
-
-        events[Event::event_counter].LastCut++; // LastCut=9
-//        cout << "C5) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-        //=============================================
-
-        //=============================================
-        //=============================================
-        // C6) Require Lepton trigger Matched
-        //=============================================
-        //=============================================
-        Int_t HasElectronMatchingTrigger = 0;
-        Int_t     HasMuonMatchingTrigger = 0;
-
-        for (Int_t i=0; i<events[Event::event_counter].LeptonVec.size(); ++i) {
-                Int_t ii = events[Event::event_counter].LeptonVec[i].idx;
-                // check leptons are trigger matched
-                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
-                	HasElectronMatchingTrigger = 1;
-                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
-                	HasMuonMatchingTrigger = 1;
-        }
-
-        Bool_t ElectronTriggerOK = ( events[Event::event_counter].ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
-        Bool_t     MuonTriggerOK = (     events[Event::event_counter].MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
-
-        if( lepSample==21 ){
-           if ( !ElectronTriggerOK ) 
-           	return;
-        }
-        if( lepSample==22 ){
-           if ( !MuonTriggerOK     ) 
-           	return;
-        }
-        if( lepSample==23 ){
-          if ( isData == 1 ) {
-           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) 
-           	return;
-
-           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) 
-           	return;
-
-          } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) 
-          		return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=10
-//        cout << "C6 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C7) E-Mu Overlap removal
-        //=============================================
-        //=============================================
-        if (events[Event::event_counter].EleMuoOverlap !=0) 
-        	return;
-
-    events[Event::event_counter].LastCut++; // LastCut=11
-
-    
-        //=============================================
-        //=============================================
-        // C8) Jet Cleaning
-        //=============================================
-        //=============================================
-    if (events[Event::event_counter].JetCleanning != 0) 
-    	return;
-
-    events[Event::event_counter].LastCut++;     //LastCut=12
-        
-
-        //=============================================
-        //=============================================
-        // C8) No Pt missing cut for ee, mumu   
-        //     events[Event::event_counter].Ht cut (emu)       
-        //=============================================
-        //=============================================
-
-        if( lepSample==23 ){ // e mu (+mu e) sample
-          if(events[Event::event_counter].Ht <= 130.*GeV) 
-          	return;
-        }
-
-        events[Event::event_counter].LastCut++; // LastCut=13
-//        cout << "C8 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C9) Njets>=2 from Minintuple (jet_n)
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].jet_n_Mini != 2 ) 
-        	return;
-
-        events[Event::event_counter].LastCut++; // LastCut=14
-//        cout << "C9 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C10) Two Opposite Sign (OS) Leptons 
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) 
-        	return;
-
-        events[Event::event_counter].LastCut++; // LastCut=15
-//        cout << "C10 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C11)  Z Mass(l+,l-) cut: Mll > 15 GeV
-        //=============================================
-        //=============================================
-        if( lepSample==21 ){ // ee sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
-          	return;
-        }
-        if( lepSample==22 ){ // mumu sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
-          	return;
-        }
-        if( lepSample==23 ){ // mumu sample
-          if( events[Event::event_counter].ll.M()/GeV <= 15. )
-            return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=16
-//        cout << "C11) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-
-        //=============================================
-        //=============================================
-        // C12) MC Matches Truth 
-        //=============================================
-        //=============================================
-        if ( isData != 1  ){
-                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  
-                	return;
-                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  
-                	return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=17
-//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C13)  Z Mass cut: |M(events[Event::event_counter].ll)-91|>=8 GeV     ====
-        //=============================================
-        //=============================================
-        if( lepSample==21 ){ // ee sample
-          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
-          	return;
-        }
-        if( lepSample==22 ){ // mumu sample
-          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
-          	return;
-        }
-        events[Event::event_counter].LastCut++; // LastCut=18
-//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-/*
-        //=============================================
-        //=============================================
-        // C5) Remove events based on HFOR == 4 if defined
-        //=============================================
-        //=============================================
-        if ( isData != 1 && m_hfor != -1 && HforFlag == 4 ) return;
-        if ( isData != 1 && m_hfor != -1 && HforFlag != m_hfor ) return;
-        LastCut++;      // LastCut=11
-//        cout << "C5 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C7) Veto Duplicate Events (DATA Only)
-        //=============================================
-        //=============================================
-        if ( isData == 1 && !(CheckDoubleEvents(  Isub, EveNumber )) ) return;
-        LastCut++;      // LastCut=13
-//        cout << "C7 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-*/
-        //=============================================
-        //=============================================
-        // C14) At least 1-btag 
-        //      (MV1 weight > 0.8119)
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].NbtagJet < 1 ) return;  
-        events[Event::event_counter].LastCut++; // LastCut=19
-//        cout << "C14 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-        //=============================================
-        //=============================================
-        // C15) Exactly 2 jets and 2 btag 
-        //=============================================
-        //=============================================
-        if ( events[Event::event_counter].NbtagJet != 2 )
-        	return;  
-        
-        events[Event::event_counter].LastCut++; // LastCut=20
-//        cout << "C15 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-
-
-        //=============================================
-        //=============================================
-        // END OF Dilepton Challenge
-        //=============================================
-        //=============================================
-
-
-        //=============================================
-        //=============================================
-        // C11) Njets>=4, pT>25GeV, |eta|<2.5 
-        //=============================================
-        //=============================================
-        //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
-        events[Event::event_counter].LastCut++; // LastCut=21
-//        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-}
-
-void ttH_dilep::second_DoCuts() {
-
-	ttDilepKinFit();
-
-	//=============================================
-	//=============================================
-	// C12) Check if there is a solution   ========
-	//=============================================
-	//=============================================
-	//if(HasSolution == 0) return;
-	for(Event::event_counter = 0; Event::event_counter < events.size(); Event::event_counter++) { 
-		events[Event::event_counter].LastCut++; // LastCut=22
-		//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-
-		//=============================================
-		//=============================================
-		// C13) At least 2 jets are required to be 
-		//      b-tagged (MV1 weight > 0.8119)
-		//=============================================
-		//=============================================
-		//if ( events[Event::event_counter].NbtagJet < 2) return; 
-		events[Event::event_counter].LastCut++; // LastCut=23
-		//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-	}
-}
-
 // #############################################################################
 void ttH_dilep::DoCuts(){
 // #############################################################################
@@ -4445,6 +4005,448 @@ void ttH_dilep::DoCuts(){
 
 }
 
+void ttH_dilep::first_DoCuts(){
+    // #############################################################################
+//
+//  purpose: to do the selection cuts
+//
+//  authors: fveloso
+//  first version: 15.nov.2006
+//
+//  last change: 02.Jan.2013
+//  by: A.Onofre
+//
+// #############################################################################
+
+
+        //=============================================
+        //     Do Not Consider Zero Weight Events
+        //=============================================
+        if(events[Event::event_counter].Weight==0) return; 
+        //if(  ( isData == 1 ) && ( alldata_ele == 1 ) && ( ElectronTrigger != 1 ) )  return; // Egamma stream
+        //if(  ( isData == 1 ) && ( alldata_muo == 1 ) && (     MuonTrigger != 1 ) )  return; // Muon   stream
+        events[Event::event_counter].LastCut++; // LastCut=1
+
+        // Needed calculations to fill the variables
+        #pragma omp critical
+        events[Event::event_counter].Calculations();
+        //=============================================
+        //=============================================
+        //   Find Signal True dilepton events in MC
+        //   Note: this cut was applied in the past 
+    //         to ttbar events from MC@NLO samples
+    //         with semi+dilep events
+    //     -> this required separation at MC
+    //        to compute dilep efficiencies
+    //   Flag used (passed from *.sh script): 
+    //  leptonSep != 0  yes, separation required     
+        //=============================================
+        //=============================================
+
+        //=============================================
+        //        Example from ttbar...No problem
+    //     to keep this code here once by default
+    //                leptonSep == 0
+        //  (perform channel separation if necessary)
+        //  ......Calculations2 is called here........
+        //=============================================
+        if( lepSample==21 ){ // ee sample
+            if(leptonSep == 1)
+            {
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 2) return;
+               //_____get truth information_____________ 
+               events[Event::event_counter].Calculations2();
+            }
+            else if(leptonSep == 2)
+            {
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 2) return;
+            }
+        }
+        if( lepSample==22 ){ // mumu sample
+            if(leptonSep == 1)
+            {
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 2) return;
+               //_____get truth information_____________ 
+               events[Event::event_counter].Calculations2();
+            }
+            else if(leptonSep == 2)
+            {
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 2) return;
+            }
+        }
+        if( lepSample==23 ){ // e mu (+mu e) sample
+            if(leptonSep == 1)
+            {
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 1 || (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 1) return;
+               //_____get truth information_____________ 
+               events[Event::event_counter].Calculations2();
+            }
+            else if(leptonSep == 2)
+            {
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 1 && (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 1) return;
+            }
+        }
+        events[Event::event_counter].LastCut++; // LastCut=2
+//        cout << "Truth Separation:   runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C0) Select events which pass a good runs list
+        //     Veto duplicate events
+    //     (duplicate = events with same Run and
+    //  Event number; nothing else here)
+        //=============================================
+        //=============================================
+        if(  ( isData == 1 ) && ( events[Event::event_counter].GoodRL == 0 ) )  return;
+        events[Event::event_counter].LastCut++; // LastCut=3
+//       cout << "C0 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C1) Require Trigger
+        //=============================================
+        //=============================================
+        // trigger CutTriggerXXX < 0 means that no cut is applied
+        if( CutTriggerEle >= 0){
+            if( events[Event::event_counter].ElectronTrigger != CutTriggerEle ) return;
+        }
+        if( CutTriggerMuo >= 0){
+            if(     events[Event::event_counter].MuonTrigger != CutTriggerMuo ) return;
+        }
+        if( CutTriggerEleMuo > 0){
+            if( events[Event::event_counter].ElectronTrigger != 1 && events[Event::event_counter].MuonTrigger != 1  ) return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=4
+//        cout << "C1 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+
+        //=============================================
+        //=============================================
+        // C2) Apply the cosmic event rejection 
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].Cosmic ) return;
+        events[Event::event_counter].LastCut++; // LastCut=5
+//        cout << "C2 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C3) Number of Vertices with  
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].Vtx.size() == 0 ) return;
+        events[Event::event_counter].LastCut++; // LastCut=6
+//        cout << "C3 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C4) Request Two Leptons with pt > 15GeV
+        // a) at least 2 lep && separation in ee, mumu and emu 
+        // b) exactly 2 lept 
+        //=============================================
+        //=============================================
+        if( events[Event::event_counter].LeptonVec.size() < 2 )        return;
+        // Separation in ee, em and mumu channels
+        if( lepSample==21 ){ // ee sample
+            int nele = 0;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
+            }
+            if (nele < 2) return;
+        }
+        if( lepSample==22 ){ // mumu sample
+            int nmuo = 0;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            }
+            if (nmuo < 2) return;
+        }
+        if( lepSample==23 ){ // e mu (+mu e) sample
+            int nele = 0;
+            int nmuo = 0;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            }
+            if (nele < 1) return;
+            if (nmuo < 1) return;
+        }
+
+        events[Event::event_counter].LastCut++; // LastCut=7
+//        cout << "C4 a) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C4) b) Require exactly 2 isolated leptons 
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].LeptonVec.size() != 2 )        return;
+
+        if( lepSample==21 ){ // ee sample
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) return;
+        }
+        if( lepSample==22 ){ // mumu sample
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) return;
+        }
+        if( lepSample==23 ){ // e mu (+mu e) sample
+            if( (abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) && (abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) ) return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=8
+//        cout << "C4 b) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C5) At Least 1 lepton pt >= 25GeV
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) 
+        	return;
+
+        events[Event::event_counter].LastCut++; // LastCut=9
+//        cout << "C5) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+        //=============================================
+
+        //=============================================
+        //=============================================
+        // C6) Require Lepton trigger Matched
+        //=============================================
+        //=============================================
+        Int_t HasElectronMatchingTrigger = 0;
+        Int_t     HasMuonMatchingTrigger = 0;
+
+        for (Int_t i=0; i<events[Event::event_counter].LeptonVec.size(); ++i) {
+                Int_t ii = events[Event::event_counter].LeptonVec[i].idx;
+                // check leptons are trigger matched
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
+                	HasElectronMatchingTrigger = 1;
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
+                	HasMuonMatchingTrigger = 1;
+        }
+
+        Bool_t ElectronTriggerOK = ( events[Event::event_counter].ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
+        Bool_t     MuonTriggerOK = (     events[Event::event_counter].MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
+
+        if( lepSample==21 ){
+           if ( !ElectronTriggerOK ) 
+           	return;
+        }
+        if( lepSample==22 ){
+           if ( !MuonTriggerOK     ) 
+           	return;
+        }
+        if( lepSample==23 ){
+          if ( isData == 1 ) {
+           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) 
+           	return;
+
+           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) 
+           	return;
+
+          } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) 
+          		return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=10
+//        cout << "C6 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C7) E-Mu Overlap removal
+        //=============================================
+        //=============================================
+        if (events[Event::event_counter].EleMuoOverlap !=0) 
+        	return;
+
+    events[Event::event_counter].LastCut++; // LastCut=11
+
+    
+        //=============================================
+        //=============================================
+        // C8) Jet Cleaning
+        //=============================================
+        //=============================================
+    if (events[Event::event_counter].JetCleanning != 0) 
+    	return;
+
+    events[Event::event_counter].LastCut++;     //LastCut=12
+        
+
+        //=============================================
+        //=============================================
+        // C8) No Pt missing cut for ee, mumu   
+        //     events[Event::event_counter].Ht cut (emu)       
+        //=============================================
+        //=============================================
+
+        if( lepSample==23 ){ // e mu (+mu e) sample
+          if(events[Event::event_counter].Ht <= 130.*GeV) 
+          	return;
+        }
+
+        events[Event::event_counter].LastCut++; // LastCut=13
+//        cout << "C8 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C9) Njets>=2 from Minintuple (jet_n)
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].jet_n_Mini != 2 ) 
+        	return;
+
+        events[Event::event_counter].LastCut++; // LastCut=14
+//        cout << "C9 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C10) Two Opposite Sign (OS) Leptons 
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) 
+        	return;
+
+        events[Event::event_counter].LastCut++; // LastCut=15
+//        cout << "C10 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C11)  Z Mass(l+,l-) cut: Mll > 15 GeV
+        //=============================================
+        //=============================================
+        if( lepSample==21 ){ // ee sample
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
+          	return;
+        }
+        if( lepSample==22 ){ // mumu sample
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
+          	return;
+        }
+        if( lepSample==23 ){ // mumu sample
+          if( events[Event::event_counter].ll.M()/GeV <= 15. )
+            return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=16
+//        cout << "C11) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+
+        //=============================================
+        //=============================================
+        // C12) MC Matches Truth 
+        //=============================================
+        //=============================================
+        if ( isData != 1  ){
+                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  
+                	return;
+                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  
+                	return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=17
+//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C13)  Z Mass cut: |M(events[Event::event_counter].ll)-91|>=8 GeV     ====
+        //=============================================
+        //=============================================
+        if( lepSample==21 ){ // ee sample
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
+          	return;
+        }
+        if( lepSample==22 ){ // mumu sample
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
+          	return;
+        }
+        events[Event::event_counter].LastCut++; // LastCut=18
+//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+/*
+        //=============================================
+        //=============================================
+        // C5) Remove events based on HFOR == 4 if defined
+        //=============================================
+        //=============================================
+        if ( isData != 1 && m_hfor != -1 && HforFlag == 4 ) return;
+        if ( isData != 1 && m_hfor != -1 && HforFlag != m_hfor ) return;
+        LastCut++;      // LastCut=11
+//        cout << "C5 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C7) Veto Duplicate Events (DATA Only)
+        //=============================================
+        //=============================================
+        if ( isData == 1 && !(CheckDoubleEvents(  Isub, EveNumber )) ) return;
+        LastCut++;      // LastCut=13
+//        cout << "C7 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+*/
+        //=============================================
+        //=============================================
+        // C14) At least 1-btag 
+        //      (MV1 weight > 0.8119)
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].NbtagJet < 1 ) return;  
+        events[Event::event_counter].LastCut++; // LastCut=19
+//        cout << "C14 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+        //=============================================
+        //=============================================
+        // C15) Exactly 2 jets and 2 btag 
+        //=============================================
+        //=============================================
+        if ( events[Event::event_counter].NbtagJet != 2 )
+        	return;  
+        
+        events[Event::event_counter].LastCut++; // LastCut=20
+//        cout << "C15 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+
+
+        //=============================================
+        //=============================================
+        // END OF Dilepton Challenge
+        //=============================================
+        //=============================================
+
+
+        //=============================================
+        //=============================================
+        // C11) Njets>=4, pT>25GeV, |eta|<2.5 
+        //=============================================
+        //=============================================
+        //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
+        events[Event::event_counter].LastCut++; // LastCut=21
+//        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+}
+
+void ttH_dilep::second_DoCuts() {
+
+	ttDilepKinFit();
+
+	//=============================================
+	//=============================================
+	// C12) Check if there is a solution   ========
+	//=============================================
+	//=============================================
+	//if(HasSolution == 0) return;
+	for(Event::event_counter = 0; Event::event_counter < events.size(); Event::event_counter++) { 
+		events[Event::event_counter].LastCut++; // LastCut=22
+		//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+
+		//=============================================
+		//=============================================
+		// C13) At least 2 jets are required to be 
+		//      b-tagged (MV1 weight > 0.8119)
+		//=============================================
+		//=============================================
+		//if ( events[Event::event_counter].NbtagJet < 2) return; 
+		events[Event::event_counter].LastCut++; // LastCut=23
+		//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
+	}
+}
+
+
+
 
 // Builds the DilepInput vector with all events
 void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
@@ -4460,51 +4462,49 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	unsigned counter = 0;
 
 
-	//for (Event::event_counter = 0; Event::event_counter < event_size; ++Event::event_counter) {
-    	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
-    	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
-		
+	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
+	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
+	
+	// -----------------------------------------------------------------
+	//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
+	//               NOTE: pass MyChoiceJetVec  to the tool 
+	//                     pass ttDKF_njets = number of jets  
+	//               (do nothing but pass the vectors)
+	//  by: S.Amor 13.Dez.2012
+	// -----------------------------------------------------------------
+	if ( _ttDKF_JetCombChoice == 1 ){
+		for (int jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
+			MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
+		}
 		// -----------------------------------------------------------------
-		//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
-		//               NOTE: pass MyChoiceJetVec  to the tool 
-		//                     pass ttDKF_njets = number of jets  
-		//               (do nothing but pass the vectors)
-		//  by: S.Amor 13.Dez.2012
+		// USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
 		// -----------------------------------------------------------------
-		if ( _ttDKF_JetCombChoice == 1 ){
-			for (int jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
-				MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
-			}
-			// -----------------------------------------------------------------
-			// USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
-			// -----------------------------------------------------------------
-			_ttDKF_njets = _ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
+		_ttDKF_njets = _ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
 
-			if ( _ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
-				_ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
-			}
-			if (_ttDKF_njets < 4){
-				//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
-				_ttDKF_JetCombChoice = 0; // does not compute kinematic fit
-			}
-    	}
+		if ( _ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
+			_ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
+		}
+		if (_ttDKF_njets < 4){
+			//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
+			_ttDKF_JetCombChoice = 0; // does not compute kinematic fit
+		}
+	}
 
-		// build the structure
-		if ( _ttDKF_JetCombChoice == 1 ){ 
-			for ( int j1=0; j1 < _ttDKF_njets ; j1++){
-				for ( int j2=0; j2 < _ttDKF_njets ; j2++){
-					if (j1!=j2){
-						for ( int j3=0; j3 < _ttDKF_njets-1 ; j3++){
-							if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
-								for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
-									if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
-										counter++;
+	// build the structure
+	if ( _ttDKF_JetCombChoice == 1 ){ 
+		for ( int j1=0; j1 < _ttDKF_njets ; j1++){
+			for ( int j2=0; j2 < _ttDKF_njets ; j2++){
+				if (j1!=j2){
+					for ( int j3=0; j3 < _ttDKF_njets-1 ; j3++){
+						if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
+							for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
+								if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
+									counter++;
 
-										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
-										
-										#pragma omp critical
-										inputs.push_back(di);
-									}
+									DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
+									
+									#pragma omp critical
+									inputs.push_back(di);
 								}
 							}
 						}
@@ -4512,7 +4512,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 				}
 			}
 		}
-	//}
+	}
 	events[Event::event_counter].num_Combs = counter;
 }
 
@@ -4573,8 +4573,9 @@ void ttH_dilep::ttDilepKinFit(){
     // Define usefull variables 
     // =================================================================================================================
     
-    if (Event::event_counter == 5703)
-    	cout << "Tamanho: " << inputs.size() << " - " << sizeof(inputs[0]) << endl;
+    //if (Event::event_counter == 5703)
+    //	cout << "Tamanho: " << inputs.size() << " - " << sizeof(inputs[0]) << endl;
+    
     // ---------------------------------------
     // by: S.Amor 13.Dez.2012
     //
@@ -4590,20 +4591,26 @@ void ttH_dilep::ttDilepKinFit(){
     float task_id;
     DilepInput di;
 
-    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
-        // Calculates the new id of the task
-        task_id = (float) counter / (float) dilep_iterations;
+    #pragma omp parallel
+    {
+    	#pragma omp single
+    	cout << "Kinfit with " << omp_get_num_threads() << " threads" << endl;
+    	#pragma omp for
+	    for (unsigned counter = 0; counter < inputs.size() * dilep_iterations; ++counter) {
+	        // Calculates the new id of the task
+	        task_id = (float) counter / (float) dilep_iterations;
 
-        // Check if it needs to pick a new combo
-        if (task_id == (int) task_id)
-            di = inputs[counter];
-        
-        // Apply the variance
-        di.applyVariance(RESOLUTION);
+	        // Check if it needs to pick a new combo
+	        if (task_id == (int) task_id)
+	            di = inputs[counter];
+	        
+	        // Apply the variance
+	        di.applyVariance(RESOLUTION);
 
-        // Run the dileptonic reconstruction 
-        Dilep::CPU::dilep(di);
-    }
+	        // Run the dileptonic reconstruction 
+	        Dilep::CPU::dilep(di);
+	    }
+	}
 
     
 
