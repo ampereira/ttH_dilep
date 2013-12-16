@@ -4417,7 +4417,6 @@ void ttH_dilep::first_DoCuts(){
         //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
         events[Event::event_counter].LastCut++; // LastCut=21
 //        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
-        buildDIVec(mt, mW, ttDKF_njet_UserValue);
 }
 
 void ttH_dilep::second_DoCuts() {
@@ -4752,7 +4751,7 @@ void ttH_dilep::ttDilepKinFit(){
 
 	        // Check if it needs to pick a new combo
 	       // if (task_id == (int) task_id)
-	    	cout << inputs.size() << " - " << total_counter << endl;
+	    	cout << inputs.size() << " - " << total_counter <<endl;
 	        DilepInput di = inputs[total_counter];
 
 
