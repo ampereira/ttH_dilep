@@ -4688,9 +4688,10 @@ void ttH_dilep::ttDilepKinFit(){
 	    double fac_j1j2H_ttbar;
 	    double mass_j1H_ttbar;
 	    double mass_j2H_ttbar;
+	    DilepInput di;
    // #pragma omp for schedule(dynamic) nowait
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
-    	DilepInput di;
+    	
 		int n_ttDKF_Best = -999;
 
 	    // ttbar Probability Factors
