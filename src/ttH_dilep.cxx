@@ -4672,7 +4672,7 @@ void ttH_dilep::ttDilepKinFit(){
     int prev_ev_id = -1;
     unsigned total_counter = 0;
 
-    long long int tp = LIP::KinFit::startTimer();
+    long long int tp2 = LIP::KinFit::startTimer();
     #pragma omp parallel
     {
 	    // ttbar variables
@@ -5217,7 +5217,7 @@ void ttH_dilep::ttDilepKinFit(){
 	}
 	}
 	#pragma omp barrier
-	long long int res = LIP::KinFit::stopTimer(tp);
+	long long int res = LIP::KinFit::stopTimer(tp2);
     cout << "Total2: " << res << " us" << endl;
 
 }
