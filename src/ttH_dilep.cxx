@@ -4617,7 +4617,7 @@ void ttH_dilep::ttDilepKinFit(){
     	//#pragma omp critical
     	//cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
-	#pragma omp barrier
+	//#pragma omp barrier
 	long long int res = LIP::KinFit::stopTimer(tp);
     cout << "Total: " << res << " us" << endl;
 
@@ -4672,7 +4672,8 @@ void ttH_dilep::ttDilepKinFit(){
     int prev_ev_id = -1;
     unsigned total_counter = 0;
 
-  //  #pragma omp parallel
+    long long int tp = LIP::KinFit::startTimer();
+    #pragma omp parallel
     {
 	    // ttbar variables
 	    double myttbar_px;
@@ -4687,7 +4688,7 @@ void ttH_dilep::ttDilepKinFit(){
 	    double mass_j1H_ttbar;
 	    double mass_j2H_ttbar;
 	    DilepInput di;
-   // #pragma omp for schedule(dynamic) nowait
+    #pragma omp for schedule(dynamic) nowait
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
     	
 		int n_ttDKF_Best = -999;
@@ -5215,6 +5216,9 @@ void ttH_dilep::ttDilepKinFit(){
 	    }
 	}
 	}
+	#pragma omp barrier
+	long long int res = LIP::KinFit::stopTimer(tp);
+    cout << "Total2: " << res << " us" << endl;
 
 }
 
