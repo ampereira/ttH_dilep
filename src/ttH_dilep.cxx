@@ -4686,6 +4686,7 @@ void ttH_dilep::ttDilepKinFit(){
 	    double fac_j1j2H_ttbar;
 	    double mass_j1H_ttbar;
 	    double mass_j2H_ttbar;
+	    DilepInput di;
    // #pragma omp for schedule(dynamic) nowait
     for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
     	
@@ -4751,8 +4752,8 @@ void ttH_dilep::ttDilepKinFit(){
 
 	        // Check if it needs to pick a new combo
 	       // if (task_id == (int) task_id)
-	    	cout << inputs.size() << " - " << total_counter <<endl;
-	        DilepInput di = inputs[total_counter];
+	    	//cout << inputs.size() << " - " << total_counter <<endl;
+	        di = inputs[total_counter];
 
 
 	        //cout << "Event: " << Event::event_counter << " partial: " << partial_counter << " total " << total_counter << endl;
