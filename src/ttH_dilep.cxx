@@ -7,7 +7,11 @@
 using namespace std;
 
 #include "myvector.h"
-#include "neut/neut.h"
+#ifdef CUDA
+	#include "neut/neut.h"
+#else
+	#include "neut_cuda/neut.h"
+#endif
 
 extern int dilep_iterations;
 
@@ -4503,7 +4507,8 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 										counter++;
 
 										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
-										di.applyVariance(RESOLUTION);
+										
+										//di.applyVariance(RESOLUTION);
 										//#pragma omp critical
 										inputs.push_back(di);
 									}
@@ -4593,31 +4598,18 @@ void ttH_dilep::ttDilepKinFit(){
     
     long long int tp = LIP::KinFit::startTimer();
 
-    	//int c = 0;
-    #pragma omp parallel// reduction(+:c)
+    #pragma omp parallel
     {
     	float task_id;
     	DilepInput di;
 
     	#pragma omp for schedule(dynamic) nowait
 	    for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
-	        // Calculates the new id of the task
-	        //task_id = (float) counter / (float) dilep_iterations;
-
-	        // Check if it needs to pick a new combo
-	        //if (task_id == (int) task_id)
-	        //    di = inputs[counter];
-	        //c++;
-	        // Apply the variance
-	        //di.applyVariance(RESOLUTION);
-
+    		inputs[counter].applyVariance(RESOLUTION);
 	        // Run the dileptonic reconstruction 
 	        Dilep::CPU::dilep(inputs[counter]);
 	    }
-    	//#pragma omp critical
-    	//cout << "Thread: " << omp_get_thread_num() << " - " << c << endl;
 	}
-	//#pragma omp barrier
 	long long int res = LIP::KinFit::stopTimer(tp);
     cout << "Total: " << res << " us" << endl;
 
