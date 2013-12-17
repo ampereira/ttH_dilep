@@ -229,7 +229,7 @@ namespace Dilep {
 			//for (_tid = 0; _tid < size; ++_tid)
 			//	applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
 			//		_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
-			cout << "Tau2: " << c_bj[1000] << endl;
+			cout << "Tau2: " << _c_bj[1000] << endl;
 			for (unsigned tid = 0; tid < size; ++tid)
 				calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
 							_z_lep, _c_lep, _z_bl, _c_bl, nc, a, tid);
