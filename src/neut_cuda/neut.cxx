@@ -409,7 +409,7 @@ namespace Dilep {
 				if(result.size())
 					++hasSolution;
 
-				cout << "Tau: " << comb << endl;
+				cout << "Tau: " << hasSolution << " - " << result.push_back() << endl;
 				di[comb].setHasSol(hasSolution);
 				di[comb].setResult(&result);
 			}
