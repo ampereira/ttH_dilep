@@ -335,8 +335,10 @@ namespace Dilep {
 				dFlags[(i * 5) + 2] = di[i].getCbjW().Pz();
 				dFlags[(i * 5) + 3] = di[i].getCbjW().isb;
 				dFlags[(i * 5) + 4] = di[i].getCbjW().M();
+
 			}
 
+				cout << "Tau: " << d[1000] << " - " << di[200].getCbj().Px() << endl;
 			// GPU memory allocation of the inputs and outputs of the dilep kernel
 			//cudaMalloc(&dev_t_mass, size*2*sizeof(double));
 			//cudaMalloc(&dev_w_mass, size*2*sizeof(double));
@@ -398,7 +400,7 @@ namespace Dilep {
 				vector<myvector> result;
 
 				for (int sol = 0 ; sol < count[comb] && sol<4 ; sol++) {
-					cout << "Tau: " << count[comb] << endl;
+					//cout << "Tau: " << count[comb] << endl;
 					myvector *mv = new myvector( 
 						TO1D(nc,comb,sol,0),
 						TO1D(nc,comb,sol,1),
