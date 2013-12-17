@@ -21,7 +21,7 @@ namespace Dilep {
 			return mass;
 		}
 
-		double calcMass (double array[]) {
+		void calcMass (double array[]) {
 			double mm = array[3]*array[3] - (array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
 
 			if (mm < 0.0)
@@ -31,7 +31,7 @@ namespace Dilep {
 		}
 
 		// Wrapper for the dilep calculation using the input class
-		void dilep (DilepInput &di) {
+/*		void dilep (DilepInput &di) {
 			std::vector<myvector> *result = new std::vector<myvector> ();
 			int hasSolution = 0;
 
@@ -82,7 +82,7 @@ namespace Dilep {
 		// [3] -> E/isb
 		// [4] -> M
 
-/*		void applyVariance (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
+		void applyVariance (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
 			double _z_bjWFlags[], double _c_bjWFlags[], double _z_lep[], double _c_lep[], double _z_bj[], double _c_bj[],
 			double _z_bl[], double _c_bl[], double _MissPx, double _MissPy) {
 
