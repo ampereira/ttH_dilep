@@ -4730,7 +4730,7 @@ void ttH_dilep::ttDilepKinFit(){
 
 		        //cout << "Event: " << Event::event_counter << " partial: " << partial_counter << " total " << total_counter << endl;
 
-		        
+		        cout << "tau: " << di.getResult().size() << " - " << di.getHasSol() << endl;
 
 		        // result on local variable since it will be accessed plenty of times
 		        *result = di.getResult();
