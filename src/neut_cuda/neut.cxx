@@ -226,10 +226,10 @@ namespace Dilep {
 			// CPU version
 			double _z_bl[5 * size], _c_bl[5 * size];
 
-			//for (_tid = 0; _tid < size; ++_tid)
-			//	applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
-			//		_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
-			cout << "Tau2: " << _c_bj[1000] << endl;
+			for (_tid = 0; _tid < size; ++_tid)
+				applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
+					_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
+			//cout << "Tau2: " << _c_bj[1000] << endl;
 			for (unsigned tid = 0; tid < size; ++tid)
 				calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
 							_z_lep, _c_lep, _z_bl, _c_bl, nc, a, tid);
@@ -338,7 +338,7 @@ namespace Dilep {
 
 			}
 
-			cout << "Tau1: " << di[200].getCbj().Px() << endl;
+			//cout << "Tau1: " << di[200].getCbj().Px() << endl;
 			// GPU memory allocation of the inputs and outputs of the dilep kernel
 			//cudaMalloc(&dev_t_mass, size*2*sizeof(double));
 			//cudaMalloc(&dev_w_mass, size*2*sizeof(double));
@@ -400,7 +400,6 @@ namespace Dilep {
 				vector<myvector> result;
 
 				for (int sol = 0 ; sol < count[comb] && sol<4 ; sol++) {
-					//cout << "Tau: " << count[comb] << endl;
 					myvector *mv = new myvector( 
 						TO1D(nc,comb,sol,0),
 						TO1D(nc,comb,sol,1),
@@ -411,6 +410,7 @@ namespace Dilep {
 				}
 				if(result.size())
 					++hasSolution;
+				cout << "Tau: " << hasSolution << " - " << result.size() << endl;
 
 				di[comb].setHasSol(hasSolution);
 				di[comb].setResult(&result);
