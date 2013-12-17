@@ -19,8 +19,7 @@
 #include <sstream>
 #include "../myvector.h"
 #include "../dilep_input.h"
-#include "../utilities.h"
-#include "../../../LipMiniAnalysis/TLorentzVectorWFlags.h"
+#include "../../../LipMiniAnalysis/src/TLorentzVectorWFlags.h"
 
 #define TPI 3.14159265358979312
 #define TO1D(nc,tid,sol,did) nc[tid*16+sol*4+did]

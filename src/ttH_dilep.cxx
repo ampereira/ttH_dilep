@@ -8,9 +8,9 @@ using namespace std;
 
 #include "myvector.h"
 #ifdef CUDA
-	#include "neut/neut.h"
-#else
 	#include "neut_cuda/neut.h"
+#else
+	#include "neut/neut.h"
 #endif
 
 extern int dilep_iterations;
