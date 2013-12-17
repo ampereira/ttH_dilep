@@ -52,7 +52,7 @@ bin/ttH_dilep: src/ttH_dilep.cxx src/ttH_dilep.h build/neut.o build/dilep_input.
 	$(CXX) $(CXXFLAGS) -o bin/ttH_dilep -I$(INCLUDES) src/ttH_dilep.cxx build/neut.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 bin/ttH_dilep_cuda: src/ttH_dilep.cxx src/ttH_dilep.h build/neut_cuda.o build/dilep_input.o $(LipMiniAnalysis)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -o bin/ttH_dilep_cuda -I$(INCLUDES) src/ttH_dilep.cxx build/neut_cuda.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+	$(CXX) $(CXXFLAGS) -DCUDA -o bin/ttH_dilep_cuda -I$(INCLUDES) src/ttH_dilep.cxx build/neut_cuda.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
 	rm -rf build/*.o bin/*
