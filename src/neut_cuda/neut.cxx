@@ -398,6 +398,7 @@ namespace Dilep {
 				vector<myvector> result;
 
 				for (int sol = 0 ; sol < count[comb] && sol<4 ; sol++) {
+					cout << "Tau: " << count[comb] << endl;
 					myvector *mv = new myvector( 
 						TO1D(nc,comb,sol,0),
 						TO1D(nc,comb,sol,1),
@@ -409,7 +410,6 @@ namespace Dilep {
 				if(result.size())
 					++hasSolution;
 
-				//cout << "Tau: " << hasSolution << " - " << result.size() << endl;
 				di[comb].setHasSol(hasSolution);
 				di[comb].setResult(&result);
 			}
