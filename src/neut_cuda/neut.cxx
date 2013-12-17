@@ -379,7 +379,7 @@ namespace Dilep {
 			//cudaMemcpy(dev_MissPx, _misspx, sizeof(double), cudaMemcpyHostToDevice);
 			//cudaMemcpy(dev_MissPy, _misspy, sizeof(double), cudaMemcpyHostToDevice);
 			
-
+			cout << "tau " << size << endl;
 			dilep_kernel(in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags,
 					a, b, c, d, _misspx, _misspy, t_mass, w_mass, nc, count);
 
@@ -410,8 +410,8 @@ namespace Dilep {
 				if(result.size())
 					++hasSolution;
 
-				di[comb].setHasSol(hasSolution);
-				di[comb].setResult(&result);
+				//di[comb].setHasSol(hasSolution);
+				//di[comb].setResult(&result);
 			}
 
 			// time measurement
