@@ -5216,9 +5216,9 @@ void ttH_dilep::ttDilepKinFit(){
 	    }
 	}
 	}
-	#pragma omp barrier
+	//#pragma omp barrier
 	long long int res2 = LIP::KinFit::stopTimer(tp2);
-    cout << "Total2: " << res2 << " us" << endl;
+    cout << "Total2: " << res2 << " us - " << sizeof(DilepInput) * inputs.size() << endl;
 
 }
 
