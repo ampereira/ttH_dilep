@@ -73,7 +73,7 @@ namespace Dilep {
 			#ifdef MEASURE_DILEP
 			stopTimer(time);
 			#endif
-		}
+		}*/
 
 		// TLorentzs/Flags
 		// [0] -> x
@@ -103,7 +103,7 @@ namespace Dilep {
 			double *z_bl 		= &STRIDE5(_z_bl, 0);
 			double *c_bl 		= &STRIDE5(_c_bl, 0);
 
-
+/*
 			// new four-vectors	
 			double n_Px, n_Py, n_Pz, n_Pt, n_E;	
 			double delPx, delPy;
@@ -196,7 +196,7 @@ namespace Dilep {
 			delPy = c_bjWFlags[1] - n_Py;			
 			in_mpx[0] += delPx; in_mpx[1] += delPx; // correct miss(Px,Py) neutrino 1
 			in_mpy[0] += delPy; in_mpy[1] += delPy; // correct miss(Px,Py) neutrino 2
-
+*/
 			// ---------------------------------------
 			// Define TLorentzVectors for (b,l) system
 			// ---------------------------------------
@@ -217,7 +217,7 @@ namespace Dilep {
 			calcMass(z_bl);
 			calcMass(c_bl);
 		}
-*/
+
 		//__global__
 		void dilep_kernel (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
 			double _z_bjWFlags[], double _c_bjWFlags[], double _z_lep[], double _c_lep[], double _z_bj[], double _c_bj[],
