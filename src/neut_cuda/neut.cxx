@@ -425,11 +425,10 @@ namespace Dilep {
 		void calc_dilep(double t_mass[], double w_mass[], 
 				double in_mpx[], double in_mpy[], double _lep_a[], 
 				double _lep_b[], double _bl_a[], double _bl_b[], 
-				double nc[], int a[])
+				double nc[], int a[], unsigned tid)
 		{
 
 			//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;
-			unsigned tid = 1;
 			double G_1, G_3;
 			double WMass_a, WMass_b, tMass_a, tMass_b, lep_a[5], lep_b[5], bl_a[5], bl_b[5];
 			double in_mpz[2] = {0.0, 0.0};
