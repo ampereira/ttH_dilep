@@ -409,6 +409,7 @@ namespace Dilep {
 				if(result.size())
 					++hasSolution;
 
+				cout << "Tau: " << comb << endl;
 				di[comb].setHasSol(hasSolution);
 				di[comb].setResult(&result);
 			}
@@ -676,8 +677,6 @@ namespace Dilep {
 			double WMass_a, WMass_b, tMass_a, tMass_b, lep_a[5], lep_b[5], bl_a[5], bl_b[5];
 			double in_mpz[2] = {0.0, 0.0};
 
-
-			cout << "tau dentro" << endl;
 
 			WMass_a = STRIDE2(w_mass, 0);
 			tMass_a = STRIDE2(t_mass, 0);
