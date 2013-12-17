@@ -82,7 +82,7 @@ namespace Dilep {
 		// [3] -> E/isb
 		// [4] -> M
 
-		void applyVariance (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
+/*		void applyVariance (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
 			double _z_bjWFlags[], double _c_bjWFlags[], double _z_lep[], double _c_lep[], double _z_bj[], double _c_bj[],
 			double _z_bl[], double _c_bl[], double _MissPx, double _MissPy) {
 
@@ -217,7 +217,7 @@ namespace Dilep {
 			calcMass(z_bl);
 			calcMass(c_bl);
 		}
-
+*/
 		//__global__
 		void dilep_kernel (double _in_mpx[], double _in_mpy[], double _z_lepWFlags[], double _c_lepWFlags[],
 			double _z_bjWFlags[], double _c_bjWFlags[], double _z_lep[], double _c_lep[], double _z_bj[], double _c_bj[],
@@ -226,9 +226,9 @@ namespace Dilep {
 			// CPU version
 			double _z_bl[5 * size], _c_bl[5 * size];
 
-			for (_tid = 0; _tid < size; ++_tid)
-				applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
-					_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
+			//for (_tid = 0; _tid < size; ++_tid)
+			//	applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
+			//		_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
 			
 			for (unsigned tid = 0; tid < size; ++tid)
 				calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
