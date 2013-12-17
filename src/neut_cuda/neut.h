@@ -63,6 +63,10 @@ namespace Dilep {
 						double in_mpx[], double in_mpy[], double _lep_a[], 
 						double _lep_b[], double _bl_a[], double _bl_b[], 
 						double nc[], int a[], unsigned tid);
+		void calc_dilep(double t_mass[], double w_mass[], 
+						double in_mpx[], double in_mpy[], double _lep_a[], 
+						double _lep_b[], double _bl_a[], double _bl_b[], 
+						double nc[], int a[]);
 
 	}
 }
