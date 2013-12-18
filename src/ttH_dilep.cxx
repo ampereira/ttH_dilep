@@ -4739,6 +4739,7 @@ void ttH_dilep::ttDilepKinFit(){
 		        std::vector<myvector>::iterator pp;
 
 		        for ( pp = result->begin(); pp < result->end(); pp++) {
+		        	cout << "Event: " << partial_counter << " - " << result->size() << endl;
 
 		            double   px,  py,  pz,  E, 
 		                     apx, apy, apz, aE;
