@@ -2,6 +2,7 @@
 
 using std::vector;
 using namespace std;
+
 extern std::vector<Event::EventData> events;
 
 namespace Dilep {
@@ -245,7 +246,7 @@ namespace Dilep {
 			//				_z_lep, _c_lep, _z_bl, _c_bl, nc, a);
 		}
 
-		void dilep (vector<DilepInput> &di) {
+		void dilep (vector<DilepInput> &di, unsigned events_size) {
 
 			size = di.size();
 			
