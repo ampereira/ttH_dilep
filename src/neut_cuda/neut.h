@@ -36,7 +36,6 @@
 #define CUDA_CALL(x) x
 
 extern int dilep_iterations;
-extern std::vector<Event::EventData> events;
 
 
 namespace Dilep {

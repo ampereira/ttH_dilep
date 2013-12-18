@@ -2,6 +2,7 @@
 
 using std::vector;
 using namespace std;
+extern std::vector<Event::EventData> events;
 
 namespace Dilep {
 	namespace GPU {

@@ -7,7 +7,7 @@
 #include <vector>
 #include "myvector.h"
 //#include "utilities.h"
-#include "../../LipMiniAnalysis/src/LipMiniAnalysis.h"
+#include "../../LipMiniAnalysis/src/TLorentzVectorWFlags.h"
 
 #define SEED 123456.0
 
