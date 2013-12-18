@@ -19,7 +19,7 @@
 #include <sstream>
 #include "../myvector.h"
 #include "../dilep_input.h"
-#include "../../../LipMiniAnalysis/src/TLorentzVectorWFlags.h"
+#include "../../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
 #define TPI 3.14159265358979312
 #define TO1D(nc,tid,sol,did) nc[tid*16+sol*4+did]
@@ -36,6 +36,7 @@
 #define CUDA_CALL(x) x
 
 extern int dilep_iterations;
+extern std::vector<Event::EventData> events;
 
 
 namespace Dilep {
