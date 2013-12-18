@@ -396,25 +396,29 @@ namespace Dilep {
 			// reconstruction of the normal output of dilep
 			// o num de combs*vars e o num de threads
 
-			for (unsigned comb = 0; comb < size; ++comb) {
-				vector<myvector> result;
+			int total;
+			for (Event::event_counter = 0, total = 0; Event::event_counter < events.size(); ++Event::event_counter) {
+				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs; ++comb, ++total) {
+					vector<myvector> result;
 
-				for (int sol = 0 ; sol < count[comb] && sol<4 ; sol++) {
-					myvector *mv = new myvector( 
-						TO1D(nc,comb,sol,0),
-						TO1D(nc,comb,sol,1),
-						TO1D(nc,comb,sol,2),
-						TO1D(nc,comb,sol,3) );
-					
-					result.push_back(*mv);
+					for (int sol = 0 ; sol < count[total] && sol<4 ; sol++) {
+						myvector *mv = new myvector( 
+							TO1D(nc,total,sol,0),
+							TO1D(nc,total,sol,1),
+							TO1D(nc,total,sol,2),
+							TO1D(nc,total,sol,3) );
+						
+						result.push_back(*mv);
+					}
+					if(result.size())
+						++hasSolution;
+					cout << "Tau: " << hasSolution << " - " << result.size() << endl;
+
+					di[total].setHasSol(hasSolution);
+					di[total].setResult(&result);
 				}
-				if(result.size())
-					++hasSolution;
-				cout << "Tau: " << hasSolution << " - " << result.size() << endl;
-
-				di[comb].setHasSol(hasSolution);
-				di[comb].setResult(&result);
 			}
+			cout << "Sizes: " << events.size() << " - " << total << " - " << size << endl<<endl;
 
 			// time measurement
 			#ifdef MEASURE_DILEP
