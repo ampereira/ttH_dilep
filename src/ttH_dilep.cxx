@@ -32,6 +32,7 @@ extern int dilep_iterations;
 #include <cmath>
 
 #include <omp.h>
+extern std::vector<Event::EventData> events;
 
 // #############################################################################
 ttH_dilep::ttH_dilep():LipMiniAnalysis(){
