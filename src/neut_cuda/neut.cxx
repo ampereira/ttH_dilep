@@ -246,7 +246,7 @@ namespace Dilep {
 			//				_z_lep, _c_lep, _z_bl, _c_bl, nc, a);
 		}
 
-		void dilep (vector<DilepInput> &di, unsigned events_size) {
+		void dilep (vector<DilepInput> &di) {
 
 			size = di.size();
 			
