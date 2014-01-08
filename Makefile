@@ -6,53 +6,66 @@ SHELL = /bin/sh
 
 DEFINES = -Dextname
 
-CXX        = g++
-LD         = g++
 
-ROOTCFLAGS    = $(shell $(ROOTSYS)/bin/root-config --cflags)
-ROOTLIBS      = $(shell $(ROOTSYS)/bin/root-config --libs)
+CXX = g++
+LD  = g++
+
+ROOTCFLAGS = $(shell $(ROOTSYS)/bin/root-config --cflags)
+ROOTLIBS   = $(shell $(ROOTSYS)/bin/root-config --libs)
 ROOTGLIBS  = $(shell root-config --glibs) -lMinuit -lEG -lPhysics -lTreePlayer
 
-CXXFLAGS   = -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -O3 -fopenmp $(ROOTCFLAGS)
-#CXXFLAGS   = -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -ggdb3 -fopenmp $(ROOTCFLAGS)
+CXXFLAGS = -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -fopenmp $(ROOTCFLAGS)
 
-LIBS       = $(ROOTLIBS)
-GLIBS      = $(ROOTGLIBS)
+ifeq ($(DEBUG),yes)
+	CXXFLAGS += -ggdb3
+else
+	CXXFLAGS += -O3
+endif
 
-INCLUDES = -I$(incdir) -I$(ROOTSYS)/include -I$(ROOTCOREDIR)/include
+LIBS  = $(ROOTLIBS)
+GLIBS = $(ROOTGLIBS)
+
+INCLUDES = -I$(ROOTSYS)/include
 
 ################################################################################
 # analysis code
 ################################################################################
 
-LipMiniAnalysis = ../LipMiniAnalysis/lib
-COMMONANALYSISCODE = src/DefineSamples_Simulation.cxx src/DefineSamples_Data.cxx src/UserCommandLineOptions.cxx
+LIPMINIANALYSIS_DIR = ../LipMiniAnalysis/lib
+
+SRC_DIR = src
+BIN_DIR = bin
+BUILD_DIR = build
+SRC = $(wildcard $(SRC_DIR)/*.cxx)
+OBJ = $(patsubst $(SRC_DIR)/%.cxx,$(BUILD_DIR)/%.o,$(SRC))
+DEPS = $(patsubst $(BUILD_DIR)/%.o,$(BUILD_DIR)/%.d,$(OBJ))
+
 
 ################################################################################
 # Rules
 ################################################################################
 
-all: bin/ttH_dilep
+all: $(BIN_DIR)/ttH_dilep
 
-cudatest: bin/ttH_dilep_cuda
+cudatest: $(BIN_DIR)/ttH_dilep_cuda
 
-build/old_neut.o: src/neut.cxx src/myvector.h src/neut.h
-	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c src/neut.cxx -o build/neut.o
+$(BUILD_DIR)/old_neut.o: $(SRC_DIR)/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut.h
+	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c $(SRC_DIR)/neut.cxx -o $(BUILD_DIR)/neut.o
 
-build/dilep_input.o: src/dilep_input.cxx src/dilep_input.h
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c src/dilep_input.cxx -o build/dilep_input.o
+$(BUILD_DIR)/dilep_input.o: $(SRC_DIR)/dilep_input.cxx $(SRC_DIR)/dilep_input.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/dilep_input.cxx -o $(BUILD_DIR)/dilep_input.o
 
-build/neut.o: src/neut/neut.cxx src/myvector.h src/neut/neut.h
-	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c src/neut/neut.cxx -o build/neut.o
+$(BUILD_DIR)/neut.o: $(SRC_DIR)/neut/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut/neut.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut/neut.cxx -o $(BUILD_DIR)/neut.o
 
-build/neut_cuda.o: src/neut_cuda/neut.cxx src/myvector.h src/neut_cuda/neut.h
-	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c src/neut_cuda/neut.cxx -o build/neut_cuda.o
+$(BUILD_DIR)/neut_cuda.o: $(SRC_DIR)/neut_cuda/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut_cuda/neut.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_cuda/neut.cxx -o $(BUILD_DIR)/neut_cuda.o
 
-bin/ttH_dilep: src/ttH_dilep.cxx src/ttH_dilep.h build/neut.o build/dilep_input.o $(LipMiniAnalysis)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -o bin/ttH_dilep -I$(INCLUDES) src/ttH_dilep.cxx build/neut.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+$(BIN_DIR)/ttH_dilep: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIR)/ttH_dilep $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
-bin/ttH_dilep_cuda: src/ttH_dilep.cxx src/ttH_dilep.h build/neut_cuda.o build/dilep_input.o $(LipMiniAnalysis)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -DCUDA -o bin/ttH_dilep_cuda -I$(INCLUDES) src/ttH_dilep.cxx build/neut_cuda.o build/dilep_input.o -L$(LipMiniAnalysis) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+$(BIN_DIR)/ttH_dilep_cuda: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
+	$(CXX) $(CXXFLAGS) -DCUDA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
-	rm -rf build/*.o bin/*
+	rm -rf $(BUILD_DIR)/*.o $(BIN_DIR)/*

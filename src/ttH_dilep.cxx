@@ -221,7 +221,7 @@ void ttH_dilep::UserCommandLineOptions(char *options, Int_t print) {
 //  by: A.Onofre
 // #############################################################################
 
-  #include "UserCommandLineOptions.cxx"
+  #include "aux_files/UserCommandLineOptions.cxx"
 
 }
 
@@ -263,8 +263,8 @@ void ttH_dilep::DefineSamples(){
 
     // =====New Mini Ntuples FDS @ 8 TeV TRCR14-00-13 (ttbar and ttH with top quark status code 155)
     
-    #include "define_samples_data_MarkOwen.cxx"
-    #include "define_samples_simulation_MarkOwen.cxx"
+    #include "aux_files/define_samples_data_MarkOwen.cxx"
+    #include "aux_files/define_samples_simulation_MarkOwen.cxx"
 }
 
 
