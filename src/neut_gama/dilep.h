@@ -41,7 +41,7 @@ public:
 	void toz(double_t k[], double_t l[], double_t g[]);
 	void my_qu( double_t my_in[], double_t my_val[]);
 	void calcMass (double_t array[]);
-
+	double_t calcMass (double_t x, double_t y, double_t z, double_t e);
 	// Calculates dileptonic kinematics
 	void calc_dilep(double_t t_mass[], double_t w_mass[], 
 					double_t in_mpx[], double_t in_mpy[], double_t _lep_a[], 

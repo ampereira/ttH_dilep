@@ -71,6 +71,19 @@ void DilepClass::calcMass (double_t array[]) {
 		array[4] = sqrt(mm);
 }
 
+double_t DilepClass::calcMass (double_t x, double_t y, double_t z, double_t e) {
+	double_t mm, mass;
+
+	mm = e*e - (x*x + y*y + z*z);
+
+	if (mm < 0.0)
+		mass = -sqrt(-mm);
+	else
+		mass = sqrt(mm);
+
+	return mass;
+}
+
 void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t _z_lepWFlags[], double_t _c_lepWFlags[],
 			double_t _z_bjWFlags[], double_t _c_bjWFlags[], double_t _z_lep[], double_t _c_lep[], double_t _z_bj[], double_t _c_bj[],
 			double_t _z_bl[], double_t _c_bl[], double_t _MissPx, double_t _MissPy) {
