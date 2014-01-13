@@ -14,11 +14,11 @@ typedef double double_t;
 class DilepClass : public work {
 
 public:
-	double_t _in_mpx[], _in_mpy[], _z_lepWFlags[], _c_lepWFlags[], _z_bjWFlags[], _c_bjWFlags[];
-	double_t _z_lep[], _c_lep[], _z_bj, _c_bj[], _t_mass[], _w_mass[], nc[];
+	double_t *_in_mpx, *_in_mpy, *_z_lepWFlags, *_c_lepWFlags, *_z_bjWFlags, *_c_bjWFlags;
+	double_t *_z_lep, *_c_lep, *_z_bj, *_c_bj, *_t_mass, *_w_mass, *nc;
 
 	double_t _MissPx, _MissPy;
-	int a[];
+	int *a;
 
 	unsigned upper_bound, lower_bound, length;
 
