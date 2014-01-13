@@ -86,9 +86,8 @@ double_t DilepClass::calcMass (double_t x, double_t y, double_t z, double_t e) {
 
 void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t _z_lepWFlags[], double_t _c_lepWFlags[],
 			double_t _z_bjWFlags[], double_t _c_bjWFlags[], double_t _z_lep[], double_t _c_lep[], double_t _z_bj[], double_t _c_bj[],
-			double_t _z_bl[], double_t _c_bl[], double_t _MissPx, double_t _MissPy) {
+			double_t _z_bl[], double_t _c_bl[], double_t _MissPx, double_t _MissPy, unsigned tid) {
 
-	unsigned tid = _tid;
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;;
 
 	// Using pointers for better code readbility - does it affect the performance in the kernel?
@@ -126,9 +125,9 @@ void DilepClass::execute (void) {
 	// CPU version
 	double_t _z_bl[5 * length], _c_bl[5 * length];
 
-	for (_tid = 0; _tid < length; ++_tid)
+	for (unsigned tid = 0; tid < length; ++tid)
 		applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
-			_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
+			_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy, tid);
 
 	for (unsigned tid = 0; tid < length; ++tid)
 		calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
