@@ -291,38 +291,38 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 	double_t g[6];
 	double_t m[17];	// m_80 and m_81 are in positions 15 and 16 respectively
 
-	double_t g[0] = 4.*out_e[0]*out_e[0]*k[4]*k[4] + 4.*out_e[4]*out_e[4] + 8.*out_e[0]*out_e[4]*k[4];
-	double_t m[0] = g[0]*k[0];
-	double_t g[1] = 8.*out_e[0]*out_e[0]*k[3]*k[4] + 8.*out_e[0]*out_e[2]*k[4] + 8.*out_e[0]*out_e[4]*k[3] + 8.*out_e[2]*out_e[4];
-	double_t g[2] = 4.*out_e[0]*out_e[0]*k[3]*k[3] + 4.*out_e[2]*out_e[2] + 8.*out_e[0]*out_e[2]*k[3];
-	double_t g[3] = out_e[0]*k[0] + out_e[0]*k[4]*k[4];
-	double_t g[4] = out_e[0]*k[1] + 2.*out_e[0]*k[3]*k[4] + 2.*out_e[2]*k[4];
-	double_t g[5] = out_e[0]*k[2] + out_e[0]*k[3]*k[3] + 2.*out_e[2]*k[3] + out_e[5];
+	g[0] = 4.*out_e[0]*out_e[0]*k[4]*k[4] + 4.*out_e[4]*out_e[4] + 8.*out_e[0]*out_e[4]*k[4];
+	m[0] = g[0]*k[0];
+	g[1] = 8.*out_e[0]*out_e[0]*k[3]*k[4] + 8.*out_e[0]*out_e[2]*k[4] + 8.*out_e[0]*out_e[4]*k[3] + 8.*out_e[2]*out_e[4];
+	g[2] = 4.*out_e[0]*out_e[0]*k[3]*k[3] + 4.*out_e[2]*out_e[2] + 8.*out_e[0]*out_e[2]*k[3];
+	g[3] = out_e[0]*k[0] + out_e[0]*k[4]*k[4];
+	g[4] = out_e[0]*k[1] + 2.*out_e[0]*k[3]*k[4] + 2.*out_e[2]*k[4];
+	g[5] = out_e[0]*k[2] + out_e[0]*k[3]*k[3] + 2.*out_e[2]*k[3] + out_e[5];
 
-	double_t m[1] = g[0]*k[1] + g[1]*k[0];
-	double_t m[2] = g[0]*k[2] + g[1]*k[1] + g[2]*k[0];
-	double_t m[3] = g[1]*k[2] + g[2]*k[1];
-	double_t m[4] = g[2]*k[2];
+	m[1] = g[0]*k[1] + g[1]*k[0];
+	m[2] = g[0]*k[2] + g[1]*k[1] + g[2]*k[0];
+	m[3] = g[1]*k[2] + g[2]*k[1];
+	m[4] = g[2]*k[2];
 
-	double_t m[5]  = out_e[1]*out_e[1] + 4.*out_e[4]*out_e[4]*k[4]*k[4] + 4.*out_e[1]*out_e[4]*k[4];
-	double_t m[6]  = 4.*out_e[1]*out_e[3] + 8.*out_e[4]*out_e[4]*k[3]*k[4] + 4.*out_e[1]*out_e[4]*k[3] + 8.*out_e[3]*out_e[4]*k[4];
-	double_t m[7]  = 4.*out_e[3]*out_e[3] + 4.*out_e[4]*out_e[4]*k[3]*k[3] + 8.*out_e[3]*out_e[4]*k[3];
+	m[5]  = out_e[1]*out_e[1] + 4.*out_e[4]*out_e[4]*k[4]*k[4] + 4.*out_e[1]*out_e[4]*k[4];
+	m[6]  = 4.*out_e[1]*out_e[3] + 8.*out_e[4]*out_e[4]*k[3]*k[4] + 4.*out_e[1]*out_e[4]*k[3] + 8.*out_e[3]*out_e[4]*k[4];
+	m[7]  = 4.*out_e[3]*out_e[3] + 4.*out_e[4]*out_e[4]*k[3]*k[3] + 8.*out_e[3]*out_e[4]*k[3];
 	// old m_80
-	double_t m[15] = pow(g[3],2);
+	m[15] = pow(g[3],2);
 	// old m_81
-	double_t m[16] = 2*g[3]*g[4];
-	double_t m[8]  = pow(g[4],2) + 2.*g[3]*g[5];
-	double_t m[9] = 2.*g[4]*g[5];
-	double_t m[10] = g[5]*g[5];
+	m[16] = 2*g[3]*g[4];
+	m[8]  = pow(g[4],2) + 2.*g[3]*g[5];
+	m[9] = 2.*g[4]*g[5];
+	m[10] = g[5]*g[5];
 
-	double_t m[11] = 	2.*out_e[0]*out_e[1]*k[0] + 2.*out_e[0]*out_e[1]*k[4]*k[4] + 4.*out_e[0]*out_e[4]*k[0]*k[4] + 4.*out_e[0]*out_e[4]*pow(k[4],3);
-	double_t m[12] = 	2.*out_e[0]*out_e[1]*k[1] + 4.*out_e[0]*out_e[1]*k[3]*k[4] + 4.*out_e[1]*out_e[2]*k[4] + 
+	m[11] = 	2.*out_e[0]*out_e[1]*k[0] + 2.*out_e[0]*out_e[1]*k[4]*k[4] + 4.*out_e[0]*out_e[4]*k[0]*k[4] + 4.*out_e[0]*out_e[4]*pow(k[4],3);
+	m[12] = 	2.*out_e[0]*out_e[1]*k[1] + 4.*out_e[0]*out_e[1]*k[3]*k[4] + 4.*out_e[1]*out_e[2]*k[4] + 
 		4.*out_e[0]*(out_e[3]*k[0] + out_e[3]*k[4]*k[4] + out_e[4]*k[0]*k[3] + out_e[4]*k[1]*k[4]) + 
 		12.*out_e[0]*out_e[4]*k[3]*k[4]*k[4] + 8.*out_e[2]*out_e[4]*k[4]*k[4];
-	double_t m[13] = 	2.*out_e[0]*out_e[1]*k[2] + 2.*out_e[0]*out_e[1]*k[3]*k[3] + 4.*out_e[2]*out_e[1]*k[3] + 2.*out_e[1]*out_e[5] + 4.*out_e[0]*out_e[3]*k[1] + 
+	m[13] = 	2.*out_e[0]*out_e[1]*k[2] + 2.*out_e[0]*out_e[1]*k[3]*k[3] + 4.*out_e[2]*out_e[1]*k[3] + 2.*out_e[1]*out_e[5] + 4.*out_e[0]*out_e[3]*k[1] + 
 		8.*out_e[0]*out_e[3]*k[3]*k[4] + 8.*out_e[3]*out_e[2]*k[4] + 4.*out_e[0]*out_e[4]*k[1]*k[3] + 4.*out_e[0]*out_e[4]*k[2]*k[4] + 
 		12.*out_e[0]*out_e[4]*k[3]*k[3]*k[4] + 16.*out_e[2]*out_e[4]*k[3]*k[4] + 4.*out_e[4]*out_e[5]*k[4];
-	double_t m[14] = 	4.*out_e[0]*out_e[3]*(k[2] + k[3]*k[3]) + 8.*out_e[3]*out_e[2]*k[3] + 4.*out_e[3]*out_e[5] + 4.*out_e[0]*out_e[4]*(k[2]*k[3] + pow(k[3],3)) + 
+	m[14] = 	4.*out_e[0]*out_e[3]*(k[2] + k[3]*k[3]) + 8.*out_e[3]*out_e[2]*k[3] + 4.*out_e[3]*out_e[5] + 4.*out_e[0]*out_e[4]*(k[2]*k[3] + pow(k[3],3)) + 
 		8.*out_e[2]*out_e[4]*k[3]*k[3] + 4.*out_e[4]*out_e[5]*k[3];
 
 	double_t  re[5];
@@ -339,13 +339,20 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 
 	int ncand(0);
 
-	double_t rec_x[2], rec_y[2], rec_z[2], rec_e[2];
+	/*
+	 * m_w11 - m_wt[0]
+	 * m_w12 - m_wt[1]
+	 * m_t11 - m_wt[2]
+	 * m_t12 - m_wt[3]
+	 */
+	double_t rec_x[2], rec_y[2], rec_z[2], rec_e[2], m_wt[4];
+	bool m_good_eq[6];
 
 	for (int j=0; j<8; j+=2){
 		double_t delta = k[0]*output[j]*output[j] + k[1]*output[j] + k[2];
 		if ( output[j+1]==0 && delta >=0) {
-			if ( (fx_1 + fx_2*output[j])!=0 ) {
-				rec_x[0] = (fx_3*pow(output[j],2) + fx_4*output[j] + fx_5)/(fx_1 + fx_2*output[j]);
+			if ( (fx[0] + fx[1]*output[j])!=0 ) {
+				rec_x[0] = (fx[2]*pow(output[j],2) + fx[3]*output[j] + fx[4])/(fx[0] + fx[1]*output[j]);
 			} else {
 				rec_x[0] = sqrt(delta)+k[3]+k[4]*output[j];
 			}  
@@ -359,26 +366,26 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 			rec_e[1] = sqrt(rec_x[1]*rec_x[1] + rec_y[1]*rec_y[1] + rec_z[1]*rec_z[1]);
 			
 			// self-consistence check and control of the solutions
-			double_t m_w11 = calcMass(rec_x[0]+lep_a[0], rec_y[0]+lep_a[1], rec_z[0]+lep_a[2], rec_e[0]+lep_a[3]);
-			double_t m_w12 = calcMass(rec_x[1]+lep_b[0], rec_y[1]+lep_b[1], rec_z[1]+lep_b[2], rec_e[1]+lep_b[3]);
-			double_t m_t11 = calcMass(rec_x[0]+ bl_a[0], rec_y[0]+ bl_a[1], rec_z[0]+ bl_a[2], rec_e[0]+ bl_a[3]);
-			double_t m_t12 = calcMass(rec_x[1]+ bl_b[0], rec_y[1]+ bl_b[1], rec_z[1]+ bl_b[2], rec_e[1]+ bl_b[3]);
+			m_wt[0] = calcMass(rec_x[0]+lep_a[0], rec_y[0]+lep_a[1], rec_z[0]+lep_a[2], rec_e[0]+lep_a[3]);
+			m_wt[1] = calcMass(rec_x[1]+lep_b[0], rec_y[1]+lep_b[1], rec_z[1]+lep_b[2], rec_e[1]+lep_b[3]);
+			m_wt[2] = calcMass(rec_x[0]+ bl_a[0], rec_y[0]+ bl_a[1], rec_z[0]+ bl_a[2], rec_e[0]+ bl_a[3]);
+			m_wt[3] = calcMass(rec_x[1]+ bl_b[0], rec_y[1]+ bl_b[1], rec_z[1]+ bl_b[2], rec_e[1]+ bl_b[3]);
 
 			// m_delta_mass is 1000.0
-			bool m_good_eq1 = ( fabs(in_mpx[0] -(rec_x[0]+rec_x[1])) <= 0.01 ) * true + 
+			m_good_eq[0] = ( fabs(in_mpx[0] -(rec_x[0]+rec_x[1])) <= 0.01 ) * true + 
 							  ( fabs(in_mpx[0] -(rec_x[0]+rec_x[1])) > 0.01 ) * false;
-			bool m_good_eq2 = ( fabs(in_mpy[0] -(rec_y[0]+rec_y[1])) <= 0.01 ) * true +
+			m_good_eq[1] = ( fabs(in_mpy[0] -(rec_y[0]+rec_y[1])) <= 0.01 ) * true +
 							  ( fabs(in_mpy[0] -(rec_y[0]+rec_y[1])) > 0.01 ) * false;
-			bool m_good_eq3 = ( fabs(m_w11 - w_mass[0]) <= 1000.0 ) * true + 
-							  ( fabs(m_w11 - w_mass[0]) > 1000.0 ) * false;
-			bool m_good_eq4 = ( fabs(m_w12 - w_mass[1]) <= 1000.0 ) * true +
-							  ( fabs(m_w12 - w_mass[1]) > 1000.0 ) * false;
-			bool m_good_eq5 = ( fabs(m_t11 - t_mass[0]) <= 1000.0 ) * true +
-							  ( fabs(m_t11 - t_mass[0]) > 1000.0 ) * false;
-			bool m_good_eq6 = ( fabs(m_t12 - t_mass[1]) <= 1000.0 ) * true +
-							  ( fabs(m_t12 - t_mass[1]) <= 1000.0 ) * false;
+			m_good_eq[2] = ( fabs(m_wt[0] - w_mass[0]) <= 1000.0 ) * true + 
+							  ( fabs(m_wt[0] - w_mass[0]) > 1000.0 ) * false;
+			m_good_eq[3] = ( fabs(m_wt[1] - w_mass[1]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[1] - w_mass[1]) > 1000.0 ) * false;
+			m_good_eq[4] = ( fabs(m_wt[2] - t_mass[0]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[2] - t_mass[0]) > 1000.0 ) * false;
+			m_good_eq[5] = ( fabs(m_wt[3] - t_mass[1]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[3] - t_mass[1]) <= 1000.0 ) * false;
 
-			bool cond = m_good_eq1 && m_good_eq2 && m_good_eq3 && m_good_eq4 && m_good_eq5 && m_good_eq6;
+			bool cond = m_good_eq[0] && m_good_eq[1] && m_good_eq[2] && m_good_eq[3] && m_good_eq[4] && m_good_eq[5];
 			
 			// aqui podem nao chegar as threads todas
 			//__syncthreads();
