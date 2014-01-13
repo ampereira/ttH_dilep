@@ -6,26 +6,60 @@ DilepClass::DilepClass () {
 
 DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
 			double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-			double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[]) {
+			double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, unsigned len) {
 
-	_in_mpx = in_mpx;
-	_in_mpy = in_mpy;
+	_in_mpx		 = in_mpx;
+	_in_mpy		 = in_mpy;
 	_z_lepWFlags = z_lepWFlags;
 	_c_lepWFlags = c_lepWFlags;
-	_z_bjWFlags = z_bjWFlags;
-	_c_bjWFlags = c_bjWFlags
-	_z_lep = z_lep;
-	_c_lep = c_lep;
-	_z_bj = z_bj;
-	_c_bj = c_bj;
-	_MissPx = MissPx;
-	_MissPy = MissPy;
-	_t_mass = t_mass;
-	_w_mass = w_mass;
+	_z_bjWFlags  = z_bjWFlags;
+	_c_bjWFlags  = c_bjWFlags
+	_z_lep 		 = z_lep;
+	_c_lep 		 = c_lep;
+	_z_bj 		 = z_bj;
+	_c_bj 		 = c_bj;
+	_MissPx 	 = MissPx;
+	_MissPy 	 = MissPy;
+	_t_mass 	 = t_mass;
+	_w_mass 	 = w_mass;
+	upper_bound  = up;
+	lower_bound  = lo;
+	length		 = len;
 }
 
 DilepClass::~DilepClass () {
 	
+}
+
+/*
+// Dicing function. DEV is the amount of dices and wl I have no idea...
+virtual ptrwork* dice (double *wl, unsigned &DEV) {
+	ptrwork *L = ne ptrwork[DEV];
+	unsigned start = lower_bound;
+
+	// Iterates through the amount of divisions to make
+	for (unsigned k = 0; k < DEV - 1; ++k) {
+		// Calculates the size of the partition
+		unsigned size = (upper_bound - lower_bound) * wl[k];
+
+		// Creates the new work for the current k
+		if (size != 0) {
+			L[k] = new DilepClass (_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags
+								   _z_lep, _c_lep, _z_bj, _c_bj, _MissPx, _MissPy, _t_mass, _w_mass
+								   start, start + size, length);
+
+			start += size;
+		} else {
+			L[k] = NULL;
+		}
+	}
+*/
+	// Last diced piece. Handled differently to avoid sizes higher than the limit
+	L[DEV - 1] = new DilepClass (_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags
+								   _z_lep, _c_lep, _z_bj, _c_bj, _MissPx, _MissPy, _t_mass, _w_mass
+								   start, upper_bound, length);
+
+	return L;
 }
 
 void DilepClass::calcMass (double_t array[]) {
@@ -77,13 +111,13 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 void DilepClass::execute (void) {
 
 	// CPU version
-	double_t _z_bl[5 * size], _c_bl[5 * size];
+	double_t _z_bl[5 * length], _c_bl[5 * length];
 
-	for (_tid = 0; _tid < size; ++_tid)
+	for (_tid = 0; _tid < length; ++_tid)
 		applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
 			_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy);
 
-	for (unsigned tid = 0; tid < size; ++tid)
+	for (unsigned tid = 0; tid < length; ++tid)
 		calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
 					_z_lep, _c_lep, _z_bl, _c_bl, nc, a, tid);
 }

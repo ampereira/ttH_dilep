@@ -20,15 +20,18 @@ public:
 	double_t _MissPx, _MissPy;
 	int a[];
 
+	unsigned upper_bound, lower_bound, length;
 
 	/*__HYBRID__*/ DilepClass (void);
 	DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
-			double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-			double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[]);
+				double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
+				double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, unsigned len);
 	~DilepClass ();
 
 	// Performs the variance and the dileptonic stuff
 	void execute (void);
+
+	//virtual ptrwork* dice (double *wl, unsigned &DEV);
 
 	// Helper functions
 	void Csqrt(double_t _ar, double_t _ai, double_t _my[]);

@@ -75,7 +75,7 @@ $(BIN_DIR)/ttH_dilep: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DI
 $(BIN_DIR)/ttH_dilep_cuda: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
 	$(CXX) $(CXXFLAGS) -DCUDA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
-$(BIN_DIR)/ttH_dilep_gama: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_gama.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
+$(BIN_DIR)/ttH_dilep_gama: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/dilep.o $(BUILD_DIR)/neut_gama.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
 	$(CXX) $(CXXFLAGS) -DGAMA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_gama.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
