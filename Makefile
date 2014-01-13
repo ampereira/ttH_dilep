@@ -49,6 +49,8 @@ all: $(BIN_DIR)/ttH_dilep
 
 cudatest: $(BIN_DIR)/ttH_dilep_cuda
 
+gama: $(BIN_DIR)/ttH_dilep_gama
+
 $(BUILD_DIR)/old_neut.o: $(SRC_DIR)/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut.h
 	$(CXX) $(CXXFLAGS) -I$(INCLUDES) -c $(SRC_DIR)/neut.cxx -o $(BUILD_DIR)/neut.o
 
@@ -58,6 +60,12 @@ $(BUILD_DIR)/dilep_input.o: $(SRC_DIR)/dilep_input.cxx $(SRC_DIR)/dilep_input.h
 $(BUILD_DIR)/neut.o: $(SRC_DIR)/neut/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut/neut.h
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut/neut.cxx -o $(BUILD_DIR)/neut.o
 
+$(BUILD_DIR)/dilep.o: $(SRC_DIR)/neut_gama/dilep.cxx $(SRC_DIR)/neut_gama/dilep.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_gama/dilep.cxx -o $(BUILD_DIR)/dilep.o
+
+$(BUILD_DIR)/neut_gama.o: $(SRC_DIR)/neut_gama/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut_gama/neut.h
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_gama/neut.cxx -o $(BUILD_DIR)/neut.o
+
 $(BUILD_DIR)/neut_cuda.o: $(SRC_DIR)/neut_cuda/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut_cuda/neut.h
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_cuda/neut.cxx -o $(BUILD_DIR)/neut_cuda.o
 
@@ -66,6 +74,9 @@ $(BIN_DIR)/ttH_dilep: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DI
 
 $(BIN_DIR)/ttH_dilep_cuda: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
 	$(CXX) $(CXXFLAGS) -DCUDA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+
+$(BIN_DIR)/ttH_dilep_gama: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_gama.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
+	$(CXX) $(CXXFLAGS) -DGAMA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_gama.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
 	rm -rf $(BUILD_DIR)/*.o $(BIN_DIR)/*

@@ -9,6 +9,8 @@ using namespace std;
 #include "myvector.h"
 #ifdef CUDA
 	#include "neut_cuda/neut.h"
+#elif GAMA
+    #include "neut_gama/neut.h"
 #else
 	#include "neut/neut.h"
 #endif
@@ -4600,7 +4602,9 @@ void ttH_dilep::ttDilepKinFit(){
 	long long int tp = LIP::KinFit::startTimer();
 	#ifdef CUDA
 		Dilep::GPU::dilep(inputs);
-	#else
+	#elif GAMA
+        
+    #else
 		#pragma omp parallel
 		{
 			float task_id;
