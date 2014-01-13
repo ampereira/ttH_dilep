@@ -138,11 +138,10 @@ void DilepClass::execute (void) {
 void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[], 
 				double_t in_mpx[], double_t in_mpy[], double_t _lep_a[], 
 				double_t _lep_b[], double_t _bl_a[], double_t _bl_b[], 
-				double_t nc[], int a[])
+				double_t nc[], int a[], unsigned tid)
 		{
 
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;
-	unsigned tid = 0;
 	double_t WMass_a, WMass_b, tMass_a, tMass_b, lep_a[5], lep_b[5], bl_a[5], bl_b[5];
 //	double_t in_mpz[2] = {0.0, 0.0};
 

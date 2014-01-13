@@ -46,7 +46,7 @@ public:
 	void calc_dilep(double_t t_mass[], double_t w_mass[], 
 					double_t in_mpx[], double_t in_mpy[], double_t _lep_a[], 
 					double_t _lep_b[], double_t _bl_a[], double_t _bl_b[], 
-					double_t nc[], int a[]);
+					double_t nc[], int a[], unsigned tid);
 
 	void applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t _z_lepWFlags[], double_t _c_lepWFlags[],
 					double_t _z_bjWFlags[], double_t _c_bjWFlags[], double_t _z_lep[], double_t _c_lep[], double_t _z_bj[], double_t _c_bj[],
