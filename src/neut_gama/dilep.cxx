@@ -53,7 +53,6 @@ virtual ptrwork* dice (double *wl, unsigned &DEV) {
 			L[k] = NULL;
 		}
 	}
-*/
 	// Last diced piece. Handled differently to avoid sizes higher than the limit
 	L[DEV - 1] = new DilepClass (_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags
 								   _z_lep, _c_lep, _z_bj, _c_bj, _MissPx, _MissPy, _t_mass, _w_mass
@@ -61,6 +60,7 @@ virtual ptrwork* dice (double *wl, unsigned &DEV) {
 
 	return L;
 }
+*/
 
 void DilepClass::calcMass (double_t array[]) {
 	double_t mm = array[3]*array[3] - (array[0]*array[0] + array[1]*array[1] + array[2]*array[2]);
