@@ -4,6 +4,8 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
+#include <cmath>
+
 #define TPI 3.14159265358979312
 #define TO1D(nc,tid,sol,did) nc[tid*16+sol*4+did]
 #define STRIDE2(a,i) a[tid * 2 + i]

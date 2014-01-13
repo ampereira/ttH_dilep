@@ -131,7 +131,7 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;
 	unsigned tid = 0;
 	double_t WMass_a, WMass_b, tMass_a, tMass_b, lep_a[5], lep_b[5], bl_a[5], bl_b[5];
-	double_t in_mpz[2] = {0.0, 0.0};
+//	double_t in_mpz[2] = {0.0, 0.0};
 
 
 	WMass_a = STRIDE2(w_mass, 0);
@@ -146,10 +146,6 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 		bl_a[i] = STRIDE5(_bl_a, i);
 		bl_b[i] = STRIDE5(_bl_b, i);
 	}
-	
-
-	double_t G_1, G_3;
-	double_t G_5,G_6,G_7,G_8,G_9,G_10,G_11,G_12;
 
 	/*
 	 * G_1    0
@@ -402,7 +398,7 @@ void DilepClass::toz(double_t k[], double_t l[], double_t g[]){
 		g[5] = ( (4*pow(k[3],2)-4*l[2]*l[2])*k[0]*k[0] - k[4]*k[4] - 4*k[4]*l[2]*k[0] )/g[0];
 		g[0] = 1.0; 
 	} else {
-		g[1] = (  4*pow(k[3],2)*( 1 + pow(k[2],2)) - 4*pow(l[1],2) -4*pow(l[2],2)*pow(C,2) - 8*l[1]*l[2]*k[2] ) ;
+		g[1] = (  4*pow(k[3],2)*( 1 + pow(k[2],2)) - 4*pow(l[1],2) -4*pow(l[2],2)*pow(k[2],2) - 8*l[1]*l[2]*k[2] ) ;
 		g[2] = ( (4*pow(k[3],2)-4*l[2]*l[2])*k[0]*k[1] - 4*l[0]*l[2]*k[0] - 2*k[4]*l[0] - 2*k[4]*l[2]*k[1] );
 		g[3] = ( (4*pow(k[3],2)-4*l[2]*l[2])*k[0]*k[2] - 4*l[1]*l[2]*k[0] - 2*k[4]*l[1] - 2*k[4]*l[2]*k[2] );
 		g[4] = ( (4*pow(k[3],2)-4*l[2]*l[2])*k[1]*k[2] - 4*l[0]*l[1]   - 4*l[0]*l[2]*k[2] - 4*l[1]*l[2]*k[1] );
