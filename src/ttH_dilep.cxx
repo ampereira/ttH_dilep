@@ -10,7 +10,7 @@ using namespace std;
 #ifdef D_CUDA
 	#include "neut_cuda/neut.h"
 #elif D_DICE
-    #include "neut_gama/neut.h"
+    #include "neut_dice/neut.h"
 #else
 	#include "neut/neut.h"
 #endif
