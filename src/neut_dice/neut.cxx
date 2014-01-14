@@ -101,7 +101,6 @@ namespace Dilep {
 
 			}
 
-			cout << "HAHA entrou gay" << endl;
 
 			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx,
 						   _misspy, t_mass, w_mass, 0, 0, size);
@@ -127,6 +126,8 @@ namespace Dilep {
 							TO1D(nc,total,sol,3) );
 						
 						result.push_back(*mv);
+						
+			cout << "HAHA entrou gay" << endl;
 					}
 					if(result.size())
 						++hasSolution;
