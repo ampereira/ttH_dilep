@@ -151,7 +151,7 @@ namespace Dilep {
 			//		a, b, c, d, _misspx, _misspy, t_mass, w_mass, nc, count);
 
 
-			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx
+			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx,
 						   _misspy, t_mass, w_mass, 0, 0, size);
 
 			dp.execute();
