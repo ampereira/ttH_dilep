@@ -21,6 +21,8 @@
 #include "../dilep_input.h"
 #include "../../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
+#include "dilep.h"
+
 #define CUDA_THREAD_STRIDE2(a,i) a[(tid / size) * 2 + i]
 #define CUDA_THREAD_STRIDE5(a,i) a[(tid / size) * 5 + i]
 #define RESOLUTION 0.02

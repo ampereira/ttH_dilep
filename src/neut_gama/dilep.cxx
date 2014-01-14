@@ -91,12 +91,15 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;;
 
 	// Using pointers for better code readbility - does it affect the performance in the kernel?
+/*
 	double_t *in_mpx	  = &STRIDE2(_in_mpx, 0);
 	double_t *in_mpy 	  = &STRIDE2(_in_mpy, 0);
 	double_t *z_lepWFlags = &STRIDE5(_z_lepWFlags, 0);
 	double_t *c_lepWFlags = &STRIDE5(_c_lepWFlags, 0);
 	double_t *z_bjWFlags  = &STRIDE5(_z_bjWFlags, 0);
 	double_t *c_bjWFlags  = &STRIDE5(_c_bjWFlags, 0);
+*/
+
 	double_t *z_lep 	  = &STRIDE5(_z_lep, 0);
 	double_t *c_lep 	  = &STRIDE5(_c_lep, 0);
 	double_t *z_bj 		  = &STRIDE5(_z_bj, 0);
