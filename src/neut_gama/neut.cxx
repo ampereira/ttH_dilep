@@ -150,10 +150,9 @@ namespace Dilep {
 			//dilep_kernel(in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags,
 			//		a, b, c, d, _misspx, _misspy, t_mass, w_mass, nc, count);
 
-			unsigned len = events.size();
 
 			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx
-						   _misspy, t_mass, w_mass, 0, 0, len);
+						   _misspy, t_mass, w_mass, 0, 0, size);
 
 			dp.execute();
 
