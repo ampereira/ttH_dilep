@@ -4595,15 +4595,15 @@ void ttH_dilep::ttDilepKinFit(){
     //               2 jet for H->bbbar
     // ---------------------------------------
 
-    // WARNING: numa primeira fase apenas para num combos == num parallel tasks
 
     // inputs.size() * dilep_iterations e igual ao num total de iteracoes por evento
     
 	long long int tp = LIP::KinFit::startTimer();
+
 	#ifdef CUDA
 		Dilep::GPU::dilep(inputs);
 	#elif D_DICE
-
+        Dilep::DICE::dilep(inputs);
     #else
 		#pragma omp parallel
 		{
@@ -4618,12 +4618,9 @@ void ttH_dilep::ttDilepKinFit(){
 			}
 		}
 	#endif
+
 	long long int res = LIP::KinFit::stopTimer(tp);
 	cout << "Total: " << res << " us" << endl;
-
-
-
-
 
 	// =================================================================  \\
 	//                  Kinematic Fit to tt System                		  \\
@@ -4639,7 +4636,6 @@ void ttH_dilep::ttDilepKinFit(){
 	// =================================================================  \\
 	// initialize Best Solution Methods (ttDKF_SolutionChoice = 1 and = 2)
 	// index of best solution (if any)
-
 
 	// ---------------------------------------
 	// Get info from all possible solutions
