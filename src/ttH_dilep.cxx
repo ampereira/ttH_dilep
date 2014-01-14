@@ -4739,7 +4739,7 @@ void ttH_dilep::ttDilepKinFit(){
 		        std::vector<myvector>::iterator pp;
 
 		        for ( pp = result->begin(); pp < result->end(); pp++) {
-		        	cout << "Event: " << Event::event_counter << " - " << result->size() << endl;
+		        	//cout << "Event: " << Event::event_counter << " - " << result->size() << endl;
 
 		            double   px,  py,  pz,  E, 
 		                     apx, apy, apz, aE;
@@ -5190,8 +5190,7 @@ void ttH_dilep::ttDilepKinFit(){
 	}
 	//#pragma omp barrier
 	long long int res2 = LIP::KinFit::stopTimer(tp2);
-    cout << "Total2: " << res2 << " us - " << inputs.size() << endl;
-    cout << "Total3: " << res2 << " us - " << sizeof(DilepInput) << endl;
+    cout << "Total2: " << res2 << " us - " << inputs.size() * sizeof(DilepInput) << " bytes" << endl;
 
 }
 
