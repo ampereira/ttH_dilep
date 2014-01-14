@@ -107,7 +107,7 @@ namespace Dilep {
 			dp.execute();
 
 			nc = dp.nc;
-			a = dp.a;
+			count = dp.a;
 
 			// reconstruction of the normal output of dilep
 			// o num de combs*vars e o num de threads
