@@ -14,14 +14,14 @@ namespace Dilep {
 
 			size = di.size();
 			
-			double in_mpx[2 * size], in_mpy[2 * size], in_mpz[2 * size], 
+			double in_mpx[2 * size], in_mpy[2 * size], 
 				   t_mass[2 * size], w_mass[2 * size];
 
 			double a[5 * size], b[5 * size], c[5 * size], d[5 * size];
 			double aFlags[5 * size], bFlags[5 * size], cFlags[5 * size], dFlags[5 * size];
 
-			double nc[16*size];
-			int count[size];
+			double *nc;
+			int *count;
 			int hasSolution = 0;
 
 			double _misspx = di[0].getMissPx(), _misspy = di[0].getMissPy();
@@ -31,6 +31,7 @@ namespace Dilep {
 			long long int time = startTimer();
 			#endif
 
+			// Data marshalling process
 			for (unsigned i = 0; i < size; ++i) {
 
 				in_mpx[i * 2]		= di[i].getInMpx(0);
@@ -141,3 +142,5 @@ namespace Dilep {
 			#endif
 			
 		}
+	}
+}
