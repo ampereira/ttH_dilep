@@ -37,11 +37,9 @@ extern int dilep_iterations;
 
 
 namespace Dilep {
-	namespace GAMA {
+	namespace DICE {
 
-		/*__host__*/ void dilep (vector<DilepInput> &di);
-		//__host__ void dilep (vector<DilepInput> &di);
-		//void dilep (vector<DilepInput> &vdi, int x);
+		void dilep (vector<DilepInput> &di);
 
 	}
 }

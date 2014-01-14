@@ -6,7 +6,7 @@ using namespace std;
 extern std::vector<Event::EventData> events;
 
 namespace Dilep {
-	namespace GAMA {
+	namespace DICE {
 
 		unsigned _tid = 0, size;
 	
