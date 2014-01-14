@@ -64,7 +64,7 @@ $(BUILD_DIR)/dilep.o: $(SRC_DIR)/neut_gama/dilep.cxx $(SRC_DIR)/neut_gama/dilep.
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_gama/dilep.cxx -o $(BUILD_DIR)/dilep.o
 
 $(BUILD_DIR)/neut_gama.o: $(SRC_DIR)/neut_gama/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut_gama/neut.h
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_gama/neut.cxx -o $(BUILD_DIR)/neut.o
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_gama/neut.cxx -o $(BUILD_DIR)/neut_gama.o
 
 $(BUILD_DIR)/neut_cuda.o: $(SRC_DIR)/neut_cuda/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut_cuda/neut.h
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $(SRC_DIR)/neut_cuda/neut.cxx -o $(BUILD_DIR)/neut_cuda.o
