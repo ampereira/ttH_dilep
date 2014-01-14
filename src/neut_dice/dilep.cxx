@@ -392,8 +392,7 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 
 			bool cond = m_good_eq[0] && m_good_eq[1] && m_good_eq[2] && m_good_eq[3] && m_good_eq[4] && m_good_eq[5];
 			
-			// aqui podem nao chegar as threads todas
-			//__syncthreads();
+			// Synchronize this bit??
 			nc[tid * 16 + 2*j] = cond * rec_x[0];
 			nc[tid * 16 + 2*j + 1] = cond * rec_y[0];
 			nc[tid * 16 + 2*j + 2] = cond * rec_z[0];

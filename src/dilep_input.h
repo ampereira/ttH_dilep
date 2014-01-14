@@ -12,12 +12,14 @@
 
 extern TRandom3 *t_rnd;
 
+#ifdef D_DICE
+	extern int dilep_iterations;
+#endif
+
 using namespace std;
 
 
 class DilepInput {
-	
-	//TRandom3 t_rnd;
 
 	TLorentzVector z_lep, c_lep;
 	TLorentzVector z_bj, c_bj;
@@ -36,9 +38,14 @@ class DilepInput {
 
 	double MissPx, MissPy;
 
-	int hasSolution;
 
-	vector<myvector> result;
+	#ifdef D_DICE
+		int hasSolution;
+		vector<myvector> result;
+	#else
+		int hasSolution;
+		vector<myvector> result;
+	#endif
 
 public:
 	DilepInput () {
@@ -86,8 +93,14 @@ public:
 	double getInMpz (int) const;
 	double getTmass (int) const;
 	double getWmass (int) const;
-	int getHasSol (void) const;
-	vector<myvector> getResult (void) const;
+
+	#ifdef D_DICE
+		int getHasSol (unsigned) const;
+		vector<myvector> getResult (unsigned) const;
+	#else
+		int getHasSol (void) const;
+		vector<myvector> getResult (void) const;
+	#endif
 
 	// Setters
 	void setHasSol (int);
