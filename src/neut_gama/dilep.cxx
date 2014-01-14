@@ -13,7 +13,7 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	_z_lepWFlags = z_lepWFlags;
 	_c_lepWFlags = c_lepWFlags;
 	_z_bjWFlags  = z_bjWFlags;
-	_c_bjWFlags  = c_bjWFlags
+	_c_bjWFlags  = c_bjWFlags;
 	_z_lep 		 = z_lep;
 	_c_lep 		 = c_lep;
 	_z_bj 		 = z_bj;

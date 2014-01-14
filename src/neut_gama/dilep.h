@@ -13,7 +13,7 @@
 
 typedef double double_t;
 
-class DilepClass : public work {
+class DilepClass/* : public work*/ {
 
 public:
 	double_t *_in_mpx, *_in_mpy, *_z_lepWFlags, *_c_lepWFlags, *_z_bjWFlags, *_c_bjWFlags;
