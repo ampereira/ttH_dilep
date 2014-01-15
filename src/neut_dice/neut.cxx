@@ -1,5 +1,8 @@
 #include "neut.h"
 
+
+extern int dilep_iterations;
+
 using std::vector;
 using namespace std;
 
