@@ -4719,8 +4719,8 @@ void ttH_dilep::ttDilepKinFit(){
 			std::vector<double> ProbTotal_ttDKF;
 
 			#ifdef D_DICE
-			unsigned vurrent_variation;
-			
+			unsigned current_variation;
+
 			for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs * dilep_iterations; ++partial_counter) {
 
 				float task_id = (float) partial_counter / (float) dilep_iterations;
