@@ -2,8 +2,8 @@
 #define LIP_DILEP
 
 // Include DICE related headers
-#include <config/common.h>
-#include <gamalib/gamalib.h>
+//#include <config/common.h>
+//#include <gamalib/gamalib.h>
 
 #include <cmath>
 
