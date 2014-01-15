@@ -5,6 +5,7 @@
 #include <TRandom.h>
 #include <fstream>
 #include <vector>
+#include <string.h>
 #include "myvector.h"
 #include "../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
@@ -40,8 +41,8 @@ class DilepInput {
 
 
 	#ifdef D_DICE
-		int hasSolution[dilep_iterations];
-		vector<myvector> result[dilep_iterations];
+		int *hasSolution;
+		vector<myvector> *result;
 	#else
 		int hasSolution;
 		vector<myvector> result;

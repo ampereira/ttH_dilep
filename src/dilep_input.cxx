@@ -71,9 +71,15 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	w_mass[0] = _w_mass[0];
 	w_mass[1] = _w_mass[1];
 
-	hasSolution = 0;
-
 	event_id = _event_id;
+
+	#ifdef D_DICE
+		hasSolution = new int [dilep_iterations];
+		result = new vector<myvector> [dilep_iterations];
+		memset(hasSolution, 0, dilep_iterations * sizeof(*hasSolution));
+	#else
+		hasSolution = 0;
+	#endif
 
 }
 
