@@ -118,8 +118,10 @@ namespace Dilep {
 
 			int total;
 			for (Event::event_counter = 0, total = 0; Event::event_counter < events.size(); ++Event::event_counter) {
-				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs; ++comb, ++total) {
+				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs * dilep_iterations; ++comb, ++total) {
 					vector<myvector> result;
+
+					unsigned index = comb % dilep_iterations;
 
 					for (int sol = 0 ; sol < count[total] && sol<4 ; sol++) {
 						myvector *mv = new myvector( 
@@ -130,12 +132,13 @@ namespace Dilep {
 						
 						result.push_back(*mv);
 					}
+
 					if(result.size())
 						++hasSolution;
 					//cout << "Tau: " << hasSolution << " - " << result.size() << endl;
 
-					di[total].setHasSol(hasSolution);
-					di[total].setResult(&result);
+					di[total].setHasSol(hasSolution, index);
+					di[total].setResult(&result, index);
 				}
 			}
 			//cout << "Sizes: " << di.size() << " - " << total << " - " << size << endl<<endl;

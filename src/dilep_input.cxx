@@ -644,6 +644,14 @@ double DilepInput::getWmass (int x) const {
 	vector<myvector> DilepInput::getResult (unsigned x) const {
 		return result[x];
 	}
+
+	void DilepInput::setHasSol (int x, unsigned index) {
+		hasSolution[index] = x;
+	}
+
+	void DilepInput::setResult (vector<myvector> *x, unsigned index) {
+		result[index] = *x;
+	}
 #else
 	int DilepInput::getHasSol (void) const {
 		return hasSolution;
@@ -652,18 +660,18 @@ double DilepInput::getWmass (int x) const {
 	vector<myvector> DilepInput::getResult (void) const {
 		return result;
 	}
+	void DilepInput::setHasSol (int x) {
+		hasSolution = x;
+	}
+
+	void DilepInput::setResult (vector<myvector> *x) {
+		result = *x;
+	}
 #endif
 
 // Setters
-/*
-void DilepInput::setHasSol (int x) {
-	hasSolution = x;
-}
 
-void DilepInput::setResult (vector<myvector> *x) {
-	result = *x;
-}
-*/
+
 void DilepInput::setZblCbl (void) {
 	// ---------------------------------------
 	// Define TLorentzVectors for (b,l) system

@@ -98,14 +98,17 @@ public:
 	#ifdef D_DICE
 		int getHasSol (unsigned) const;
 		vector<myvector> getResult (unsigned) const;
+		void setHasSol (int, unsigned);
+		void setResult (vector<myvector> *, unsigned);
 	#else
 		int getHasSol (void) const;
 		vector<myvector> getResult (void) const;
+		void setHasSol (int);
+		void setResult (vector<myvector> *);
 	#endif
 
 	// Setters
-	//void setHasSol (int);
-	//void setResult (vector<myvector> *);
+	
 	void setZblCbl (void);
 };
 

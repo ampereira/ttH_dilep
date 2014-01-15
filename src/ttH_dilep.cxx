@@ -4719,17 +4719,15 @@ void ttH_dilep::ttDilepKinFit(){
 			std::vector<double> ProbTotal_ttDKF;
 
 			#ifdef D_DICE
-			unsigned current_variation;
-
 			for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs * dilep_iterations; ++partial_counter) {
 
 				float task_id = (float) partial_counter / (float) dilep_iterations;
+				unsigned current_variation = partial_counter % dilep_iterations;
 
 				// Check if it needs to pick a new combo
 				if (task_id == (int) task_id) {
 					di = inputs[total_counter];
 					total_counter++;
-					current_variation = 0;
 				}
 
 				//cout << inputs.size() << " - " << total_counter <<endl;
