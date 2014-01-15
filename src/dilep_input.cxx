@@ -628,13 +628,23 @@ double DilepInput::getWmass (int x) const {
 	return w_mass[x];
 }
 
-int DilepInput::getHasSol (void) const {
-	return hasSolution;
-}
+#ifdef D_DICE
+	int DilepInput::getHasSol (unsigned x) const {
+		return hasSolution[x];
+	}
 
-vector<myvector> DilepInput::getResult (void) const {
-	return result;
-}
+	vector<myvector> DilepInput::getResult (unsigned x) const {
+		return result[x];
+	}
+#else
+	int DilepInput::getHasSol (void) const {
+		return hasSolution;
+	}
+
+	vector<myvector> DilepInput::getResult (void) const {
+		return result;
+	}
+#endif
 
 // Setters
 

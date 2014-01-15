@@ -4718,6 +4718,27 @@ void ttH_dilep::ttDilepKinFit(){
 			std::vector<double> ProbTTbar_ttDKF;
 			std::vector<double> ProbTotal_ttDKF;
 
+			#ifdef D_DICE
+			unsigned vurrent_variation;
+			
+			for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs * dilep_iterations; ++partial_counter) {
+
+				float task_id = (float) partial_counter / (float) dilep_iterations;
+
+				// Check if it needs to pick a new combo
+				if (task_id == (int) task_id) {
+					di = inputs[total_counter];
+					total_counter++;
+					current_variation = 0;
+				}
+
+				//cout << inputs.size() << " - " << total_counter <<endl;
+				// result on local variable since it will be accessed plenty of times
+				*result = di.getResult(current_variation);
+				events[Event::event_counter].HasSolution += di.getHasSol(current_variation);
+
+				current_variation++;
+			#else
 		    for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs; ++partial_counter, ++total_counter) {
 				
 
@@ -4735,7 +4756,7 @@ void ttH_dilep::ttDilepKinFit(){
 		        // result on local variable since it will be accessed plenty of times
 		        *result = di.getResult();
 		        events[Event::event_counter].HasSolution += di.getHasSol();
-
+		    #endif
 		        std::vector<myvector>::iterator pp;
 
 		        for ( pp = result->begin(); pp < result->end(); pp++) {

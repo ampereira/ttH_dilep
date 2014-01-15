@@ -47,8 +47,10 @@ DEPS = $(patsubst $(BUILD_DIR)/%.o,$(BUILD_DIR)/%.d,$(OBJ))
 
 all: $(BIN_DIR)/ttH_dilep
 
+cudatest: CXXFLAGS += -DD_CUDA
 cudatest: $(BIN_DIR)/ttH_dilep_cuda
 
+dice: CXXFLAGS += -DD_DICE
 dice: $(BIN_DIR)/ttH_dilep_dice
 
 $(BUILD_DIR)/old_neut.o: $(SRC_DIR)/neut.cxx $(SRC_DIR)/myvector.h $(SRC_DIR)/neut.h
@@ -73,10 +75,10 @@ $(BIN_DIR)/ttH_dilep: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DI
 	$(CXX) $(CXXFLAGS) -o $(BIN_DIR)/ttH_dilep $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 $(BIN_DIR)/ttH_dilep_cuda: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -DD_CUDA -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIR)/ttH_dilep_cuda $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_cuda.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 $(BIN_DIR)/ttH_dilep_dice: $(SRC_DIR)/ttH_dilep.cxx $(SRC_DIR)/ttH_dilep.h $(BUILD_DIR)/dilep.o $(BUILD_DIR)/neut_dice.o $(BUILD_DIR)/dilep_input.o $(LIPMINIANALYSIS_DIR)/libLipMiniAnalysis.a
-	$(CXX) $(CXXFLAGS) -DD_DICE -o $(BIN_DIR)/ttH_dilep_dice $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_dice.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
+	$(CXX) $(CXXFLAGS) -o $(BIN_DIR)/ttH_dilep_dice $(INCLUDES) $(SRC_DIR)/ttH_dilep.cxx $(BUILD_DIR)/neut_dice.o $(BUILD_DIR)/dilep.o $(BUILD_DIR)/dilep_input.o -L$(LIPMINIANALYSIS_DIR) -lLipMiniAnalysis $(LIBS) $(GLIBS) -lMinuit -lPhysics
 
 clean:
 	rm -rf $(BUILD_DIR)/*.o $(BIN_DIR)/*
