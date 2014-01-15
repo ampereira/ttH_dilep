@@ -117,9 +117,11 @@ DilepInput::DilepInput (const DilepInput &other) {
 	z_bl = other.getZbl();
 	c_bl = other.getCbl();
 
+	#ifndef D_DICE
 	hasSolution = other.getHasSol();
 
 	result = other.getResult();
+	#endif
 }
 
 // Constructor
@@ -653,7 +655,7 @@ double DilepInput::getWmass (int x) const {
 #endif
 
 // Setters
-
+/*
 void DilepInput::setHasSol (int x) {
 	hasSolution = x;
 }
@@ -661,7 +663,7 @@ void DilepInput::setHasSol (int x) {
 void DilepInput::setResult (vector<myvector> *x) {
 	result = *x;
 }
-
+*/
 void DilepInput::setZblCbl (void) {
 	// ---------------------------------------
 	// Define TLorentzVectors for (b,l) system

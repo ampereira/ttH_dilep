@@ -104,8 +104,8 @@ public:
 	#endif
 
 	// Setters
-	void setHasSol (int);
-	void setResult (vector<myvector> *);
+	//void setHasSol (int);
+	//void setResult (vector<myvector> *);
 	void setZblCbl (void);
 };
 
