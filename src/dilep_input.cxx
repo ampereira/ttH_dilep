@@ -77,6 +77,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 		hasSolution = new int [dilep_iterations];
 		result = new vector<myvector> [dilep_iterations];
 		memset(hasSolution, 0, dilep_iterations * sizeof(*hasSolution));
+
+		cout << "le tau" << endl;
 	#else
 		hasSolution = 0;
 	#endif
