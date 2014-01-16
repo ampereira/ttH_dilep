@@ -2162,8 +2162,8 @@ void ttH_dilep::BookHistograms(THistos &histo){
 	// Get relevant pdfs
         for (int n = 0; n < myNpdfKinFit; n++){
 
-			if ( n == 0 ) pdfKinFit[n] = (TH1D)fTruth->Get("sel00_pdf_pt__n1"); // 1st pdf: pT neutrino 1
-			if ( n == 1 ) pdfKinFit[n] = (TH1D)fTruth->Get("sel00_pdf_pt__n2"); // 2nd pdf: pT neutrino 2
+			if ( n == 0 ) pdfKinFit[n] = (TH1D*)fTruth->Get("sel00_pdf_pt__n1"); // 1st pdf: pT neutrino 1
+			if ( n == 1 ) pdfKinFit[n] = (TH1D*)fTruth->Get("sel00_pdf_pt__n2"); // 2nd pdf: pT neutrino 2
 
 			// normalize to unity and save histos
 			IntPDF = pdfKinFit[n].Integral();
