@@ -136,7 +136,8 @@ namespace Dilep {
 
 					if(result.size())
 						++hasSolution;
-					cout << "Tau: " << index << " - " << dilep_iterations << endl;
+
+					cout << total << " - " << index << endl;
 
 					di[total].setHasSol(hasSolution, index);
 					di[total].setResult(&result, index);
