@@ -17,7 +17,7 @@ ROOTGLIBS  = $(shell root-config --glibs) -lMinuit -lEG -lPhysics -lTreePlayer
 CXXFLAGS = -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -fopenmp $(ROOTCFLAGS)
 
 ifeq ($(DEBUG),yes)
-	CXXFLAGS += -g
+	CXXFLAGS += -ggdb3
 else
 	CXXFLAGS += -O3
 endif

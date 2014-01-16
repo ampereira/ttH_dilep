@@ -113,6 +113,8 @@ namespace Dilep {
 			nc = dp.nc;
 			count = dp.a;
 
+			cout << endl << "tau" << endl << endl;
+
 			// reconstruction of the normal output of dilep
 			// o num de combs*vars e o num de threads
 
