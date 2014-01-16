@@ -2160,33 +2160,33 @@ void ttH_dilep::BookHistograms(THistos &histo){
 	myNpdfKinFit = 2;
 
 	// Get relevant pdfs
-        for     (int n = 0; n < myNpdfKinFit; n++){
+        for (int n = 0; n < myNpdfKinFit; n++){
 
-		if ( n == 0 ) pdfKinFit[n] = (TH1D*)fTruth->Get("sel00_pdf_pt__n1"); // 1st pdf: pT neutrino 1
-		if ( n == 1 ) pdfKinFit[n] = (TH1D*)fTruth->Get("sel00_pdf_pt__n2"); // 2nd pdf: pT neutrino 2
+			if ( n == 0 ) pdfKinFit[n] = (TH1D)fTruth->Get("sel00_pdf_pt__n1"); // 1st pdf: pT neutrino 1
+			if ( n == 1 ) pdfKinFit[n] = (TH1D)fTruth->Get("sel00_pdf_pt__n2"); // 2nd pdf: pT neutrino 2
 
-		// normalize to unity and save histos
-		IntPDF = pdfKinFit[n]->Integral();
-		if ( IntPDF != 0 ) pdfKinFit[n]->Scale(1./IntPDF);
-		if ( n == 0 ) {histo[0][760] = (TH1D*)pdfKinFit[n]->Clone("pdf1_pTnu1");}          // 1st pdf: pT neutrino 1 
-		if ( n == 1 ) {histo[0][761] = (TH1D*)pdfKinFit[n]->Clone("pdf2_pTnu2");}          // 2nd pdf: pT neutrino 2 
+			// normalize to unity and save histos
+			IntPDF = pdfKinFit[n].Integral();
+			if ( IntPDF != 0 ) pdfKinFit[n].Scale(1./IntPDF);
+			if ( n == 0 ) {histo[0][760] = &pdfKinFit[n].Clone("pdf1_pTnu1");}          // 1st pdf: pT neutrino 1 
+			if ( n == 1 ) {histo[0][761] = &pdfKinFit[n].Clone("pdf2_pTnu2");}          // 2nd pdf: pT neutrino 2 
 
-		// smooth histos and save them
-  		pdfKinFit[n]->Smooth(3);
-		if ( n == 0 ) {histo[0][780] = (TH1D*)pdfKinFit[n]->Clone("pdf1_pTnu1_smoothed");} // 1st pdf: pT neutrino 1 Smoothed Distribution
-		if ( n == 1 ) {histo[0][781] = (TH1D*)pdfKinFit[n]->Clone("pdf2_pTnu2_smoothed");} // 2nd pdf: pT neutrino 2 Smoothed Distribution
+			// smooth histos and save them
+			pdfKinFit[n].Smooth(3);
+			if ( n == 0 ) {histo[0][780] = &pdfKinFit[n].Clone("pdf1_pTnu1_smoothed");} // 1st pdf: pT neutrino 1 Smoothed Distribution
+			if ( n == 1 ) {histo[0][781] = &pdfKinFit[n].Clone("pdf2_pTnu2_smoothed");} // 2nd pdf: pT neutrino 2 Smoothed Distribution
 
-		// Get pdfs into vectors
-                       NBins[n] = pdfKinFit[n]->GetNbinsX();
-                pdfKinFitVec[n] = new double[NBins[n]+2];
-    		   LowerEdge[n] = pdfKinFit[n]->GetBinLowEdge(1);
-          	   UpperEdge[n] = pdfKinFit[n]->GetBinLowEdge(NBins[n]+1);
-          	       Scale[n] = double(NBins[n])/(UpperEdge[n]-LowerEdge[n]);
+			// Get pdfs into vectors
+			NBins[n] = pdfKinFit[n].GetNbinsX();
+			pdfKinFitVec[n] = new double[NBins[n]+2];
+			LowerEdge[n] = pdfKinFit[n].GetBinLowEdge(1);
+			UpperEdge[n] = pdfKinFit[n].GetBinLowEdge(NBins[n]+1);
+			Scale[n] = double(NBins[n])/(UpperEdge[n]-LowerEdge[n]);
 
-		// Input pdfKinFitVec
-                for (int bin = 0; bin < NBins[n]+2; bin++){
-                   pdfKinFitVec[n][bin] = pdfKinFit[n]->GetBinContent(bin);
-                }
+			// Input pdfKinFitVec
+			for (int bin = 0; bin < NBins[n]+2; bin++) {
+				pdfKinFitVec[n][bin] = pdfKinFit[n].GetBinContent(bin);
+			}
 	}
 }
 
