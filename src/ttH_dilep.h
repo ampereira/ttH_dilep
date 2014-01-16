@@ -226,7 +226,7 @@ public:
   // Define pdf for Kinematcal Fit
   // -----------------------------
   int myNpdfKinFit;
-  TH1D *pdfKinFit[100];
+  TH1D pdfKinFit[100];
         double *pdfKinFitVec[100];
         int NBins[100];
   double LowerEdge[100], UpperEdge[100], Scale[100];
