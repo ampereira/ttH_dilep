@@ -33,8 +33,9 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	w_mass[0] = _w_mass[0];
 	w_mass[1] = _w_mass[1];
 
-	hasSolution = 0;
-
+	#ifndef D_DICE
+		hasSolution = 0;
+	#endif
 }
 
 // Constructor
