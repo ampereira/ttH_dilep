@@ -113,7 +113,6 @@ namespace Dilep {
 			nc = dp.nc;
 			count = dp.a;
 
-			cout << endl << "tau" << endl << endl;
 
 			// reconstruction of the normal output of dilep
 			// o num de combs*vars e o num de threads
@@ -145,6 +144,7 @@ namespace Dilep {
 			}
 			//cout << "Sizes: " << di.size() << " - " << total << " - " << size << endl<<endl;
 
+			cout << endl << "tau" << endl << endl;
 			// time measurement
 			#ifdef MEASURE_DILEP
 			stopTimer(time);
