@@ -4717,7 +4717,7 @@ void ttH_dilep::ttDilepKinFit(){
 			std::vector<double> ProbHiggs_ttDKF;
 			std::vector<double> ProbTTbar_ttDKF;
 			std::vector<double> ProbTotal_ttDKF;
-/*
+
 			#ifdef D_DICE
 			for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs * dilep_iterations; ++partial_counter) {
 
@@ -4736,7 +4736,7 @@ void ttH_dilep::ttDilepKinFit(){
 				events[Event::event_counter].HasSolution += di.getHasSol(current_variation);
 
 				current_variation++;
-			#else*/
+			#else
 		    for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs; ++partial_counter, ++total_counter) {
 				
 
@@ -4754,7 +4754,7 @@ void ttH_dilep::ttDilepKinFit(){
 		        // result on local variable since it will be accessed plenty of times
 		        *result = di.getResult();
 		        events[Event::event_counter].HasSolution += di.getHasSol();
-//		    #endif
+		    #endif
 		        std::vector<myvector>::iterator pp;
 
 		        for ( pp = result->begin(); pp < result->end(); pp++) {
