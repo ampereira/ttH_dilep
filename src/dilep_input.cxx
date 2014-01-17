@@ -646,6 +646,7 @@ double DilepInput::getWmass (int x) const {
 	}
 
 	void DilepInput::setHasSol (int x, unsigned index) {
+		cout << sizeof(hasSolution)<< endl;
 		hasSolution[index] = x;
 	}
 
