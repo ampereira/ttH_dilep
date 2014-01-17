@@ -76,7 +76,7 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 
 	#ifdef D_DICE
 		//hasSolution = (int*) malloc (dilep_iterations*sizeof(int));//new int [dilep_iterations];
-		result 		= new vector<myvector> [dilep_iterations];
+		//result 		= new vector<myvector> [dilep_iterations];
 	#else
 		hasSolution = 0;
 	#endif
@@ -646,13 +646,11 @@ double DilepInput::getWmass (int x) const {
 	}
 
 	void DilepInput::setHasSol (int x, unsigned index) {
-		int has[10];
-		has[index] = x;
-		//hasSolution[index] = x;
+		hasSolution.push_back(x);
 	}
 
 	void DilepInput::setResult (vector<myvector> *x, unsigned index) {
-		result[index] = *x;
+		result[index].assign(x->begin(), x->end());
 	}
 #else
 	int DilepInput::getHasSol (void) const {
