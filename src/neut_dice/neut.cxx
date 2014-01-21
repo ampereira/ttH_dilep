@@ -116,6 +116,7 @@ namespace Dilep {
 			// reconstruction of the normal output of dilep
 			// o num de combs*vars e o num de threads
 
+			// Watch out! Indexing witchcraft below!
 			int total;
 			for (Event::event_counter = 0, total = 0; Event::event_counter < events.size(); ++Event::event_counter) {
 				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs * dilep_iterations; ++comb, ++total) {
@@ -138,14 +139,11 @@ namespace Dilep {
 					if(result.size())
 						++hasSolution;
 
-					if (!index) {
-						cout << Event::event_counter << " - " << total << " - " << comb << " - " << events[Event::event_counter].num_Combs * dilep_iterations << " - " << hasSolution << endl;
+					cout << Event::event_counter << " - " << total << " - " << comb << " - " << events[Event::event_counter].num_Combs * dilep_iterations << " - " << hasSolution << endl;
 
-						//di[total].setHasSol(hasSolution, index);
-						//di[total].setResult(&result, index);
-						di[total].hasSolution = hasSolution;
-						di[total].result = result;
-					}
+					// More indexing magic to get ...
+					di[total / dilep_iterations].setHasSol(hasSolution, index);
+					di[total / dilep_iterations].setResult(&result, index);
 				}
 			}
 
