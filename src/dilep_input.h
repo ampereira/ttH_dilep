@@ -41,7 +41,7 @@ class DilepInput {
 
 
 	#ifdef D_DICE
-		int hasSolution[10];
+		int hasSolution[dilep_iterations];
 		vector< vector<myvector> > result;
 	#else
 		int hasSolution;
