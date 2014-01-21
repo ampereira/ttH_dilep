@@ -76,7 +76,7 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 
 	#ifdef D_DICE
 		//hasSolution = new int [dilep_iterations];
-		result 		= new vector<myvector> [dilep_iterations];
+		//result 		= new vector<myvector> [dilep_iterations];
 	#else
 		hasSolution = 0;
 	#endif
