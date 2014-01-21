@@ -139,8 +139,6 @@ namespace Dilep {
 					if(result.size())
 						++hasSolution;
 
-					cout << Event::event_counter << " - " << total << " - " << comb << " - " << events[Event::event_counter].num_Combs * dilep_iterations << " - " << hasSolution << endl;
-
 					// More indexing magic to properly set the results...
 					di[total / dilep_iterations].setHasSol(hasSolution, index);
 					di[total / dilep_iterations].setResult(&result, index);
