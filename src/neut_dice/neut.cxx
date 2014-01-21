@@ -134,7 +134,7 @@ namespace Dilep {
 						result.push_back(*mv);
 					}
 
-					cout << Event::event_counter << " - " << total << " - " << endl;
+					cout << Event::event_counter << " - " << total << " - " << comb << " - " << events[Event::event_counter].num_Combs * dilep_iterations << endl;
 
 					if(result.size())
 						++hasSolution;
