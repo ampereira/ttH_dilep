@@ -40,6 +40,8 @@ class DilepInput {
 	double MissPx, MissPy;
 
 
+public:
+
 	#ifdef D_DICE
 		//int hasSolution[dilep_iterations];
 		int hasSolution;
@@ -49,8 +51,7 @@ class DilepInput {
 		int hasSolution;
 		vector<myvector> result;
 	#endif
-
-public:
+		
 	DilepInput () {
 	}
 	unsigned event_id;
