@@ -137,12 +137,14 @@ namespace Dilep {
 
 					if(result.size())
 						++hasSolution;
-					
+
 					if (!index) {
 						cout << Event::event_counter << " - " << total << " - " << comb << " - " << events[Event::event_counter].num_Combs * dilep_iterations << " - " << hasSolution << endl;
 
-						di[total].setHasSol(hasSolution, index);
-						di[total].setResult(&result, index);
+						//di[total].setHasSol(hasSolution, index);
+						//di[total].setResult(&result, index);
+						di[total].hasSolution = hasSolution;
+						di[total].result = result;
 					}
 				}
 			}
