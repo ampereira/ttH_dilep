@@ -75,8 +75,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	event_id = _event_id;
 
 	#ifdef D_DICE
-		//hasSolution = (int*) malloc (dilep_iterations*sizeof(int));//new int [dilep_iterations];
-		//result 		= new vector<myvector> [dilep_iterations];
+		hasSolution = new int [dilep_iterations];
+		result 		= new vector<myvector> [dilep_iterations];
 	#else
 		hasSolution = 0;
 	#endif
@@ -118,9 +118,8 @@ DilepInput::DilepInput (const DilepInput &other) {
 	c_bl = other.getCbl();
 
 	#ifndef D_DICE
-	hasSolution = other.getHasSol();
-
-	result = other.getResult();
+		hasSolution = other.getHasSol();
+		result = other.getResult();
 	#endif
 }
 

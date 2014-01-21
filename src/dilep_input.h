@@ -41,10 +41,8 @@ class DilepInput {
 
 
 	#ifdef D_DICE
-		//int hasSolution[dilep_iterations];
-		int hasSolution;
-		//vector< vector<myvector> > result;
-		vector<myvector> result;
+		int *hasSolution;
+		vector<myvector> *result;
 	#else
 		int hasSolution;
 		vector<myvector> result;
@@ -73,76 +71,53 @@ public:
 	void applyVariance (float res, int seed);
 
 
-// Getters and setters
+	// Getters and setters
 
-inline TLorentzVector getZlep (void) const { return z_lep; }
-inline TLorentzVector getClep (void) const { return c_lep; }
-inline TLorentzVector getZbj (void) const {	return z_bj; }
-inline TLorentzVector getCbj (void) const {	return c_bj; }
-inline TLorentzVector getZbl (void) const {	return z_bl; }
-inline TLorentzVector getCbl (void) const {	return c_bl; }
-inline TLorentzVectorWFlags getZlepW (void) const {	return z_lepWFlags; }
-inline TLorentzVectorWFlags getClepW (void) const {	return c_lepWFlags; }
-inline TLorentzVectorWFlags getZbjW (void) const { return z_bjWFlags; }
-inline TLorentzVectorWFlags getCbjW (void) const { return c_bjWFlags; }
-inline int getZlepWisb (void) const { return z_lepWFlags.isb; }
-inline int getClepWisb (void) const { return c_lepWFlags.isb; }
-inline int getZbjWisb (void) const { return z_bjWFlags.isb; }
-inline int getCbjWisb (void) const { return c_bjWFlags.isb; }
-inline TLorentzVectorWFlags getJet1HiggsW (void) const { return jet1_HiggsWFlags; }
-inline TLorentzVectorWFlags getJet2HiggsW (void) const { return jet2_HiggsWFlags; }
-inline double getMissPx (void) const { return MissPx; }
-inline double getMissPy (void) const { return MissPy; }
-inline double getInMpx (int x) const { return in_mpx[x]; }
-inline double getInMpy (int x) const { return in_mpy[x]; }
-inline double getInMpz (int x) const { return in_mpz[x]; }
-inline double getTmass (int x) const { return t_mass[x]; }
-inline double getWmass (int x) const { return w_mass[x]; }
+	inline TLorentzVector getZlep (void) const { return z_lep; }
+	inline TLorentzVector getClep (void) const { return c_lep; }
+	inline TLorentzVector getZbj (void) const {	return z_bj; }
+	inline TLorentzVector getCbj (void) const {	return c_bj; }
+	inline TLorentzVector getZbl (void) const {	return z_bl; }
+	inline TLorentzVector getCbl (void) const {	return c_bl; }
+	inline TLorentzVectorWFlags getZlepW (void) const {	return z_lepWFlags; }
+	inline TLorentzVectorWFlags getClepW (void) const {	return c_lepWFlags; }
+	inline TLorentzVectorWFlags getZbjW (void) const { return z_bjWFlags; }
+	inline TLorentzVectorWFlags getCbjW (void) const { return c_bjWFlags; }
+	inline int getZlepWisb (void) const { return z_lepWFlags.isb; }
+	inline int getClepWisb (void) const { return c_lepWFlags.isb; }
+	inline int getZbjWisb (void) const { return z_bjWFlags.isb; }
+	inline int getCbjWisb (void) const { return c_bjWFlags.isb; }
+	inline TLorentzVectorWFlags getJet1HiggsW (void) const { return jet1_HiggsWFlags; }
+	inline TLorentzVectorWFlags getJet2HiggsW (void) const { return jet2_HiggsWFlags; }
+	inline double getMissPx (void) const { return MissPx; }
+	inline double getMissPy (void) const { return MissPy; }
+	inline double getInMpx (int x) const { return in_mpx[x]; }
+	inline double getInMpy (int x) const { return in_mpy[x]; }
+	inline double getInMpz (int x) const { return in_mpz[x]; }
+	inline double getTmass (int x) const { return t_mass[x]; }
+	inline double getWmass (int x) const { return w_mass[x]; }
 
-#ifdef D_DICE
-	inline int getHasSol (unsigned index) const {
-		//return hasSolution[index];
-		return hasSolution;
-	}
+	#ifdef D_DICE
+		inline int getHasSol (unsigned index) const { return hasSolution[index]; }
+		inline vector<myvector> getResult (unsigned index) const { return result[index]; }
 
-	inline vector<myvector> getResult (unsigned index) const {
-		//return result[index];
-		return result;
-	}
+		inline void setHasSol (int x, unsigned index) { hasSolution[index] = x; }
+		inline void setResult (vector<myvector> *x, unsigned index) { result[index].assign(x->begin(), x->end()); }
+	#else
+		inline int getHasSol (void) const { return hasSolution; }
+		inline vector<myvector> getResult (void) const { return result; }
 
-	inline void setHasSol (int x, unsigned index) {
-		//hasSolution[index] = x;
-		hasSolution = x;
-	}
+		inline void setHasSol (int x) {	hasSolution = x; }
+		inline void setResult (vector<myvector> *x) { result = *x; }
+	#endif
 
-	inline void setResult (vector<myvector> *x, unsigned index) {
-		//result[index].assign(x->begin(), x->end());
-		result = *x;
+	inline void setZblCbl (void) {
+		// ---------------------------------------
+		// Define TLorentzVectors for (b,l) system
+		// ---------------------------------------
+		z_bl = z_bj + z_lep;
+		c_bl = c_bj + c_lep;
 	}
-#else
-	inline int getHasSol (void) const {
-		return hasSolution;
-	}
-
-	inline vector<myvector> getResult (void) const {
-		return result;
-	}
-	inline void setHasSol (int x) {
-		hasSolution = x;
-	}
-
-	inline void setResult (vector<myvector> *x) {
-		result = *x;
-	}
-#endif
-
-inline void setZblCbl (void) {
-	// ---------------------------------------
-	// Define TLorentzVectors for (b,l) system
-	// ---------------------------------------
-	z_bl = z_bj + z_lep;
-	c_bl = c_bj + c_lep;
-}
 };
 
 void applyVariance (vector<DilepInput> &vdi, float res, int amount);
