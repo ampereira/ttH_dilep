@@ -26,6 +26,7 @@
 #define CUDA_THREAD_STRIDE2(a,i) a[(tid / size) * 2 + i]
 #define CUDA_THREAD_STRIDE5(a,i) a[(tid / size) * 5 + i]
 #define RESOLUTION 0.02
+#define TO1D(nc,tid,sol,did) nc[tid*16+sol*4+did]
 //#define cuRand(x) (((double) curand(x))/((double) UINT_MAX))
 
 //#define CUDA_CALL(x) if((x) != cudaSuccess) { \

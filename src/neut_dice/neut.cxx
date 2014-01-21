@@ -134,6 +134,8 @@ namespace Dilep {
 						result.push_back(*mv);
 					}
 
+					cout << Event::event_counter << " - " << total << " - " << endl;
+
 					if(result.size())
 						++hasSolution;
 
