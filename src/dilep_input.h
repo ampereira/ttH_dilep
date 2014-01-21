@@ -42,7 +42,7 @@ class DilepInput {
 
 	#ifdef D_DICE
 		int hasSolution[10];
-		vector<myvector> *result;
+		vector< vector<myvector> > result;
 	#else
 		int hasSolution;
 		vector<myvector> result;
@@ -102,7 +102,7 @@ public:
 		inline vector<myvector> getResult (unsigned index) const { return result[index]; }
 
 		/*inline*/ void setHasSol (int x, unsigned index) { hasSolution[index] = x; }
-		/*inline*/ void setResult (vector<myvector> *x, unsigned index) { result[index] = *x; } //.assign(x->begin(), x->end()); }
+		/*inline*/ void setResult (vector<myvector> *x, unsigned index) { result.push_back(*x); } //.assign(x->begin(), x->end()); }
 	#else
 		inline int getHasSol (void) const { return hasSolution; }
 		inline vector<myvector> getResult (void) const { return result; }
