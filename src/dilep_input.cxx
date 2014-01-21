@@ -638,20 +638,20 @@ double DilepInput::getWmass (int x) const {
 
 #ifdef D_DICE
 	int DilepInput::getHasSol (unsigned x) const {
-		return hasSolution[x];
+		return hasSolution;
 	}
 
 	vector<myvector> DilepInput::getResult (unsigned x) const {
-		return result[x];
+		return result;
 	}
 
 	void DilepInput::setHasSol (int x, unsigned index) {
-		//hasSolution.push_back(x);
-		hasSolution[0] = x;
+		hasSolution = x;
 	}
 
 	void DilepInput::setResult (vector<myvector> *x, unsigned index) {
-		result[index].assign(x->begin(), x->end());
+		//result[index].assign(x->begin(), x->end());
+		result = *x;
 	}
 #else
 	int DilepInput::getHasSol (void) const {
