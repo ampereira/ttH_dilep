@@ -25,7 +25,6 @@ namespace Dilep {
 
 			double *nc;
 			int *count;
-			int hasSolution = 0;
 
 			double _misspx = di[0].getMissPx(), _misspy = di[0].getMissPy();
 
@@ -121,6 +120,8 @@ namespace Dilep {
 			for (Event::event_counter = 0, total = 0; Event::event_counter < events.size(); ++Event::event_counter) {
 				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs * dilep_iterations; ++comb, ++total) {
 					vector<myvector> result;
+					// Reset the partial hasSolution per combination per variation
+					int hasSolution = 0;
 
 					unsigned index = comb % dilep_iterations;
 
