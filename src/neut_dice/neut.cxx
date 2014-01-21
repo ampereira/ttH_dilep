@@ -137,15 +137,11 @@ namespace Dilep {
 					if(result.size())
 						++hasSolution;
 
-					cout << total << " - " << di.size() << endl;
-
 					di[total].setHasSol(hasSolution, index);
 					di[total].setResult(&result, index);
 				}
 			}
-			//cout << "Sizes: " << di.size() << " - " << total << " - " << size << endl<<endl;
 
-			cout << endl << "tau" << endl << endl;
 			// time measurement
 			#ifdef MEASURE_DILEP
 			stopTimer(time);

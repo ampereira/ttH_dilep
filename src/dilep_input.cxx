@@ -637,15 +637,18 @@ double DilepInput::getWmass (int x) const {
 }
 
 #ifdef D_DICE
-	int DilepInput::getHasSol (unsigned x) const {
+	int DilepInput::getHasSol (unsigned index) const {
+		//return hasSolution[index];
 		return hasSolution;
 	}
 
-	vector<myvector> DilepInput::getResult (unsigned x) const {
+	vector<myvector> DilepInput::getResult (unsigned index) const {
+		//return result[index];
 		return result;
 	}
 
 	void DilepInput::setHasSol (int x, unsigned index) {
+		//hasSolution[index] = x;
 		hasSolution = x;
 	}
 
