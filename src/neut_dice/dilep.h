@@ -11,8 +11,8 @@ using namespace std;
 #include <cmath>
 
 #define TPI 3.14159265358979312
-#define STRIDE2(a,i) a[tid * 2 + i]
-#define STRIDE5(a,i) a[tid * 5 + i]
+#define STRIDE2(array,i) array[tid * 2 + i]
+#define STRIDE5(array,i) array[tid * 5 + i]
 
 typedef double double_t;
 
@@ -23,6 +23,9 @@ public:
 	double_t *_in_mpx, *_in_mpy, *_z_lepWFlags, *_c_lepWFlags, *_z_bjWFlags, *_c_bjWFlags;
 	double_t *_z_lep, *_c_lep, *_z_bj, *_c_bj, *_t_mass, *_w_mass;
 	double_t _MissPx, _MissPy;
+
+	// Partial results
+	double_t *_z_bl, *_c_bl;
 
 	// Output and control parameters
 	double_t *nc;
@@ -50,16 +53,11 @@ public:
 	double_t calcMass (double_t x, double_t y, double_t z, double_t e);
 
 	// Calculates dileptonic kinematics
-	void calc_dilep(double_t t_mass[], double_t w_mass[], 
-					double_t in_mpx[], double_t in_mpy[], double_t _lep_a[], 
-					double_t _lep_b[], double_t _bl_a[], double_t _bl_b[], 
-					double_t nc[], int a[], unsigned tid);
+	void calc_dilep(unsigned tid);
 
 	// Applies the variance to the inputs according to a given resolution
 	// Still on test version, i.e., tid must be passed as an argument
-	void applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t _z_lepWFlags[], double_t _c_lepWFlags[],
-					double_t _z_bjWFlags[], double_t _c_bjWFlags[], double_t _z_lep[], double_t _c_lep[], double_t _z_bj[], double_t _c_bj[],
-					double_t _z_bl[], double_t _c_bl[], double_t _MissPx, double_t _MissPy, unsigned tid);
+	void applyVariance (unsigned tid);
 };
 
 #endif

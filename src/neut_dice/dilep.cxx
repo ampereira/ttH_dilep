@@ -4,12 +4,12 @@ DilepClass::DilepClass () {
 
 }
 
-DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
+DilepClass::DilepClass (double_t _in_mpx[], double_t _in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
 			double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-			double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, unsigned len) {
+			double_t MissPx, double_t MissPy, double_t _t_mass[], double_t _w_mass[], unsigned up, unsigned lo, unsigned len) {
 
-	_in_mpx		 = in_mpx;
-	_in_mpy		 = in_mpy;
+	_in_mpx		 = _in_mpx;
+	_in_mpy		 = _in_mpy;
 	_z_lepWFlags = z_lepWFlags;
 	_c_lepWFlags = c_lepWFlags;
 	_z_bjWFlags  = z_bjWFlags;
@@ -20,15 +20,18 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	_c_bj 		 = c_bj;
 	_MissPx 	 = MissPx;
 	_MissPy 	 = MissPy;
-	_t_mass 	 = t_mass;
-	_w_mass 	 = w_mass;
+	_t_mass 	 = _t_mass;
+	_w_mass 	 = _w_mass;
 	upper_bound  = up;
 	lower_bound  = lo;
 	length		 = len;
 
 	// Memory alocation for results
-	nc = new double_t [16 * length];
-	a  = new int [length];
+	nc	  = new double_t [16 * length];
+	a 	  = new int [length];
+	// Memory alocation for partial results
+	_z_bl = new double_t [5 * length];
+	_c_bl = new double_t [5 * length];
 }
 
 DilepClass::~DilepClass () {
@@ -88,16 +91,14 @@ double_t DilepClass::calcMass (double_t x, double_t y, double_t z, double_t e) {
 	return mass;
 }
 
-void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t _z_lepWFlags[], double_t _c_lepWFlags[],
-			double_t _z_bjWFlags[], double_t _c_bjWFlags[], double_t _z_lep[], double_t _c_lep[], double_t _z_bj[], double_t _c_bj[],
-			double_t _z_bl[], double_t _c_bl[], double_t _MissPx, double_t _MissPy, unsigned tid) {
+void DilepClass::applyVariance (unsigned tid) {
 
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;;
 
 	// Using pointers for better code readbility - does it affect the performance in the kernel?
 /*
-	double_t *in_mpx	  = &STRIDE2(_in_mpx, 0);
-	double_t *in_mpy 	  = &STRIDE2(_in_mpy, 0);
+	double_t *_in_mpx	  = &STRIDE2(_in_mpx, 0);
+	double_t *_in_mpy 	  = &STRIDE2(_in_mpy, 0);
 	double_t *z_lepWFlags = &STRIDE5(_z_lepWFlags, 0);
 	double_t *c_lepWFlags = &STRIDE5(_c_lepWFlags, 0);
 	double_t *z_bjWFlags  = &STRIDE5(_z_bjWFlags, 0);
@@ -147,24 +148,17 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 
 void DilepClass::execute (void) {
 
-	// CPU version
-	double_t _z_bl[5 * length], _c_bl[5 * length];
-
 	cout << sizeof(_z_bl) / sizeof(double_t) << " - " << 5 * length << endl;
 
 	for (unsigned tid = 0; tid < length; ++tid)
-		applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
-			_z_lep, _c_lep, _z_bj, _c_bj, _z_bl, _c_bl, _MissPx, _MissPy, tid);
+		applyVariance(tid);
 
 	for (unsigned tid = 0; tid < length; ++tid)
 		calc_dilep(_t_mass, _w_mass, _in_mpx, _in_mpy, 
 					_z_lep, _c_lep, _z_bl, _c_bl, nc, a, tid);
 }
 
-void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[], 
-				double_t in_mpx[], double_t in_mpy[], double_t _lep_a[], 
-				double_t _lep_b[], double_t _bl_a[], double_t _bl_b[], 
-				double_t nc[], int a[], unsigned tid)
+void DilepClass::calc_dilep( unsigned tid)
 		{
 
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;
@@ -172,17 +166,17 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 //	double_t in_mpz[2] = {0.0, 0.0};
 
 
-	WMass_a = STRIDE2(w_mass, 0);
-	tMass_a = STRIDE2(t_mass, 0);
-	WMass_b = STRIDE2(w_mass, 1);
-	tMass_b = STRIDE2(t_mass, 1);
+	WMass_a = STRIDE2(_w_mass, 0);
+	tMass_a = STRIDE2(_t_mass, 0);
+	WMass_b = STRIDE2(_w_mass, 1);
+	tMass_b = STRIDE2(_t_mass, 1);
 
 	for (unsigned i = 0; i < 5; ++i) {
-		lep_a[i] = STRIDE5(_lep_a, i);
-		lep_b[i] = STRIDE5(_lep_b, i);
+		lep_a[i] = STRIDE5(_z_lep, i);
+		lep_b[i] = STRIDE5(_c_lep, i);
 
-		bl_a[i] = STRIDE5(_bl_a, i);
-		bl_b[i] = STRIDE5(_bl_b, i);
+		bl_a[i] = STRIDE5(_z_bl, i);
+		bl_b[i] = STRIDE5(_c_bl, i);
 	}
 
 	/*
@@ -243,16 +237,16 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 	toz(in_c, lep_b, out_c);
 	/////////////////////////////////////////////////////
 	//////change x2 y2 equation to x1 and y1 by using
-	////// 		x1+x2 = S = in_mpx[0]
+	////// 		x1+x2 = S = _in_mpx[0]
 	////// 		y1+y2 = T = mpy
 	/////////////////////////////////////////////////////
 	double_t out_e[6];
 	out_e[0] = out_c[0];
 	out_e[1] = out_c[1];
-	out_e[2] = -1*( out_c[0]*in_mpx[0] + out_c[2] + out_c[4]*in_mpy[0]);
-	out_e[3] = -1*( out_c[1]*in_mpy[0] + out_c[3] + out_c[4]*in_mpx[0]);
+	out_e[2] = -1*( out_c[0]*_in_mpx[0] + out_c[2] + out_c[4]*_in_mpy[0]);
+	out_e[3] = -1*( out_c[1]*_in_mpy[0] + out_c[3] + out_c[4]*_in_mpx[0]);
 	out_e[4] = out_c[4]; 
-	out_e[5] =( out_c[0]*in_mpx[0]*in_mpx[0] + out_c[1]*in_mpy[0]*in_mpy[0] + 2*out_c[2]*in_mpx[0] + 2*out_c[3]*in_mpy[0] + out_c[5] + 2*out_c[4]*in_mpx[0]*in_mpy[0]);
+	out_e[5] =( out_c[0]*_in_mpx[0]*_in_mpx[0] + out_c[1]*_in_mpy[0]*_in_mpy[0] + 2*out_c[2]*_in_mpx[0] + 2*out_c[3]*_in_mpy[0] + out_c[5] + 2*out_c[4]*_in_mpx[0]*_in_mpy[0]);
 
 	///////////////////////////////////////////////////
 	///  solve 
@@ -385,8 +379,8 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 			rec_y[0] = output[j];
 			rec_z[0] = G[5]/G[4] - G[2]*rec_x[0]/G[4] - G[3]*rec_y[0]/G[4];
 			rec_e[0] = sqrt(rec_x[0]*rec_x[0] + rec_y[0]*rec_y[0] + rec_z[0]*rec_z[0]);
-			rec_x[1] = in_mpx[0] - rec_x[0];
-			rec_y[1] = in_mpy[0] - rec_y[0];
+			rec_x[1] = _in_mpx[0] - rec_x[0];
+			rec_y[1] = _in_mpy[0] - rec_y[0];
 			rec_z[1] = G[9]/G[8] - G[6]*rec_x[1]/G[8] - G[7]*rec_y[1]/G[8];
 			rec_e[1] = sqrt(rec_x[1]*rec_x[1] + rec_y[1]*rec_y[1] + rec_z[1]*rec_z[1]);
 			
@@ -397,18 +391,18 @@ void DilepClass::calc_dilep(double_t t_mass[], double_t w_mass[],
 			m_wt[3] = calcMass(rec_x[1]+ bl_b[0], rec_y[1]+ bl_b[1], rec_z[1]+ bl_b[2], rec_e[1]+ bl_b[3]);
 
 			// m_delta_mass is 1000.0
-			m_good_eq[0] = ( fabs(in_mpx[0] -(rec_x[0]+rec_x[1])) <= 0.01 ) * true + 
-							  ( fabs(in_mpx[0] -(rec_x[0]+rec_x[1])) > 0.01 ) * false;
-			m_good_eq[1] = ( fabs(in_mpy[0] -(rec_y[0]+rec_y[1])) <= 0.01 ) * true +
-							  ( fabs(in_mpy[0] -(rec_y[0]+rec_y[1])) > 0.01 ) * false;
-			m_good_eq[2] = ( fabs(m_wt[0] - w_mass[0]) <= 1000.0 ) * true + 
-							  ( fabs(m_wt[0] - w_mass[0]) > 1000.0 ) * false;
-			m_good_eq[3] = ( fabs(m_wt[1] - w_mass[1]) <= 1000.0 ) * true +
-							  ( fabs(m_wt[1] - w_mass[1]) > 1000.0 ) * false;
-			m_good_eq[4] = ( fabs(m_wt[2] - t_mass[0]) <= 1000.0 ) * true +
-							  ( fabs(m_wt[2] - t_mass[0]) > 1000.0 ) * false;
-			m_good_eq[5] = ( fabs(m_wt[3] - t_mass[1]) <= 1000.0 ) * true +
-							  ( fabs(m_wt[3] - t_mass[1]) <= 1000.0 ) * false;
+			m_good_eq[0] = ( fabs(_in_mpx[0] -(rec_x[0]+rec_x[1])) <= 0.01 ) * true + 
+							  ( fabs(_in_mpx[0] -(rec_x[0]+rec_x[1])) > 0.01 ) * false;
+			m_good_eq[1] = ( fabs(_in_mpy[0] -(rec_y[0]+rec_y[1])) <= 0.01 ) * true +
+							  ( fabs(_in_mpy[0] -(rec_y[0]+rec_y[1])) > 0.01 ) * false;
+			m_good_eq[2] = ( fabs(m_wt[0] - _w_mass[0]) <= 1000.0 ) * true + 
+							  ( fabs(m_wt[0] - _w_mass[0]) > 1000.0 ) * false;
+			m_good_eq[3] = ( fabs(m_wt[1] - _w_mass[1]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[1] - _w_mass[1]) > 1000.0 ) * false;
+			m_good_eq[4] = ( fabs(m_wt[2] - _t_mass[0]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[2] - _t_mass[0]) > 1000.0 ) * false;
+			m_good_eq[5] = ( fabs(m_wt[3] - _t_mass[1]) <= 1000.0 ) * true +
+							  ( fabs(m_wt[3] - _t_mass[1]) <= 1000.0 ) * false;
 
 			bool cond = m_good_eq[0] && m_good_eq[1] && m_good_eq[2] && m_good_eq[3] && m_good_eq[4] && m_good_eq[5];
 			
