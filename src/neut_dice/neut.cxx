@@ -108,6 +108,8 @@ namespace Dilep {
 
 			cout << "Max size:  " << dilep_executions << endl;
 			cout << "Max size2: " << dilep_iterations << endl;
+			cout << "Max size3: " << size << endl;
+
 
 			// Create and execute the dilep class required by DICE
 			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx,
