@@ -5,6 +5,9 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
+#include <iostream>
+using namespace std;
+
 #include <cmath>
 
 #define TPI 3.14159265358979312
