@@ -104,6 +104,9 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	double_t *c_bjWFlags  = &STRIDE5(_c_bjWFlags, 0);
 */
 
+	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
+
+/*
 	double_t *z_lep = &STRIDE5(_z_lep, 0);
 	double_t *c_lep = &STRIDE5(_c_lep, 0);
 	double_t *z_bj  = &STRIDE5(_z_bj, 0);
@@ -111,7 +114,6 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	double_t *z_bl  = &STRIDE5(_z_bl, 0);
 	double_t *c_bl  = &STRIDE5(_c_bl, 0);
 
-	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
 
 	z_bl[0] = z_bj[0] + z_lep[0];
 	z_bl[1] = z_bj[1] + z_lep[1];
@@ -126,6 +128,21 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	// Re-calculate the masses
 	calcMass(z_bl);
 	calcMass(c_bl);
+	*/
+
+	STRIDE5(_z_bl, 0) = STRIDE5(_z_bj, 0) + STRIDE5(_z_lep, 0);
+	STRIDE5(_z_bl, 1) = STRIDE5(_z_bj, 1) + STRIDE5(_z_lep, 1);
+	STRIDE5(_z_bl, 2) = STRIDE5(_z_bj, 2) + STRIDE5(_z_lep, 2);
+	STRIDE5(_z_bl, 3) = STRIDE5(_z_bj, 3) + STRIDE5(_z_lep, 3);
+
+	STRIDE5(_c_bl, 0) = STRIDE5(_c_bj, 0) + STRIDE5(_c_lep, 0);
+	STRIDE5(_c_bl, 1) = STRIDE5(_c_bj, 1) + STRIDE5(_c_lep, 1);
+	STRIDE5(_c_bl, 2) = STRIDE5(_c_bj, 2) + STRIDE5(_c_lep, 2);
+	STRIDE5(_c_bl, 3) = STRIDE5(_c_bj, 3) + STRIDE5(_c_lep, 3);
+
+	// Re-calculate the masses
+	STRIDE5(_z_bl, 4) = calcMass(STRIDE5(_z_bl, 0),  STRIDE5(_z_bl, 1), STRIDE5(_z_bl, 2), STRIDE5(_z_bl, 3));
+	STRIDE5(_c_bl, 4) = calcMass(STRIDE5(_c_bl, 0),  STRIDE5(_c_bl, 1), STRIDE5(_c_bl, 2), STRIDE5(_c_bl, 3));
 }
 
 void DilepClass::execute (void) {
