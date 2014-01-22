@@ -150,7 +150,7 @@ void DilepClass::execute (void) {
 	// CPU version
 	double_t _z_bl[5 * length], _c_bl[5 * length];
 
-	cout << sizeof(_z_bl) / sizeof(double_t) << endl;
+	cout << sizeof(_z_bl) / sizeof(double_t) << " - " << 5 * length << endl;
 
 	for (unsigned tid = 0; tid < length; ++tid)
 		applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
