@@ -103,9 +103,11 @@ namespace Dilep {
 
 			}
 
+			unsigned dilep_executions = size * dilep_iterations;
+
 			// Create and execute the dilep class required by DICE
 			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx,
-						   _misspy, t_mass, w_mass, 0, 0, size);
+						   _misspy, t_mass, w_mass, 0, 0, dilep_executions);
 
 			dp.execute();
 

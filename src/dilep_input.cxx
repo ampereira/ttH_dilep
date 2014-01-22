@@ -75,8 +75,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	event_id = _event_id;
 
 	#ifdef D_DICE
-		//hasSolution.reserve(dilep_iterations);
-		//result.reserve(dilep_iterations);
+		hasSolution.reserve(dilep_iterations);
+		result.reserve(dilep_iterations);
 	#else
 		hasSolution = 0;
 	#endif
