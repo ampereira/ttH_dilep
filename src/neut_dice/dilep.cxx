@@ -104,13 +104,14 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	double_t *c_bjWFlags  = &STRIDE5(_c_bjWFlags, 0);
 */
 
-	double_t *z_lep 	  = &STRIDE5(_z_lep, 0);
-	double_t *c_lep 	  = &STRIDE5(_c_lep, 0);
-	double_t *z_bj 		  = &STRIDE5(_z_bj, 0);
-	double_t *c_bj 		  = &STRIDE5(_c_bj, 0);
-	double_t *z_bl 		  = &STRIDE5(_z_bl, 0);
-	double_t *c_bl 		  = &STRIDE5(_c_bl, 0);
+	double_t *z_lep = &STRIDE5(_z_lep, 0);
+	double_t *c_lep = &STRIDE5(_c_lep, 0);
+	double_t *z_bj  = &STRIDE5(_z_bj, 0);
+	double_t *c_bj  = &STRIDE5(_c_bj, 0);
+	double_t *z_bl  = &STRIDE5(_z_bl, 0);
+	double_t *c_bl  = &STRIDE5(_c_bl, 0);
 
+	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
 
 	z_bl[0] = z_bj[0] + z_lep[0];
 	z_bl[1] = z_bj[1] + z_lep[1];
