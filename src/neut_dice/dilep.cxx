@@ -27,11 +27,11 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	length		 = len;
 
 	// Memory alocation for results
-	nc	  = new double [16 * length];
+	nc	  = new double_t [16 * length];
 	a 	  = new int [length];
 	// Memory alocation for partial results
-	_z_bl = new double [5 * length];
-	_c_bl = new double [5 * length];
+	//_z_bl = new double [5 * length];
+	//_c_bl = new double [5 * length];
 }
 
 DilepClass::~DilepClass () {
