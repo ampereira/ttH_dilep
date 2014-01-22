@@ -2,9 +2,6 @@
 #ifndef ttH_dilep_h
 #define ttH_dilep_h
 
-
-#define DILEP_ITERATIONS 32
-
 #include <TROOT.h>
 #include <TChain.h>
 #include <TFile.h>
