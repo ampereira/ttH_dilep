@@ -29,6 +29,7 @@ public:
 	double_t _z_bl[DILEP_ITERATIONS * 5];
 	double_t _c_bl[DILEP_ITERATIONS * 5];
 
+
 	// Output and control parameters
 	double_t *nc;
 	int *a;
