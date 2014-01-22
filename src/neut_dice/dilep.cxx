@@ -32,8 +32,6 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	// Memory alocation for partial results
 	//_z_bl = new double [5 * length];
 	//_c_bl = new double [5 * length];
-	_z_bl = (double *) malloc (5 * length * sizeof(double));
-	_c_bl = (double *) malloc (5 * length * sizeof(double));
 }
 
 DilepClass::~DilepClass () {

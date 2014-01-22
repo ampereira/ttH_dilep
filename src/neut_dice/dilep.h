@@ -13,6 +13,7 @@ using namespace std;
 #define TPI 3.14159265358979312
 #define STRIDE2(array,i) array[tid * 2 + i]
 #define STRIDE5(array,i) array[tid * 5 + i]
+#define DILEP_ITERATIONS 32
 
 typedef double double_t;
 
@@ -25,9 +26,9 @@ public:
 	double_t _MissPx, _MissPy;
 
 	// Partial results
-	double_t *_z_bl, *_c_bl;
-	//double_t _z_bl[3629760];
-	//double_t _c_bl[3629760];
+	//double_t *_z_bl, *_c_bl;
+	double_t _z_bl[DILEP_ITERATIONS * 5];
+	double_t _c_bl[DILEP_ITERATIONS * 5];
 
 	// Output and control parameters
 	double_t *nc;
