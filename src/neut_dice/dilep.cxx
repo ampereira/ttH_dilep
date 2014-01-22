@@ -4,12 +4,12 @@ DilepClass::DilepClass () {
 
 }
 
-DilepClass::DilepClass (double_t _in_mpx[], double_t _in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
+DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
 			double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-			double_t MissPx, double_t MissPy, double_t _t_mass[], double_t _w_mass[], unsigned up, unsigned lo, long long unsigned len) {
+			double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, long long unsigned len) {
 
-	_in_mpx		 = _in_mpx;
-	_in_mpy		 = _in_mpy;
+	_in_mpx		 = in_mpx;
+	_in_mpy		 = in_mpy;
 	_z_lepWFlags = z_lepWFlags;
 	_c_lepWFlags = c_lepWFlags;
 	_z_bjWFlags  = z_bjWFlags;
@@ -20,20 +20,18 @@ DilepClass::DilepClass (double_t _in_mpx[], double_t _in_mpy[], double_t z_lepWF
 	_c_bj 		 = c_bj;
 	_MissPx 	 = MissPx;
 	_MissPy 	 = MissPy;
-	_t_mass 	 = _t_mass;
-	_w_mass 	 = _w_mass;
+	_t_mass 	 = t_mass;
+	_w_mass 	 = w_mass;
 	upper_bound  = up;
 	lower_bound  = lo;
 	length		 = len;
 
 	// Memory alocation for results
-	nc	  = new double_t [16 * length];
+	nc	  = new double [16 * length];
 	a 	  = new int [length];
 	// Memory alocation for partial results
-	_z_bl = new double_t [5 * length];
-	_c_bl = new double_t [5 * length];
-
-	cout << length << " - " << sizeof(_z_bl)/sizeof(double_t) << endl;
+	_z_bl = new double [5 * length];
+	_c_bl = new double [5 * length];
 }
 
 DilepClass::~DilepClass () {
