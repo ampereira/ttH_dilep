@@ -13,7 +13,6 @@ using namespace std;
 #define TPI 3.14159265358979312
 #define STRIDE2(array,i) array[tid * 2 + i]
 #define STRIDE5(array,i) array[tid * 5 + i]
-#define DILEP_ITERATIONS 32
 
 typedef double double_t;
 

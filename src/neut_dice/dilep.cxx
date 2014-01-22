@@ -131,8 +131,7 @@ void DilepClass::applyVariance (long long unsigned tid) {
 	calcMass(c_bl);
 	*/
 
-	cout << "Current index: " << tid * 5 << endl;
-	cout << "Max size: " << 5 * length << endl;
+	//cout << "Current index: " << tid * 5 << endl;
 
 	STRIDE5(_z_bl, 0) = STRIDE5(_z_bj, 0) + STRIDE5(_z_lep, 0);
 	STRIDE5(_z_bl, 1) = STRIDE5(_z_bj, 1) + STRIDE5(_z_lep, 1);
