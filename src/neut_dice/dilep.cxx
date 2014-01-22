@@ -32,6 +32,8 @@ DilepClass::DilepClass (double_t _in_mpx[], double_t _in_mpy[], double_t z_lepWF
 	// Memory alocation for partial results
 	_z_bl = new double_t [5 * length];
 	_c_bl = new double_t [5 * length];
+
+	cout << length << " - " << sizeof(_z_bl)/sizeof(double_t) << endl;
 }
 
 DilepClass::~DilepClass () {
@@ -147,8 +149,6 @@ void DilepClass::applyVariance (unsigned tid) {
 }
 
 void DilepClass::execute (void) {
-
-	cout << sizeof(_z_bl) / sizeof(double_t) << " - " << 5 * length << endl;
 
 	for (unsigned tid = 0; tid < length; ++tid)
 		applyVariance(tid);
