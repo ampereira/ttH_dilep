@@ -6,7 +6,7 @@ DilepClass::DilepClass () {
 
 DilepClass::DilepClass (double_t _in_mpx[], double_t _in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
 			double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-			double_t MissPx, double_t MissPy, double_t _t_mass[], double_t _w_mass[], unsigned up, unsigned lo, unsigned len) {
+			double_t MissPx, double_t MissPy, double_t _t_mass[], double_t _w_mass[], unsigned up, unsigned lo, long long unsigned len) {
 
 	_in_mpx		 = _in_mpx;
 	_in_mpy		 = _in_mpy;
@@ -93,7 +93,7 @@ double_t DilepClass::calcMass (double_t x, double_t y, double_t z, double_t e) {
 	return mass;
 }
 
-void DilepClass::applyVariance (unsigned tid) {
+void DilepClass::applyVariance (long long unsigned tid) {
 
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;;
 
@@ -150,14 +150,14 @@ void DilepClass::applyVariance (unsigned tid) {
 
 void DilepClass::execute (void) {
 
-	for (unsigned tid = 0; tid < length; ++tid)
+	for (long long unsigned tid = 0; tid < length; ++tid)
 		applyVariance(tid);
 
-	for (unsigned tid = 0; tid < length; ++tid)
+	for (long long unsigned tid = 0; tid < length; ++tid)
 		calc_dilep(tid);
 }
 
-void DilepClass::calc_dilep( unsigned tid)
+void DilepClass::calc_dilep(long long unsigned tid)
 		{
 
 	//unsigned tid = threadIdx.x + blockIdx.x * blockDim.x;

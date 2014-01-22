@@ -30,13 +30,14 @@ public:
 	// Output and control parameters
 	double_t *nc;
 	int *a;
-	unsigned upper_bound, lower_bound, length;
+	unsigned upper_bound, lower_bound;
+	long long unsigned length;
 
 	/*__HYBRID__*/ 
 	DilepClass (void);
 	DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFlags[], double_t c_lepWFlags[],
 				double_t z_bjWFlags[], double_t c_bjWFlags[], double_t z_lep[], double_t c_lep[], double_t z_bj[], double_t c_bj[],
-				double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, unsigned len);
+				double_t MissPx, double_t MissPy, double_t t_mass[], double_t w_mass[], unsigned up, unsigned lo, long long unsigned len);
 	~DilepClass ();
 
 	// Performs the variance and the dileptonic stuff
@@ -53,11 +54,11 @@ public:
 	double_t calcMass (double_t x, double_t y, double_t z, double_t e);
 
 	// Calculates dileptonic kinematics
-	void calc_dilep(unsigned tid);
+	void calc_dilep(long long unsigned tid);
 
 	// Applies the variance to the inputs according to a given resolution
 	// Still on test version, i.e., tid must be passed as an argument
-	void applyVariance (unsigned tid);
+	void applyVariance (long long unsigned tid);
 };
 
 #endif
