@@ -104,7 +104,7 @@ void DilepClass::applyVariance (double_t _in_mpx[], double_t _in_mpy[], double_t
 	double_t *c_bjWFlags  = &STRIDE5(_c_bjWFlags, 0);
 */
 
-	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
+//	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
 
 /*
 	double_t *z_lep = &STRIDE5(_z_lep, 0);
@@ -149,6 +149,8 @@ void DilepClass::execute (void) {
 
 	// CPU version
 	double_t _z_bl[5 * length], _c_bl[5 * length];
+
+	cout << sizeof(_z_bl) / sizeof(double_t) << endl;
 
 	for (unsigned tid = 0; tid < length; ++tid)
 		applyVariance(_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags,
