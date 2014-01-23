@@ -26,6 +26,8 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	lower_bound  = lo;
 	length		 = len;
 
+	cout << "Length: " << length << endl;
+
 	// Memory alocation for results
 	nc	  = new double_t [16 * length];
 	a 	  = new int [length];
