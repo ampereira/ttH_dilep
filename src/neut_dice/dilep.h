@@ -28,8 +28,10 @@ public:
 
 	// Partial results
 	//double_t *_z_bl, *_c_bl;
-	double_t _z_bl[5000000];
-	double_t _c_bl[5000000];
+	// BUG - O TAMANHO DESTA MERDA
+
+	double_t *_z_bl;
+	double_t *_c_bl;
 
 
 	// Output and control parameters
