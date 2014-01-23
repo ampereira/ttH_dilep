@@ -26,7 +26,7 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	lower_bound  = lo;
 	length		 = len;
 
-	cout << "Length: " << length << endl;
+	cout << "Length1: " << length << endl;
 
 	// Memory alocation for results
 	nc	  = new double_t [16 * length];
@@ -134,7 +134,7 @@ void DilepClass::applyVariance (long long unsigned tid) {
 	*/
 
 	//cout << "Current index: " << tid * 5 << endl;
-	//cout << "Length: " << length << endl;
+	cout << "Length2: " << length << endl;
 
 	STRIDE5(_z_bl, 0) = STRIDE5(_z_bj, 0) + STRIDE5(_z_lep, 0);
 	STRIDE5(_z_bl, 1) = STRIDE5(_z_bj, 1) + STRIDE5(_z_lep, 1);
