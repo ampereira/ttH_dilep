@@ -5,7 +5,7 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
-#define DILEP_ITERATIONS 2
+#define DILEP_ITERATIONS 1
 
 #include <iostream>
 using namespace std;
