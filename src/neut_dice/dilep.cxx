@@ -134,7 +134,6 @@ void DilepClass::applyVariance (long long unsigned tid) {
 	*/
 
 	//cout << "Current index: " << tid * 5 << endl;
-	cout << "Length2: " << length << endl;
 
 	STRIDE5(_z_bl, 0) = STRIDE5(_z_bj, 0) + STRIDE5(_z_lep, 0);
 	STRIDE5(_z_bl, 1) = STRIDE5(_z_bj, 1) + STRIDE5(_z_lep, 1);
@@ -153,6 +152,7 @@ void DilepClass::applyVariance (long long unsigned tid) {
 
 void DilepClass::execute (void) {
 
+	cout << "Length2: " << length << endl;
 	for (long long unsigned tid = 0; tid < length; ++tid)
 		applyVariance(tid);
 
