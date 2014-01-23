@@ -152,9 +152,10 @@ void DilepClass::applyVariance (long long unsigned tid) {
 
 void DilepClass::execute (void) {
 
-	cout << "Length2: " << length << endl;
-	for (long long unsigned tid = 0; tid < length; ++tid)
+	for (long long unsigned tid = 0; tid < length; ++tid) {
+		cout << "Index: " << tid <<  " - Length: " << length << endl;
 		applyVariance(tid);
+	}
 
 	for (long long unsigned tid = 0; tid < length; ++tid)
 		calc_dilep(tid);
