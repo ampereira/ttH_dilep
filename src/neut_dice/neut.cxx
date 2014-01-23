@@ -103,7 +103,7 @@ namespace Dilep {
 
 			}
 
-			unsigned dilep_executions = size * dilep_iterations;
+			long long unsigned dilep_executions = size * dilep_iterations;
 
 
 			cout << "Max size:  " << dilep_executions << endl;
