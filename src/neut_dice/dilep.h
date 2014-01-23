@@ -28,8 +28,8 @@ public:
 
 	// Partial results
 	//double_t *_z_bl, *_c_bl;
-	double_t _z_bl[DILEP_ITERATIONS * 5];
-	double_t _c_bl[DILEP_ITERATIONS * 5];
+	double_t _z_bl[5000000];
+	double_t _c_bl[5000000];
 
 
 	// Output and control parameters
