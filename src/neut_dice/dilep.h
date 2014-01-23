@@ -36,7 +36,7 @@ public:
 	double_t *nc;
 	int *a;
 	unsigned upper_bound, lower_bound;
-	long long unsigned length;
+	long long unsigned _length;
 
 	/*__HYBRID__*/ 
 	DilepClass (void);

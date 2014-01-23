@@ -24,16 +24,16 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	_w_mass 	 = w_mass;
 	upper_bound  = up;
 	lower_bound  = lo;
-	length		 = len;
+	_length		 = len;
 
-	cout << "Length1: " << length << endl;
+	cout << "Length1: " << _length << endl;
 
 	// Memory alocation for results
-	nc	  = new double_t [16 * length];
-	a 	  = new int [length];
+	nc	  = new double_t [16 * _length];
+	a 	  = new int [_length];
 	// Memory alocation for partial results
-	//_z_bl = new double [5 * length];
-	//_c_bl = new double [5 * length];
+	//_z_bl = new double [5 * _length];
+	//_c_bl = new double [5 * _length];
 }
 
 DilepClass::~DilepClass () {
@@ -55,7 +55,7 @@ virtual ptrwork* dice (double *wl, unsigned &DEV) {
 		if (size != 0) {
 			L[k] = new DilepClass (_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags
 								   _z_lep, _c_lep, _z_bj, _c_bj, _MissPx, _MissPy, _t_mass, _w_mass
-								   start, start + size, length);
+								   start, start + size, _length);
 
 			start += size;
 		} else {
@@ -65,7 +65,7 @@ virtual ptrwork* dice (double *wl, unsigned &DEV) {
 	// Last diced piece. Handled differently to avoid sizes higher than the limit
 	L[DEV - 1] = new DilepClass (_in_mpx, _in_mpy, _z_lepWFlags, _c_lepWFlags, _z_bjWFlags, _c_bjWFlags
 								   _z_lep, _c_lep, _z_bj, _c_bj, _MissPx, _MissPy, _t_mass, _w_mass
-								   start, upper_bound, length);
+								   start, upper_bound, _length);
 
 	return L;
 }
@@ -107,7 +107,7 @@ void DilepClass::applyVariance (long long unsigned tid) {
 	double_t *c_bjWFlags  = &STRIDE5(_c_bjWFlags, 0);
 */
 
-//	cout << tid << " - " << 5 * tid << " - " << length << " - " << 5 * length << endl;
+//	cout << tid << " - " << 5 * tid << " - " << _length << " - " << 5 * _length << endl;
 
 /*
 	double_t *z_lep = &STRIDE5(_z_lep, 0);
@@ -152,12 +152,12 @@ void DilepClass::applyVariance (long long unsigned tid) {
 
 void DilepClass::execute (void) {
 
-	for (long long unsigned tid = 0; tid < length; ++tid) {
-		cout << "Index: " << tid <<  " - Length: " << length << endl;
+	for (long long unsigned tid = 0; tid < _length; ++tid) {
+		cout << "Index: " << tid <<  " - Length: " << _length << endl;
 		applyVariance(tid);
 	}
 
-	for (long long unsigned tid = 0; tid < length; ++tid)
+	for (long long unsigned tid = 0; tid < _length; ++tid)
 		calc_dilep(tid);
 }
 
