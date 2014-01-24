@@ -30,8 +30,8 @@ public:
 	//double_t *_z_bl, *_c_bl;
 	// BUG - O TAMANHO DESTA MERDA
 
-	double_t *_z_bl;
-	double_t *_c_bl;
+	double_t _z_bl[36297600];
+	double_t _c_bl[36297600];
 
 
 	// Output and control parameters
