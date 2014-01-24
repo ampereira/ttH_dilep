@@ -32,8 +32,8 @@ DilepClass::DilepClass (double_t in_mpx[], double_t in_mpy[], double_t z_lepWFla
 	nc	  = new double_t [16 * _length];
 	a 	  = new int [_length];
 	// Memory alocation for partial results
-	_z_bl = new double [5 * _length];
-	_c_bl = new double [5 * _length];
+	//_z_bl = new double [5 * _length];
+	//_c_bl = new double [5 * _length];
 }
 
 DilepClass::~DilepClass () {
@@ -153,7 +153,7 @@ void DilepClass::applyVariance (long long unsigned tid) {
 void DilepClass::execute (void) {
 
 	for (long long unsigned tid = 0; tid < _length; ++tid) {
-		cout << "Index: " << tid <<  " - Length: " << _length << endl;
+		//cout << "Index: " << tid <<  " - Length: " << _length << endl;
 		applyVariance(tid);
 	}
 
