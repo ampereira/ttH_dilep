@@ -35,8 +35,8 @@ public:
 	 *
 	 */
 
-	double_t _z_bl[14519040];
-	double_t _c_bl[14519040];
+	double_t _z_bl[2451904];
+	double_t _c_bl[2451904];
 
 
 	// Output and control parameters
