@@ -29,9 +29,14 @@ public:
 	// Partial results
 	//double_t *_z_bl, *_c_bl;
 	// BUG - O TAMANHO DESTA MERDA
+	/*
+	 * Tabela de tamanhos
+	 * iteracoes - tamanho aprox
+	 *
+	 */
 
-	double_t _z_bl[36297600];
-	double_t _c_bl[36297600];
+	double_t *_z_bl;
+	double_t *_c_bl;
 
 
 	// Output and control parameters
