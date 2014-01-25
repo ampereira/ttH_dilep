@@ -22,7 +22,7 @@ using namespace std;
  * iteracoes - tamanho aproximado obtido experimentalmente
  */
 #define BL_SIZE1    500000		// for 1 dilep iterations
-#define BL_SIZE2    700000		// for 2 dilep iterations
+#define BL_SIZE2    900000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
 #define BL_SIZE16   1000000		// for 16 dilep iterations
 #define BL_SIZE32   1000000		// for 32 dilep iterations
