@@ -21,8 +21,16 @@ using namespace std;
  * Tabela de tamanhos
  * iteracoes - tamanho aproximado
  */
-#define BL_SIZE2 2000000		// for 2 dilep iterations
-#define BL_SIZE4 4000000		// for 4 dilep iterations
+#define BL_SIZE1    1000000		// for 2 dilep iterations
+#define BL_SIZE2    1000000		// for 2 dilep iterations
+#define BL_SIZE4    4000000		// for 4 dilep iterations
+#define BL_SIZE16   1000000		// for 16 dilep iterations
+#define BL_SIZE32   1000000		// for 32 dilep iterations
+#define BL_SIZE64   1000000		// for 64 dilep iterations
+#define BL_SIZE128  1000000		// for 128 dilep iterations
+#define BL_SIZE256  1000000		// for 256 dilep iterations
+#define BL_SIZE512  1000000		// for 512 dilep iterations
+#define BL_SIZE1024 1000000		// for 1024 dilep iterations
 
 typedef double double_t;
 
