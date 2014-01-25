@@ -19,10 +19,10 @@ using namespace std;
 // BUG - O TAMANHO DESTA MERDA
 /*
  * Tabela de tamanhos
- * iteracoes - tamanho aproximado
+ * iteracoes - tamanho aproximado obtido experimentalmente
  */
-#define BL_SIZE1    1000000		// for 2 dilep iterations
-#define BL_SIZE2    1000000		// for 2 dilep iterations
+#define BL_SIZE1    500000		// for 1 dilep iterations
+#define BL_SIZE2    500000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
 #define BL_SIZE16   1000000		// for 16 dilep iterations
 #define BL_SIZE32   1000000		// for 32 dilep iterations
