@@ -16,6 +16,8 @@ using namespace std;
 #define STRIDE2(array,i) array[tid * 2 + i]
 #define STRIDE5(array,i) array[tid * 5 + i]
 
+#define BL_SIZE 3451904		// for 4 dilep iterations
+
 typedef double double_t;
 
 class DilepClass/* : public work*/ {
@@ -35,8 +37,8 @@ public:
 	 *
 	 */
 
-	double_t _z_bl[2451904];
-	double_t _c_bl[2451904];
+	double_t _z_bl[BL_SIZE];
+	double_t _c_bl[BL_SIZE];
 
 
 	// Output and control parameters
