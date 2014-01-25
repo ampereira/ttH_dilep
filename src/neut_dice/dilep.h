@@ -24,6 +24,7 @@ using namespace std;
 #define BL_SIZE1    150000		// for 1 dilep iterations
 #define BL_SIZE2    950000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
+// --== Ate aqui ta testado == --
 #define BL_SIZE16   1000000		// for 16 dilep iterations
 #define BL_SIZE32   1000000		// for 32 dilep iterations
 #define BL_SIZE64   1000000		// for 64 dilep iterations
