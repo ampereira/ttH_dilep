@@ -5,7 +5,7 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
-#define DILEP_ITERATIONS 4
+#define DILEP_ITERATIONS 2
 
 #include <iostream>
 using namespace std;
@@ -16,6 +16,12 @@ using namespace std;
 #define STRIDE2(array,i) array[tid * 2 + i]
 #define STRIDE5(array,i) array[tid * 5 + i]
 
+// BUG - O TAMANHO DESTA MERDA
+/*
+ * Tabela de tamanhos
+ * iteracoes - tamanho aproximado
+ */
+#define BL_SIZE2 2000000		// for 2 dilep iterations
 #define BL_SIZE4 4000000		// for 4 dilep iterations
 
 typedef double double_t;
@@ -30,15 +36,10 @@ public:
 
 	// Partial results
 	//double_t *_z_bl, *_c_bl;
-	// BUG - O TAMANHO DESTA MERDA
-	/*
-	 * Tabela de tamanhos
-	 * iteracoes - tamanho aprox
-	 *
-	 */
 
-	double_t _z_bl[BL_SIZE4];
-	double_t _c_bl[BL_SIZE4];
+
+	double_t _z_bl[BL_SIZE2];
+	double_t _c_bl[BL_SIZE2];
 
 
 	// Output and control parameters
