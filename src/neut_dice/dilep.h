@@ -21,7 +21,7 @@ using namespace std;
  * Tabela de tamanhos
  * iteracoes - tamanho aproximado obtido experimentalmente
  */
-#define BL_SIZE1    70000		// for 1 dilep iterations
+#define BL_SIZE1    120000		// for 1 dilep iterations
 #define BL_SIZE2    950000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
 // --== Ate aqui ta testado == --
@@ -47,8 +47,8 @@ public:
 	//double_t *_z_bl, *_c_bl;
 
 
-	double_t _z_bl[BL_SIZE2];
-	double_t _c_bl[BL_SIZE2];
+	double_t _z_bl[BL_SIZE1];
+	double_t _c_bl[BL_SIZE1];
 
 
 	// Output and control parameters
