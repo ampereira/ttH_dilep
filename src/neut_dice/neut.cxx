@@ -14,6 +14,8 @@ namespace Dilep {
 
 		unsigned _tid = 0, size;
 	
+		// The inputs vector DOES NOT have repeated data for the variations
+		// only the data for each combination
 		void dilep (void) {
 
 			size = inputs.size();

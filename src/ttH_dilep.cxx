@@ -4508,7 +4508,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 						if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
 							for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
 								if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
-									for (int asd = 0; asd < dilep_iterations; ++asd) {
+									//for (int asd = 0; asd < dilep_iterations; ++asd) {
 										counter++;
 
 										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
@@ -4516,7 +4516,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 										//di.applyVariance(RESOLUTION);
 										//#pragma omp critical
 										inputs.push_back(di);
-									}
+									//}
 								}
 							}
 						}

@@ -150,6 +150,8 @@ void DilepClass::applyVariance (long long unsigned tid) {
 	STRIDE5(_c_bl, 4) = calcMass(STRIDE5(_c_bl, 0),  STRIDE5(_c_bl, 1), STRIDE5(_c_bl, 2), STRIDE5(_c_bl, 3));
 }
 
+// The loops iterate through the length
+// The length is the number total combs (for all events) times the number of variations
 void DilepClass::execute (void) {
 
 	for (long long unsigned tid = 0; tid < _length; ++tid) {
