@@ -35,6 +35,7 @@
 //	exit (EXIT_FAILURE);}
 #define CUDA_CALL(x) x
 
+extern vector<DilepInput> inputs;
 
 
 namespace Dilep {
