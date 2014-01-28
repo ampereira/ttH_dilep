@@ -25,7 +25,7 @@ using namespace std;
 #define BL_SIZE2    950000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
 // --== Ate aqui ta testado == --
-#define BL_SIZE16   58100000		// for 16 dilep iterations
+#define BL_SIZE16   58000000		// for 16 dilep iterations
 #define BL_SIZE32   1000000		// for 32 dilep iterations
 #define BL_SIZE64   1000000		// for 64 dilep iterations
 #define BL_SIZE128  1000000		// for 128 dilep iterations
@@ -44,11 +44,11 @@ public:
 	double_t _MissPx, _MissPy;
 
 	// Partial results
-	double_t *_z_bl, *_c_bl;
+	//double_t *_z_bl, *_c_bl;
 
 
-	//double_t _z_bl[BL_SIZE16];
-	//double_t _c_bl[BL_SIZE16];
+	double_t _z_bl[BL_SIZE16];
+	double_t _c_bl[BL_SIZE16];
 
 
 	// Output and control parameters
