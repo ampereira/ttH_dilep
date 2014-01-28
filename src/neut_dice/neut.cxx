@@ -115,6 +115,7 @@ namespace Dilep {
 
 
 			// Create and execute the dilep class required by DICE
+			// It receives all the combination information for all events
 			DilepClass dp (in_mpx, in_mpy, aFlags, bFlags, cFlags, dFlags, a, b, c, d, _misspx,
 						   _misspy, t_mass, w_mass, 0, 0, dilep_executions);
 

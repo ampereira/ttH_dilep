@@ -44,11 +44,11 @@ public:
 	double_t _MissPx, _MissPy;
 
 	// Partial results
-	//double_t *_z_bl, *_c_bl;
+	double_t *_z_bl, *_c_bl;
 
 
-	double_t _z_bl[BL_SIZE32];
-	double_t _c_bl[BL_SIZE32];
+	//double_t _z_bl[BL_SIZE32];
+	//double_t _c_bl[BL_SIZE32];
 
 
 	// Output and control parameters
