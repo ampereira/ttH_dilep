@@ -39,7 +39,7 @@
 namespace Dilep {
 	namespace DICE {
 
-		void dilep (vector<DilepInput> &di);
+		void dilep (void);
 
 	}
 }
