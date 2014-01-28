@@ -4604,7 +4604,7 @@ void ttH_dilep::ttDilepKinFit(){
 		Dilep::GPU::dilep(inputs);
 	#elif D_DICE
 		cout << "Size of inputs: " << inputs.size() << endl;
-        Dilep::DICE::dilep(inputs);
+        Dilep::DICE::dilep();
     #else
 		#pragma omp parallel
 		{
