@@ -5,7 +5,7 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
-#define DILEP_ITERATIONS 16
+#define DILEP_ITERATIONS 32
 
 #include <iostream>
 using namespace std;
@@ -24,9 +24,9 @@ using namespace std;
 #define BL_SIZE1    230000		// for 1 dilep iterations
 #define BL_SIZE2    950000		// for 2 dilep iterations
 #define BL_SIZE4    4000000		// for 4 dilep iterations
+#define BL_SIZE16   58080000	// for 16 dilep iterations
 // --== Ate aqui ta testado == --
-#define BL_SIZE16   58070000		// for 16 dilep iterations
-#define BL_SIZE32   1000000		// for 32 dilep iterations
+#define BL_SIZE32   100000000		// for 32 dilep iterations
 #define BL_SIZE64   1000000		// for 64 dilep iterations
 #define BL_SIZE128  1000000		// for 128 dilep iterations
 #define BL_SIZE256  1000000		// for 256 dilep iterations
@@ -47,8 +47,8 @@ public:
 	//double_t *_z_bl, *_c_bl;
 
 
-	double_t _z_bl[BL_SIZE16];
-	double_t _c_bl[BL_SIZE16];
+	double_t _z_bl[BL_SIZE32];
+	double_t _c_bl[BL_SIZE32];
 
 
 	// Output and control parameters
