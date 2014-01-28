@@ -19,7 +19,6 @@
 #include <sstream>
 #include "../myvector.h"
 #include "../dilep_input.h"
-#include "../ttH_dilep.h"
 #include "../../../LipMiniAnalysis/src/LipMiniAnalysis.h"
 
 #include "dilep.h"
@@ -35,7 +34,6 @@
 //	exit (EXIT_FAILURE);}
 #define CUDA_CALL(x) x
 
-extern vector<DilepInput> inputs;
 
 
 namespace Dilep {

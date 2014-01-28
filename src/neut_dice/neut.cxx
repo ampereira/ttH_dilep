@@ -5,8 +5,9 @@
 using std::vector;
 using namespace std;
 
-extern vector<Event::EventData> events;
+extern std::vector<Event::EventData> events;
 extern int dilep_iterations;
+extern std::vector<DilepInput> inputs;
 
 namespace Dilep {
 	namespace DICE {

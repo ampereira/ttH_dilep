@@ -165,8 +165,6 @@ public:
   // stuf for likelihoods
   virtual void BookLikeHistos();
 
-  std::vector<DilepInput> inputs;
-
   // stuff for calculations
 
   Int_t event_counter;
