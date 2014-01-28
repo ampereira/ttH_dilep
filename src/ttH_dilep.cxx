@@ -4511,7 +4511,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 
 										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
 										
-										di.applyVariance(RESOLUTION);
+										//di.applyVariance(RESOLUTION);
 										//#pragma omp critical
 										inputs.push_back(di);
 									}
@@ -4603,6 +4603,7 @@ void ttH_dilep::ttDilepKinFit(){
 	#ifdef D_CUDA
 		Dilep::GPU::dilep(inputs);
 	#elif D_DICE
+		cout << "Size of inputs: " << inputs.size() << endl;
         Dilep::DICE::dilep(inputs);
     #else
 		#pragma omp parallel
