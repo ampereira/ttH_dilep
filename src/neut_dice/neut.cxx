@@ -107,7 +107,7 @@ namespace Dilep {
 			}
 
 			long long unsigned dilep_executions = size * dilep_iterations;
-
+			//long long unsigned dilep_executions = size;
 
 			cout << "Max size:  " << dilep_executions << endl;
 			cout << "Max size2: " << dilep_iterations << endl;
@@ -131,12 +131,13 @@ namespace Dilep {
 			// Watch out! Indexing witchcraft below!
 			int total;
 			for (Event::event_counter = 0, total = 0; Event::event_counter < events.size(); ++Event::event_counter) {
-				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs * dilep_iterations; ++comb, ++total) {
+				for (unsigned comb = 0; comb < events[Event::event_counter].num_Combs/* * dilep_iterations*/; ++comb, ++total) {
 					vector<myvector> result;
 					// Reset the partial hasSolution per combination per variation
 					int hasSolution = 0;
 
-					unsigned index = comb % dilep_iterations;
+					//unsigned index = comb % dilep_iterations;
+					unsigned index = comb;
 
 					for (int sol = 0 ; sol < count[total] && sol<4 ; sol++) {
 						myvector *mv = new myvector( 
@@ -144,7 +145,7 @@ namespace Dilep {
 							TO1D(nc,total,sol,1),
 							TO1D(nc,total,sol,2),
 							TO1D(nc,total,sol,3) );
-						
+
 						result.push_back(*mv);
 					}
 
@@ -152,8 +153,8 @@ namespace Dilep {
 						++hasSolution;
 
 					// More indexing magic to properly set the results...
-					inputs[total / dilep_iterations].setHasSol(hasSolution, index);
-					inputs[total / dilep_iterations].setResult(&result, index);
+					inputs[total/* / dilep_iterations*/].setHasSol(hasSolution, index);
+					inputs[total/* / dilep_iterations*/].setResult(&result, index);
 				}
 			}
 

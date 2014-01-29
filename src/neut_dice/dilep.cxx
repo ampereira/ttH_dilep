@@ -152,15 +152,21 @@ void DilepClass::applyVariance (long long unsigned tid) {
 
 // The loops iterate through the length
 // The length is the number total combs (for all events) times the number of variations
+// Currently I only save 1 variation per combination
 void DilepClass::execute (void) {
 
 	for (long long unsigned tid = 0; tid < _length; ++tid) {
 		//cout << "Index: " << tid <<  " - Length: " << _length << endl;
-		applyVariance(tid);
+		//applyVariance(tid);
+		unsigned true_tid = tid / DILEP_ITERATIONS;
+		applyVariance(true_tid);
 	}
 
-	for (long long unsigned tid = 0; tid < _length; ++tid)
-		calc_dilep(tid);
+	for (long long unsigned tid = 0; tid < _length; ++tid) {
+		//calc_dilep(tid);
+		unsigned true_tid = tid / DILEP_ITERATIONS;
+		calc_dilep(true_tid);
+	}
 }
 
 void DilepClass::calc_dilep(long long unsigned tid)
