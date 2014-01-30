@@ -5,7 +5,7 @@
 //#include <config/common.h>
 //#include <gamalib/gamalib.h>
 
-#define DILEP_ITERATIONS 16
+#define DILEP_ITERATIONS 1
 
 #include <iostream>
 using namespace std;
@@ -47,8 +47,8 @@ public:
 	//double_t *_z_bl, *_c_bl;
 
 
-	double_t _z_bl[BL_SIZE16];
-	double_t _c_bl[BL_SIZE16];
+	double_t _z_bl[BL_SIZE1];
+	double_t _c_bl[BL_SIZE1];
 
 
 	// Output and control parameters
