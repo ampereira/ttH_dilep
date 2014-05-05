@@ -25,4 +25,14 @@ then
 	echo "Using newer version of $currfile"
 fi
 
-time ./$currfile --OutputFileName=ttH125_dilepbb_em --SetSystematicsFileName=../RefSys/Ref.txt --Sample=901 --User="CutTriggerEleMuo=1" --User="lepSample=23" 
+if [ $2 = "debug" ]
+then
+	if [ uname = "Darwin"]
+	then
+		sudo gdb ./$currfile --OutputFileName=ttH125_dilepbb_em --SetSystematicsFileName=../RefSys/Ref.txt --Sample=901 --User="CutTriggerEleMuo=1" --User="lepSample=23" 
+	else
+		gdb ./$currfile --OutputFileName=ttH125_dilepbb_em --SetSystematicsFileName=../RefSys/Ref.txt --Sample=901 --User="CutTriggerEleMuo=1" --User="lepSample=23" 
+	fi
+else
+	time ./$currfile --OutputFileName=ttH125_dilepbb_em --SetSystematicsFileName=../RefSys/Ref.txt --Sample=901 --User="CutTriggerEleMuo=1" --User="lepSample=23" 
+fi
