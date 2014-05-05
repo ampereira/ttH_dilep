@@ -43,7 +43,7 @@ if (!isData) {
   MCatNLOlum = Luminosity;   // Luminosity of sample
   TMonteCarlo mc_161871(1,     161871, MCatNLOlum,   5703, "161871_Pythia8_AU2CTEQ6L1_ttH125_dilepbb", MaxCuts); 
  
-  cout << endl << "CHEGOU" << " - " << MaxCuts << endl << endl;
+  cout << endl << "CHEGOU" << " - " << MonteCarlo.size() << endl << endl;
   MonteCarlo.push_back(mc_161871);
 
 }
