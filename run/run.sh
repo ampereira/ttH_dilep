@@ -1,3 +1,6 @@
+#!/bin/sh
+
+FLAG = true
 
 case $1 in
 	"omp")
@@ -14,6 +17,7 @@ case $1 in
 		;;
 	*)
 		currfile=ttH_dilep
+		FLAG = false
 		;;
 esac
 
@@ -25,7 +29,14 @@ then
 	echo "Using newer version of $currfile"
 fi
 
-if [ $2 = "debug" ]
+if [ FLAG ]
+then
+	DBG=$2
+else
+	DBG=$1
+fi
+
+if [ $DBG = "debug" ]
 then
 	if [ uname = "Darwin"]
 	then
