@@ -30,16 +30,19 @@ if (!isData) {
   // ttbar+LF Alpgen
   if ( TTbarLF_Alpgen_8TeV ) 
     Input.File(ntu, "../Links/Data_MC_MarkOwen_8TeV/MC_Alpgen_tt-LF_8TeV.root");
+  
   double MCatNLOlum = Luminosity;   // Luminosity of sample
-  TMonteCarlo mc_164440(1,     164440, MCatNLOlum,  106585, "195847_MC_Alpgen_tt-LF_8TeV", MaxCuts); MonteCarlo.push_back(mc_164440);
+  TMonteCarlo mc_164440(1,     164440, MCatNLOlum,  106585, "195847_MC_Alpgen_tt-LF_8TeV", MaxCuts); 
+  MonteCarlo.push_back(mc_164440);
 
   // ttH ( mH = 125 GeV )
   if ( Pythia8_AU2CTEQ6L1_ttH125_dilepbb ) 
     Input.File(ntu, "../Links/mini_Pythia8_AU2CTEQ6L1_ttH125_dilepbb.root");
 
 
-  cout << endl << "CHEGOU" << " - " << Luminosity << endl << endl;
+  cout << endl << "CHEGOU" << " - " << MCatNLOlum << endl << endl;
   MCatNLOlum = Luminosity;   // Luminosity of sample
-  TMonteCarlo mc_161871(1,     161871, MCatNLOlum,   5703, "161871_Pythia8_AU2CTEQ6L1_ttH125_dilepbb", MaxCuts); MonteCarlo.push_back(mc_161871);
+  TMonteCarlo mc_161871(1,     161871, MCatNLOlum,   5703, "161871_Pythia8_AU2CTEQ6L1_ttH125_dilepbb", MaxCuts); 
+  MonteCarlo.push_back(mc_161871);
 
 }
