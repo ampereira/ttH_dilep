@@ -6,8 +6,9 @@
 #include <fstream>
 #include <vector>
 #include <string.h>
+#include <TRandom3.h>
 #include "myvector.h"
-#include "../../LipMiniAnalysis/src/LipMiniAnalysis.h"
+#include "../../LipMiniAnalysis/src/TLorentzVectorWFlags.h"
 
 #define SEED 123456.0
 

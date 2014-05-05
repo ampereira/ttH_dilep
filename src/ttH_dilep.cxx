@@ -15,7 +15,7 @@ using namespace std;
 	#include "neut/neut.h"
 #endif
 
-extern int dilep_iterations;
+//extern int dilep_iterations;
 
 #define RESOLUTION 0.02             // error resolution of de detector
 
@@ -34,7 +34,7 @@ extern int dilep_iterations;
 #include <cmath>
 
 #include <omp.h>
-extern std::vector<Event::EventData> events;
+//extern std::vector<Event::EventData> events;
 std::vector<DilepInput> inputs;
 
 
@@ -5356,7 +5356,6 @@ double ttH_dilep::DeltaR2( double eta1, double eta2, double phi1, double phi2){
 // #############################################################################
 Int_t main(Int_t argc, char *argv[]){
 // #############################################################################
-	dilep_iterations = DILEP_ITERATIONS;
 
 	// run the analysis
 	ttH_dilep *t = new ttH_dilep();
