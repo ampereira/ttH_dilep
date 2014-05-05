@@ -1,6 +1,6 @@
 #!/bin/sh
 
-FLAG = true
+FLAG=true
 
 case $1 in
 	"omp")
@@ -17,7 +17,7 @@ case $1 in
 		;;
 	*)
 		currfile=ttH_dilep
-		FLAG = false
+		FLAG=false
 		;;
 esac
 
@@ -29,16 +29,16 @@ then
 	echo "Using newer version of $currfile"
 fi
 
+DBG=$1
+
 if [ FLAG ]
 then
 	DBG=$2
-else
-	DBG=$1
 fi
 
-if [ $DBG = "debug" ]
+if [ "$DBG" == "debug" ]
 then
-	if [ uname = "Darwin"]
+	if [ uname == "Darwin"]
 	then
 		sudo gdb ./$currfile --OutputFileName=ttH125_dilepbb_em --SetSystematicsFileName=../RefSys/Ref.txt --Sample=901 --User="CutTriggerEleMuo=1" --User="lepSample=23" 
 	else
