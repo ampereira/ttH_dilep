@@ -37,8 +37,8 @@ if (!isData) {
   if ( Pythia8_AU2CTEQ6L1_ttH125_dilepbb ) 
     Input.File(ntu, "../Links/mini_Pythia8_AU2CTEQ6L1_ttH125_dilepbb.root");
 
-  
-  cout << endl << "CHEGOU" << " - " << Pythia8_AU2CTEQ6L1_ttH125_dilepbb << endl << endl;
+
+  cout << endl << "CHEGOU" << " - " << Luminosity << endl << endl;
   MCatNLOlum = Luminosity;   // Luminosity of sample
   TMonteCarlo mc_161871(1,     161871, MCatNLOlum,   5703, "161871_Pythia8_AU2CTEQ6L1_ttH125_dilepbb", MaxCuts); MonteCarlo.push_back(mc_161871);
 
