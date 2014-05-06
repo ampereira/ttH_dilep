@@ -34,6 +34,7 @@ using namespace std;
 #include <cmath>
 
 #include <omp.h>
+#include "../../LipMiniAnalysis/src/EventDataInterface.h"
 //extern std::vector<Event::EventData> events;
 std::vector<DilepInput> inputs;
 
