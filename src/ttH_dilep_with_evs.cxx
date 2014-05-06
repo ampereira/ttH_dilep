@@ -728,7 +728,7 @@ void ttH_dilep::BookHistograms(THistos &histo){
     		histo[i][205] = new TH1D(c(n,i,"_pdf_pt__l1"),       	c(t,i,": pdf l1  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][206] = new TH1D(c(n,i,"_pdf_eta_l1"),       	c(t,i,": pdf l1 #eta         "),     		80, -4.0, 4.0);
     		histo[i][207] = new TH1D(c(n,i,"_pdf_phi_l1"),      	c(t,i,": pdf l1 #phi         "),     		80, -4.0, 4.0);
-		// Neutrino for (l1)
+		// events[Event::event_counter].Neutrino for (l1)
     		histo[i][208] = new TH1D(c(n,i,"_pdf_e___n1"),       	c(t,i,": pdf n1 Energy [GeV]"),  		bPt,  lPt, hPt);
     		histo[i][209] = new TH1D(c(n,i,"_pdf_pt__n1"),       	c(t,i,": pdf n1  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][225] = new TH1D(c(n,i,"_pdf_eta_n1"),       	c(t,i,": pdf n1 #eta         "),     		80, -4.0, 4.0);
@@ -755,7 +755,7 @@ void ttH_dilep::BookHistograms(THistos &histo){
     		histo[i][279] = new TH1D(c(n,i,"_pdf_pt__l2"),       	c(t,i,": pdf l2  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][280] = new TH1D(c(n,i,"_pdf_eta_l2"),       	c(t,i,": pdf l2 #eta         "),     		80, -4.0, 4.0);
     		histo[i][281] = new TH1D(c(n,i,"_pdf_phi_l2"),      	c(t,i,": pdf l2 #phi         "),     		80, -4.0, 4.0);
-		// Neutrino for (l2)
+		// events[Event::event_counter].Neutrino for (l2)
     		histo[i][282] = new TH1D(c(n,i,"_pdf_e___n2"),       	c(t,i,": pdf n2 Energy [GeV]"),  		bPt,  lPt, hPt);
     		histo[i][283] = new TH1D(c(n,i,"_pdf_pt__n2"),       	c(t,i,": pdf n2  p_{T} [GeV]"), 		bPt,  lPt, hPt);
     		histo[i][284] = new TH1D(c(n,i,"_pdf_eta_n2"),       	c(t,i,": pdf n2 #eta         "),     		80, -4.0, 4.0);
@@ -789,10 +789,10 @@ void ttH_dilep::BookHistograms(THistos &histo){
                 // ::					             from 300 - 399 							        ::
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 		// reconstructed information
-		histo[i][300] = new TH1D(c(n, i, "_pt_neutrino"),      c(t, i, ": pt Neutrino "),           bPt,  lPt, hPt);
-		histo[i][301] = new TH1D(c(n, i, "_e_neutrino"),       c(t, i, ": E  Neutrino "),           bPt,  lPt, hPt);
-		histo[i][302] = new TH1D(c(n, i, "_pt_AntiNeutrino"),  c(t, i, ": pt Anti Neutrino "),      bPt,  lPt, hPt);
-		histo[i][303] = new TH1D(c(n, i, "_e_AntiNeutrino"),   c(t, i, ": E  Anti Neutrino "),      bPt,  lPt, hPt);
+		histo[i][300] = new TH1D(c(n, i, "_pt_neutrino"),      c(t, i, ": pt events[Event::event_counter].Neutrino "),           bPt,  lPt, hPt);
+		histo[i][301] = new TH1D(c(n, i, "_e_neutrino"),       c(t, i, ": E  events[Event::event_counter].Neutrino "),           bPt,  lPt, hPt);
+		histo[i][302] = new TH1D(c(n, i, "_pt_AntiNeutrino"),  c(t, i, ": pt Anti events[Event::event_counter].Neutrino "),      bPt,  lPt, hPt);
+		histo[i][303] = new TH1D(c(n, i, "_e_AntiNeutrino"),   c(t, i, ": E  Anti events[Event::event_counter].Neutrino "),      bPt,  lPt, hPt);
 
                 // top quarks,  W bosons, Higgs  _____________________________________________________________________
     		histo[i][310] = new TH1D(c(n,i,"_m_Wp"),       	c(t,i,": m W+ [GeV]"),            100, 0.0,  500.0);
@@ -971,11 +971,11 @@ void ttH_dilep::BookHistograms(THistos &histo){
                 histo[i][568] = new TH1D(c(n, i, "_Resol_Wpol_coslnB"),                         c(t, i, ": Resolution cos(l-,b) in W-"),      100,   -2.,   2.);
                 histo[i][569] = new TH1D(c(n, i, "_Resol_Wpol_coslB"),                          c(t, i, ": Resolution cos(l,b) in W  "),      100,   -2.,   2.);
                 // neutrino......
-                histo[i][570] = new TH1D(c(n, i, "_Resol_pT_neutrino"),                         c(t, i, ": Resolution pT Neutrino  "),        100,   -20.,   20.);
-                histo[i][571] = new TH1D(c(n, i, "_Resol_pZ_neutrino"),                         c(t, i, ": Resolution pZ Neutrino  "),        100,  -100.,  100.);
+                histo[i][570] = new TH1D(c(n, i, "_Resol_pT_neutrino"),                         c(t, i, ": Resolution pT events[Event::event_counter].Neutrino  "),        100,   -20.,   20.);
+                histo[i][571] = new TH1D(c(n, i, "_Resol_pZ_neutrino"),                         c(t, i, ": Resolution pZ events[Event::event_counter].Neutrino  "),        100,  -100.,  100.);
                 // neutrino......
-                histo[i][572] = new TH1D(c(n, i, "_Resol_pT_Anti_neutrino"),                    c(t, i, ": Resolution pT Anti-Neutrino  "),        100,   -20.,   20.);
-                histo[i][573] = new TH1D(c(n, i, "_Resol_pZ_Anti_neutrino"),                    c(t, i, ": Resolution pZ Anti-Neutrino  "),        100,  -100.,  100.);
+                histo[i][572] = new TH1D(c(n, i, "_Resol_pT_Anti_neutrino"),                    c(t, i, ": Resolution pT Anti-events[Event::event_counter].Neutrino  "),        100,   -20.,   20.);
+                histo[i][573] = new TH1D(c(n, i, "_Resol_pZ_Anti_neutrino"),                    c(t, i, ": Resolution pZ Anti-events[Event::event_counter].Neutrino  "),        100,  -100.,  100.);
 
 
 		// Mlb mass distributions Reconstruction Level 
@@ -2273,9 +2273,9 @@ void ttH_dilep::PdfValues(){
 //
 // #############################################################################
 
-	ThisEventPdfValues[0] = MissPt/GeV;
-	ThisEventPdfValues[1] = ll.M()/GeV;
-	ThisEventPdfValues[2] = LeptonVec[0].Pt()/GeV;
+	ThisEventPdfValues[0] = events[Event::event_counter].MissPt/GeV;
+	ThisEventPdfValues[1] = events[Event::event_counter].ll.M()/GeV;
+	ThisEventPdfValues[2] = events[Event::event_counter].LeptonVec[0].Pt()/GeV;
 
 }
 
@@ -2315,18 +2315,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
                 
 	// Loop over all levels
-	for(Int_t i = 0; i <= LastCut; ++i){
+	for(Int_t i = 0; i <= events[Event::event_counter].LastCut; ++i){
 
 		// ======== AO 16 Octobre 2011 =================
                 // Output Event Weights
-                histo[i][591]->Fill(Weight, 1.);
+                histo[i][591]->Fill(events[Event::event_counter].Weight, 1.);
 		// ======== AO 16 Octobre 2011 =================
 
 
 		// -------------------------
 		// truth measured information
 		// -------------------------
-		histo[i][0]->Fill(ntruthlep, Weight);
+		histo[i][0]->Fill(events[Event::event_counter].ntruthlep, events[Event::event_counter].Weight);
 
 
 		// ============================================================
@@ -2336,7 +2336,7 @@ void ttH_dilep::FillHistograms(THistos &histo){
 		//		- Matching is     required for RESOLUTION plots
 		// ============================================================
 		// ============================================================
-		if ( TruthHasSolution > 0  &&  myTruth_WtauDecay == 0 ){
+		if ( events[Event::event_counter].TruthHasSolution > 0  &&  events[Event::event_counter].myTruth_WtauDecay == 0 ){
 
 			// ----------------------------------------------------
 			// Truth Distributions (without matching)
@@ -2347,147 +2347,147 @@ void ttH_dilep::FillHistograms(THistos &histo){
 			int kl = 1;
 
             cout << "Event: " << Event::event_counter << endl;
-            cout << "1 -> " << myTruthLepVec[0].Pt() << endl;
-			if ( myTruthLepVec[1].Pt() > myTruthLepVec[0].Pt() ) { kh = 1 ; kl = 0 ;}
+            cout << "1 -> " << events[Event::event_counter].myTruthLepVec[0].Pt() << endl;
+			if ( events[Event::event_counter].myTruthLepVec[1].Pt() > events[Event::event_counter].myTruthLepVec[0].Pt() ) { kh = 1 ; kl = 0 ;}
 			// Highest pT lepton l1-------------------------------------------
 			int ip = kh;
-			histo[i][204]->Fill(          myTruthLepVec[ip].E()/GeV	, myWei);
-			histo[i][205]->Fill(          myTruthLepVec[ip].Pt()/GeV, myWei);
-			histo[i][206]->Fill(          myTruthLepVec[ip].Eta()	, myWei);
-			histo[i][207]->Fill(          myTruthLepVec[ip].Phi()	, myWei);
+			histo[i][204]->Fill(          events[Event::event_counter].myTruthLepVec[ip].E()/GeV	, myWei);
+			histo[i][205]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Pt()/GeV, myWei);
+			histo[i][206]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Eta()	, myWei);
+			histo[i][207]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Phi()	, myWei);
 			// n1
-			histo[i][208]->Fill(          myTruthNeuVec[ip].E()/GeV	, myWei);
-			histo[i][209]->Fill(          myTruthNeuVec[ip].Pt()/GeV, myWei);
-			histo[i][225]->Fill(          myTruthNeuVec[ip].Eta()	, myWei);
-			histo[i][226]->Fill(          myTruthNeuVec[ip].Phi()	, myWei);
+			histo[i][208]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].E()/GeV	, myWei);
+			histo[i][209]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Pt()/GeV, myWei);
+			histo[i][225]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Eta()	, myWei);
+			histo[i][226]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Phi()	, myWei);
 			// b1
-			histo[i][227]->Fill(          myTruth_b_Vec[ip].E()/GeV	, myWei);
-			histo[i][228]->Fill(          myTruth_b_Vec[ip].Pt()/GeV, myWei);
-			histo[i][229]->Fill(          myTruth_b_Vec[ip].Eta()	, myWei);
-			histo[i][267]->Fill(          myTruth_b_Vec[ip].Phi()	, myWei);
+			histo[i][227]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].E()/GeV	, myWei);
+			histo[i][228]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Pt()/GeV, myWei);
+			histo[i][229]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Eta()	, myWei);
+			histo[i][267]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Phi()	, myWei);
 			// W1
-			histo[i][268]->Fill(          myTruth_W_Vec[ip].E()/GeV	, myWei);
-			histo[i][269]->Fill(          myTruth_W_Vec[ip].Pt()/GeV, myWei);
-			histo[i][270]->Fill(          myTruth_W_Vec[ip].Eta()	, myWei);
-			histo[i][271]->Fill(          myTruth_W_Vec[ip].Phi()	, myWei);
-			histo[i][272]->Fill(          myTruth_W_Vec[ip].M()/GeV	, myWei);
+			histo[i][268]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].E()/GeV	, myWei);
+			histo[i][269]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Pt()/GeV, myWei);
+			histo[i][270]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Eta()	, myWei);
+			histo[i][271]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Phi()	, myWei);
+			histo[i][272]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].M()/GeV	, myWei);
 			// t1
-			histo[i][273]->Fill(          myTruth_t_Vec[ip].E()/GeV	, myWei);
-			histo[i][274]->Fill(          myTruth_t_Vec[ip].Pt()/GeV, myWei);
-			histo[i][275]->Fill(          myTruth_t_Vec[ip].Eta()	, myWei);
-			histo[i][276]->Fill(          myTruth_t_Vec[ip].Phi()	, myWei);
-			histo[i][277]->Fill(          myTruth_t_Vec[ip].M()/GeV	, myWei);
+			histo[i][273]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].E()/GeV	, myWei);
+			histo[i][274]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Pt()/GeV, myWei);
+			histo[i][275]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Eta()	, myWei);
+			histo[i][276]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Phi()	, myWei);
+			histo[i][277]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].M()/GeV	, myWei);
 			// Lowest pT lepton l2-------------------------------------------
 			ip = kl;
-			histo[i][278]->Fill(          myTruthLepVec[ip].E()/GeV	, myWei);
-			histo[i][279]->Fill(          myTruthLepVec[ip].Pt()/GeV, myWei);
-			histo[i][280]->Fill(          myTruthLepVec[ip].Eta()	, myWei);
-			histo[i][281]->Fill(          myTruthLepVec[ip].Phi()	, myWei);
+			histo[i][278]->Fill(          events[Event::event_counter].myTruthLepVec[ip].E()/GeV	, myWei);
+			histo[i][279]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Pt()/GeV, myWei);
+			histo[i][280]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Eta()	, myWei);
+			histo[i][281]->Fill(          events[Event::event_counter].myTruthLepVec[ip].Phi()	, myWei);
 			// n2
-			histo[i][282]->Fill(          myTruthNeuVec[ip].E()/GeV	, myWei);
-			histo[i][283]->Fill(          myTruthNeuVec[ip].Pt()/GeV, myWei);
-			histo[i][284]->Fill(          myTruthNeuVec[ip].Eta()	, myWei);
-			histo[i][285]->Fill(          myTruthNeuVec[ip].Phi()	, myWei);
+			histo[i][282]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].E()/GeV	, myWei);
+			histo[i][283]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Pt()/GeV, myWei);
+			histo[i][284]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Eta()	, myWei);
+			histo[i][285]->Fill(          events[Event::event_counter].myTruthNeuVec[ip].Phi()	, myWei);
 			// b2
-			histo[i][286]->Fill(          myTruth_b_Vec[ip].E()/GeV	, myWei);
-			histo[i][287]->Fill(          myTruth_b_Vec[ip].Pt()/GeV, myWei);
-			histo[i][288]->Fill(          myTruth_b_Vec[ip].Eta()	, myWei);
-			histo[i][289]->Fill(          myTruth_b_Vec[ip].Phi()	, myWei);
+			histo[i][286]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].E()/GeV	, myWei);
+			histo[i][287]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Pt()/GeV, myWei);
+			histo[i][288]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Eta()	, myWei);
+			histo[i][289]->Fill(          events[Event::event_counter].myTruth_b_Vec[ip].Phi()	, myWei);
 			// W2
-			histo[i][290]->Fill(          myTruth_W_Vec[ip].E()/GeV	, myWei);
-			histo[i][291]->Fill(          myTruth_W_Vec[ip].Pt()/GeV, myWei);
-			histo[i][292]->Fill(          myTruth_W_Vec[ip].Eta()	, myWei);
-			histo[i][293]->Fill(          myTruth_W_Vec[ip].Phi()	, myWei);
-			histo[i][294]->Fill(          myTruth_W_Vec[ip].M()/GeV	, myWei);
+			histo[i][290]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].E()/GeV	, myWei);
+			histo[i][291]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Pt()/GeV, myWei);
+			histo[i][292]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Eta()	, myWei);
+			histo[i][293]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].Phi()	, myWei);
+			histo[i][294]->Fill(          events[Event::event_counter].myTruth_W_Vec[ip].M()/GeV	, myWei);
 			// t2
-			histo[i][295]->Fill(          myTruth_t_Vec[ip].E()/GeV	, myWei);
-			histo[i][296]->Fill(          myTruth_t_Vec[ip].Pt()/GeV, myWei);
-			histo[i][297]->Fill(          myTruth_t_Vec[ip].Eta()	, myWei);
-			histo[i][298]->Fill(          myTruth_t_Vec[ip].Phi()	, myWei);
-			histo[i][299]->Fill(          myTruth_t_Vec[ip].M()/GeV	, myWei);
+			histo[i][295]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].E()/GeV	, myWei);
+			histo[i][296]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Pt()/GeV, myWei);
+			histo[i][297]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Eta()	, myWei);
+			histo[i][298]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].Phi()	, myWei);
+			histo[i][299]->Fill(          events[Event::event_counter].myTruth_t_Vec[ip].M()/GeV	, myWei);
 
 			// --------------------------------------------------------------
 			// Resolution Distributions
 			// --------------------------------------------------------------
 			// leptons-------------------------------------------------------
-                	for( int ilep = 0; ilep < myResolution_Truth_Lep.size(); ++ilep){
+                	for( int ilep = 0; ilep < events[Event::event_counter].myResolution_Truth_Lep.size(); ++ilep){
 				double delTa;
 				// Px
-				if (   myResolution_Truth_Lep[ilep].Px() != 0. ) {
-					delTa = ( myResolution_Reco_Lep[ilep].Px() - myResolution_Truth_Lep[ilep].Px() ) / myResolution_Truth_Lep[ilep].Px() ;  
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][600]->Fill( delTa , myWei);
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][605]->Fill( delTa , myWei);
+				if (   events[Event::event_counter].myResolution_Truth_Lep[ilep].Px() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Lep[ilep].Px() - events[Event::event_counter].myResolution_Truth_Lep[ilep].Px() ) / events[Event::event_counter].myResolution_Truth_Lep[ilep].Px() ;  
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][600]->Fill( delTa , myWei);
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][605]->Fill( delTa , myWei);
 				}
 				// Py
-				if (   myResolution_Truth_Lep[ilep].Py() != 0. ) {
-					delTa = ( myResolution_Reco_Lep[ilep].Py() - myResolution_Truth_Lep[ilep].Py() ) / myResolution_Truth_Lep[ilep].Py() ;  
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][601]->Fill( delTa , myWei);
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][606]->Fill( delTa , myWei);
+				if (   events[Event::event_counter].myResolution_Truth_Lep[ilep].Py() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Lep[ilep].Py() - events[Event::event_counter].myResolution_Truth_Lep[ilep].Py() ) / events[Event::event_counter].myResolution_Truth_Lep[ilep].Py() ;  
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][601]->Fill( delTa , myWei);
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][606]->Fill( delTa , myWei);
 				}
 				// Pz
-				if (   myResolution_Truth_Lep[ilep].Pz() != 0. ) {
-					delTa = ( myResolution_Reco_Lep[ilep].Pz() - myResolution_Truth_Lep[ilep].Pz() ) / myResolution_Truth_Lep[ilep].Pz() ;  
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][602]->Fill( delTa , myWei);
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][607]->Fill( delTa , myWei);
+				if (   events[Event::event_counter].myResolution_Truth_Lep[ilep].Pz() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Lep[ilep].Pz() - events[Event::event_counter].myResolution_Truth_Lep[ilep].Pz() ) / events[Event::event_counter].myResolution_Truth_Lep[ilep].Pz() ;  
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][602]->Fill( delTa , myWei);
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][607]->Fill( delTa , myWei);
 				}
 				// Pt
-				if (   myResolution_Truth_Lep[ilep].Pt() != 0. ) {
-					delTa = ( myResolution_Reco_Lep[ilep].Pt() - myResolution_Truth_Lep[ilep].Pt() ) / myResolution_Truth_Lep[ilep].Pt() ;  
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][603]->Fill( delTa , myWei);
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][608]->Fill( delTa , myWei);
+				if (   events[Event::event_counter].myResolution_Truth_Lep[ilep].Pt() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Lep[ilep].Pt() - events[Event::event_counter].myResolution_Truth_Lep[ilep].Pt() ) / events[Event::event_counter].myResolution_Truth_Lep[ilep].Pt() ;  
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][603]->Fill( delTa , myWei);
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][608]->Fill( delTa , myWei);
 				}
 				// E
-				if (   myResolution_Truth_Lep[ilep].E() != 0. ) {
-					delTa = ( myResolution_Reco_Lep[ilep].E() - myResolution_Truth_Lep[ilep].E() ) / myResolution_Truth_Lep[ilep].E() ;  
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][604]->Fill( delTa , myWei);
-                        		if ( abs(myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][609]->Fill( delTa , myWei);
+				if (   events[Event::event_counter].myResolution_Truth_Lep[ilep].E() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Lep[ilep].E() - events[Event::event_counter].myResolution_Truth_Lep[ilep].E() ) / events[Event::event_counter].myResolution_Truth_Lep[ilep].E() ;  
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 11 ) histo[i][604]->Fill( delTa , myWei);
+                        		if ( abs(events[Event::event_counter].myResolution_Truth_Lep[ilep].isb) == 13 ) histo[i][609]->Fill( delTa , myWei);
 				}
 			}
 			// jets----------------------------------------------------------
-                	for( int ijet = 0; ijet < myResolution_Truth_Jet.size(); ++ijet){
+                	for( int ijet = 0; ijet < events[Event::event_counter].myResolution_Truth_Jet.size(); ++ijet){
 				double delTa;
 				// Px
-				if (   myResolution_Truth_Jet[ijet].Px() != 0. ) {
-					delTa = ( myResolution_Reco_Jet[ijet].Px() - myResolution_Truth_Jet[ijet].Px() ) / myResolution_Truth_Jet[ijet].Px() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Jet[ijet].Px() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Jet[ijet].Px() - events[Event::event_counter].myResolution_Truth_Jet[ijet].Px() ) / events[Event::event_counter].myResolution_Truth_Jet[ijet].Px() ;  
                         		histo[i][610]->Fill( delTa , myWei);
 				}
 				// Py
-				if (   myResolution_Truth_Jet[ijet].Py() != 0. ) {
-					delTa = ( myResolution_Reco_Jet[ijet].Py() - myResolution_Truth_Jet[ijet].Py() ) / myResolution_Truth_Jet[ijet].Py() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Jet[ijet].Py() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Jet[ijet].Py() - events[Event::event_counter].myResolution_Truth_Jet[ijet].Py() ) / events[Event::event_counter].myResolution_Truth_Jet[ijet].Py() ;  
                         		histo[i][611]->Fill( delTa , myWei);
 				}
 				// Pz
-				if (   myResolution_Truth_Jet[ijet].Pz() != 0. ) {
-					delTa = ( myResolution_Reco_Jet[ijet].Pz() - myResolution_Truth_Jet[ijet].Pz() ) / myResolution_Truth_Jet[ijet].Pz() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Jet[ijet].Pz() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Jet[ijet].Pz() - events[Event::event_counter].myResolution_Truth_Jet[ijet].Pz() ) / events[Event::event_counter].myResolution_Truth_Jet[ijet].Pz() ;  
                         		histo[i][612]->Fill( delTa , myWei);
 				}
 				// Pt
-				if (   myResolution_Truth_Jet[ijet].Pt() != 0. ) {
-					delTa = ( myResolution_Reco_Jet[ijet].Pt() - myResolution_Truth_Jet[ijet].Pt() ) / myResolution_Truth_Jet[ijet].Pt() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Jet[ijet].Pt() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Jet[ijet].Pt() - events[Event::event_counter].myResolution_Truth_Jet[ijet].Pt() ) / events[Event::event_counter].myResolution_Truth_Jet[ijet].Pt() ;  
                         		histo[i][613]->Fill( delTa , myWei);
 				}
 				// E
-				if (   myResolution_Truth_Jet[ijet].E() != 0. ) {
-					delTa = ( myResolution_Reco_Jet[ijet].E() - myResolution_Truth_Jet[ijet].E() ) / myResolution_Truth_Jet[ijet].E() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Jet[ijet].E() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Jet[ijet].E() - events[Event::event_counter].myResolution_Truth_Jet[ijet].E() ) / events[Event::event_counter].myResolution_Truth_Jet[ijet].E() ;  
                         		histo[i][614]->Fill( delTa , myWei);
 				}
 			}
 			// Miss-----------------------------------------------------------
-                	for( int im = 0; im < myResolution_Truth_Mis.size(); ++im){
+                	for( int im = 0; im < events[Event::event_counter].myResolution_Truth_Mis.size(); ++im){
 				double delTa;
 				// Px
-				if (   myResolution_Truth_Mis[im].Px() != 0. ) {
-					delTa = ( myResolution_Reco_Mis[im].Px() - myResolution_Truth_Mis[im].Px() ) / myResolution_Truth_Mis[im].Px() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Mis[im].Px() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Mis[im].Px() - events[Event::event_counter].myResolution_Truth_Mis[im].Px() ) / events[Event::event_counter].myResolution_Truth_Mis[im].Px() ;  
                         		histo[i][615]->Fill( delTa , myWei);
 				}
 				// Py
-				if (   myResolution_Truth_Mis[im].Py() != 0. ) {
-					delTa = ( myResolution_Reco_Mis[im].Py() - myResolution_Truth_Mis[im].Py() ) / myResolution_Truth_Mis[im].Py() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Mis[im].Py() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Mis[im].Py() - events[Event::event_counter].myResolution_Truth_Mis[im].Py() ) / events[Event::event_counter].myResolution_Truth_Mis[im].Py() ;  
                         		histo[i][616]->Fill( delTa , myWei);
 				}
 				// Pt
-				if (   myResolution_Truth_Mis[im].Pt() != 0. ) {
-					delTa = ( myResolution_Reco_Mis[im].Pt() - myResolution_Truth_Mis[im].Pt() ) / myResolution_Truth_Mis[im].Pt() ;  
+				if (   events[Event::event_counter].myResolution_Truth_Mis[im].Pt() != 0. ) {
+					delTa = ( events[Event::event_counter].myResolution_Reco_Mis[im].Pt() - events[Event::event_counter].myResolution_Truth_Mis[im].Pt() ) / events[Event::event_counter].myResolution_Truth_Mis[im].Pt() ;  
                         		histo[i][617]->Fill( delTa , myWei);
 				}
 			}
@@ -2498,46 +2498,46 @@ void ttH_dilep::FillHistograms(THistos &histo){
 		// -------------------------
 		// measured information
 		// -------------------------
-		histo[i][1]->Fill(LeptonVec.size(), Weight);
-		histo[i][2]->Fill(MyGoodJetVec.size(), Weight);
-		histo[i][3]->Fill(Ht/GeV, Weight);
-		histo[i][4]->Fill(MissPt/GeV, Weight);
+		histo[i][1]->Fill(events[Event::event_counter].LeptonVec.size(), events[Event::event_counter].Weight);
+		histo[i][2]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		histo[i][3]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
+		histo[i][4]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
 
 		// -------------------------
 		// (jet,btag) multiplicity
 		// -------------------------
-	        int myNjet  = MyGoodJetVec.size();
-	        int myNBtag = MyGoodBtaggedJetVec.size();
+	        int myNjet  = events[Event::event_counter].MyGoodJetVec.size();
+	        int myNBtag = events[Event::event_counter].MyGoodBtaggedJetVec.size();
 		// Njet=2
-		if ( myNjet == 2 && myNBtag == 0 ) 	histo[i][328]->Fill(	1., Weight);
-		if ( myNjet == 2 && myNBtag == 1 ) 	histo[i][328]->Fill(	2., Weight);
-		if ( myNjet == 2 && myNBtag == 2 ) 	histo[i][328]->Fill(	3., Weight);
+		if ( myNjet == 2 && myNBtag == 0 ) 	histo[i][328]->Fill(	1., events[Event::event_counter].Weight);
+		if ( myNjet == 2 && myNBtag == 1 ) 	histo[i][328]->Fill(	2., events[Event::event_counter].Weight);
+		if ( myNjet == 2 && myNBtag == 2 ) 	histo[i][328]->Fill(	3., events[Event::event_counter].Weight);
 		// Njet=3
-		if ( myNjet == 3 && myNBtag == 0 ) 	histo[i][328]->Fill(	4., Weight);
-		if ( myNjet == 3 && myNBtag == 1 ) 	histo[i][328]->Fill(	5., Weight);
-		if ( myNjet == 3 && myNBtag == 2 ) 	histo[i][328]->Fill(	6., Weight);
-		if ( myNjet == 3 && myNBtag == 3 ) 	histo[i][328]->Fill(	7., Weight);
+		if ( myNjet == 3 && myNBtag == 0 ) 	histo[i][328]->Fill(	4., events[Event::event_counter].Weight);
+		if ( myNjet == 3 && myNBtag == 1 ) 	histo[i][328]->Fill(	5., events[Event::event_counter].Weight);
+		if ( myNjet == 3 && myNBtag == 2 ) 	histo[i][328]->Fill(	6., events[Event::event_counter].Weight);
+		if ( myNjet == 3 && myNBtag == 3 ) 	histo[i][328]->Fill(	7., events[Event::event_counter].Weight);
 		// Njet>=4
-		if ( myNjet >= 4 && myNBtag == 0 ) 	histo[i][328]->Fill(	8., Weight);
-		if ( myNjet >= 4 && myNBtag == 1 ) 	histo[i][328]->Fill(	9., Weight);
-		if ( myNjet >= 4 && myNBtag == 2 ) 	histo[i][328]->Fill(   10., Weight);
-		if ( myNjet >= 4 && myNBtag == 3 ) 	histo[i][328]->Fill(   11., Weight);
-		if ( myNjet >= 4 && myNBtag >= 4 ) 	histo[i][328]->Fill(   12., Weight);
+		if ( myNjet >= 4 && myNBtag == 0 ) 	histo[i][328]->Fill(	8., events[Event::event_counter].Weight);
+		if ( myNjet >= 4 && myNBtag == 1 ) 	histo[i][328]->Fill(	9., events[Event::event_counter].Weight);
+		if ( myNjet >= 4 && myNBtag == 2 ) 	histo[i][328]->Fill(   10., events[Event::event_counter].Weight);
+		if ( myNjet >= 4 && myNBtag == 3 ) 	histo[i][328]->Fill(   11., events[Event::event_counter].Weight);
+		if ( myNjet >= 4 && myNBtag >= 4 ) 	histo[i][328]->Fill(   12., events[Event::event_counter].Weight);
 
                 // -----------------------------------------------
                 // Fill up histograms for Z DD studies (OS and SS)
                 //    (requires 2 leptons and at least 2 jets)
                 // -----------------------------------------------
-                myNjet  = MyGoodJetVec.size();
-                myNBtag = MyGoodBtaggedJetVec.size();
+                myNjet  = events[Event::event_counter].MyGoodJetVec.size();
+                myNBtag = events[Event::event_counter].MyGoodBtaggedJetVec.size();
                 int nH    =  800;  // initialize as OS for ZDD
                 int nHtt  = 1800;  // initialize as OS for ttbarDD
 
                 // Check there are 2 leptons and at least 2 jets BUT NOT MORE THEN 2 btags
-                if( LeptonVec.size()>1 && MyGoodJetVec.size()>1 && myNBtag <= 2 ){
+                if( events[Event::event_counter].LeptonVec.size()>1 && events[Event::event_counter].MyGoodJetVec.size()>1 && myNBtag <= 2 ){
 
                    // check OS or SS leptons and define nH correctly
-                   if ( (LeptonVec[0].isb)*(LeptonVec[1].isb) > 0 ) { nH = 800+400;  nHtt  = 1800+400; } // check if it is SS
+                   if ( (events[Event::event_counter].LeptonVec[0].isb)*(events[Event::event_counter].LeptonVec[1].isb) > 0 ) { nH = 800+400;  nHtt  = 1800+400; } // check if it is SS
 
                    // define histogram id for all ZDD-like combinations
 		   // (still picking up distributions from ZDD to be filled up for ttDD methods)
@@ -2554,36 +2554,36 @@ void ttH_dilep::FillHistograms(THistos &histo){
 		   // ----------------------------------------
                    // define x and y variables for ZDD studies
 		   // ----------------------------------------
-                   double xVar   = ll.M()/GeV ;
-                   double yVar   = MissPt/GeV ;
-                   double ptVar  = ll.Pt()/GeV ;
-                   double etaVar = ll.Eta() ;
-                   double phiVar = ll.Phi() ;
+                   double xVar   = events[Event::event_counter].ll.M()/GeV ;
+                   double yVar   = events[Event::event_counter].MissPt/GeV ;
+                   double ptVar  = events[Event::event_counter].ll.Pt()/GeV ;
+                   double etaVar = events[Event::event_counter].ll.Eta() ;
+                   double phiVar = events[Event::event_counter].ll.Phi() ;
 
 		   // ----------------------------------------
                    // define variables for ttbar DD studies
 		   // ----------------------------------------
 		   // pT of 2jets+2leptons+miss
-		   double PTtt_x = MyGoodJetVec[0].Px()/GeV + MyGoodJetVec[1].Px()/GeV + LeptonVec[0].Px()/GeV + LeptonVec[1].Px()/GeV + MissPx/GeV ;
-		   double PTtt_y = MyGoodJetVec[0].Py()/GeV + MyGoodJetVec[1].Py()/GeV + LeptonVec[0].Py()/GeV + LeptonVec[1].Py()/GeV + MissPy/GeV ;
+		   double PTtt_x = events[Event::event_counter].MyGoodJetVec[0].Px()/GeV + events[Event::event_counter].MyGoodJetVec[1].Px()/GeV + events[Event::event_counter].LeptonVec[0].Px()/GeV + events[Event::event_counter].LeptonVec[1].Px()/GeV + events[Event::event_counter].MissPx/GeV ;
+		   double PTtt_y = events[Event::event_counter].MyGoodJetVec[0].Py()/GeV + events[Event::event_counter].MyGoodJetVec[1].Py()/GeV + events[Event::event_counter].LeptonVec[0].Py()/GeV + events[Event::event_counter].LeptonVec[1].Py()/GeV + events[Event::event_counter].MissPy/GeV ;
 		   double PTtt   = sqrt( PTtt_x*PTtt_x + PTtt_y*PTtt_y );
 		   // pT of ALL objects (ttbar+jets incluing missing)
-		   double AllPTtt_x = MissPx/GeV;
-		   double AllPTtt_y = MissPy/GeV;
+		   double AllPTtt_x = events[Event::event_counter].MissPx/GeV;
+		   double AllPTtt_y = events[Event::event_counter].MissPy/GeV;
 		   double AllPTtt   = 0.;
-	           for(int jej=0; jej<MyGoodJetVec.size(); jej++){
-			AllPTtt_x += MyGoodJetVec[jej].Px()/GeV;
-			AllPTtt_y += MyGoodJetVec[jej].Py()/GeV;
+	           for(int jej=0; jej<events[Event::event_counter].MyGoodJetVec.size(); jej++){
+			AllPTtt_x += events[Event::event_counter].MyGoodJetVec[jej].Px()/GeV;
+			AllPTtt_y += events[Event::event_counter].MyGoodJetVec[jej].Py()/GeV;
             	   }
-	           for(int lel=0; lel<LeptonVec.size(); lel++){
-			AllPTtt_x += LeptonVec[lel].Px()/GeV;
-			AllPTtt_y += LeptonVec[lel].Py()/GeV;
+	           for(int lel=0; lel<events[Event::event_counter].LeptonVec.size(); lel++){
+			AllPTtt_x += events[Event::event_counter].LeptonVec[lel].Px()/GeV;
+			AllPTtt_y += events[Event::event_counter].LeptonVec[lel].Py()/GeV;
             	   }
 		   AllPTtt = sqrt( AllPTtt_x*AllPTtt_x + AllPTtt_y*AllPTtt_y );	   
 		   // Average (b,bbar) pT
-		   double AvPTbb = 0.5 * ( MyGoodJetVec[0].Pt()/GeV + MyGoodJetVec[1].Pt()/GeV );
+		   double AvPTbb = 0.5 * ( events[Event::event_counter].MyGoodJetVec[0].Pt()/GeV + events[Event::event_counter].MyGoodJetVec[1].Pt()/GeV );
 		   // Average (l+,l-) pT
-		   double AvPTll = 0.5 * (    LeptonVec[0].Pt()/GeV +    LeptonVec[1].Pt()/GeV );
+		   double AvPTll = 0.5 * (    events[Event::event_counter].LeptonVec[0].Pt()/GeV +    events[Event::event_counter].LeptonVec[1].Pt()/GeV );
 
 		   // ==============================================================================
 		   // 		      Z-like histograms for Data Driven 
@@ -2663,107 +2663,107 @@ void ttH_dilep::FillHistograms(THistos &histo){
                    // Fill Up histograms for ZDD-like studies (useful for ttDD)
 		   // ==============================================================================
                    // MET vs Mll (jet,btag combination) - pretag needs to be filled irrespective to the tags
-                   ((TH2D*)histo[i][nHpreGe2])->Fill( xVar, yVar, Weight);
-                   ((TH2D*)histo[i][nH_idGe2])->Fill( xVar, yVar, Weight);
-                   ((TH2D*)histo[i][nHpre])->Fill( xVar, yVar, Weight);
-                   ((TH2D*)histo[i][nH_id])->Fill( xVar, yVar, Weight);
+                   ((TH2D*)histo[i][nHpreGe2])->Fill( xVar, yVar, events[Event::event_counter].Weight);
+                   ((TH2D*)histo[i][nH_idGe2])->Fill( xVar, yVar, events[Event::event_counter].Weight);
+                   ((TH2D*)histo[i][nHpre])->Fill( xVar, yVar, events[Event::event_counter].Weight);
+                   ((TH2D*)histo[i][nH_id])->Fill( xVar, yVar, events[Event::event_counter].Weight);
                    // Z like Mll counter
-                   histo[i][nHpreGe2+30]->Fill(2.,Weight);
-                   histo[i][nH_idGe2+30]->Fill(2.,Weight);
-                   histo[i][nHpre+30]->Fill(2.,Weight);
-                   histo[i][nH_id+30]->Fill(2.,Weight);
+                   histo[i][nHpreGe2+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nHpre+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nH_id+30]->Fill(2.,events[Event::event_counter].Weight);
                    if (yVar > 60.) {
-                                histo[i][nHpreGe2+30]->Fill(5.,Weight);
-                                histo[i][nH_idGe2+30]->Fill(5.,Weight);
-                                histo[i][nHpre+30]->Fill(5.,Weight);
-                                histo[i][nH_id+30]->Fill(5.,Weight);
+                                histo[i][nHpreGe2+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nH_idGe2+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nHpre+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nH_id+30]->Fill(5.,events[Event::event_counter].Weight);
                    }
 		   // Fill pt distributions
-                   histo[i][nHpreGe2+120]->Fill(ptVar,Weight);
-                   histo[i][nH_idGe2+120]->Fill(ptVar,Weight);
-                   histo[i][nHpre+120]->Fill(ptVar,Weight);
-                   histo[i][nH_id+120]->Fill(ptVar,Weight);
+                   histo[i][nHpreGe2+120]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+120]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+120]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+120]->Fill(ptVar,events[Event::event_counter].Weight);
 		   // Fill eta distributions
-                   histo[i][nHpreGe2+180]->Fill(etaVar,Weight);
-                   histo[i][nH_idGe2+180]->Fill(etaVar,Weight);
-                   histo[i][nHpre+180]->Fill(etaVar,Weight);
-                   histo[i][nH_id+180]->Fill(etaVar,Weight);
+                   histo[i][nHpreGe2+180]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+180]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+180]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+180]->Fill(etaVar,events[Event::event_counter].Weight);
 		   // Fill phi distributions
-                   histo[i][nHpreGe2+240]->Fill(phiVar,Weight);
-                   histo[i][nH_idGe2+240]->Fill(phiVar,Weight);
-                   histo[i][nHpre+240]->Fill(phiVar,Weight);
-                   histo[i][nH_id+240]->Fill(phiVar,Weight);
+                   histo[i][nHpreGe2+240]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+240]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+240]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+240]->Fill(phiVar,events[Event::event_counter].Weight);
                    // Mll mass distribution
-                   histo[i][nHpreGe2+60]->Fill( xVar, Weight);
-                   histo[i][nH_idGe2+60]->Fill( xVar, Weight);
-                   histo[i][nHpre+60]->Fill( xVar, Weight);
-                   histo[i][nH_id+60]->Fill( xVar, Weight);
-                   // ll pT distribution			
-                   histo[i][nHpreGe2+90]->Fill(ptVar,Weight);
-                   histo[i][nH_idGe2+90]->Fill(ptVar,Weight);
-                   histo[i][nHpre+90]->Fill(ptVar,Weight);
-                   histo[i][nH_id+90]->Fill(ptVar,Weight);
+                   histo[i][nHpreGe2+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nHpre+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nH_id+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   // events[Event::event_counter].ll pT distribution			
+                   histo[i][nHpreGe2+90]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+90]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+90]->Fill(ptVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+90]->Fill(ptVar,events[Event::event_counter].Weight);
 		   // Fill eta distributions
-                   histo[i][nHpreGe2+150]->Fill(etaVar,Weight);
-                   histo[i][nH_idGe2+150]->Fill(etaVar,Weight);
-                   histo[i][nHpre+150]->Fill(etaVar,Weight);
-                   histo[i][nH_id+150]->Fill(etaVar,Weight);
+                   histo[i][nHpreGe2+150]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+150]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+150]->Fill(etaVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+150]->Fill(etaVar,events[Event::event_counter].Weight);
 		   // Fill phi distributions
-                   histo[i][nHpreGe2+210]->Fill(phiVar,Weight);
-                   histo[i][nH_idGe2+210]->Fill(phiVar,Weight);
-                   histo[i][nHpre+210]->Fill(phiVar,Weight);
-                   histo[i][nH_id+210]->Fill(phiVar,Weight);
+                   histo[i][nHpreGe2+210]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nH_idGe2+210]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nHpre+210]->Fill(phiVar,events[Event::event_counter].Weight);
+                   histo[i][nH_id+210]->Fill(phiVar,events[Event::event_counter].Weight);
 		   // ==============================================================================
 
 		   // ==============================================================================
                    // Fill Up histograms for ttbar DD studies
 		   // ==============================================================================
                    // Average pT(l+,l-) - pretag needs to be filled irrespective to the tags (OS: 1800-1823, SS: add 400)
-                   histo[i][nHttpreGe2]->Fill( AvPTll, Weight);
-                   histo[i][nHtt_idGe2]->Fill( AvPTll, Weight);
-                   histo[i][nHttpre]->Fill( AvPTll, Weight);
-                   histo[i][nHtt_id]->Fill( AvPTll, Weight);
+                   histo[i][nHttpreGe2]->Fill( AvPTll, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2]->Fill( AvPTll, events[Event::event_counter].Weight);
+                   histo[i][nHttpre]->Fill( AvPTll, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id]->Fill( AvPTll, events[Event::event_counter].Weight);
                    // ttbar counters, x=2. (pTmiss>0.), x=5. (pTmiss>60.GeV) (OS: 1830-1853, SS: add 400)
-                   histo[i][nHttpreGe2+30]->Fill(2.,Weight);
-                   histo[i][nHtt_idGe2+30]->Fill(2.,Weight);
-                   histo[i][nHttpre+30]->Fill(2.,Weight);
-                   histo[i][nHtt_id+30]->Fill(2.,Weight);
+                   histo[i][nHttpreGe2+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nHttpre+30]->Fill(2.,events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+30]->Fill(2.,events[Event::event_counter].Weight);
                    if (yVar > 60.) {
-                                histo[i][nHttpreGe2+30]->Fill(5.,Weight);
-                                histo[i][nHtt_idGe2+30]->Fill(5.,Weight);
-                                histo[i][nHttpre+30]->Fill(5.,Weight);
-                                histo[i][nHtt_id+30]->Fill(5.,Weight);
+                                histo[i][nHttpreGe2+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nHtt_idGe2+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nHttpre+30]->Fill(5.,events[Event::event_counter].Weight);
+                                histo[i][nHtt_id+30]->Fill(5.,events[Event::event_counter].Weight);
                    }
                    // Mll mass distribution
-                   histo[i][nHttpreGe2+60]->Fill( xVar, Weight);
-                   histo[i][nHtt_idGe2+60]->Fill( xVar, Weight);
-                   histo[i][nHttpre+60]->Fill( xVar, Weight);
-                   histo[i][nHtt_id+60]->Fill( xVar, Weight);
+                   histo[i][nHttpreGe2+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+60]->Fill( xVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+60]->Fill( xVar, events[Event::event_counter].Weight);
                    // ttbar system pT distribution			
-                   histo[i][nHttpreGe2+90]->Fill( PTtt, Weight);
-                   histo[i][nHtt_idGe2+90]->Fill( PTtt, Weight);
-                   histo[i][nHttpre+90]->Fill( PTtt, Weight);
-                   histo[i][nHtt_id+90]->Fill( PTtt, Weight);
+                   histo[i][nHttpreGe2+90]->Fill( PTtt, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+90]->Fill( PTtt, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+90]->Fill( PTtt, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+90]->Fill( PTtt, events[Event::event_counter].Weight);
                    // Average pT(b,bbar) - pretag needs to be filled irrespective to the tags (OS: 1920-1943, SS: add 400)
-                   histo[i][nHttpreGe2+120]->Fill( AvPTbb, Weight);
-                   histo[i][nHtt_idGe2+120]->Fill( AvPTbb, Weight);
-                   histo[i][nHttpre+120]->Fill( AvPTbb, Weight);
-                   histo[i][nHtt_id+120]->Fill( AvPTbb, Weight);
+                   histo[i][nHttpreGe2+120]->Fill( AvPTbb, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+120]->Fill( AvPTbb, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+120]->Fill( AvPTbb, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+120]->Fill( AvPTbb, events[Event::event_counter].Weight);
 	           // Fill eta distributions
-                   histo[i][nHttpreGe2+150]->Fill( etaVar, Weight);
-                   histo[i][nHtt_idGe2+150]->Fill( etaVar, Weight);
-                   histo[i][nHttpre+150]->Fill( etaVar, Weight);
-                   histo[i][nHtt_id+150]->Fill( etaVar, Weight);
+                   histo[i][nHttpreGe2+150]->Fill( etaVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+150]->Fill( etaVar, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+150]->Fill( etaVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+150]->Fill( etaVar, events[Event::event_counter].Weight);
                    // ttbar+jets system pT distribution			
-                   histo[i][nHttpreGe2+180]->Fill( AllPTtt, Weight);
-                   histo[i][nHtt_idGe2+180]->Fill( AllPTtt, Weight);
-                   histo[i][nHttpre+180]->Fill( AllPTtt, Weight);
-                   histo[i][nHtt_id+180]->Fill( AllPTtt, Weight);
+                   histo[i][nHttpreGe2+180]->Fill( AllPTtt, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+180]->Fill( AllPTtt, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+180]->Fill( AllPTtt, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+180]->Fill( AllPTtt, events[Event::event_counter].Weight);
 		   // Fill phi distributions
-                   histo[i][nHttpreGe2+210]->Fill( phiVar, Weight);
-                   histo[i][nHtt_idGe2+210]->Fill( phiVar, Weight);
-                   histo[i][nHttpre+210]->Fill( phiVar, Weight);
-                   histo[i][nHtt_id+210]->Fill( phiVar, Weight);
+                   histo[i][nHttpreGe2+210]->Fill( phiVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_idGe2+210]->Fill( phiVar, events[Event::event_counter].Weight);
+                   histo[i][nHttpre+210]->Fill( phiVar, events[Event::event_counter].Weight);
+                   histo[i][nHtt_id+210]->Fill( phiVar, events[Event::event_counter].Weight);
                 }
 		// ==============================================================================
 
@@ -2772,59 +2772,59 @@ void ttH_dilep::FillHistograms(THistos &histo){
 		// Event Topology Histograms
 		// -------------------------
                 // Leptons
-                if(LeptonVec.size()>0){
+                if(events[Event::event_counter].LeptonVec.size()>0){
                     // Lepton 1
-		    histo[i][400]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		    histo[i][401]->Fill(LeptonVec[0].Eta(), Weight);
-		    histo[i][402]->Fill(LeptonVec[0].Phi(), Weight);
+		    histo[i][400]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		    histo[i][401]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
+		    histo[i][402]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
                 }		
-                if(LeptonVec.size()>1){
+                if(events[Event::event_counter].LeptonVec.size()>1){
                     // Lepton 2
-		    histo[i][403]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		    histo[i][404]->Fill(LeptonVec[1].Eta(), Weight);
-		    histo[i][405]->Fill(LeptonVec[1].Phi(), Weight);
+		    histo[i][403]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		    histo[i][404]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
+		    histo[i][405]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
                 }		
 
 		// Fill Only in case of 2 Leptons
-                if( LeptonVec.size() == 2 ){
+                if( events[Event::event_counter].LeptonVec.size() == 2 ){
 		    // Fill here positive and negative lepton distributions
-		    for(Int_t ilep = 0; ilep < LeptonVec.size(); ++ilep){		    
+		    for(Int_t ilep = 0; ilep < events[Event::event_counter].LeptonVec.size(); ++ilep){		    
 			// Positive leptons
-                       	if ( LeptonVec[ilep].isb < 0 ){
-			    histo[i][592]->Fill(LeptonVec[ilep].Pt()/GeV, Weight);
-			    histo[i][593]->Fill(LeptonVec[ilep].Eta(), Weight);
-			    histo[i][594]->Fill(LeptonVec[ilep].Phi(), Weight);
+                       	if ( events[Event::event_counter].LeptonVec[ilep].isb < 0 ){
+			    histo[i][592]->Fill(events[Event::event_counter].LeptonVec[ilep].Pt()/GeV, events[Event::event_counter].Weight);
+			    histo[i][593]->Fill(events[Event::event_counter].LeptonVec[ilep].Eta(), events[Event::event_counter].Weight);
+			    histo[i][594]->Fill(events[Event::event_counter].LeptonVec[ilep].Phi(), events[Event::event_counter].Weight);
 			}
 			// Negative leptons
-                       	if ( LeptonVec[ilep].isb > 0 ){
-			    histo[i][595]->Fill(LeptonVec[ilep].Pt()/GeV, Weight);
-			    histo[i][596]->Fill(LeptonVec[ilep].Eta(), Weight);
-			    histo[i][597]->Fill(LeptonVec[ilep].Phi(), Weight);
+                       	if ( events[Event::event_counter].LeptonVec[ilep].isb > 0 ){
+			    histo[i][595]->Fill(events[Event::event_counter].LeptonVec[ilep].Pt()/GeV, events[Event::event_counter].Weight);
+			    histo[i][596]->Fill(events[Event::event_counter].LeptonVec[ilep].Eta(), events[Event::event_counter].Weight);
+			    histo[i][597]->Fill(events[Event::event_counter].LeptonVec[ilep].Phi(), events[Event::event_counter].Weight);
 			}
 		    }
 		}
 
                 // Jets
-                if(MyGoodJetVec.size()>0){
+                if(events[Event::event_counter].MyGoodJetVec.size()>0){
                     // Jet 1
-		    histo[i][406]->Fill(MyGoodJetVec[0].Pt()/GeV, Weight);
-		    histo[i][407]->Fill(MyGoodJetVec[0].Eta(), Weight);
-		    histo[i][408]->Fill(MyGoodJetVec[0].Phi(), Weight);
+		    histo[i][406]->Fill(events[Event::event_counter].MyGoodJetVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		    histo[i][407]->Fill(events[Event::event_counter].MyGoodJetVec[0].Eta(), events[Event::event_counter].Weight);
+		    histo[i][408]->Fill(events[Event::event_counter].MyGoodJetVec[0].Phi(), events[Event::event_counter].Weight);
                 }
-                if(MyGoodJetVec.size()>1){
+                if(events[Event::event_counter].MyGoodJetVec.size()>1){
                     // Jet 2
-		    histo[i][409]->Fill(MyGoodJetVec[1].Pt()/GeV, Weight);
-		    histo[i][410]->Fill(MyGoodJetVec[1].Eta(), Weight);
-		    histo[i][411]->Fill(MyGoodJetVec[1].Phi(), Weight);
+		    histo[i][409]->Fill(events[Event::event_counter].MyGoodJetVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		    histo[i][410]->Fill(events[Event::event_counter].MyGoodJetVec[1].Eta(), events[Event::event_counter].Weight);
+		    histo[i][411]->Fill(events[Event::event_counter].MyGoodJetVec[1].Phi(), events[Event::event_counter].Weight);
                 }
 
 
                 // Event Properties
-    		histo[i][412]->Fill(Sphericity,Weight);
-    		histo[i][413]->Fill(Aplanarity,Weight);
-    		histo[i][414]->Fill(Planarity,Weight);
+    		histo[i][412]->Fill(events[Event::event_counter].Sphericity,events[Event::event_counter].Weight);
+    		histo[i][413]->Fill(events[Event::event_counter].Aplanarity,events[Event::event_counter].Weight);
+    		histo[i][414]->Fill(events[Event::event_counter].Planarity,events[Event::event_counter].Weight);
 
-                if(LeptonVec.size()>1 && MyGoodJetVec.size()>1 ){
+                if(events[Event::event_counter].LeptonVec.size()>1 && events[Event::event_counter].MyGoodJetVec.size()>1 ){
 
 			TLorentzVector  mylb_lp,     mylb_ln;
 			double      myCosMlb_lp, myCosMlb_ln;
@@ -2833,33 +2833,33 @@ void ttH_dilep::FillHistograms(THistos &histo){
                         // ------------------------------------------
 			// Calculate Mlb.............................
                         // ------------------------------------------
- 			mylb_lp  = (RecLepP + RecB);
- 			mylb_ln  = (RecLepN + RecBbar);
+ 			mylb_lp  = (events[Event::event_counter].RecLepP + events[Event::event_counter].RecB);
+ 			mylb_ln  = (events[Event::event_counter].RecLepN + events[Event::event_counter].RecBbar);
                         //..l+
-    			histo[i][415]->Fill( mylb_lp.M()/GeV,Weight);
-    			histo[i][430]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),Weight);
+    			histo[i][415]->Fill( mylb_lp.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][430]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),events[Event::event_counter].Weight);
                         //..l-
-    			histo[i][416]->Fill( mylb_ln.M()/GeV,Weight);
-    			histo[i][431]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),Weight);
+    			histo[i][416]->Fill( mylb_ln.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][431]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),events[Event::event_counter].Weight);
                         //..l+ and l-
-    			histo[i][417]->Fill( mylb_lp.M()/GeV,Weight);
-    			histo[i][417]->Fill( mylb_ln.M()/GeV,Weight);
-    			histo[i][432]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),Weight);
-    			histo[i][432]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),Weight);
+    			histo[i][417]->Fill( mylb_lp.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][417]->Fill( mylb_ln.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][432]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),events[Event::event_counter].Weight);
+    			histo[i][432]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),events[Event::event_counter].Weight);
 
  			// Reconstructed information
-                        histo[i][574]->Fill(Ml1b1,Weight);
-                        histo[i][574]->Fill(Ml2b2,Weight);
-                        histo[i][575]->Fill(Ml2b1,Weight);
-                        histo[i][575]->Fill(Ml1b2,Weight);
-                        histo[i][576]->Fill(Ml1b1+Ml2b2-Ml2b1-Ml1b2,Weight);
+                        histo[i][574]->Fill(events[Event::event_counter].Ml1b1,events[Event::event_counter].Weight);
+                        histo[i][574]->Fill(events[Event::event_counter].Ml2b2,events[Event::event_counter].Weight);
+                        histo[i][575]->Fill(events[Event::event_counter].Ml2b1,events[Event::event_counter].Weight);
+                        histo[i][575]->Fill(events[Event::event_counter].Ml1b2,events[Event::event_counter].Weight);
+                        histo[i][576]->Fill(events[Event::event_counter].Ml1b1+events[Event::event_counter].Ml2b2-events[Event::event_counter].Ml2b1-events[Event::event_counter].Ml1b2,events[Event::event_counter].Weight);
 
  			// Truth information
-                        histo[i][577]->Fill(Ml1b1_truth,Weight);
-                        histo[i][577]->Fill(Ml2b2_truth,Weight);
-                        histo[i][578]->Fill(Ml2b1_truth,Weight);
-                        histo[i][578]->Fill(Ml1b2_truth,Weight);
-                        histo[i][579]->Fill(Ml1b1_truth+Ml2b2_truth-Ml2b1_truth-Ml1b2_truth,Weight);
+                        histo[i][577]->Fill(events[Event::event_counter].Ml1b1_truth,events[Event::event_counter].Weight);
+                        histo[i][577]->Fill(events[Event::event_counter].Ml2b2_truth,events[Event::event_counter].Weight);
+                        histo[i][578]->Fill(events[Event::event_counter].Ml2b1_truth,events[Event::event_counter].Weight);
+                        histo[i][578]->Fill(events[Event::event_counter].Ml1b2_truth,events[Event::event_counter].Weight);
+                        histo[i][579]->Fill(events[Event::event_counter].Ml1b1_truth+events[Event::event_counter].Ml2b2_truth-events[Event::event_counter].Ml2b1_truth-events[Event::event_counter].Ml1b2_truth,events[Event::event_counter].Weight);
 
                         // ------------------------------------------
 			// Calculate Cos from Mlb....................
@@ -2869,93 +2869,93 @@ void ttH_dilep::FillHistograms(THistos &histo){
 			//...l+
  			df_mlb      =  mylb_lp.M();
 			myCosMlb_lp = ((2*df_mlb*df_mlb)/((mt*mt)-(mW*mW)))-1;			
-    			histo[i][418]->Fill(myCosMlb_lp,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][349]->Fill(myCosMlb_lp,Weight);
+    			histo[i][418]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][349]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
 			}
 			//    ...2 bins...
-    			histo[i][421]->Fill(myCosMlb_lp,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][352]->Fill(myCosMlb_lp,Weight);
+    			histo[i][421]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][352]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
 			}
 			//...l-
  			df_mlb      =  mylb_ln.M();
 			myCosMlb_ln = ((2*df_mlb*df_mlb)/((mt*mt)-(mW*mW)))-1;			
-    			histo[i][419]->Fill(myCosMlb_ln,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][350]->Fill(myCosMlb_ln,Weight);
+    			histo[i][419]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][350]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			}
 			//    ...2 bins...
-    			histo[i][422]->Fill(myCosMlb_ln,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][353]->Fill(myCosMlb_ln,Weight);
+    			histo[i][422]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][353]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			}
 			//...l+ and l-
-    			histo[i][420]->Fill(myCosMlb_lp,Weight);
-    			histo[i][420]->Fill(myCosMlb_ln,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][351]->Fill(myCosMlb_lp,Weight);
-    				histo[i][351]->Fill(myCosMlb_ln,Weight);
+    			histo[i][420]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    			histo[i][420]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][351]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    				histo[i][351]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			}
 			//    ...2 bins...
-    			histo[i][423]->Fill(myCosMlb_lp,Weight);
-    			histo[i][423]->Fill(myCosMlb_ln,Weight);
-			if( HasSolution > 0 ){
-    				histo[i][354]->Fill(myCosMlb_lp,Weight);
-    				histo[i][354]->Fill(myCosMlb_ln,Weight);
+    			histo[i][423]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    			histo[i][423]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
+			if( events[Event::event_counter].HasSolution > 0 ){
+    				histo[i][354]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    				histo[i][354]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			}
 
 	                //____4 bins__________________
                         Double_t   ynew = 0.587401052;
                         //      ....(l+,b)....
 			Double_t ctheta = myCosMlb_lp;
-     			if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][424]->Fill(-0.75,Weight); histo[i][426]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  			{  histo[i][424]->Fill(-0.25,Weight); histo[i][426]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) 			{  histo[i][424]->Fill( 0.25,Weight); histo[i][426]->Fill( 0.25,Weight); }
-     			else if(ctheta <= 1. )                  {  histo[i][424]->Fill( 0.75,Weight); histo[i][426]->Fill( 0.75,Weight); }
-			if( HasSolution > 0 ){
-     				if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][355]->Fill(-0.75,Weight); histo[i][357]->Fill(-0.75,Weight); }
-     				else if(ctheta < 0. )  			{  histo[i][355]->Fill(-0.25,Weight); histo[i][357]->Fill(-0.25,Weight); }
-     				else if(ctheta < ynew) 			{  histo[i][355]->Fill( 0.25,Weight); histo[i][357]->Fill( 0.25,Weight); }
-     				else if(ctheta <= 1. )                  {  histo[i][355]->Fill( 0.75,Weight); histo[i][357]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][424]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][426]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  			{  histo[i][424]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][426]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) 			{  histo[i][424]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][426]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta <= 1. )                  {  histo[i][424]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][426]->Fill( 0.75,events[Event::event_counter].Weight); }
+			if( events[Event::event_counter].HasSolution > 0 ){
+     				if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][355]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][357]->Fill(-0.75,events[Event::event_counter].Weight); }
+     				else if(ctheta < 0. )  			{  histo[i][355]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][357]->Fill(-0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta < ynew) 			{  histo[i][355]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][357]->Fill( 0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta <= 1. )                  {  histo[i][355]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][357]->Fill( 0.75,events[Event::event_counter].Weight); }
 			}
                         //      ....(l-,bbar)....
 			ctheta = myCosMlb_ln;
-     			if(ctheta < -ynew && ctheta >= -1. )    {  histo[i][425]->Fill(-0.75,Weight); histo[i][426]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  			{  histo[i][425]->Fill(-0.25,Weight); histo[i][426]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) 			{  histo[i][425]->Fill( 0.25,Weight); histo[i][426]->Fill( 0.25,Weight); }
-     			else if(ctheta <= 1. )                  {  histo[i][425]->Fill( 0.75,Weight); histo[i][426]->Fill( 0.75,Weight); }	
-			if( HasSolution > 0 ){
-     				if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][356]->Fill(-0.75,Weight); histo[i][357]->Fill(-0.75,Weight); }
-     				else if(ctheta < 0. )  			{  histo[i][356]->Fill(-0.25,Weight); histo[i][357]->Fill(-0.25,Weight); }
-     				else if(ctheta < ynew) 			{  histo[i][356]->Fill( 0.25,Weight); histo[i][357]->Fill( 0.25,Weight); }
-     				else if(ctheta <= 1. )                  {  histo[i][356]->Fill( 0.75,Weight); histo[i][357]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew && ctheta >= -1. )    {  histo[i][425]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][426]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  			{  histo[i][425]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][426]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) 			{  histo[i][425]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][426]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta <= 1. )                  {  histo[i][425]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][426]->Fill( 0.75,events[Event::event_counter].Weight); }	
+			if( events[Event::event_counter].HasSolution > 0 ){
+     				if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][356]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][357]->Fill(-0.75,events[Event::event_counter].Weight); }
+     				else if(ctheta < 0. )  			{  histo[i][356]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][357]->Fill(-0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta < ynew) 			{  histo[i][356]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][357]->Fill( 0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta <= 1. )                  {  histo[i][356]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][357]->Fill( 0.75,events[Event::event_counter].Weight); }
 			}
 
 	                //____4 bins__________________NO LIMITS ON RANGE_________________
                         //      ....(l+,b)....
 			ctheta = myCosMlb_lp;
-     			if(ctheta < -ynew)     {  histo[i][427]->Fill(-0.75,Weight); histo[i][429]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][427]->Fill(-0.25,Weight); histo[i][429]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][427]->Fill( 0.25,Weight); histo[i][429]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][427]->Fill( 0.75,Weight); histo[i][429]->Fill( 0.75,Weight); }
-			if( HasSolution > 0 ){
-     				if(ctheta < -ynew)     {  histo[i][358]->Fill(-0.75,Weight); histo[i][360]->Fill(-0.75,Weight); }
-     				else if(ctheta < 0. )  {  histo[i][358]->Fill(-0.25,Weight); histo[i][360]->Fill(-0.25,Weight); }
-     				else if(ctheta < ynew) {  histo[i][358]->Fill( 0.25,Weight); histo[i][360]->Fill( 0.25,Weight); }
-     				else                   {  histo[i][358]->Fill( 0.75,Weight); histo[i][360]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew)     {  histo[i][427]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][429]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][427]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][429]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][427]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][429]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][427]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][429]->Fill( 0.75,events[Event::event_counter].Weight); }
+			if( events[Event::event_counter].HasSolution > 0 ){
+     				if(ctheta < -ynew)     {  histo[i][358]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][360]->Fill(-0.75,events[Event::event_counter].Weight); }
+     				else if(ctheta < 0. )  {  histo[i][358]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][360]->Fill(-0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta < ynew) {  histo[i][358]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][360]->Fill( 0.25,events[Event::event_counter].Weight); }
+     				else                   {  histo[i][358]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][360]->Fill( 0.75,events[Event::event_counter].Weight); }
 			}
                         //      ....(l-,bbar)....
 			ctheta = myCosMlb_ln;
-     			if(ctheta < -ynew)     {  histo[i][428]->Fill(-0.75,Weight); histo[i][429]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][428]->Fill(-0.25,Weight); histo[i][429]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][428]->Fill( 0.25,Weight); histo[i][429]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][428]->Fill( 0.75,Weight); histo[i][429]->Fill( 0.75,Weight); }
-			if( HasSolution > 0 ){
-     				if(ctheta < -ynew)     {  histo[i][359]->Fill(-0.75,Weight); histo[i][360]->Fill(-0.75,Weight); }
-     				else if(ctheta < 0. )  {  histo[i][359]->Fill(-0.25,Weight); histo[i][360]->Fill(-0.25,Weight); }
-     				else if(ctheta < ynew) {  histo[i][359]->Fill( 0.25,Weight); histo[i][360]->Fill( 0.25,Weight); }
-     				else                   {  histo[i][359]->Fill( 0.75,Weight); histo[i][360]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew)     {  histo[i][428]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][429]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][428]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][429]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][428]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][429]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][428]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][429]->Fill( 0.75,events[Event::event_counter].Weight); }
+			if( events[Event::event_counter].HasSolution > 0 ){
+     				if(ctheta < -ynew)     {  histo[i][359]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][360]->Fill(-0.75,events[Event::event_counter].Weight); }
+     				else if(ctheta < 0. )  {  histo[i][359]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][360]->Fill(-0.25,events[Event::event_counter].Weight); }
+     				else if(ctheta < ynew) {  histo[i][359]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][360]->Fill( 0.25,events[Event::event_counter].Weight); }
+     				else                   {  histo[i][359]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][360]->Fill( 0.75,events[Event::event_counter].Weight); }
 			}
 		}
 
@@ -2963,18 +2963,18 @@ void ttH_dilep::FillHistograms(THistos &histo){
 		// -------------------------
                 // Vertices and tracks
 		// -------------------------
-	        for(Int_t l = 0; l < Vtx.size(); ++l)
+	        for(Int_t l = 0; l < events[Event::event_counter].Vtx.size(); ++l)
 	        {
-                	histo[i][5]->Fill(Vtx[l].X(), Weight);
-                	histo[i][6]->Fill(Vtx[l].Y(), Weight);
-                	histo[i][7]->Fill(Vtx[l].Z(), Weight);
+                	histo[i][5]->Fill(events[Event::event_counter].Vtx[l].X(), events[Event::event_counter].Weight);
+                	histo[i][6]->Fill(events[Event::event_counter].Vtx[l].Y(), events[Event::event_counter].Weight);
+                	histo[i][7]->Fill(events[Event::event_counter].Vtx[l].Z(), events[Event::event_counter].Weight);
                 }
 
                 // Make sure we have 2 leptons
-                if( LeptonVec.size() >=2 )
+                if( events[Event::event_counter].LeptonVec.size() >=2 )
                 {
-	 	   TVector3 v0( LeptonVec[0].X(), LeptonVec[0].Y(), 0. );
-	 	   TVector3 v1( LeptonVec[1].X(), LeptonVec[1].Y(), 0. );
+	 	   TVector3 v0( events[Event::event_counter].LeptonVec[0].X(), events[Event::event_counter].LeptonVec[0].Y(), 0. );
+	 	   TVector3 v1( events[Event::event_counter].LeptonVec[1].X(), events[Event::event_counter].LeptonVec[1].Y(), 0. );
                    Double_t  DelPhi = v0.Angle(v1);
 
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -2982,244 +2982,244 @@ void ttH_dilep::FillHistograms(THistos &histo){
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                 // 
                 //   ==== OS, Full ===================================================================================
-	             if( ( LeptonVec[0].isb )*( LeptonVec[1].isb ) < 0 )
+	             if( ( events[Event::event_counter].LeptonVec[0].isb )*( events[Event::event_counter].LeptonVec[1].isb ) < 0 )
 	             {
-		        histo[i][100]->Fill(MyGoodJetVec.size(), Weight);
-		        histo[i][101]->Fill(BTaggedJetVec.size(), Weight);
-		        histo[i][102]->Fill(MissPt/GeV, Weight);
-		        histo[i][103]->Fill(DelPhi, Weight);
-		        histo[i][104]->Fill(ll.M()/GeV, Weight);
-		        histo[i][105]->Fill(Ht/GeV, Weight);
+		        histo[i][100]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        histo[i][101]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        histo[i][102]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        histo[i][103]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        histo[i][104]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        histo[i][105]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
 
-		        histo[i][598]->Fill(ll.Pz()/GeV, Weight);
-		        histo[i][599]->Fill(ll.Pt()/GeV, Weight);
+		        histo[i][598]->Fill(events[Event::event_counter].ll.Pz()/GeV, events[Event::event_counter].Weight);
+		        histo[i][599]->Fill(events[Event::event_counter].ll.Pt()/GeV, events[Event::event_counter].Weight);
 
                             //.........etas, phis and pts.........................................lepton 1............
-		        histo[i][106]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        histo[i][107]->Fill(LeptonVec[0].Phi(), Weight);
-		        histo[i][108]->Fill(LeptonVec[0].Eta(), Weight);
+		        histo[i][106]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        histo[i][107]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        histo[i][108]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             //.........etas, phis and pts.........................................lepton 2............
-		        histo[i][109]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        histo[i][110]->Fill(LeptonVec[1].Phi(), Weight);
-		        histo[i][111]->Fill(LeptonVec[1].Eta(), Weight);
+		        histo[i][109]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        histo[i][110]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        histo[i][111]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
                             //.........Mll versus Etmis...............................................................
-//                        ((TH2D*)histo[i][124])->Fill(ll.M()/GeV, MissPt/GeV, Weight);
-                            //.........Ht versus Etmis...............................................................
-//                        ((TH2D*)histo[i][126])->Fill(Ht/GeV, MissPt/GeV, Weight);
+//                        ((TH2D*)histo[i][124])->Fill(events[Event::event_counter].ll.M()/GeV, MissPt/GeV, Weight);
+                            //.........events[Event::event_counter].Ht versus Etmis...............................................................
+//                        ((TH2D*)histo[i][126])->Fill(events[Event::event_counter].Ht/GeV, MissPt/GeV, Weight);
 
                         // ------------------------------------------------------------------------------------------------------
                         //........................Mll versus Etmis Counters......................................................
                         // ------------------------------------------------------------------------------------------------------
-                        if( fabs(ll.M()/GeV-91.) < 10. ){
-                                if( (MissPt >  30.*GeV) ) histo[i][188]->Fill(1.,Weight);
-                                if( (MissPt >  35.*GeV) ) histo[i][188]->Fill(2.,Weight);
-                                if( (MissPt >  25.*GeV) ) histo[i][188]->Fill(3.,Weight);
+                        if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 10. ){
+                                if( (events[Event::event_counter].MissPt >  30.*GeV) ) histo[i][188]->Fill(1.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  35.*GeV) ) histo[i][188]->Fill(2.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  25.*GeV) ) histo[i][188]->Fill(3.,events[Event::event_counter].Weight);
                         } else {
-                                if( (MissPt >  60.*GeV) && ( (ll.M()/GeV-91.)<= -10. ) ) histo[i][188]->Fill(0.,Weight);
-                                if( (MissPt >  60.*GeV) && ( (ll.M()/GeV-91.)>= +10. ) ) histo[i][188]->Fill(0.,Weight);
+                                if( (events[Event::event_counter].MissPt >  60.*GeV) && ( (events[Event::event_counter].ll.M()/GeV-91.)<= -10. ) ) histo[i][188]->Fill(0.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  60.*GeV) && ( (events[Event::event_counter].ll.M()/GeV-91.)>= +10. ) ) histo[i][188]->Fill(0.,events[Event::event_counter].Weight);
                   	}
                         // ------------------------------------------------------------------------------------------------------
 
                         // Do OS distributions for Control Region
-                        if ( MissPt/GeV > 30. && fabs(ll.M()/GeV-91.) < 10. )
+                        if ( events[Event::event_counter].MissPt/GeV > 30. && fabs(events[Event::event_counter].ll.M()/GeV-91.) < 10. )
                         {
-  		        	histo[i][130]->Fill(MyGoodJetVec.size(), Weight);
-		        	histo[i][131]->Fill(BTaggedJetVec.size(), Weight);
-		        	histo[i][132]->Fill(MissPt/GeV, Weight);
-		        	histo[i][133]->Fill(DelPhi, Weight);
-		        	histo[i][134]->Fill(ll.M()/GeV, Weight);
-		        	histo[i][135]->Fill(Ht/GeV, Weight);
+  		        	histo[i][130]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][131]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][132]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        	histo[i][133]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        	histo[i][134]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][135]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 1............
-		        	histo[i][136]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        	histo[i][137]->Fill(LeptonVec[0].Phi(), Weight);
-		        	histo[i][138]->Fill(LeptonVec[0].Eta(), Weight);
+		        	histo[i][136]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][137]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][138]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 2............
-		        	histo[i][139]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        	histo[i][140]->Fill(LeptonVec[1].Phi(), Weight);
-		        	histo[i][141]->Fill(LeptonVec[1].Eta(), Weight);
+		        	histo[i][139]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][140]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][141]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
                                     //.........Mll versus Etmis...............................................................
-        //                        ((TH2D*)histo[i][154])->Fill(ll.M()/GeV, MissPt/GeV, Weight);
-                                    //.........Ht versus Etmis...............................................................
-        //                        ((TH2D*)histo[i][156])->Fill(Ht/GeV, MissPt/GeV, Weight);
+        //                        ((TH2D*)histo[i][154])->Fill(events[Event::event_counter].ll.M()/GeV, MissPt/GeV, Weight);
+                                    //.........events[Event::event_counter].Ht versus Etmis...............................................................
+        //                        ((TH2D*)histo[i][156])->Fill(events[Event::event_counter].Ht/GeV, MissPt/GeV, Weight);
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][190]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-                               histo[i][190]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+                               histo[i][190]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][190]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
-                               if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][191]->Fill( 0.75,Weight); }
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
+                               if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][191]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
-                               if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][191]->Fill( 0.75,Weight); }
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
+                               if(ctheta < -ynew)     {  histo[i][191]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][191]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][191]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][191]->Fill( 0.75,events[Event::event_counter].Weight); }
 
                         }
 
                         // Do OS distributions for Signal Region 
-                        if ( MissPt/GeV > 60. && fabs(ll.M()/GeV-91.) >= 10. )
+                        if ( events[Event::event_counter].MissPt/GeV > 60. && fabs(events[Event::event_counter].ll.M()/GeV-91.) >= 10. )
                         {
-  		        	histo[i][160]->Fill(MyGoodJetVec.size(), Weight);
-		        	histo[i][161]->Fill(BTaggedJetVec.size(), Weight);
-		        	histo[i][162]->Fill(MissPt/GeV, Weight);
-		        	histo[i][163]->Fill(DelPhi, Weight);
-		        	histo[i][164]->Fill(ll.M()/GeV, Weight);
-		        	histo[i][165]->Fill(Ht/GeV, Weight);
+  		        	histo[i][160]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][161]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][162]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        	histo[i][163]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        	histo[i][164]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][165]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 1............
-		        	histo[i][166]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        	histo[i][167]->Fill(LeptonVec[0].Phi(), Weight);
-		        	histo[i][168]->Fill(LeptonVec[0].Eta(), Weight);
+		        	histo[i][166]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][167]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][168]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 2............
-		        	histo[i][169]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        	histo[i][170]->Fill(LeptonVec[1].Phi(), Weight);
-		        	histo[i][171]->Fill(LeptonVec[1].Eta(), Weight);
+		        	histo[i][169]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][170]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][171]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][194]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-                               histo[i][194]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+                               histo[i][194]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][194]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
-                               if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][195]->Fill( 0.75,Weight); }
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
+                               if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][195]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
-                               if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][195]->Fill( 0.75,Weight); }
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
+                               if(ctheta < -ynew)     {  histo[i][195]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][195]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][195]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][195]->Fill( 0.75,events[Event::event_counter].Weight); }
 
                         }
 
                      }
 
                 //   ==== SS, Full ===================================================================================
-	             if( ( LeptonVec[0].isb )*( LeptonVec[1].isb ) > 0 )
+	             if( ( events[Event::event_counter].LeptonVec[0].isb )*( events[Event::event_counter].LeptonVec[1].isb ) > 0 )
 	             {
-		        histo[i][112]->Fill(MyGoodJetVec.size(), Weight);
-		        histo[i][113]->Fill(BTaggedJetVec.size(), Weight);
-		        histo[i][114]->Fill(MissPt/GeV, Weight);
-		        histo[i][115]->Fill(DelPhi, Weight);
-		        histo[i][116]->Fill(ll.M()/GeV, Weight);
-		        histo[i][117]->Fill(Ht/GeV, Weight);
+		        histo[i][112]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        histo[i][113]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        histo[i][114]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        histo[i][115]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        histo[i][116]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        histo[i][117]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
                             //.........etas, phis and pts.........................................lepton 1............
-		        histo[i][118]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        histo[i][119]->Fill(LeptonVec[0].Phi(), Weight);
-		        histo[i][120]->Fill(LeptonVec[0].Eta(), Weight);
+		        histo[i][118]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        histo[i][119]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        histo[i][120]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             //.........etas, phis and pts.........................................lepton 2............
-		        histo[i][121]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        histo[i][122]->Fill(LeptonVec[1].Phi(), Weight);
-		        histo[i][123]->Fill(LeptonVec[1].Eta(), Weight);
+		        histo[i][121]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        histo[i][122]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        histo[i][123]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
 
                             //.........Mll versus Etmis...............................................................
-//                        ((TH2D*)histo[i][125])->Fill(ll.M()/GeV, MissPt/GeV, Weight);
-                            //.........Ht versus Etmis...............................................................
-//                        ((TH2D*)histo[i][127])->Fill(Ht/GeV, MissPt/GeV, Weight);
+//                        ((TH2D*)histo[i][125])->Fill(events[Event::event_counter].ll.M()/GeV, MissPt/GeV, Weight);
+                            //.........events[Event::event_counter].Ht versus Etmis...............................................................
+//                        ((TH2D*)histo[i][127])->Fill(events[Event::event_counter].Ht/GeV, MissPt/GeV, Weight);
 
                         // ------------------------------------------------------------------------------------------------------
                         // .......................Mll versus Etmis Counters......................................................
                         // ------------------------------------------------------------------------------------------------------
-                        if( fabs(ll.M()/GeV-91.) < 10. ){
-                                if( (MissPt >  30.*GeV) ) histo[i][189]->Fill(1.,Weight);
-                                if( (MissPt >  35.*GeV) ) histo[i][189]->Fill(2.,Weight);
-                                if( (MissPt >  25.*GeV) ) histo[i][189]->Fill(3.,Weight);
+                        if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 10. ){
+                                if( (events[Event::event_counter].MissPt >  30.*GeV) ) histo[i][189]->Fill(1.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  35.*GeV) ) histo[i][189]->Fill(2.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  25.*GeV) ) histo[i][189]->Fill(3.,events[Event::event_counter].Weight);
                         } else {
-                                if( (MissPt >  60.*GeV) && ( (ll.M()/GeV-91.)<= -10. ) ) histo[i][189]->Fill(0.,Weight);
-                                if( (MissPt >  60.*GeV) && ( (ll.M()/GeV-91.)>= +10. ) ) histo[i][189]->Fill(0.,Weight);
+                                if( (events[Event::event_counter].MissPt >  60.*GeV) && ( (events[Event::event_counter].ll.M()/GeV-91.)<= -10. ) ) histo[i][189]->Fill(0.,events[Event::event_counter].Weight);
+                                if( (events[Event::event_counter].MissPt >  60.*GeV) && ( (events[Event::event_counter].ll.M()/GeV-91.)>= +10. ) ) histo[i][189]->Fill(0.,events[Event::event_counter].Weight);
                   	}
                         // ------------------------------------------------------------------------------------------------------
 
                         // Do SS distributions for Control Region 
-                        if ( MissPt/GeV > 30. && fabs(ll.M()/GeV-91.) < 10. )
+                        if ( events[Event::event_counter].MissPt/GeV > 30. && fabs(events[Event::event_counter].ll.M()/GeV-91.) < 10. )
                         {
-  		        	histo[i][142]->Fill(MyGoodJetVec.size(), Weight);
-		        	histo[i][143]->Fill(BTaggedJetVec.size(), Weight);
-		        	histo[i][144]->Fill(MissPt/GeV, Weight);
-		        	histo[i][145]->Fill(DelPhi, Weight);
-		        	histo[i][146]->Fill(ll.M()/GeV, Weight);
-		        	histo[i][147]->Fill(Ht/GeV, Weight);
+  		        	histo[i][142]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][143]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][144]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        	histo[i][145]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        	histo[i][146]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][147]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 1............
-		        	histo[i][148]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        	histo[i][149]->Fill(LeptonVec[0].Phi(), Weight);
-		        	histo[i][150]->Fill(LeptonVec[0].Eta(), Weight);
+		        	histo[i][148]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][149]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][150]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 2............
-		        	histo[i][151]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        	histo[i][152]->Fill(LeptonVec[1].Phi(), Weight);
-		        	histo[i][153]->Fill(LeptonVec[1].Eta(), Weight);
+		        	histo[i][151]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][152]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][153]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
 
                                     //.........Mll versus Etmis...............................................................
-        //                        ((TH2D*)histo[i][155])->Fill(ll.M()/GeV, MissPt/GeV, Weight);
-                                    //.........Ht versus Etmis...............................................................
-        //                        ((TH2D*)histo[i][157])->Fill(Ht/GeV, MissPt/GeV, Weight);
+        //                        ((TH2D*)histo[i][155])->Fill(events[Event::event_counter].ll.M()/GeV, MissPt/GeV, Weight);
+                                    //.........events[Event::event_counter].Ht versus Etmis...............................................................
+        //                        ((TH2D*)histo[i][157])->Fill(events[Event::event_counter].Ht/GeV, MissPt/GeV, Weight);
 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][192]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-                               histo[i][192]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+                               histo[i][192]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][192]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
-                               if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][193]->Fill( 0.75,Weight); }
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
+                               if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][193]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
-                               if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][193]->Fill( 0.75,Weight); }
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
+                               if(ctheta < -ynew)     {  histo[i][193]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][193]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][193]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][193]->Fill( 0.75,events[Event::event_counter].Weight); }
 
                         }
 
                         // Do SS distributions for Signal Region 
-                        if ( MissPt/GeV > 60. && fabs(ll.M()/GeV-91.) >= 10. )
+                        if ( events[Event::event_counter].MissPt/GeV > 60. && fabs(events[Event::event_counter].ll.M()/GeV-91.) >= 10. )
                         {
-  		        	histo[i][172]->Fill(MyGoodJetVec.size(), Weight);
-		        	histo[i][173]->Fill(BTaggedJetVec.size(), Weight);
-		        	histo[i][174]->Fill(MissPt/GeV, Weight);
-		        	histo[i][175]->Fill(DelPhi, Weight);
-		        	histo[i][176]->Fill(ll.M()/GeV, Weight);
-		        	histo[i][177]->Fill(Ht/GeV, Weight);
+  		        	histo[i][172]->Fill(events[Event::event_counter].MyGoodJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][173]->Fill(events[Event::event_counter].BTaggedJetVec.size(), events[Event::event_counter].Weight);
+		        	histo[i][174]->Fill(events[Event::event_counter].MissPt/GeV, events[Event::event_counter].Weight);
+		        	histo[i][175]->Fill(DelPhi, events[Event::event_counter].Weight);
+		        	histo[i][176]->Fill(events[Event::event_counter].ll.M()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][177]->Fill(events[Event::event_counter].Ht/GeV, events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 1............
-		        	histo[i][178]->Fill(LeptonVec[0].Pt()/GeV, Weight);
-		        	histo[i][179]->Fill(LeptonVec[0].Phi(), Weight);
-		        	histo[i][180]->Fill(LeptonVec[0].Eta(), Weight);
+		        	histo[i][178]->Fill(events[Event::event_counter].LeptonVec[0].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][179]->Fill(events[Event::event_counter].LeptonVec[0].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][180]->Fill(events[Event::event_counter].LeptonVec[0].Eta(), events[Event::event_counter].Weight);
                             	//.........etas, phis and pts.........................................lepton 2............
-		        	histo[i][181]->Fill(LeptonVec[1].Pt()/GeV, Weight);
-		        	histo[i][182]->Fill(LeptonVec[1].Phi(), Weight);
-		        	histo[i][183]->Fill(LeptonVec[1].Eta(), Weight);
+		        	histo[i][181]->Fill(events[Event::event_counter].LeptonVec[1].Pt()/GeV, events[Event::event_counter].Weight);
+		        	histo[i][182]->Fill(events[Event::event_counter].LeptonVec[1].Phi(), events[Event::event_counter].Weight);
+		        	histo[i][183]->Fill(events[Event::event_counter].LeptonVec[1].Eta(), events[Event::event_counter].Weight);
                 
                                // W Polarizations...........................................
                                //____2 entries per event_____
-                               histo[i][196]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-                               histo[i][196]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+                               histo[i][196]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                               histo[i][196]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                                //____4 entries per event_____
                                Double_t   ynew = 0.587401052;
                                //    ....(l+,b)....
-                               Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
-                               if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][197]->Fill( 0.75,Weight); }
+                               Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
+                               if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][197]->Fill( 0.75,events[Event::event_counter].Weight); }
                                //    ....(l-,bbar)....
-                               ctheta = RecCos_LepN_Bbar_BoostedtoWn;
-                               if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,Weight); }
-                               else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,Weight); }
-                               else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,Weight); }
-                               else                   {  histo[i][197]->Fill( 0.75,Weight); }
+                               ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
+                               if(ctheta < -ynew)     {  histo[i][197]->Fill(-0.75,events[Event::event_counter].Weight); }
+                               else if(ctheta < 0. )  {  histo[i][197]->Fill(-0.25,events[Event::event_counter].Weight); }
+                               else if(ctheta < ynew) {  histo[i][197]->Fill( 0.25,events[Event::event_counter].Weight); }
+                               else                   {  histo[i][197]->Fill( 0.75,events[Event::event_counter].Weight); }
 
                         }
 
@@ -3233,7 +3233,7 @@ void ttH_dilep::FillHistograms(THistos &histo){
 
 
 		// truth reconstructed information.....................................
-		if ( TruthHasSolution > 0 ){
+		if ( events[Event::event_counter].TruthHasSolution > 0 ){
 
 
 			TLorentzVector  mylb_lp,     mylb_ln;
@@ -3243,19 +3243,19 @@ void ttH_dilep::FillHistograms(THistos &histo){
                         // ------------------------------------------
 			// Calculate Mlb.............................
                         // ------------------------------------------
- 			mylb_lp  = (TruthLepP + TruthB);
- 			mylb_ln  = (TruthLepN + TruthBbar);
+ 			mylb_lp  = (events[Event::event_counter].TruthLepP + events[Event::event_counter].TruthB);
+ 			mylb_ln  = (events[Event::event_counter].TruthLepN + events[Event::event_counter].TruthBbar);
                         //..l+
-    			histo[i][261]->Fill( mylb_lp.M()/GeV,Weight);
-    			histo[i][264]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),Weight);
+    			histo[i][261]->Fill( mylb_lp.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][264]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),events[Event::event_counter].Weight);
                         //..l-
-    			histo[i][262]->Fill( mylb_ln.M()/GeV,Weight);
-    			histo[i][265]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),Weight);
+    			histo[i][262]->Fill( mylb_ln.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][265]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),events[Event::event_counter].Weight);
                         //..l+ and l-
-    			histo[i][263]->Fill( mylb_lp.M()/GeV,Weight);
-    			histo[i][263]->Fill( mylb_ln.M()/GeV,Weight);
-    			histo[i][266]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),Weight);
-    			histo[i][266]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),Weight);
+    			histo[i][263]->Fill( mylb_lp.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][263]->Fill( mylb_ln.M()/GeV,events[Event::event_counter].Weight);
+    			histo[i][266]->Fill( (mylb_lp.M()/GeV)*(mylb_lp.M()/GeV),events[Event::event_counter].Weight);
+    			histo[i][266]->Fill( (mylb_ln.M()/GeV)*(mylb_ln.M()/GeV),events[Event::event_counter].Weight);
 
                         // ------------------------------------------
 			// Calculate Cos from Mlb....................
@@ -3265,264 +3265,264 @@ void ttH_dilep::FillHistograms(THistos &histo){
 			//...l+
  			df_mlb      =  mylb_lp.M();
 			myCosMlb_lp = ((2*df_mlb*df_mlb)/((mt*mt)-(mW*mW)))-1;			
-    			histo[i][249]->Fill(myCosMlb_lp,Weight);
+    			histo[i][249]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
 			//    ...2 bins...
-    			histo[i][252]->Fill(myCosMlb_lp,Weight);
+    			histo[i][252]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
 			//...l-
  			df_mlb      =  mylb_ln.M();
 			myCosMlb_ln = ((2*df_mlb*df_mlb)/((mt*mt)-(mW*mW)))-1;			
-    			histo[i][250]->Fill(myCosMlb_ln,Weight);
+    			histo[i][250]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			//    ...2 bins...
-    			histo[i][253]->Fill(myCosMlb_ln,Weight);
+    			histo[i][253]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			//...l+ and l-
-    			histo[i][251]->Fill(myCosMlb_lp,Weight);
-    			histo[i][251]->Fill(myCosMlb_ln,Weight);
+    			histo[i][251]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    			histo[i][251]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 			//    ...2 bins...
-    			histo[i][254]->Fill(myCosMlb_lp,Weight);
-    			histo[i][254]->Fill(myCosMlb_ln,Weight);
+    			histo[i][254]->Fill(myCosMlb_lp,events[Event::event_counter].Weight);
+    			histo[i][254]->Fill(myCosMlb_ln,events[Event::event_counter].Weight);
 
 	                //____4 bins__________________
                         Double_t   ynew = 0.587401052;
                         //      ....(l+,b)....
 			Double_t ctheta = myCosMlb_lp;
-     			if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][255]->Fill(-0.75,Weight); histo[i][257]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  			{  histo[i][255]->Fill(-0.25,Weight); histo[i][257]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) 			{  histo[i][255]->Fill( 0.25,Weight); histo[i][257]->Fill( 0.25,Weight); }
-     			else if(ctheta <= 1. )                  {  histo[i][255]->Fill( 0.75,Weight); histo[i][257]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew && ctheta >= -1. )   	{  histo[i][255]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][257]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  			{  histo[i][255]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][257]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) 			{  histo[i][255]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][257]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta <= 1. )                  {  histo[i][255]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][257]->Fill( 0.75,events[Event::event_counter].Weight); }
                         //      ....(l-,bbar)....
 			ctheta = myCosMlb_ln;
-     			if(ctheta < -ynew && ctheta >= -1. )    {  histo[i][256]->Fill(-0.75,Weight); histo[i][257]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  			{  histo[i][256]->Fill(-0.25,Weight); histo[i][257]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) 			{  histo[i][256]->Fill( 0.25,Weight); histo[i][257]->Fill( 0.25,Weight); }
-     			else if(ctheta <= 1. )                  {  histo[i][256]->Fill( 0.75,Weight); histo[i][257]->Fill( 0.75,Weight); }	
+     			if(ctheta < -ynew && ctheta >= -1. )    {  histo[i][256]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][257]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  			{  histo[i][256]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][257]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) 			{  histo[i][256]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][257]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta <= 1. )                  {  histo[i][256]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][257]->Fill( 0.75,events[Event::event_counter].Weight); }	
 
 	                //____4 bins__________________NO LIMITS ON RANGE_________________
                         //      ....(l+,b)....
 			ctheta = myCosMlb_lp;
-     			if(ctheta < -ynew)     {  histo[i][258]->Fill(-0.75,Weight); histo[i][260]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][258]->Fill(-0.25,Weight); histo[i][260]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][258]->Fill( 0.25,Weight); histo[i][260]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][258]->Fill( 0.75,Weight); histo[i][260]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew)     {  histo[i][258]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][260]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][258]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][260]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][258]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][260]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][258]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][260]->Fill( 0.75,events[Event::event_counter].Weight); }
                         //      ....(l-,bbar)....
 			ctheta = myCosMlb_ln;
-     			if(ctheta < -ynew)     {  histo[i][259]->Fill(-0.75,Weight); histo[i][260]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][259]->Fill(-0.25,Weight); histo[i][260]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][259]->Fill( 0.25,Weight); histo[i][260]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][259]->Fill( 0.75,Weight); histo[i][260]->Fill( 0.75,Weight); }
+     			if(ctheta < -ynew)     {  histo[i][259]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][260]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][259]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][260]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][259]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][260]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][259]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][260]->Fill( 0.75,events[Event::event_counter].Weight); }
 
 			// --------------------------------
 			// information from matched leptons
 			// --------------------------------
 			// Neutrinos
-			histo[i][200]->Fill(TruthNeu.Pt()/GeV, Weight);
-			histo[i][201]->Fill(TruthNeu.E()/GeV, Weight);
-			histo[i][202]->Fill(TruthNeubar.Pt()/GeV, Weight);
-			histo[i][203]->Fill(TruthNeubar.E()/GeV, Weight);
+			histo[i][200]->Fill(events[Event::event_counter].TruthNeu.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][201]->Fill(events[Event::event_counter].TruthNeu.E()/GeV, events[Event::event_counter].Weight);
+			histo[i][202]->Fill(events[Event::event_counter].TruthNeubar.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][203]->Fill(events[Event::event_counter].TruthNeubar.E()/GeV, events[Event::event_counter].Weight);
 
                         //____Mass PLots_____
-			histo[i][210]->Fill(           TruthWp.M()/GeV, Weight);
-			histo[i][211]->Fill(           TruthWn.M()/GeV, Weight);
-			histo[i][212]->Fill(            TruthT.M()/GeV, Weight);
-			histo[i][213]->Fill(         TruthTbar.M()/GeV, Weight);
-			histo[i][214]->Fill((TruthT+TruthTbar).M()/GeV, Weight);
+			histo[i][210]->Fill(           events[Event::event_counter].TruthWp.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][211]->Fill(           events[Event::event_counter].TruthWn.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][212]->Fill(            events[Event::event_counter].TruthT.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][213]->Fill(         events[Event::event_counter].TruthTbar.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][214]->Fill((events[Event::event_counter].TruthT+events[Event::event_counter].TruthTbar).M()/GeV, events[Event::event_counter].Weight);
 
                         //____Pt PLots_____
-			histo[i][215]->Fill(           TruthWp.Pt()/GeV, Weight);
-			histo[i][216]->Fill(           TruthWn.Pt()/GeV, Weight);
-			histo[i][217]->Fill(            TruthT.Pt()/GeV, Weight);
-			histo[i][218]->Fill(         TruthTbar.Pt()/GeV, Weight);
-			histo[i][219]->Fill((TruthT+TruthTbar).Pt()/GeV, Weight);
+			histo[i][215]->Fill(           events[Event::event_counter].TruthWp.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][216]->Fill(           events[Event::event_counter].TruthWn.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][217]->Fill(            events[Event::event_counter].TruthT.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][218]->Fill(         events[Event::event_counter].TruthTbar.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][219]->Fill((events[Event::event_counter].TruthT+events[Event::event_counter].TruthTbar).Pt()/GeV, events[Event::event_counter].Weight);
 
                         //____Eta PLots_____
-			histo[i][220]->Fill(           TruthWp.Eta(), Weight);
-			histo[i][221]->Fill(           TruthWn.Eta(), Weight);
-			histo[i][222]->Fill(            TruthT.Eta(), Weight);
-			histo[i][223]->Fill(         TruthTbar.Eta(), Weight);
-			histo[i][224]->Fill((TruthT+TruthTbar).Eta(), Weight);
+			histo[i][220]->Fill(           events[Event::event_counter].TruthWp.Eta(), events[Event::event_counter].Weight);
+			histo[i][221]->Fill(           events[Event::event_counter].TruthWn.Eta(), events[Event::event_counter].Weight);
+			histo[i][222]->Fill(            events[Event::event_counter].TruthT.Eta(), events[Event::event_counter].Weight);
+			histo[i][223]->Fill(         events[Event::event_counter].TruthTbar.Eta(), events[Event::event_counter].Weight);
+			histo[i][224]->Fill((events[Event::event_counter].TruthT+events[Event::event_counter].TruthTbar).Eta(), events[Event::event_counter].Weight);
 
 
 			// truth spin correlations
 	                //___cos(l+)cos(l-)________________
-			histo[i][230]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][234]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][230]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][234]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(b)cos(l-)________________
-			histo[i][231]->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][235]->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][231]->Fill(events[Event::event_counter].TruthCos_B_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][235]->Fill(events[Event::event_counter].TruthCos_B_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(l+)cos(bbar)________________
-			histo[i][232]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][236]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar, Weight);
+			histo[i][232]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][236]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 			//___cos(l)cos(b)________________
-			histo[i][233]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][237]->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][233]->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][237]->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][233]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][237]->Fill(events[Event::event_counter].TruthCos_LepP_T_BoostedtoT*events[Event::event_counter].TruthCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][233]->Fill(events[Event::event_counter].TruthCos_B_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][237]->Fill(events[Event::event_counter].TruthCos_B_T_BoostedtoT*events[Event::event_counter].TruthCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	
 			// W polarizations
 	                //___cos(l+,b)________________
-			histo[i][240]->Fill(TruthCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][243]->Fill(TruthCos_LepP_B_BoostedtoWp, Weight);
+			histo[i][240]->Fill(events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][243]->Fill(events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
 	                //___cos(l-,bbar)_____________
-			histo[i][241]->Fill(TruthCos_LepN_Bbar_BoostedtoWn, Weight);
-			histo[i][244]->Fill(TruthCos_LepN_Bbar_BoostedtoWn, Weight);
+			histo[i][241]->Fill(events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][244]->Fill(events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 	                //____2 entries per event_____
-			histo[i][242]->Fill(TruthCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][245]->Fill(TruthCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][242]->Fill(TruthCos_LepN_Bbar_BoostedtoWn, Weight);
-			histo[i][245]->Fill(TruthCos_LepN_Bbar_BoostedtoWn, Weight);
+			histo[i][242]->Fill(events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][245]->Fill(events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][242]->Fill(events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][245]->Fill(events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 
 	                //____4 bins__________________
                         ynew = 0.587401052;
                         //      ....(l+,b)....
-			ctheta = TruthCos_LepP_B_BoostedtoWp;
-     			if(ctheta < -ynew)     {  histo[i][246]->Fill(-0.75,Weight); histo[i][248]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][246]->Fill(-0.25,Weight); histo[i][248]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][246]->Fill( 0.25,Weight); histo[i][248]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][246]->Fill( 0.75,Weight); histo[i][248]->Fill( 0.75,Weight); }
+			ctheta = events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp;
+     			if(ctheta < -ynew)     {  histo[i][246]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][248]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][246]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][248]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][246]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][248]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][246]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][248]->Fill( 0.75,events[Event::event_counter].Weight); }
                         //      ....(l-,bbar)....
-			ctheta = TruthCos_LepN_Bbar_BoostedtoWn;
-     			if(ctheta < -ynew)     {  histo[i][247]->Fill(-0.75,Weight); histo[i][248]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][247]->Fill(-0.25,Weight); histo[i][248]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][247]->Fill( 0.25,Weight); histo[i][248]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][247]->Fill( 0.75,Weight); histo[i][248]->Fill( 0.75,Weight); }	
+			ctheta = events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn;
+     			if(ctheta < -ynew)     {  histo[i][247]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][248]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][247]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][248]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][247]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][248]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][247]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][248]->Fill( 0.75,events[Event::event_counter].Weight); }	
 		}
 
 
 		// reconstructed information...........................................
-		if( HasSolution > 0 ){
-			histo[i][300]->Fill(Neutrino.Pt()/GeV, Weight);
-			histo[i][301]->Fill(Neutrino.E()/GeV, Weight);
-			histo[i][302]->Fill(Antineutrino.Pt()/GeV, Weight);
-			histo[i][303]->Fill(Antineutrino.E()/GeV, Weight);
+		if( events[Event::event_counter].HasSolution > 0 ){
+			histo[i][300]->Fill(events[Event::event_counter].Neutrino.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][301]->Fill(events[Event::event_counter].Neutrino.E()/GeV, events[Event::event_counter].Weight);
+			histo[i][302]->Fill(events[Event::event_counter].Antineutrino.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][303]->Fill(events[Event::event_counter].Antineutrino.E()/GeV, events[Event::event_counter].Weight);
 
                         //____Mass PLots_____
-			histo[i][310]->Fill(           RecWp.M()/GeV, Weight);
-			histo[i][311]->Fill(           RecWn.M()/GeV, Weight);
-			histo[i][312]->Fill(            RecT.M()/GeV, Weight);
-			histo[i][313]->Fill(         RecTbar.M()/GeV, Weight);
-			histo[i][314]->Fill(  (RecT+RecTbar).M()/GeV, Weight);
-			histo[i][325]->Fill(        RecHiggs.M()/GeV, Weight);
+			histo[i][310]->Fill(           events[Event::event_counter].RecWp.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][311]->Fill(           events[Event::event_counter].RecWn.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][312]->Fill(            events[Event::event_counter].RecT.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][313]->Fill(         events[Event::event_counter].RecTbar.M()/GeV, events[Event::event_counter].Weight);
+			histo[i][314]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).M()/GeV, events[Event::event_counter].Weight);
+			histo[i][325]->Fill(        events[Event::event_counter].RecHiggs.M()/GeV, events[Event::event_counter].Weight);
 			//samor
-			histo[i][361]->Fill(        RecMassHiggsJet1/GeV, Weight);
-			histo[i][362]->Fill(        RecMassHiggsJet2/GeV, Weight);
+			histo[i][361]->Fill(        events[Event::event_counter].RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
+			histo[i][362]->Fill(        events[Event::event_counter].RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
 			// Mass Higgs From the 2 jets -> 2 entries!! 
-			histo[i][363]->Fill(        RecMassHiggsJet1/GeV, Weight);
-			histo[i][363]->Fill(        RecMassHiggsJet2/GeV, Weight);
+			histo[i][363]->Fill(        events[Event::event_counter].RecMassHiggsJet1/GeV, events[Event::event_counter].Weight);
+			histo[i][363]->Fill(        events[Event::event_counter].RecMassHiggsJet2/GeV, events[Event::event_counter].Weight);
 
                         //____Pt PLots_____
-			histo[i][315]->Fill(           RecWp.Pt()/GeV, Weight);
-			histo[i][316]->Fill(           RecWn.Pt()/GeV, Weight);
-			histo[i][317]->Fill(            RecT.Pt()/GeV, Weight);
-			histo[i][318]->Fill(         RecTbar.Pt()/GeV, Weight);
-			histo[i][319]->Fill(  (RecT+RecTbar).Pt()/GeV, Weight);
-			histo[i][326]->Fill(        RecHiggs.Pt()/GeV, Weight);
+			histo[i][315]->Fill(           events[Event::event_counter].RecWp.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][316]->Fill(           events[Event::event_counter].RecWn.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][317]->Fill(            events[Event::event_counter].RecT.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][318]->Fill(         events[Event::event_counter].RecTbar.Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][319]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).Pt()/GeV, events[Event::event_counter].Weight);
+			histo[i][326]->Fill(        events[Event::event_counter].RecHiggs.Pt()/GeV, events[Event::event_counter].Weight);
 
-			histo[i][364]->Fill(  RecHiggsB1.DeltaR(RecHiggsB2), Weight);
-			histo[i][365]->Fill(         -log(RecProbTotal_ttH), Weight);
+			histo[i][364]->Fill(  events[Event::event_counter].RecHiggsB1.DeltaR(events[Event::event_counter].RecHiggsB2), events[Event::event_counter].Weight);
+			histo[i][365]->Fill(         -log(events[Event::event_counter].RecProbTotal_ttH), events[Event::event_counter].Weight);
 
                         //____Eta PLots_____
-			histo[i][320]->Fill(           RecWp.Eta(), Weight);
-			histo[i][321]->Fill(           RecWn.Eta(), Weight);
-			histo[i][322]->Fill(            RecT.Eta(), Weight);
-			histo[i][323]->Fill(         RecTbar.Eta(), Weight);
-			histo[i][324]->Fill(  (RecT+RecTbar).Eta(), Weight);
-			histo[i][327]->Fill(        RecHiggs.Eta(), Weight);
+			histo[i][320]->Fill(           events[Event::event_counter].RecWp.Eta(), events[Event::event_counter].Weight);
+			histo[i][321]->Fill(           events[Event::event_counter].RecWn.Eta(), events[Event::event_counter].Weight);
+			histo[i][322]->Fill(            events[Event::event_counter].RecT.Eta(), events[Event::event_counter].Weight);
+			histo[i][323]->Fill(         events[Event::event_counter].RecTbar.Eta(), events[Event::event_counter].Weight);
+			histo[i][324]->Fill(  (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).Eta(), events[Event::event_counter].Weight);
+			histo[i][327]->Fill(        events[Event::event_counter].RecHiggs.Eta(), events[Event::event_counter].Weight);
 
 
 			// Reco spin correlations
 	                //___cos(l+)cos(l-)________________
-			histo[i][330]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][334]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][330]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][334]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(b)cos(l-)________________
-			histo[i][331]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][335]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][331]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][335]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	                //___cos(l+)cos(bbar)________________
-			histo[i][332]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][336]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+			histo[i][332]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][336]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 			//___cos(l)cos(b)________________
-			histo[i][333]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][337]->Fill(RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-			histo[i][333]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-			histo[i][337]->Fill(RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+			histo[i][333]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][337]->Fill(events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][333]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
+			histo[i][337]->Fill(events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, events[Event::event_counter].Weight);
 	
 			// W polarizations
 	                //___cos(l+,b)________________
-			histo[i][340]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][343]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
+			histo[i][340]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][343]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
 	                //___cos(l-,bbar)_____________
-			histo[i][341]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
-			histo[i][344]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+			histo[i][341]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][344]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 
 	                //____2 entries per event_____
-			histo[i][342]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][345]->Fill(RecCos_LepP_B_BoostedtoWp, Weight);
-			histo[i][342]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
-			histo[i][345]->Fill(RecCos_LepN_Bbar_BoostedtoWn, Weight);
+			histo[i][342]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][345]->Fill(events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+			histo[i][342]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+			histo[i][345]->Fill(events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
 
 	                //____4 entries per event_____
                         Double_t   ynew = 0.587401052;
                         //      ....(l+,b)....
-			Double_t ctheta = RecCos_LepP_B_BoostedtoWp;
-     			if(ctheta < -ynew)     {  histo[i][346]->Fill(-0.75,Weight); histo[i][348]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][346]->Fill(-0.25,Weight); histo[i][348]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][346]->Fill( 0.25,Weight); histo[i][348]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][346]->Fill( 0.75,Weight); histo[i][348]->Fill( 0.75,Weight); }
+			Double_t ctheta = events[Event::event_counter].RecCos_LepP_B_BoostedtoWp;
+     			if(ctheta < -ynew)     {  histo[i][346]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][346]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][346]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][346]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.75,events[Event::event_counter].Weight); }
                         //      ....(l-,bbar)....
-			ctheta = RecCos_LepN_Bbar_BoostedtoWn;
-     			if(ctheta < -ynew)     {  histo[i][347]->Fill(-0.75,Weight); histo[i][348]->Fill(-0.75,Weight); }
-     			else if(ctheta < 0. )  {  histo[i][347]->Fill(-0.25,Weight); histo[i][348]->Fill(-0.25,Weight); }
-     			else if(ctheta < ynew) {  histo[i][347]->Fill( 0.25,Weight); histo[i][348]->Fill( 0.25,Weight); }
-     			else                   {  histo[i][347]->Fill( 0.75,Weight); histo[i][348]->Fill( 0.75,Weight); }	
+			ctheta = events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn;
+     			if(ctheta < -ynew)     {  histo[i][347]->Fill(-0.75,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.75,events[Event::event_counter].Weight); }
+     			else if(ctheta < 0. )  {  histo[i][347]->Fill(-0.25,events[Event::event_counter].Weight); histo[i][348]->Fill(-0.25,events[Event::event_counter].Weight); }
+     			else if(ctheta < ynew) {  histo[i][347]->Fill( 0.25,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.25,events[Event::event_counter].Weight); }
+     			else                   {  histo[i][347]->Fill( 0.75,events[Event::event_counter].Weight); histo[i][348]->Fill( 0.75,events[Event::event_counter].Weight); }	
 		}
 
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
                 // ::                                     Histograms for Truth versus Reconstructed                                             ::
                 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-                if ( TruthHasSolution > 0 && HasSolution > 0 ){
-//                        ((TH2D*)histo[i][500])->Fill( (TruthT+TruthTbar).M()/GeV , (RecT+RecTbar).M()/GeV, Weight);
+                if ( events[Event::event_counter].TruthHasSolution > 0 && events[Event::event_counter].HasSolution > 0 ){
+//                        ((TH2D*)histo[i][500])->Fill( (TruthT+TruthTbar).M()/GeV , (events[Event::event_counter].RecT+events[Event::event_counter].RecTbar).M()/GeV, Weight);
 
-                        // Resolution plots for Neutrino and Anti-neutrino pT and pZ
-                        if (     TruthNeu.Pt() != 0.) histo[i][570]->Fill(  (     Neutrino.Pt() - TruthNeu.Pt()    )/TruthNeu.Pt(), Weight);
-                        if (     TruthNeu.Pz() != 0.) histo[i][571]->Fill(  (     Neutrino.Pz() - TruthNeu.Pz()    )/TruthNeu.Pz(), Weight);
-                        if (  TruthNeubar.Pt() != 0.) histo[i][572]->Fill(  ( Antineutrino.Pt() - TruthNeubar.Pt() )/TruthNeubar.Pt(), Weight);
-                        if (  TruthNeubar.Pz() != 0.) histo[i][573]->Fill(  ( Antineutrino.Pz() - TruthNeubar.Pz() )/TruthNeubar.Pz(), Weight);
+                        // Resolution plots for events[Event::event_counter].Neutrino and Anti-neutrino pT and pZ
+                        if (     events[Event::event_counter].TruthNeu.Pt() != 0.) histo[i][570]->Fill(  (     events[Event::event_counter].Neutrino.Pt() - events[Event::event_counter].TruthNeu.Pt()    )/events[Event::event_counter].TruthNeu.Pt(), events[Event::event_counter].Weight);
+                        if (     events[Event::event_counter].TruthNeu.Pz() != 0.) histo[i][571]->Fill(  (     events[Event::event_counter].Neutrino.Pz() - events[Event::event_counter].TruthNeu.Pz()    )/events[Event::event_counter].TruthNeu.Pz(), events[Event::event_counter].Weight);
+                        if (  events[Event::event_counter].TruthNeubar.Pt() != 0.) histo[i][572]->Fill(  ( events[Event::event_counter].Antineutrino.Pt() - events[Event::event_counter].TruthNeubar.Pt() )/events[Event::event_counter].TruthNeubar.Pt(), events[Event::event_counter].Weight);
+                        if (  events[Event::event_counter].TruthNeubar.Pz() != 0.) histo[i][573]->Fill(  ( events[Event::event_counter].Antineutrino.Pz() - events[Event::event_counter].TruthNeubar.Pz() )/events[Event::event_counter].TruthNeubar.Pz(), events[Event::event_counter].Weight);
 
                         // Spin Correlations
                         //___cos(l+)cos(l-)________________
-//                        ((TH2D*)histo[i][530])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][534])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][530])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][534])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
                         //___cos(b)cos(l-)________________
-//                        ((TH2D*)histo[i][531])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][535])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][531])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][535])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
                         //___cos(l+)cos(bbar)________________
-//                        ((TH2D*)histo[i][532])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][536])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][532])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][536])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
                         //___cos(l)cos(b)________________
-//                        ((TH2D*)histo[i][533])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][537])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,RecCos_LepP_T_BoostedtoT*RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][533])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
-//                        ((TH2D*)histo[i][537])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  RecCos_B_T_BoostedtoT*RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][533])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][537])->Fill(TruthCos_LepP_T_BoostedtoT*TruthCos_Bbar_Tbar_BoostedtoTbar,events[Event::event_counter].RecCos_LepP_T_BoostedtoT*events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][533])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
+//                        ((TH2D*)histo[i][537])->Fill(TruthCos_B_T_BoostedtoT*TruthCos_LepN_Tbar_BoostedtoTbar,  events[Event::event_counter].RecCos_B_T_BoostedtoT*events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar, Weight);
 
                         // W polarizations
                         //___cos(l+,b)________________
-//                        ((TH2D*)histo[i][540])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][543])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][540])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][543])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
                         //___cos(l-,bbar)_____________
-//                        ((TH2D*)histo[i][541])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
-//                        ((TH2D*)histo[i][544])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][541])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][544])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
                         //____2 entries per event_____
-//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepP_B_BoostedtoWp,	RecCos_LepP_B_BoostedtoWp, Weight);
-//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
-//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepP_B_BoostedtoWp,	events[Event::event_counter].RecCos_LepP_B_BoostedtoWp, Weight);
+//                        ((TH2D*)histo[i][542])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
+//                        ((TH2D*)histo[i][545])->Fill(TruthCos_LepN_Bbar_BoostedtoWn,    events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn, Weight);
 
                         //___Resolution Plots_________
-                        if (TruthCos_LepP_B_BoostedtoWp != 0. ) {
-                                histo[i][567]->Fill( (RecCos_LepP_B_BoostedtoWp - TruthCos_LepP_B_BoostedtoWp)/TruthCos_LepP_B_BoostedtoWp, Weight);
-                                histo[i][569]->Fill( (RecCos_LepP_B_BoostedtoWp - TruthCos_LepP_B_BoostedtoWp)/TruthCos_LepP_B_BoostedtoWp, Weight);
+                        if (events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp != 0. ) {
+                                histo[i][567]->Fill( (events[Event::event_counter].RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
+                                histo[i][569]->Fill( (events[Event::event_counter].RecCos_LepP_B_BoostedtoWp - events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp)/events[Event::event_counter].TruthCos_LepP_B_BoostedtoWp, events[Event::event_counter].Weight);
                         }
-                        if (TruthCos_LepN_Bbar_BoostedtoWn != 0. ) {
-                                histo[i][568]->Fill( (RecCos_LepN_Bbar_BoostedtoWn - TruthCos_LepN_Bbar_BoostedtoWn)/TruthCos_LepN_Bbar_BoostedtoWn, Weight);
-                                histo[i][569]->Fill( (RecCos_LepN_Bbar_BoostedtoWn - TruthCos_LepN_Bbar_BoostedtoWn)/TruthCos_LepN_Bbar_BoostedtoWn, Weight);
+                        if (events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn != 0. ) {
+                                histo[i][568]->Fill( (events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
+                                histo[i][569]->Fill( (events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn - events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn)/events[Event::event_counter].TruthCos_LepN_Bbar_BoostedtoWn, events[Event::event_counter].Weight);
                         }
 
                         //___cos(l+,b)__from_Mlb____
@@ -3568,13 +3568,13 @@ void ttH_dilep::DoCuts(){
         //=============================================
         //     Do Not Consider Zero Weight Events
         //=============================================
-      	if(Weight==0) return; 
+      	if(events[Event::event_counter].Weight==0) return; 
         //if(  ( isData == 1 ) && ( alldata_ele == 1 ) && ( ElectronTrigger != 1 ) )  return; // Egamma stream
         //if(  ( isData == 1 ) && ( alldata_muo == 1 ) && (     MuonTrigger != 1 ) )  return; // Muon   stream
-        LastCut++;	// LastCut=1
+        events[Event::event_counter].LastCut++;	// LastCut=1
 
         // Needed calculations to fill the variables
-        Calculations();
+        events[Event::event_counter].Calculations();
         //=============================================
         //=============================================
         //   Find Signal True dilepton events in MC
@@ -3598,40 +3598,40 @@ void ttH_dilep::DoCuts(){
         if( lepSample==21 ){ // ee sample
             if(leptonSep == 1)
             {
-               if( (ntruthele+ntrutheletau) != 2) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 2) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthele+ntrutheletau) == 2) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 2) return;
             }
         }
         if( lepSample==22 ){ // mumu sample
             if(leptonSep == 1)
             {
-               if( (ntruthmu+ntruthmutau) != 2) return;
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 2) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthmu+ntruthmutau) == 2) return;
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 2) return;
             }
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
             if(leptonSep == 1)
             {
-               if( (ntruthele+ntrutheletau) != 1 || (ntruthmu+ntruthmutau) != 1) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 1 || (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 1) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthele+ntrutheletau) == 1 && (ntruthmu+ntruthmutau) == 1) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 1 && (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 1) return;
             }
         }
-        LastCut++;	// LastCut=2
+        events[Event::event_counter].LastCut++;	// LastCut=2
 //        cout << "Truth Separation:   runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3642,8 +3642,8 @@ void ttH_dilep::DoCuts(){
 	//	Event number; nothing else here)
         //=============================================
         //=============================================
-        if(  ( isData == 1 ) && ( GoodRL == 0 ) )  return;
-        LastCut++;	// LastCut=3
+        if(  ( isData == 1 ) && ( events[Event::event_counter].GoodRL == 0 ) )  return;
+        events[Event::event_counter].LastCut++;	// LastCut=3
 //       cout << "C0 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3653,15 +3653,15 @@ void ttH_dilep::DoCuts(){
         //=============================================
         // trigger CutTriggerXXX < 0 means that no cut is applied
         if( CutTriggerEle >= 0){
-            if( ElectronTrigger != CutTriggerEle ) return;
+            if( events[Event::event_counter].ElectronTrigger != CutTriggerEle ) return;
         }
         if( CutTriggerMuo >= 0){
-            if(     MuonTrigger != CutTriggerMuo ) return;
+            if(     events[Event::event_counter].MuonTrigger != CutTriggerMuo ) return;
         }
         if( CutTriggerEleMuo > 0){
-            if( ElectronTrigger != 1 && MuonTrigger != 1  ) return;
+            if( events[Event::event_counter].ElectronTrigger != 1 && events[Event::event_counter].MuonTrigger != 1  ) return;
         }
-        LastCut++;	// LastCut=4
+        events[Event::event_counter].LastCut++;	// LastCut=4
 //        cout << "C1 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -3670,8 +3670,8 @@ void ttH_dilep::DoCuts(){
         // C2) Apply the cosmic event rejection 
         //=============================================
         //=============================================
-        if ( Cosmic ) return;
-        LastCut++;	// LastCut=5
+        if ( events[Event::event_counter].Cosmic ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=5
 //        cout << "C2 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3679,8 +3679,8 @@ void ttH_dilep::DoCuts(){
         // C3) Number of Vertices with  
         //=============================================
         //=============================================
-        if ( Vtx.size() == 0 ) return;
-        LastCut++;	// LastCut=6
+        if ( events[Event::event_counter].Vtx.size() == 0 ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=6
 //        cout << "C3 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3690,34 +3690,34 @@ void ttH_dilep::DoCuts(){
         // b) exactly 2 lept 
         //=============================================
         //=============================================
-        if( LeptonVec.size() < 2 )        return;
+        if( events[Event::event_counter].LeptonVec.size() < 2 )        return;
         // Separation in ee, em and mumu channels
         if( lepSample==21 ){ // ee sample
             int nele = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 11) nele = nele + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
             }
             if (nele < 2) return;
         }
         if( lepSample==22 ){ // mumu sample
             int nmuo = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
             }
             if (nmuo < 2) return;
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
             int nele = 0;
             int nmuo = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 11) nele = nele + 1;
-               if (abs(LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
             }
             if (nele < 1) return;
             if (nmuo < 1) return;
         }
 
-        LastCut++;	// LastCut=7
+        events[Event::event_counter].LastCut++;	// LastCut=7
 //        cout << "C4 a) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3725,18 +3725,18 @@ void ttH_dilep::DoCuts(){
         // C4) b) Require exactly 2 isolated leptons 
         //=============================================
         //=============================================
-        if ( LeptonVec.size() != 2 )        return;
+        if ( events[Event::event_counter].LeptonVec.size() != 2 )        return;
 
         if( lepSample==21 ){ // ee sample
-            if( abs(LeptonVec[0].isb) != 11 || abs(LeptonVec[1].isb) != 11) return;
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) return;
         }
         if( lepSample==22 ){ // mumu sample
-            if( abs(LeptonVec[0].isb) != 13 || abs(LeptonVec[1].isb) != 13) return;
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) return;
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
-            if( (abs(LeptonVec[0].isb) != 11 || abs(LeptonVec[1].isb) != 13) && (abs(LeptonVec[0].isb) != 13 || abs(LeptonVec[1].isb) != 11) ) return;
+            if( (abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) && (abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) ) return;
         }
-        LastCut++;	// LastCut=8
+        events[Event::event_counter].LastCut++;	// LastCut=8
 //        cout << "C4 b) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3744,8 +3744,8 @@ void ttH_dilep::DoCuts(){
         // C5) At Least 1 lepton pt >= 25GeV
         //=============================================
         //=============================================
-        if ( LeptonVec[0].Pt() < 25.*GeV ) return;
-        LastCut++;	// LastCut=9
+        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=9
 //        cout << "C5) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
         //=============================================
 
@@ -3757,15 +3757,15 @@ void ttH_dilep::DoCuts(){
         Int_t HasElectronMatchingTrigger = 0;
         Int_t     HasMuonMatchingTrigger = 0;
 
-        for (Int_t i=0; i<LeptonVec.size(); ++i) {
-                Int_t ii = LeptonVec[i].idx;
+        for (Int_t i=0; i<events[Event::event_counter].LeptonVec.size(); ++i) {
+                Int_t ii = events[Event::event_counter].LeptonVec[i].idx;
                 // check leptons are trigger matched
-                if (abs(LeptonVec[ii].isb) == 11 && LeptonVec[ii].itrigMatch == 1 ) HasElectronMatchingTrigger = 1;
-                if (abs(LeptonVec[ii].isb) == 13 && LeptonVec[ii].itrigMatch == 1 ) HasMuonMatchingTrigger = 1;
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) HasElectronMatchingTrigger = 1;
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) HasMuonMatchingTrigger = 1;
         }
 
-        Bool_t ElectronTriggerOK = ( ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
-        Bool_t     MuonTriggerOK = (     MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
+        Bool_t ElectronTriggerOK = ( events[Event::event_counter].ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
+        Bool_t     MuonTriggerOK = (     events[Event::event_counter].MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
 
         if( lepSample==21 ){
            if ( !ElectronTriggerOK ) return;
@@ -3775,11 +3775,11 @@ void ttH_dilep::DoCuts(){
         }
         if( lepSample==23 ){
           if ( isData == 1 ) {
-           if ( ( ElectronTrigger == 1 && MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) return;
-           if ( ( ElectronTrigger == 0 && MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) return;
+           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) return;
+           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) return;
           } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) return;
         }
-        LastCut++;	// LastCut=10
+        events[Event::event_counter].LastCut++;	// LastCut=10
 //        cout << "C6 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3787,8 +3787,8 @@ void ttH_dilep::DoCuts(){
         // C7) E-Mu Overlap removal
         //=============================================
         //=============================================
-        if (EleMuoOverlap !=0) return; 
-	LastCut++;	// LastCut=11
+        if (events[Event::event_counter].EleMuoOverlap !=0) return; 
+	events[Event::event_counter].LastCut++;	// LastCut=11
 
 	
         //=============================================
@@ -3796,14 +3796,14 @@ void ttH_dilep::DoCuts(){
         // C8) Jet Cleaning
         //=============================================
         //=============================================
-	if (JetCleanning != 0) return;
-	LastCut++; 	//LastCut=12
+	if (events[Event::event_counter].JetCleanning != 0) return;
+	events[Event::event_counter].LastCut++; 	//LastCut=12
         
 
         //=============================================
         //=============================================
         // C8) No Pt missing cut for ee, mumu   
-        //     Ht cut (emu)       
+        //     events[Event::event_counter].Ht cut (emu)       
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
@@ -3813,9 +3813,9 @@ void ttH_dilep::DoCuts(){
           //if(MissPt <= 60.*GeV) return;
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
-          if(Ht <= 130.*GeV) return;
+          if(events[Event::event_counter].Ht <= 130.*GeV) return;
         }
-        LastCut++;	// LastCut=13
+        events[Event::event_counter].LastCut++;	// LastCut=13
 //        cout << "C8 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3823,8 +3823,8 @@ void ttH_dilep::DoCuts(){
         // C9) Njets>=2 from Minintuple (jet_n)
         //=============================================
         //=============================================
-        if ( jet_n_Mini != 2 ) return;
-        LastCut++;	// LastCut=14
+        if ( events[Event::event_counter].jet_n_Mini != 2 ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=14
 //        cout << "C9 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3832,8 +3832,8 @@ void ttH_dilep::DoCuts(){
         // C10) Two Opposite Sign (OS) Leptons 
         //=============================================
         //=============================================
-        if ( LeptonVec[0].isb*LeptonVec[1].isb >= 0. ) return;
-        LastCut++;	// LastCut=15
+        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=15
 //        cout << "C10 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3842,15 +3842,15 @@ void ttH_dilep::DoCuts(){
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
         }
         if( lepSample==23 ){ // mumu sample
-          if( ll.M()/GeV <= 15. ) return;
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) return;
         }
-        LastCut++;	// LastCut=16
+        events[Event::event_counter].LastCut++;	// LastCut=16
 //        cout << "C11) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -3860,24 +3860,24 @@ void ttH_dilep::DoCuts(){
         //=============================================
         //=============================================
         if ( isData != 1  ){
-                if ( LeptonVec[0].itruthMatch != 1 )  return;
-                if ( LeptonVec[1].itruthMatch != 1 )  return;
+                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  return;
+                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  return;
         }
-        LastCut++;	// LastCut=17
+        events[Event::event_counter].LastCut++;	// LastCut=17
 //        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
         //=============================================
-        // C13)  Z Mass cut: |M(ll)-91|>=8 GeV     ====
+        // C13)  Z Mass cut: |M(events[Event::event_counter].ll)-91|>=8 GeV     ====
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( fabs(ll.M()/GeV-91.) < 8. ) return;
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. ) return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( fabs(ll.M()/GeV-91.) < 8. ) return;
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. ) return;
         }
-        LastCut++;	// LastCut=18
+        events[Event::event_counter].LastCut++;	// LastCut=18
 //        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 /*
@@ -3907,8 +3907,8 @@ void ttH_dilep::DoCuts(){
         //      (MV1 weight > 0.8119)
         //=============================================
         //=============================================
-        if ( NbtagJet < 1 ) return;  
-        LastCut++;	// LastCut=19
+        if ( events[Event::event_counter].NbtagJet < 1 ) return;  
+        events[Event::event_counter].LastCut++;	// LastCut=19
 //        cout << "C14 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3916,8 +3916,8 @@ void ttH_dilep::DoCuts(){
         // C15) Exactly 2 jets and 2 btag 
         //=============================================
         //=============================================
-        if ( NbtagJet != 2 ) return;  
-        LastCut++;	// LastCut=20
+        if ( events[Event::event_counter].NbtagJet != 2 ) return;  
+        events[Event::event_counter].LastCut++;	// LastCut=20
 //        cout << "C15 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -3940,10 +3940,10 @@ void ttH_dilep::DoCuts(){
                                 " Pt=" << LeptonVec[0].Pt() << " Eta=" << LeptonVec[0].Eta() << " Phi=" << LeptonVec[0].Phi() << " Charge=" << LeptonVec[0].isb << endl;
                 cout << "   Lepton=l1:   Px=" << LeptonVec[1].Px() << " Py=" << LeptonVec[1].Py() << " Pz=" << LeptonVec[1].Pz() << " E=" << LeptonVec[1].E() <<
                                 " Pt=" << LeptonVec[1].Pt() << " Eta=" << LeptonVec[1].Eta() << " Phi=" << LeptonVec[1].Phi() << " Charge=" << LeptonVec[1].isb << endl;
-                cout << " MyGoodJet 1:   Px=" << MyGoodJetVec[0].Px() << " Py=" << MyGoodJetVec[0].Py() << " Pz=" << MyGoodJetVec[0].Pz() << " E=" << MyGoodJetVec[0].E() <<
-                                " Pt=" << MyGoodJetVec[0].Pt() << " Eta=" << MyGoodJetVec[0].Eta() << " Phi=" << MyGoodJetVec[0].Phi() << endl;
-                cout << " MyGoodJet 2:   Px=" << MyGoodJetVec[1].Px() << " Py=" << MyGoodJetVec[1].Py() << " Pz=" << MyGoodJetVec[1].Pz() << " E=" << MyGoodJetVec[1].E() <<
-                                " Pt=" << MyGoodJetVec[1].Pt() << " Eta=" << MyGoodJetVec[1].Eta() << " Phi=" << MyGoodJetVec[1].Phi() << endl;
+                cout << " MyGoodJet 1:   Px=" << events[Event::event_counter].MyGoodJetVec[0].Px() << " Py=" << events[Event::event_counter].MyGoodJetVec[0].Py() << " Pz=" << events[Event::event_counter].MyGoodJetVec[0].Pz() << " E=" << events[Event::event_counter].MyGoodJetVec[0].E() <<
+                                " Pt=" << events[Event::event_counter].MyGoodJetVec[0].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[0].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[0].Phi() << endl;
+                cout << " MyGoodJet 2:   Px=" << events[Event::event_counter].MyGoodJetVec[1].Px() << " Py=" << events[Event::event_counter].MyGoodJetVec[1].Py() << " Pz=" << events[Event::event_counter].MyGoodJetVec[1].Pz() << " E=" << events[Event::event_counter].MyGoodJetVec[1].E() <<
+                                " Pt=" << events[Event::event_counter].MyGoodJetVec[1].Pt() << " Eta=" << events[Event::event_counter].MyGoodJetVec[1].Eta() << " Phi=" << events[Event::event_counter].MyGoodJetVec[1].Phi() << endl;
                 cout << "    Miss Px=    " << MissPx << "   Miss Py=   " << MissPy << endl;
                 cout << "====================================================================================" << endl;
 */
@@ -3954,8 +3954,8 @@ void ttH_dilep::DoCuts(){
         // C11) Njets>=4, pT>25GeV, |eta|<2.5 
         //=============================================
         //=============================================
-        //if ( MyGoodJetVec.size() < 4 ) return;
-        LastCut++;	// LastCut=21
+        //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
+        events[Event::event_counter].LastCut++;	// LastCut=21
 //        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -3969,35 +3969,35 @@ void ttH_dilep::DoCuts(){
         //=============================================
         //=============================================
         //if(HasSolution == 0) return;
-        LastCut++;	// LastCut=22
+        events[Event::event_counter].LastCut++;	// LastCut=22
 //        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         if( isData == 1 ){
 /*
                 cout << "=========================event was reconstructed successfully=======================" << endl;
-                cout << "     Lepton=l0 :  Px=" << RecLepP.Px() << " Py=" << RecLepP.Py() << " Pz=" << RecLepP.Pz() << " E=" << RecLepP.E() <<
-                                         " Pt=" << RecLepP.Pt() << " Eta=" << RecLepP.Eta() << " Phi=" << RecLepP.Phi() << endl;
-                cout << "     Lepton=l1 :  Px=" << RecLepN.Px() << " Py=" << RecLepN.Py() << " Pz=" << RecLepN.Pz() << " E=" << RecLepN.E() <<
-                                         " Pt=" << RecLepN.Pt() << " Eta=" << RecLepN.Eta() << " Phi=" << RecLepN.Phi() << endl;
-                cout << "          b(l0):  Px=" << RecB.Px() << " Py=" << RecB.Py() << " Pz=" << RecB.Pz() << " E=" << RecB.E() << " M=" << RecB.M() <<
-                                         " Pt=" << RecB.Pt() << " Eta=" << RecB.Eta() << " Phi=" << RecB.Phi() << endl;
-                cout << "          b(l1):  Px=" << RecBbar.Px() << " Py=" << RecBbar.Py() << " Pz=" << RecBbar.Pz() << " E=" << RecBbar.E() << " M=" << RecBbar.M() <<
-                                         " Pt=" << RecBbar.Pt() << " Eta=" << RecBbar.Eta() << " Phi=" << RecBbar.Phi() << endl;
-                cout << "   Neutrino(l0):  Px=" << RecNeu.Px() << " Py=" << RecNeu.Py() << " Pz=" << RecNeu.Pz() << " E=" << RecNeu.E() <<
-                                         " Pt=" << RecNeu.Pt() << " Eta=" << RecNeu.Eta() << " Phi=" << RecNeu.Phi() << endl;
-                cout << "   Neutrino(l1):  Px=" << RecNeubar.Px() << " Py=" << RecNeubar.Py() << " Pz=" << RecNeubar.Pz() << " E=" << RecNeubar.E() <<
-                                         " Pt=" << RecNeubar.Pt() << " Eta=" << RecNeubar.Eta() << " Phi=" << RecNeubar.Phi() << endl;
-                cout << "          W(l0):  Px=" << RecWp.Px() << " Py=" << RecWp.Py() << " Pz=" << RecWp.Pz() << " E=" << RecWp.E() << " M=" << RecWp.M() <<
-                                         " Pt=" << RecWp.Pt() << " Eta=" << RecWp.Eta() << " Phi=" << RecWp.Phi() << endl;
-                cout << "          W(l1):  Px=" << RecWn.Px() << " Py=" << RecWn.Py() << " Pz=" << RecWn.Pz() << " E=" << RecWn.E() << " M=" << RecWn.M() <<
-                                         " Pt=" << RecWn.Pt() << " Eta=" << RecWn.Eta() << " Phi=" << RecWn.Phi() << endl;
-                cout << "          t(l0):  Px=" << RecT.Px() << " Py=" << RecT.Py() << " Pz=" << RecT.Pz() << " E=" << RecT.E() << " M=" << RecT.M() <<
-                                         " Pt=" << RecT.Pt() << " Eta=" << RecT.Eta() << " Phi=" << RecT.Phi() << endl;
-                cout << "          t(l1):  Px=" << RecTbar.Px() << " Py=" << RecTbar.Py() << " Pz=" << RecTbar.Pz() << " E=" << RecTbar.E() << " M=" << RecTbar.M() <<
-                                         " Pt=" << RecTbar.Pt() << " Eta=" << RecTbar.Eta() << " Phi=" << RecTbar.Phi() << endl;
+                cout << "     Lepton=l0 :  Px=" << events[Event::event_counter].RecLepP.Px() << " Py=" << events[Event::event_counter].RecLepP.Py() << " Pz=" << events[Event::event_counter].RecLepP.Pz() << " E=" << events[Event::event_counter].RecLepP.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepP.Pt() << " Eta=" << events[Event::event_counter].RecLepP.Eta() << " Phi=" << events[Event::event_counter].RecLepP.Phi() << endl;
+                cout << "     Lepton=l1 :  Px=" << events[Event::event_counter].RecLepN.Px() << " Py=" << events[Event::event_counter].RecLepN.Py() << " Pz=" << events[Event::event_counter].RecLepN.Pz() << " E=" << events[Event::event_counter].RecLepN.E() <<
+                                         " Pt=" << events[Event::event_counter].RecLepN.Pt() << " Eta=" << events[Event::event_counter].RecLepN.Eta() << " Phi=" << events[Event::event_counter].RecLepN.Phi() << endl;
+                cout << "          b(l0):  Px=" << events[Event::event_counter].RecB.Px() << " Py=" << events[Event::event_counter].RecB.Py() << " Pz=" << events[Event::event_counter].RecB.Pz() << " E=" << events[Event::event_counter].RecB.E() << " M=" << events[Event::event_counter].RecB.M() <<
+                                         " Pt=" << events[Event::event_counter].RecB.Pt() << " Eta=" << events[Event::event_counter].RecB.Eta() << " Phi=" << events[Event::event_counter].RecB.Phi() << endl;
+                cout << "          b(l1):  Px=" << events[Event::event_counter].RecBbar.Px() << " Py=" << events[Event::event_counter].RecBbar.Py() << " Pz=" << events[Event::event_counter].RecBbar.Pz() << " E=" << events[Event::event_counter].RecBbar.E() << " M=" << events[Event::event_counter].RecBbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecBbar.Pt() << " Eta=" << events[Event::event_counter].RecBbar.Eta() << " Phi=" << events[Event::event_counter].RecBbar.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l0):  Px=" << events[Event::event_counter].RecNeu.Px() << " Py=" << events[Event::event_counter].RecNeu.Py() << " Pz=" << events[Event::event_counter].RecNeu.Pz() << " E=" << events[Event::event_counter].RecNeu.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeu.Pt() << " Eta=" << events[Event::event_counter].RecNeu.Eta() << " Phi=" << events[Event::event_counter].RecNeu.Phi() << endl;
+                cout << "   events[Event::event_counter].Neutrino(l1):  Px=" << events[Event::event_counter].RecNeubar.Px() << " Py=" << events[Event::event_counter].RecNeubar.Py() << " Pz=" << events[Event::event_counter].RecNeubar.Pz() << " E=" << events[Event::event_counter].RecNeubar.E() <<
+                                         " Pt=" << events[Event::event_counter].RecNeubar.Pt() << " Eta=" << events[Event::event_counter].RecNeubar.Eta() << " Phi=" << events[Event::event_counter].RecNeubar.Phi() << endl;
+                cout << "          W(l0):  Px=" << events[Event::event_counter].RecWp.Px() << " Py=" << events[Event::event_counter].RecWp.Py() << " Pz=" << events[Event::event_counter].RecWp.Pz() << " E=" << events[Event::event_counter].RecWp.E() << " M=" << events[Event::event_counter].RecWp.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWp.Pt() << " Eta=" << events[Event::event_counter].RecWp.Eta() << " Phi=" << events[Event::event_counter].RecWp.Phi() << endl;
+                cout << "          W(l1):  Px=" << events[Event::event_counter].RecWn.Px() << " Py=" << events[Event::event_counter].RecWn.Py() << " Pz=" << events[Event::event_counter].RecWn.Pz() << " E=" << events[Event::event_counter].RecWn.E() << " M=" << events[Event::event_counter].RecWn.M() <<
+                                         " Pt=" << events[Event::event_counter].RecWn.Pt() << " Eta=" << events[Event::event_counter].RecWn.Eta() << " Phi=" << events[Event::event_counter].RecWn.Phi() << endl;
+                cout << "          t(l0):  Px=" << events[Event::event_counter].RecT.Px() << " Py=" << events[Event::event_counter].RecT.Py() << " Pz=" << events[Event::event_counter].RecT.Pz() << " E=" << events[Event::event_counter].RecT.E() << " M=" << events[Event::event_counter].RecT.M() <<
+                                         " Pt=" << events[Event::event_counter].RecT.Pt() << " Eta=" << events[Event::event_counter].RecT.Eta() << " Phi=" << events[Event::event_counter].RecT.Phi() << endl;
+                cout << "          t(l1):  Px=" << events[Event::event_counter].RecTbar.Px() << " Py=" << events[Event::event_counter].RecTbar.Py() << " Pz=" << events[Event::event_counter].RecTbar.Pz() << " E=" << events[Event::event_counter].RecTbar.E() << " M=" << events[Event::event_counter].RecTbar.M() <<
+                                         " Pt=" << events[Event::event_counter].RecTbar.Pt() << " Eta=" << events[Event::event_counter].RecTbar.Eta() << " Phi=" << events[Event::event_counter].RecTbar.Phi() << endl;
                 cout << "================================= Debug Equations ==================================" << endl;
-                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (RecNeu.Px() + RecNeubar.Px()) << endl;
-                cout << "                   Py=" << MissPy - (RecNeu.Py() + RecNeubar.Py()) << endl;
+                cout << "Miss-(Neu 0+Neu 1) Px=" << MissPx - (events[Event::event_counter].RecNeu.Px() + events[Event::event_counter].RecNeubar.Px()) << endl;
+                cout << "                   Py=" << MissPy - (events[Event::event_counter].RecNeu.Py() + events[Event::event_counter].RecNeubar.Py()) << endl;
                 cout << "====================================================================================" << endl;
 */
         }
@@ -4008,8 +4008,8 @@ void ttH_dilep::DoCuts(){
 	//      b-tagged (MV1 weight > 0.8119)
         //=============================================
         //=============================================
-	//if ( NbtagJet < 2) return; 
-        LastCut++;	// LastCut=23
+	//if ( events[Event::event_counter].NbtagJet < 2) return; 
+        events[Event::event_counter].LastCut++;	// LastCut=23
 //        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 }
@@ -4031,14 +4031,14 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //     Do Not Consider Zero Weight Events
         //=============================================
-        if(Weight==0) return; 
+        if(events[Event::event_counter].Weight==0) return; 
         //if(  ( isData == 1 ) && ( alldata_ele == 1 ) && ( ElectronTrigger != 1 ) )  return; // Egamma stream
         //if(  ( isData == 1 ) && ( alldata_muo == 1 ) && (     MuonTrigger != 1 ) )  return; // Muon   stream
-        LastCut++; // LastCut=1
+        events[Event::event_counter].LastCut++; // LastCut=1
 
         // Needed calculations to fill the variables
         #pragma omp critical
-        Calculations();
+        events[Event::event_counter].Calculations();
         //=============================================
         //=============================================
         //   Find Signal True dilepton events in MC
@@ -4062,40 +4062,40 @@ void ttH_dilep::first_DoCuts(){
         if( lepSample==21 ){ // ee sample
             if(leptonSep == 1)
             {
-               if( (ntruthele+ntrutheletau) != 2) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 2) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthele+ntrutheletau) == 2) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 2) return;
             }
         }
         if( lepSample==22 ){ // mumu sample
             if(leptonSep == 1)
             {
-               if( (ntruthmu+ntruthmutau) != 2) return;
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 2) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthmu+ntruthmutau) == 2) return;
+               if( (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 2) return;
             }
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
             if(leptonSep == 1)
             {
-               if( (ntruthele+ntrutheletau) != 1 || (ntruthmu+ntruthmutau) != 1) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) != 1 || (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) != 1) return;
                //_____get truth information_____________ 
-               Calculations2();
+               events[Event::event_counter].Calculations2();
             }
             else if(leptonSep == 2)
             {
-               if( (ntruthele+ntrutheletau) == 1 && (ntruthmu+ntruthmutau) == 1) return;
+               if( (events[Event::event_counter].ntruthele+events[Event::event_counter].ntrutheletau) == 1 && (events[Event::event_counter].ntruthmu+events[Event::event_counter].ntruthmutau) == 1) return;
             }
         }
-        LastCut++; // LastCut=2
+        events[Event::event_counter].LastCut++; // LastCut=2
 //        cout << "Truth Separation:   runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4106,8 +4106,8 @@ void ttH_dilep::first_DoCuts(){
     //  Event number; nothing else here)
         //=============================================
         //=============================================
-        if(  ( isData == 1 ) && ( GoodRL == 0 ) )  return;
-        LastCut++; // LastCut=3
+        if(  ( isData == 1 ) && ( events[Event::event_counter].GoodRL == 0 ) )  return;
+        events[Event::event_counter].LastCut++; // LastCut=3
 //       cout << "C0 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4117,15 +4117,15 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         // trigger CutTriggerXXX < 0 means that no cut is applied
         if( CutTriggerEle >= 0){
-            if( ElectronTrigger != CutTriggerEle ) return;
+            if( events[Event::event_counter].ElectronTrigger != CutTriggerEle ) return;
         }
         if( CutTriggerMuo >= 0){
-            if(     MuonTrigger != CutTriggerMuo ) return;
+            if(     events[Event::event_counter].MuonTrigger != CutTriggerMuo ) return;
         }
         if( CutTriggerEleMuo > 0){
-            if( ElectronTrigger != 1 && MuonTrigger != 1  ) return;
+            if( events[Event::event_counter].ElectronTrigger != 1 && events[Event::event_counter].MuonTrigger != 1  ) return;
         }
-        LastCut++; // LastCut=4
+        events[Event::event_counter].LastCut++; // LastCut=4
 //        cout << "C1 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -4134,8 +4134,8 @@ void ttH_dilep::first_DoCuts(){
         // C2) Apply the cosmic event rejection 
         //=============================================
         //=============================================
-        if ( Cosmic ) return;
-        LastCut++; // LastCut=5
+        if ( events[Event::event_counter].Cosmic ) return;
+        events[Event::event_counter].LastCut++; // LastCut=5
 //        cout << "C2 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4143,8 +4143,8 @@ void ttH_dilep::first_DoCuts(){
         // C3) Number of Vertices with  
         //=============================================
         //=============================================
-        if ( Vtx.size() == 0 ) return;
-        LastCut++; // LastCut=6
+        if ( events[Event::event_counter].Vtx.size() == 0 ) return;
+        events[Event::event_counter].LastCut++; // LastCut=6
 //        cout << "C3 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4154,34 +4154,34 @@ void ttH_dilep::first_DoCuts(){
         // b) exactly 2 lept 
         //=============================================
         //=============================================
-        if( LeptonVec.size() < 2 )        return;
+        if( events[Event::event_counter].LeptonVec.size() < 2 )        return;
         // Separation in ee, em and mumu channels
         if( lepSample==21 ){ // ee sample
             int nele = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 11) nele = nele + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
             }
             if (nele < 2) return;
         }
         if( lepSample==22 ){ // mumu sample
             int nmuo = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
             }
             if (nmuo < 2) return;
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
             int nele = 0;
             int nmuo = 0;
-            for(int i=0; i<LeptonVec.size(); i++){
-               if (abs(LeptonVec[i].isb) == 11) nele = nele + 1;
-               if (abs(LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
+            for(int i=0; i<events[Event::event_counter].LeptonVec.size(); i++){
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 11) nele = nele + 1;
+               if (abs(events[Event::event_counter].LeptonVec[i].isb) == 13) nmuo = nmuo + 1;
             }
             if (nele < 1) return;
             if (nmuo < 1) return;
         }
 
-        LastCut++; // LastCut=7
+        events[Event::event_counter].LastCut++; // LastCut=7
 //        cout << "C4 a) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4189,18 +4189,18 @@ void ttH_dilep::first_DoCuts(){
         // C4) b) Require exactly 2 isolated leptons 
         //=============================================
         //=============================================
-        if ( LeptonVec.size() != 2 )        return;
+        if ( events[Event::event_counter].LeptonVec.size() != 2 )        return;
 
         if( lepSample==21 ){ // ee sample
-            if( abs(LeptonVec[0].isb) != 11 || abs(LeptonVec[1].isb) != 11) return;
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) return;
         }
         if( lepSample==22 ){ // mumu sample
-            if( abs(LeptonVec[0].isb) != 13 || abs(LeptonVec[1].isb) != 13) return;
+            if( abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) return;
         }
         if( lepSample==23 ){ // e mu (+mu e) sample
-            if( (abs(LeptonVec[0].isb) != 11 || abs(LeptonVec[1].isb) != 13) && (abs(LeptonVec[0].isb) != 13 || abs(LeptonVec[1].isb) != 11) ) return;
+            if( (abs(events[Event::event_counter].LeptonVec[0].isb) != 11 || abs(events[Event::event_counter].LeptonVec[1].isb) != 13) && (abs(events[Event::event_counter].LeptonVec[0].isb) != 13 || abs(events[Event::event_counter].LeptonVec[1].isb) != 11) ) return;
         }
-        LastCut++; // LastCut=8
+        events[Event::event_counter].LastCut++; // LastCut=8
 //        cout << "C4 b) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4208,10 +4208,10 @@ void ttH_dilep::first_DoCuts(){
         // C5) At Least 1 lepton pt >= 25GeV
         //=============================================
         //=============================================
-        if ( LeptonVec[0].Pt() < 25.*GeV ) 
+        if ( events[Event::event_counter].LeptonVec[0].Pt() < 25.*GeV ) 
         	return;
 
-        LastCut++; // LastCut=9
+        events[Event::event_counter].LastCut++; // LastCut=9
 //        cout << "C5) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
         //=============================================
 
@@ -4223,17 +4223,17 @@ void ttH_dilep::first_DoCuts(){
         Int_t HasElectronMatchingTrigger = 0;
         Int_t     HasMuonMatchingTrigger = 0;
 
-        for (Int_t i=0; i<LeptonVec.size(); ++i) {
-                Int_t ii = LeptonVec[i].idx;
+        for (Int_t i=0; i<events[Event::event_counter].LeptonVec.size(); ++i) {
+                Int_t ii = events[Event::event_counter].LeptonVec[i].idx;
                 // check leptons are trigger matched
-                if (abs(LeptonVec[ii].isb) == 11 && LeptonVec[ii].itrigMatch == 1 ) 
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 11 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
                 	HasElectronMatchingTrigger = 1;
-                if (abs(LeptonVec[ii].isb) == 13 && LeptonVec[ii].itrigMatch == 1 ) 
+                if (abs(events[Event::event_counter].LeptonVec[ii].isb) == 13 && events[Event::event_counter].LeptonVec[ii].itrigMatch == 1 ) 
                 	HasMuonMatchingTrigger = 1;
         }
 
-        Bool_t ElectronTriggerOK = ( ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
-        Bool_t     MuonTriggerOK = (     MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
+        Bool_t ElectronTriggerOK = ( events[Event::event_counter].ElectronTrigger != 0 ) && ( HasElectronMatchingTrigger != 0 );
+        Bool_t     MuonTriggerOK = (     events[Event::event_counter].MuonTrigger != 0 ) && (     HasMuonMatchingTrigger != 0 );
 
         if( lepSample==21 ){
            if ( !ElectronTriggerOK ) 
@@ -4245,16 +4245,16 @@ void ttH_dilep::first_DoCuts(){
         }
         if( lepSample==23 ){
           if ( isData == 1 ) {
-           if ( ( ElectronTrigger == 1 && MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) 
+           if ( ( events[Event::event_counter].ElectronTrigger == 1 && events[Event::event_counter].MuonTrigger == 0 ) && ( !ElectronTriggerOK ) ) 
            	return;
 
-           if ( ( ElectronTrigger == 0 && MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) 
+           if ( ( events[Event::event_counter].ElectronTrigger == 0 && events[Event::event_counter].MuonTrigger == 1 ) && (     !MuonTriggerOK ) ) 
            	return;
 
           } else if ( !(ElectronTriggerOK || MuonTriggerOK) ) 
           		return;
         }
-        LastCut++; // LastCut=10
+        events[Event::event_counter].LastCut++; // LastCut=10
 //        cout << "C6 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4262,10 +4262,10 @@ void ttH_dilep::first_DoCuts(){
         // C7) E-Mu Overlap removal
         //=============================================
         //=============================================
-        if (EleMuoOverlap !=0) 
+        if (events[Event::event_counter].EleMuoOverlap !=0) 
         	return;
 
-    LastCut++; // LastCut=11
+    events[Event::event_counter].LastCut++; // LastCut=11
 
     
         //=============================================
@@ -4273,25 +4273,25 @@ void ttH_dilep::first_DoCuts(){
         // C8) Jet Cleaning
         //=============================================
         //=============================================
-    if (JetCleanning != 0) 
+    if (events[Event::event_counter].JetCleanning != 0) 
     	return;
 
-    LastCut++;     //LastCut=12
+    events[Event::event_counter].LastCut++;     //LastCut=12
         
 
         //=============================================
         //=============================================
         // C8) No Pt missing cut for ee, mumu   
-        //     Ht cut (emu)       
+        //     events[Event::event_counter].Ht cut (emu)       
         //=============================================
         //=============================================
 
         if( lepSample==23 ){ // e mu (+mu e) sample
-          if(Ht <= 130.*GeV) 
+          if(events[Event::event_counter].Ht <= 130.*GeV) 
           	return;
         }
 
-        LastCut++; // LastCut=13
+        events[Event::event_counter].LastCut++; // LastCut=13
 //        cout << "C8 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4299,10 +4299,10 @@ void ttH_dilep::first_DoCuts(){
         // C9) Njets>=2 from Minintuple (jet_n)
         //=============================================
         //=============================================
-        if ( jet_n_Mini != 2 ) 
+        if ( events[Event::event_counter].jet_n_Mini != 2 ) 
         	return;
 
-        LastCut++; // LastCut=14
+        events[Event::event_counter].LastCut++; // LastCut=14
 //        cout << "C9 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4310,10 +4310,10 @@ void ttH_dilep::first_DoCuts(){
         // C10) Two Opposite Sign (OS) Leptons 
         //=============================================
         //=============================================
-        if ( LeptonVec[0].isb*LeptonVec[1].isb >= 0. ) 
+        if ( events[Event::event_counter].LeptonVec[0].isb*events[Event::event_counter].LeptonVec[1].isb >= 0. ) 
         	return;
 
-        LastCut++; // LastCut=15
+        events[Event::event_counter].LastCut++; // LastCut=15
 //        cout << "C10 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4322,18 +4322,18 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( ll.M()/GeV <= 15. ) 
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
           	return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( ll.M()/GeV <= 15. ) 
+          if( events[Event::event_counter].ll.M()/GeV <= 15. ) 
           	return;
         }
         if( lepSample==23 ){ // mumu sample
-          if( ll.M()/GeV <= 15. )
+          if( events[Event::event_counter].ll.M()/GeV <= 15. )
             return;
         }
-        LastCut++; // LastCut=16
+        events[Event::event_counter].LastCut++; // LastCut=16
 //        cout << "C11) runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -4343,28 +4343,28 @@ void ttH_dilep::first_DoCuts(){
         //=============================================
         //=============================================
         if ( isData != 1  ){
-                if ( LeptonVec[0].itruthMatch != 1 )  
+                if ( events[Event::event_counter].LeptonVec[0].itruthMatch != 1 )  
                 	return;
-                if ( LeptonVec[1].itruthMatch != 1 )  
+                if ( events[Event::event_counter].LeptonVec[1].itruthMatch != 1 )  
                 	return;
         }
-        LastCut++; // LastCut=17
+        events[Event::event_counter].LastCut++; // LastCut=17
 //        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
         //=============================================
-        // C13)  Z Mass cut: |M(ll)-91|>=8 GeV     ====
+        // C13)  Z Mass cut: |M(events[Event::event_counter].ll)-91|>=8 GeV     ====
         //=============================================
         //=============================================
         if( lepSample==21 ){ // ee sample
-          if( fabs(ll.M()/GeV-91.) < 8. )
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
           	return;
         }
         if( lepSample==22 ){ // mumu sample
-          if( fabs(ll.M()/GeV-91.) < 8. )
+          if( fabs(events[Event::event_counter].ll.M()/GeV-91.) < 8. )
           	return;
         }
-        LastCut++; // LastCut=18
+        events[Event::event_counter].LastCut++; // LastCut=18
 //        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 /*
@@ -4394,8 +4394,8 @@ void ttH_dilep::first_DoCuts(){
         //      (MV1 weight > 0.8119)
         //=============================================
         //=============================================
-        if ( NbtagJet < 1 ) return;  
-        LastCut++; // LastCut=19
+        if ( events[Event::event_counter].NbtagJet < 1 ) return;  
+        events[Event::event_counter].LastCut++; // LastCut=19
 //        cout << "C14 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
         //=============================================
@@ -4403,10 +4403,10 @@ void ttH_dilep::first_DoCuts(){
         // C15) Exactly 2 jets and 2 btag 
         //=============================================
         //=============================================
-        if ( NbtagJet != 2 )
+        if ( events[Event::event_counter].NbtagJet != 2 )
         	return;  
         
-        LastCut++; // LastCut=20
+        events[Event::event_counter].LastCut++; // LastCut=20
 //        cout << "C15 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 
@@ -4423,8 +4423,8 @@ void ttH_dilep::first_DoCuts(){
         // C11) Njets>=4, pT>25GeV, |eta|<2.5 
         //=============================================
         //=============================================
-        //if ( MyGoodJetVec.size() < 4 ) return;
-        LastCut++; // LastCut=21
+        //if ( events[Event::event_counter].MyGoodJetVec.size() < 4 ) return;
+        events[Event::event_counter].LastCut++; // LastCut=21
 //        cout << "C11 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 }
 
@@ -4439,7 +4439,7 @@ void ttH_dilep::second_DoCuts() {
 	//=============================================
 	//if(HasSolution == 0) return;
 	for(Event::event_counter = 0; Event::event_counter < events.size(); Event::event_counter++) { 
-		LastCut++; // LastCut=22
+		events[Event::event_counter].LastCut++; // LastCut=22
 		//        cout << "C12 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 
 		//=============================================
@@ -4448,8 +4448,8 @@ void ttH_dilep::second_DoCuts() {
 		//      b-tagged (MV1 weight > 0.8119)
 		//=============================================
 		//=============================================
-		//if ( NbtagJet < 2) return; 
-		LastCut++; // LastCut=23
+		//if ( events[Event::event_counter].NbtagJet < 2) return; 
+		events[Event::event_counter].LastCut++; // LastCut=23
 		//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 	}
 }
@@ -4471,8 +4471,8 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	unsigned counter = 0;
 
 
-	double in_mpx[2] = {MissPx, MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
-	double in_mpy[2] = {MissPy, MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
+	double in_mpx[2] = {events[Event::event_counter].MissPx, events[Event::event_counter].MissPx};    // initialize miss(Px_neutrino1, Px_neutrino2)
+	double in_mpy[2] = {events[Event::event_counter].MissPy, events[Event::event_counter].MissPy};    // initialize miss(Py_neutrino1, Py_neutrino2)
 	
 	// -----------------------------------------------------------------
 	//  ttDKF_JetCombChoice = 1  Use N jets, b and non-b 
@@ -4482,16 +4482,16 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	//  by: S.Amor 13.Dez.2012
 	// -----------------------------------------------------------------
 	if ( _ttDKF_JetCombChoice == 1 ){
-		for (int jetID=0; jetID<MyGoodJetVec.size();  ++jetID){
-			MyChoiceJetVec.push_back(MyGoodJetVec[jetID]);
+		for (int jetID=0; jetID<events[Event::event_counter].MyGoodJetVec.size();  ++jetID){
+			MyChoiceJetVec.push_back(events[Event::event_counter].MyGoodJetVec[jetID]);
 		}
 		// -----------------------------------------------------------------
 		// USER INPUT NUMBER OF JETS PER EVENT FOR PERMUTATIONS :
 		// -----------------------------------------------------------------
 		_ttDKF_njets = _ttDKF_njet_UserValue;     // value range: [4; MyGoodJetVec.size()]         
 
-		if ( _ttDKF_njets > MyGoodJetVec.size() ) {
-			_ttDKF_njets = MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
+		if ( _ttDKF_njets > events[Event::event_counter].MyGoodJetVec.size() ) {
+			_ttDKF_njets = events[Event::event_counter].MyGoodJetVec.size();  // value range: [2; MyGoodJetVec.size()]        
 		}
 		if (_ttDKF_njets < 4){
 			//cout << "WARNING: NUMBER OF JETS INSUFFICIENT FOR KINEMATIC RECONSTRUCTION" << endl;
@@ -4511,7 +4511,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 									//for (int asd = 0; asd < dilep_iterations; ++asd) {
 										counter++;
 
-										DilepInput di (LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
+										DilepInput di (events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], events[Event::event_counter].LeptonVec[0], events[Event::event_counter].LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, events[Event::event_counter].MissPx, events[Event::event_counter].MissPy, t_m, w_m, Event::event_counter);
 										
 										//di.applyVariance(RESOLUTION);
 										//#pragma omp critical
@@ -4525,7 +4525,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 			}
 		}
 	}
-	num_Combs = counter;
+	events[Event::event_counter].num_Combs = counter;
 }
 
 
@@ -4566,7 +4566,7 @@ void ttH_dilep::ttDilepKinFit(){
     //                  (deal with ttbar and H->bb at the same time)  
     ttDKF_JetCombChoice     = 1;
     // ------------------------------------------------------------------------------------------------------------------
-    // Define method used to get the best solution of the Neutrino and Anti-neutrino: 
+    // Define method used to get the best solution of the events[Event::event_counter].Neutrino and Anti-neutrino: 
     //  ttDKF_SolutionChoice = 1    Lowest nupT1*nupT2 value 
     //  ttDKF_SolutionChoice = 2    nupT1,nupT2 p.d.fs used  
     // ttDKF_SolutionChoice = 1;
@@ -4687,7 +4687,7 @@ void ttH_dilep::ttDilepKinFit(){
 		    // =================================================================
 		    // Initialize Solutions Flag
 		    // =================================================================
-		    HasSolution = 0;
+		    events[Event::event_counter].HasSolution = 0;
 
 		    // =================================================================
 		    // Reset all solutions for tt Dileptonic Kinematical Fit:
@@ -4722,7 +4722,7 @@ void ttH_dilep::ttDilepKinFit(){
 			std::vector<double> ProbTotal_ttDKF;
 
 			#ifdef D_DICE
-			for (unsigned partial_counter = 0; partial_counter < num_Combs * dilep_iterations; ++partial_counter) {
+			for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs * dilep_iterations; ++partial_counter) {
 
 				float task_id = (float) partial_counter / (float) dilep_iterations;
 				unsigned current_variation = partial_counter % dilep_iterations;
@@ -4736,11 +4736,11 @@ void ttH_dilep::ttDilepKinFit(){
 				//cout << inputs.size() << " - " << total_counter <<endl;
 				// result on local variable since it will be accessed plenty of times
 				*result = di.getResult(current_variation);
-				HasSolution += di.getHasSol(current_variation);
+				events[Event::event_counter].HasSolution += di.getHasSol(current_variation);
 
 				current_variation++;
 			#else
-		    for (unsigned partial_counter = 0; partial_counter < num_Combs; ++partial_counter, ++total_counter) {
+		    for (unsigned partial_counter = 0; partial_counter < events[Event::event_counter].num_Combs; ++partial_counter, ++total_counter) {
 				
 
 		    	//task_id = (float) counter / (float) dilep_iterations;
@@ -4756,7 +4756,7 @@ void ttH_dilep::ttDilepKinFit(){
 
 		        // result on local variable since it will be accessed plenty of times
 		        *result = di.getResult();
-		        HasSolution += di.getHasSol();
+		        events[Event::event_counter].HasSolution += di.getHasSol();
 		    #endif
 		        std::vector<myvector>::iterator pp;
 
@@ -4908,7 +4908,7 @@ void ttH_dilep::ttDilepKinFit(){
 		            // Higgs Momenta from ttbar system
 		            //TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (Hz - ttbar.Pz()) ); 
 		            // Try to compute ttbar. without NU !! CHECK!!
-		            TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
+		            TVector3 HiggsFromTTbar( - ttbar.Px(), - ttbar.Py(), (events[Event::event_counter].Hz + n1.Pz() + n2.Pz() - ttbar.Pz() ) );  
 		            // Test jets for Higgs
 		            TVector3  jet1_vec( di.getJet1HiggsW().Px(), di.getJet1HiggsW().Py(), di.getJet1HiggsW().Pz() );
 		            TVector3  jet2_vec( di.getJet2HiggsW().Px(), di.getJet2HiggsW().Py(), di.getJet2HiggsW().Pz() );
@@ -5043,46 +5043,46 @@ void ttH_dilep::ttDilepKinFit(){
 		    // -------------------------------------------------------------------
 		    // Redefine HasSolution if no other reconstruction criteria met
 		    // -------------------------------------------------------------------
-		    HasSolution = (n_ttDKF_Best >= 0) ? HasSolution : 0;
+		    events[Event::event_counter].HasSolution = (n_ttDKF_Best >= 0) ? events[Event::event_counter].HasSolution : 0;
 
 		    // -------------------------------------------------------------------
 		    // Make sure backward compatibility is preserved + Few Calculations
 		    // -------------------------------------------------------------------
-		    if(  HasSolution > 0  )
+		    if(  events[Event::event_counter].HasSolution > 0  )
 		    {
 
 
 		        // -------------------------------------------------------------------
-		        Neutrino     = n1_ttDKF[n_ttDKF_Best];      // Neutrino 1
-		        Antineutrino = n2_ttDKF[n_ttDKF_Best];      // Neutrino 2       
+		        events[Event::event_counter].Neutrino     = n1_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 1
+		        events[Event::event_counter].Antineutrino = n2_ttDKF[n_ttDKF_Best];      // events[Event::event_counter].Neutrino 2       
 		        // ###  leptons  ###
-		        RecLepP     = l1_ttDKF[n_ttDKF_Best];
-		        RecLepN     = l2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecLepP     = l1_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecLepN     = l2_ttDKF[n_ttDKF_Best];
 		        // ###  b-quarks ###
-		        RecB        = b1_ttDKF[n_ttDKF_Best];
-		        RecBbar     = b2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecB        = b1_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecBbar     = b2_ttDKF[n_ttDKF_Best];
 		        // ### Neutrinos ###
-		        RecNeu      = n1_ttDKF[n_ttDKF_Best];
-		        RecNeubar   = n2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecNeu      = n1_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecNeubar   = n2_ttDKF[n_ttDKF_Best];
 		        // ###  W bosons ###
-		        RecWp       = W1_ttDKF[n_ttDKF_Best];
-		        RecWn       = W2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecWp       = W1_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecWn       = W2_ttDKF[n_ttDKF_Best];
 		        // ###  t-quarks ###
-		        RecT        = t1_ttDKF[n_ttDKF_Best];
-		        RecTbar     = t2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecT        = t1_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecTbar     = t2_ttDKF[n_ttDKF_Best];
 		        // ###  ttbar system ###
-		        RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecTTbar        = ttbar_ttDKF[n_ttDKF_Best];
 		        // ###  Higgs system ###
-		        RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
-		        RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
-		        RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
-		        RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
-		        RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecHiggs          = Higgs_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecHiggsB1    = b1_Higgs_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecHiggsB2    = b2_Higgs_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecMassHiggsJet1  = mHiggsJet1_ttDKF[n_ttDKF_Best]; //samor 16.Dec.2012
+		        events[Event::event_counter].RecMassHiggsJet2  = mHiggsJet2_ttDKF[n_ttDKF_Best];
 
-		        RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
+		        events[Event::event_counter].RecProbTotal_ttH  = ProbTotal_ttDKF[n_ttDKF_Best];
 
 
-		        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; RecMassHiggsJet1 " << RecMassHiggsJet1 << " ; RecMassHiggsJet2 " << RecMassHiggsJet2 << endl;
+		        //      cout << "n_ttDKF_Best = " << n_ttDKF_Best << " ; events[Event::event_counter].RecMassHiggsJet1 " << events[Event::event_counter].RecMassHiggsJet1 << " ; events[Event::event_counter].RecMassHiggsJet2 " << events[Event::event_counter].RecMassHiggsJet2 << endl;
 		        //      cout << "   " << endl;
 
 		        // -------------------------------------------------------------------
@@ -5095,72 +5095,72 @@ void ttH_dilep::ttDilepKinFit(){
 		        TVector3       t_boost, tb_boost, tt_boost;
 
 		        //...get top boosts................
-		        t_boost  =  -(RecT).BoostVector();
-		        tb_boost =  -(RecTbar).BoostVector();
-		        tt_boost =  -(RecT + RecTbar).BoostVector();
+		        t_boost  =  -(events[Event::event_counter].RecT).BoostVector();
+		        tb_boost =  -(events[Event::event_counter].RecTbar).BoostVector();
+		        tt_boost =  -(events[Event::event_counter].RecT + events[Event::event_counter].RecTbar).BoostVector();
 
 		        //.................................
 		        //...make boost  to t..............
 		        //.................................
 		        //___b____
-		        RecB_BoostedtoT    = RecB;
-		        RecB_BoostedtoT.Boost(t_boost);
+		        events[Event::event_counter].RecB_BoostedtoT    = events[Event::event_counter].RecB;
+		        events[Event::event_counter].RecB_BoostedtoT.Boost(t_boost);
 		        //___W+___
-		        RecWp_BoostedtoT   = RecWp;
-		        RecWp_BoostedtoT.Boost(t_boost);
+		        events[Event::event_counter].RecWp_BoostedtoT   = events[Event::event_counter].RecWp;
+		        events[Event::event_counter].RecWp_BoostedtoT.Boost(t_boost);
 		        //___l+___
-		        RecLepP_BoostedtoT = RecLepP;
-		        RecLepP_BoostedtoT.Boost(t_boost);
+		        events[Event::event_counter].RecLepP_BoostedtoT = events[Event::event_counter].RecLepP;
+		        events[Event::event_counter].RecLepP_BoostedtoT.Boost(t_boost);
 		        //___neu__
-		        RecNeu_BoostedtoT  = RecNeu;
-		        RecNeu_BoostedtoT.Boost(t_boost);
+		        events[Event::event_counter].RecNeu_BoostedtoT  = events[Event::event_counter].RecNeu;
+		        events[Event::event_counter].RecNeu_BoostedtoT.Boost(t_boost);
 
 
 		        //.................................
 		        //...make boost  to tbar...........
 		        //.................................
 		        //___bbar___
-		        RecBbar_BoostedtoTbar   = RecBbar;
-		        RecBbar_BoostedtoTbar.Boost(tb_boost);
+		        events[Event::event_counter].RecBbar_BoostedtoTbar   = events[Event::event_counter].RecBbar;
+		        events[Event::event_counter].RecBbar_BoostedtoTbar.Boost(tb_boost);
 		        //____W-____
-		        RecWn_BoostedtoTbar     = RecWn;
-		        RecWn_BoostedtoTbar.Boost(tb_boost);
+		        events[Event::event_counter].RecWn_BoostedtoTbar     = events[Event::event_counter].RecWn;
+		        events[Event::event_counter].RecWn_BoostedtoTbar.Boost(tb_boost);
 		        //____l-____
-		        RecLepN_BoostedtoTbar   = RecLepN;
-		        RecLepN_BoostedtoTbar.Boost(tb_boost);
+		        events[Event::event_counter].RecLepN_BoostedtoTbar   = events[Event::event_counter].RecLepN;
+		        events[Event::event_counter].RecLepN_BoostedtoTbar.Boost(tb_boost);
 		        //__neubar__
-		        RecNeubar_BoostedtoTbar = RecNeubar;
-		        RecNeubar_BoostedtoTbar.Boost(tb_boost);
+		        events[Event::event_counter].RecNeubar_BoostedtoTbar = events[Event::event_counter].RecNeubar;
+		        events[Event::event_counter].RecNeubar_BoostedtoTbar.Boost(tb_boost);
 
 
 		        //.................................
 		        //...make boost to ttbar...........
 		        //.................................
 		        //___t____
-		        RecT_Boostedtottbar   =  RecT;
-		        RecT_Boostedtottbar.Boost(tt_boost);
+		        events[Event::event_counter].RecT_Boostedtottbar   =  events[Event::event_counter].RecT;
+		        events[Event::event_counter].RecT_Boostedtottbar.Boost(tt_boost);
 		        //__tbar__
-		        RecTbar_Boostedtottbar  =  RecTbar;
-		        RecTbar_Boostedtottbar.Boost(tt_boost);
+		        events[Event::event_counter].RecTbar_Boostedtottbar  =  events[Event::event_counter].RecTbar;
+		        events[Event::event_counter].RecTbar_Boostedtottbar.Boost(tt_boost);
 
 
 		        //.................................
 		        //....Spin Correlations............
 		        //.................................
 		        //_____l+__in_t__________
-		        RecCos_LepP_T_BoostedtoT = cos(  RecLepP_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_LepP_T_BoostedtoT = cos(  events[Event::event_counter].RecLepP_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
 		        //_____nu__in_t__________
-		        RecCos_Neu_T_BoostedtoT  = cos(   RecNeu_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_Neu_T_BoostedtoT  = cos(   events[Event::event_counter].RecNeu_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
 		        //_____b__in_t___________
-		        RecCos_B_T_BoostedtoT    = cos(     RecB_BoostedtoT   .Angle (    RecT_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_B_T_BoostedtoT    = cos(     events[Event::event_counter].RecB_BoostedtoT   .Angle (    events[Event::event_counter].RecT_Boostedtottbar.Vect()));
 
 
 		        //_____l-__in_tbar_______
-		        RecCos_LepN_Tbar_BoostedtoTbar    = cos(  RecLepN_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_LepN_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecLepN_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
 		        //_____nu__in_t__________
-		        RecCos_Neubar_Tbar_BoostedtoTbar  = cos(RecNeubar_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_Neubar_Tbar_BoostedtoTbar  = cos(events[Event::event_counter].RecNeubar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
 		        //_____b__in_t___________
-		        RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  RecBbar_BoostedtoTbar   .Angle ( RecTbar_Boostedtottbar.Vect()));
+		        events[Event::event_counter].RecCos_Bbar_Tbar_BoostedtoTbar    = cos(  events[Event::event_counter].RecBbar_BoostedtoTbar   .Angle ( events[Event::event_counter].RecTbar_Boostedtottbar.Vect()));
 
 
 		        // ################################
@@ -5170,42 +5170,42 @@ void ttH_dilep::ttDilepKinFit(){
 		        TVector3       Wp_boost, Wn_boost;
 
 		        //...get W+/- boosts................
-		        Wp_boost  =  -(RecWp).BoostVector();
-		        Wn_boost  =  -(RecWn).BoostVector();
+		        Wp_boost  =  -(events[Event::event_counter].RecWp).BoostVector();
+		        Wn_boost  =  -(events[Event::event_counter].RecWn).BoostVector();
 
 		        //.................................
 		        //...make boost  to W+.............
 		        //.................................
 		        //___l+___
-		        RecLepP_BoostedtoWp = RecLepP;
-		        RecLepP_BoostedtoWp.Boost(Wp_boost);
+		        events[Event::event_counter].RecLepP_BoostedtoWp = events[Event::event_counter].RecLepP;
+		        events[Event::event_counter].RecLepP_BoostedtoWp.Boost(Wp_boost);
 		        //___b____
-		        RecB_BoostedtoWp    = RecB;
-		        RecB_BoostedtoWp.Boost(Wp_boost);
+		        events[Event::event_counter].RecB_BoostedtoWp    = events[Event::event_counter].RecB;
+		        events[Event::event_counter].RecB_BoostedtoWp.Boost(Wp_boost);
 		        //__neu___
-		        RecNeu_BoostedtoWp = RecNeu;
-		        RecNeu_BoostedtoWp.Boost(Wp_boost);
+		        events[Event::event_counter].RecNeu_BoostedtoWp = events[Event::event_counter].RecNeu;
+		        events[Event::event_counter].RecNeu_BoostedtoWp.Boost(Wp_boost);
 
 		        //.................................
 		        //...make boost  to W-.............
 		        //.................................
 		        //____l-____
-		        RecLepN_BoostedtoWn   = RecLepN;
-		        RecLepN_BoostedtoWn.Boost(Wn_boost);
+		        events[Event::event_counter].RecLepN_BoostedtoWn   = events[Event::event_counter].RecLepN;
+		        events[Event::event_counter].RecLepN_BoostedtoWn.Boost(Wn_boost);
 		        //__bbar____
-		        RecBbar_BoostedtoWn   = RecBbar;
-		        RecBbar_BoostedtoWn.Boost(Wn_boost);
+		        events[Event::event_counter].RecBbar_BoostedtoWn   = events[Event::event_counter].RecBbar;
+		        events[Event::event_counter].RecBbar_BoostedtoWn.Boost(Wn_boost);
 		        //__neu___
-		        RecNeubar_BoostedtoWn = RecNeubar;
-		        RecNeubar_BoostedtoWn.Boost(Wn_boost);
+		        events[Event::event_counter].RecNeubar_BoostedtoWn = events[Event::event_counter].RecNeubar;
+		        events[Event::event_counter].RecNeubar_BoostedtoWn.Boost(Wn_boost);
 
 		        //.................................
 		        //....W Polarizations..............
 		        //.................................
 		        //_____(l+,b)__in_W+__________
-		        RecCos_LepP_B_BoostedtoWp =  -cos(  RecLepP_BoostedtoWp   .Angle (  RecB_BoostedtoWp.Vect()));
+		        events[Event::event_counter].RecCos_LepP_B_BoostedtoWp =  -cos(  events[Event::event_counter].RecLepP_BoostedtoWp   .Angle (  events[Event::event_counter].RecB_BoostedtoWp.Vect()));
 		        //_____(l-,bbar)__in_W-_______
-		        RecCos_LepN_Bbar_BoostedtoWn =  -cos(  RecLepN_BoostedtoWn   .Angle (  RecBbar_BoostedtoWn.Vect()));
+		        events[Event::event_counter].RecCos_LepN_Bbar_BoostedtoWn =  -cos(  events[Event::event_counter].RecLepN_BoostedtoWn   .Angle (  events[Event::event_counter].RecBbar_BoostedtoWn.Vect()));
 
 		    }
 		}
