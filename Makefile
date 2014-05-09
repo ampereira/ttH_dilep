@@ -22,6 +22,11 @@ else
 	CXXFLAGS += -O3
 endif
 
+
+ifeq ($(CUTS_OPTIM),yes)
+	CXXFLAGS += -DCUTS_OPTIM
+endif
+
 LIBS  = $(ROOTLIBS)
 GLIBS = $(ROOTGLIBS)
 

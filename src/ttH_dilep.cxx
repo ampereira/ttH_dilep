@@ -35,7 +35,7 @@ using namespace std;
 
 #include <omp.h>
 #include "../../LipMiniAnalysis/src/EventDataInterface.h"
-//extern std::vector<Event::EventData> events;
+extern std::vector<Event::EventData> events;
 std::vector<DilepInput> inputs;
 
 
@@ -4645,7 +4645,6 @@ void ttH_dilep::ttDilepKinFit(){
 	// Get info from all possible solutions
 	// ---------------------------------------
 
-    int prev_ev_id = -1;
     unsigned total_counter = 0;
 
     long long int tp2 = LIP::KinFit::startTimer();
@@ -4663,6 +4662,7 @@ void ttH_dilep::ttDilepKinFit(){
 	    double fac_j1j2H_ttbar;
 	    double mass_j1H_ttbar;
 	    double mass_j2H_ttbar;
+	    DilepInput di;
 	    #pragma omp for schedule(dynamic) nowait
 	    for (Event::event_counter = 0; Event::event_counter < events.size(); ++Event::event_counter){
 	    	
@@ -4724,7 +4724,6 @@ void ttH_dilep::ttDilepKinFit(){
 			#ifdef D_DICE
 			for (unsigned partial_counter = 0; partial_counter < num_Combs * dilep_iterations; ++partial_counter) {
 
-        DilepInput di;
 				float task_id = (float) partial_counter / (float) dilep_iterations;
 				unsigned current_variation = partial_counter % dilep_iterations;
 
@@ -4743,7 +4742,6 @@ void ttH_dilep::ttDilepKinFit(){
 			#else
 		    for (unsigned partial_counter = 0; partial_counter < num_Combs; ++partial_counter, ++total_counter) {
 				
-        DilepInput di;
 
 		    	//task_id = (float) counter / (float) dilep_iterations;
 
