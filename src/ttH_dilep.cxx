@@ -15,7 +15,7 @@ using namespace std;
 	#include "neut/neut.h"
 #endif
 
-//extern int dilep_iterations;
+extern int dilep_iterations;
 
 #define RESOLUTION 0.02             // error resolution of de detector
 
