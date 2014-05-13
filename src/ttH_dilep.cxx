@@ -4430,6 +4430,7 @@ void ttH_dilep::first_DoCuts(){
 }
 
 void ttH_dilep::second_DoCuts() {
+    cout << endl << "Structure size: " << inputs.size() * sizeof(DilepInput) << endl << endl;
 
 	ttDilepKinFit();
 
@@ -4534,7 +4535,6 @@ void ttH_dilep::preKinFit() {
 
 	buildDIVec (mt, mW, ttDKF_njet_UserValue);
 
-    cout << endl << "Structure size: " << inputs.size() * sizeof(DilepInput) << endl << endl;
 }
 
 void ttH_dilep::ttDilepKinFit(){
