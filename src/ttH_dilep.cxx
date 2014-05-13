@@ -4533,6 +4533,8 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 void ttH_dilep::preKinFit() {
 
 	buildDIVec (mt, mW, ttDKF_njet_UserValue);
+
+    cout << endl << "Structure size: " << inputs.size() * sizeof(DilepInput) << endl << endl;
 }
 
 void ttH_dilep::ttDilepKinFit(){
