@@ -4431,6 +4431,8 @@ void ttH_dilep::first_DoCuts(){
 
 void ttH_dilep::second_DoCuts() {
 
+    cout << endl << "tamanho: " << inputs.size() * sizeof(DilepInput) << endl << endl;
+
 	ttDilepKinFit();
 
 	//=============================================
@@ -4509,7 +4511,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 						if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
 							for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
 								if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
-									//for (int asd = 0; asd < dilep_iterations; ++asd) {
+									for (int asd = 0; asd < dilep_iterations; ++asd) {
 										counter++;
 
 										DilepInput di (LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
@@ -4517,7 +4519,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 										//di.applyVariance(RESOLUTION);
 										//#pragma omp critical
 										inputs.push_back(di);
-									//}
+									}
 								}
 							}
 						}
@@ -4607,19 +4609,8 @@ void ttH_dilep::ttDilepKinFit(){
 	#elif D_DICE
 		cout << "Size of inputs: " << inputs.size() << endl;
         Dilep::DICE::dilep();
-    #else
-		#pragma omp parallel
-		{
-			float task_id;
-			DilepInput di;
-
-			#pragma omp for schedule(dynamic) nowait
-			for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
-				inputs[counter].applyVariance(RESOLUTION);
-				// Run the dileptonic reconstruction 
-				Dilep::CPU::dilep(inputs[counter]);
-			}
-		}
+    #else 
+		Dilep::CPU::dilep(inputs);
 	#endif
 
 	long long int res = LIP::KinFit::stopTimer(tp);

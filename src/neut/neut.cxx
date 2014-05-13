@@ -392,7 +392,6 @@ return neutrinoContainer;
 
 			for (unsigned i = 0; i < vdi.size(); ++i) {
 				vector<myvector> *result;
-				//DilepInput di = vdi[i];
 				int hasSolution = 0;
 
 				double in_mpx[2], in_mpy[2], in_mpz[2], t_mass[2], w_mass[2];
