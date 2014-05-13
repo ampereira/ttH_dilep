@@ -4431,7 +4431,7 @@ void ttH_dilep::first_DoCuts(){
 
 void ttH_dilep::second_DoCuts() {
 
-    cout << endl << "tamanho: " << inputs.size() * sizeof(DilepInput) << endl << endl;
+    cout << endl << "tamanho: " << inputs.size() << endl << endl;
 
 	ttDilepKinFit();
 
@@ -4517,7 +4517,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 										DilepInput di (LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
 										
 										//di.applyVariance(RESOLUTION);
-										//#pragma omp critical
+										#pragma omp critical
 										inputs.push_back(di);
 									}
 								}
