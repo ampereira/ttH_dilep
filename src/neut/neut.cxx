@@ -728,8 +728,7 @@ return neutrinoContainer;
 
 
 		///////////////////////////////////////////
-		void my_qu( double my_in[], double my_val[])
-		{
+		void my_qu( double my_in[], double my_val[]){
 
 			///////////////////////////////////////////
 			/////  find the solution /////////////////
@@ -940,8 +939,7 @@ return neutrinoContainer;
 		////////////////////end of main
 		///////////////////////////////////////////////////////////////
 		////+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-		void Csqrt(double _ar, double _ai, double _my[])
-		{
+		void Csqrt(double _ar, double _ai, double _my[]) {
 			///// complex sqrt
 			double x,y,r,w;
 			if  (  (_ar == 0.0) && (_ai == 0.0) ) {
@@ -972,8 +970,7 @@ return neutrinoContainer;
 		//////////////////////////////////////////////////////////////////
 		/// cubic /// a[0]x^3+a[1]x^2+a[2]x+a[3]=0
 		//////////////////////////////////////////////////////////////////
-		void cubic(double a[], double rr[], double ri[])
-		{
+		void cubic(double a[], double rr[], double ri[]) {
 			int i;
 			double a0, a1, a2, a3;
 			double g, h, y1, sh, theta, pi, xy1, xy2, xy3;

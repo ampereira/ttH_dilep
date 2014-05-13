@@ -4430,7 +4430,6 @@ void ttH_dilep::first_DoCuts(){
 }
 
 void ttH_dilep::second_DoCuts() {
-    cout << endl << "Structure size: " << inputs.size() * sizeof(DilepInput) << endl << endl;
 
 	ttDilepKinFit();
 
@@ -4530,11 +4529,9 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	num_Combs = counter;
 }
 
-
 void ttH_dilep::preKinFit() {
 
 	buildDIVec (mt, mW, ttDKF_njet_UserValue);
-
 }
 
 void ttH_dilep::ttDilepKinFit(){
@@ -4618,7 +4615,7 @@ void ttH_dilep::ttDilepKinFit(){
 
 			#pragma omp for schedule(dynamic) nowait
 			for (unsigned counter = 0; counter < inputs.size()/* * dilep_iterations*/; ++counter) {
-				//inputs[counter].applyVariance(RESOLUTION);
+				inputs[counter].applyVariance(RESOLUTION);
 				// Run the dileptonic reconstruction 
 				Dilep::CPU::dilep(inputs[counter]);
 			}
@@ -4626,7 +4623,6 @@ void ttH_dilep::ttDilepKinFit(){
 	#endif
 
 	long long int res = LIP::KinFit::stopTimer(tp);
-	cout << "Total: " << res << " us" << endl;
 
 	// =================================================================  \\
 	//                  Kinematic Fit to tt System                		  \\
