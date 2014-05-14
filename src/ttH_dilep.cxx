@@ -4502,6 +4502,8 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 		}
 	}
 
+    DilepInput *di;
+
 	// build the structure
 	if ( _ttDKF_JetCombChoice == 1 ){ 
 		for ( int j1=0; j1 < _ttDKF_njets ; j1++){
@@ -4514,11 +4516,11 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 									for (int asd = 0; asd < dilep_iterations; ++asd) {
 										counter++;
 
-										DilepInput di (LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
+										di = new DilepInput(LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
 										
                                         cout << counter << " - " << counter * sizeof(DilepInput) << endl;
 										//di.applyVariance(RESOLUTION);
-										inputs.push_back(di);
+										inputs.push_back(*di);
 									}
 								}
 							}
