@@ -4518,7 +4518,7 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 
 										di = new DilepInput(LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
 										
-                                        cout << counter << " - " << counter * sizeof(DilepInput) << endl;
+                                        cout << counter << " - " << inputs.size() * sizeof(DilepInput) << endl;
 										//di.applyVariance(RESOLUTION);
 										inputs.push_back(*di);
 									}
