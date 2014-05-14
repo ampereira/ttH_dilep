@@ -4517,7 +4517,6 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 										DilepInput di (LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
 										
 										//di.applyVariance(RESOLUTION);
-										#pragma omp critical
 										inputs.push_back(di);
 									}
 								}
@@ -4533,7 +4532,10 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 
 void ttH_dilep::preKinFit() {
 
+    #pragma omp master
 	buildDIVec (mt, mW, ttDKF_njet_UserValue);
+
+    #pragma omp barrier
 }
 
 void ttH_dilep::ttDilepKinFit(){
