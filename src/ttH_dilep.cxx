@@ -4513,12 +4513,14 @@ void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 						if (( j3!=j1) && ( j3!=j2)){        // no repetition of jets
 							for ( int j4=j3+1; j4 < _ttDKF_njets ; j4++){
 								if (( j4!=j1) && ( j4!=j2)){        // no repetition of jets
+                                    for (unsigned lawl = 0; lawl < dilep_iterations; ++ lawl) {
 										counter++;
 
 										di = new DilepInput(LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j1], MyChoiceJetVec[j2], MyChoiceJetVec[j1], MyChoiceJetVec[j2], LeptonVec[0], LeptonVec[1], MyChoiceJetVec[j3], MyChoiceJetVec[j4], in_mpx, in_mpy, in_mpz, MissPx, MissPy, t_m, w_m, Event::event_counter);
 										
 										//di.applyVariance(RESOLUTION);
 										inputs.push_back(*di);
+                                    }
 								}
 							}
 						}
