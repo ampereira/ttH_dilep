@@ -14,7 +14,7 @@ ROOTCFLAGS = $(shell $(ROOTSYS)/bin/root-config --cflags)
 ROOTLIBS   = $(shell $(ROOTSYS)/bin/root-config --libs)
 ROOTGLIBS  = $(shell root-config --glibs) -lMinuit -lEG -lPhysics -lTreePlayer
 
-CXXFLAGS = -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -fopenmp $(ROOTCFLAGS)
+CXXFLAGS = -DOMP -Wall -Wextra -Wno-comment -Wno-deprecated-declarations -Wno-sign-compare -fopenmp $(ROOTCFLAGS)
 
 ifeq ($(DEBUG),yes)
 	CXXFLAGS += -ggdb3

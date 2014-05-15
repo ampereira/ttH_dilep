@@ -72,6 +72,7 @@ public:
 	void applyVariance (float res, int seed);
 
 
+
 	// Getters and setters
 
 	inline TLorentzVector getZlep (void) const { return z_lep; }
@@ -105,11 +106,11 @@ public:
 		inline void setHasSol (int x, unsigned index) { hasSolution.push_back(x); }
 		inline void setResult (vector<myvector> *x, unsigned index) { result.push_back(*x); }
 	#else
-		inline int getHasSol (void) const { return hasSolution; }
-		inline vector<myvector> getResult (void) const { return result; }
+		inline int getHasSol (unsigned variation) const { return hasSolution[variation]; }
+		inline vector<myvector> getResult (unsigned variation) const { return result[variation]; }
 
-		inline void setHasSol (int x) {	hasSolution = x; }
-		inline void setResult (vector<myvector> *x) { result = *x; }
+		inline void setHasSol (unsigned variation, int x) {	hasSolution[variation] = x; }
+		inline void setResult (unsigned variation, vector<myvector> *x) { result[variation] = *x; }
 	#endif
 
 	inline void setZblCbl (void) {
@@ -121,6 +122,7 @@ public:
 	}
 };
 
+void resetSeed(unsigned seed);
 void applyVariance (vector<DilepInput> &vdi, float res, int amount);
 vector<DilepInput> applyVariance (vector<DilepInput> &vdi, float res, int amount, int seed);
 //std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue);

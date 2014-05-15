@@ -33,6 +33,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	w_mass[0] = _w_mass[0];
 	w_mass[1] = _w_mass[1];
 
+		hasSolution.reserve(dilep_iterations);
+		result.reserve(dilep_iterations);
 	#ifndef D_DICE
 		hasSolution = 0;
 	#endif
@@ -74,6 +76,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 
 	event_id = _event_id;
 
+		hasSolution.reserve(dilep_iterations);
+		result.reserve(dilep_iterations);
 	#ifdef D_DICE
 		hasSolution.reserve(dilep_iterations);
 		result.reserve(dilep_iterations);
@@ -117,10 +121,9 @@ DilepInput::DilepInput (const DilepInput &other) {
 	z_bl = other.getZbl();
 	c_bl = other.getCbl();
 
-	#ifndef D_DICE
 		hasSolution = other.getHasSol();
 		result = other.getResult();
-	#endif
+
 }
 
 // Constructor
@@ -466,6 +469,15 @@ void DilepInput::applyVariance (float res) {
 	#endif
 }
 
+void resetSeed(unsigned seed) {
+	#ifdef OMP
+	unsigned thread_id = omp_get_thread_num();
+	#else
+	unsigned thread_id = 0;
+	#endif
+
+	t_rnd[thread_id].SetSeed(seed);
+}
 
 // Builds the DilepInput vector with all events
 /*std::vector<DilepInput> buildDilepIntputVector (std::vector<Event::EventData> event_vector, double _mt, double _mW, int _ttDKF_JetCombChoice, int _ttDKF_njets, int _ttDKF_njet_UserValue) {
