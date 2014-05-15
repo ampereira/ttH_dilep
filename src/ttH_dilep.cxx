@@ -4431,6 +4431,7 @@ void ttH_dilep::first_DoCuts(){
 
 void ttH_dilep::second_DoCuts() {
 
+    cout << "Inputs: " << inputs.size() << endl;
 	ttDilepKinFit();
 
 	//=============================================
@@ -4454,8 +4455,6 @@ void ttH_dilep::second_DoCuts() {
 		//        cout << "C13 runNumber=" << RunNumber << " eventNumber=" << EveNumber << endl;
 	}
 }
-
-
 
 
 // Builds the DilepInput vector with all events
@@ -4538,6 +4537,7 @@ void ttH_dilep::preKinFit() {
 
     #pragma omp master
 	buildDIVec (mt, mW, ttDKF_njet_UserValue);
+
 
     #pragma omp barrier
 }
