@@ -4431,8 +4431,6 @@ void ttH_dilep::first_DoCuts(){
 
 void ttH_dilep::second_DoCuts() {
 
-    cout << endl << "tamanho: " << inputs.size() << endl << endl;
-
 	ttDilepKinFit();
 
 	//=============================================
@@ -4461,6 +4459,7 @@ void ttH_dilep::second_DoCuts() {
 
 
 // Builds the DilepInput vector with all events
+__attribute__((optimize("unroll-loops")))
 void ttH_dilep::buildDIVec (double _mt, double _mW, int _ttDKF_njet_UserValue) {
 	unsigned event_size = events.size();
     double t_m[2] = {_mt, _mt};        	// initialize top quarks masses
@@ -5208,7 +5207,7 @@ void ttH_dilep::ttDilepKinFit(){
 	}
 	//#pragma omp barrier
 	long long int res2 = LIP::KinFit::stopTimer(tp2);
-    cout << "Total2: " << res2 << " us - " << inputs.size() * sizeof(DilepInput) << " bytes" << endl;
+    //cout << "Total2: " << res2 << " us - " << inputs.size() * sizeof(DilepInput) << " bytes" << endl;
 
 }
 
