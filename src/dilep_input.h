@@ -22,6 +22,7 @@ using namespace std;
 
 
 class DilepInput {
+	unsigned event_id;
 
 	TLorentzVector z_lep, c_lep;
 	TLorentzVector z_bj, c_bj;
@@ -52,7 +53,6 @@ class DilepInput {
 public:
 	DilepInput () {
 	}
-	unsigned event_id;
 
 	DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVector _z_bj, TLorentzVector _c_bj, 
 				TLorentzVectorWFlags _z_bjWFlags, TLorentzVectorWFlags _c_bjWFlags, TLorentzVectorWFlags _z_lepWFlags,
@@ -98,6 +98,7 @@ public:
 	inline double getInMpz (int x) const { return in_mpz[x]; }
 	inline double getTmass (int x) const { return t_mass[x]; }
 	inline double getWmass (int x) const { return w_mass[x]; }
+	inline unsigned getEventID (void) const { return event_id; }
 
 	#ifdef D_DICE
 		inline int getHasSol (unsigned index) const { return hasSolution[index]; }
@@ -112,6 +113,8 @@ public:
 		inline void setHasSol (unsigned variation, int x) {	hasSolution[variation] = x; }
 		inline void setResult (unsigned variation, vector<myvector> *x) { result[variation] = *x; }
 	#endif
+
+	inline setEventID (unsigned id) { event_id = id; }
 
 	inline void setZblCbl (void) {
 		// ---------------------------------------
