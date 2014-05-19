@@ -107,11 +107,18 @@ public:
 		inline void setHasSol (int x, unsigned index) { hasSolution.push_back(x); }
 		inline void setResult (vector<myvector> *x, unsigned index) { result.push_back(*x); }
 	#else
-		inline int getHasSol (unsigned variation) const { return hasSolution[variation]; }
-		inline vector<myvector> getResult (unsigned variation) const { return result[variation]; }
+		//inline int getHasSol (unsigned variation) const { return hasSolution[variation]; }
+		//inline vector<myvector> getResult (unsigned variation) const { return result[variation]; }
 
-		inline void setHasSol (unsigned variation, int x) {	hasSolution[variation] = x; }
-		inline void setResult (unsigned variation, vector<myvector> *x) { result[variation] = *x; }
+		//inline void setHasSol (unsigned variation, int x) {	hasSolution[variation] = x; }
+		//inline void setResult (unsigned variation, vector<myvector> *x) { result[variation] = *x; }
+
+
+		inline int getHasSol (void) const { return hasSolution; }
+		inline vector<myvector> getResult (void) const { return result; }
+
+		inline void setHasSol (int x) {	hasSolution = x; }
+		inline void setResult (vector<myvector> *x) { result = *x; }
 	#endif
 
 	inline setEventID (unsigned id) { event_id = id; }

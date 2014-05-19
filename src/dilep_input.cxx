@@ -33,8 +33,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 	w_mass[0] = _w_mass[0];
 	w_mass[1] = _w_mass[1];
 
-		hasSolution.reserve(dilep_iterations);
-		result.reserve(dilep_iterations);
+	//	hasSolution.reserve(dilep_iterations);
+	//	result.reserve(dilep_iterations);
 	#ifndef D_DICE
 		hasSolution = 0;
 	#endif
@@ -76,8 +76,8 @@ DilepInput::DilepInput (TLorentzVector _z_lep, TLorentzVector _c_lep, TLorentzVe
 
 	event_id = _event_id;
 
-		hasSolution.reserve(dilep_iterations);
-		result.reserve(dilep_iterations);
+	//	hasSolution.reserve(dilep_iterations);
+	//	result.reserve(dilep_iterations);
 	#ifdef D_DICE
 		hasSolution.reserve(dilep_iterations);
 		result.reserve(dilep_iterations);
