@@ -468,6 +468,7 @@ public:
   void Calculations2();
   void Calculations3();
   void ttDilepKinFit();
+  void ttDilepKinFitDICE();
 
   void buildDIVec (double, double, int);
 
