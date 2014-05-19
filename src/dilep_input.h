@@ -121,7 +121,7 @@ public:
 		inline void setResult (vector<myvector> *x) { result = *x; }
 	#endif
 
-	inline setEventID (unsigned id) { event_id = id; }
+	inline void setEventID (unsigned id) { event_id = id; }
 
 	inline void setZblCbl (void) {
 		// ---------------------------------------
