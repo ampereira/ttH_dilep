@@ -7,6 +7,7 @@
 #include <vector>
 #include <string.h>
 #include <TRandom3.h>
+#include <omp.h>
 #include "myvector.h"
 #include "../../LipMiniAnalysis/src/TLorentzVectorWFlags.h"
 
