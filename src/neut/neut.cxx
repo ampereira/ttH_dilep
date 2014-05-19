@@ -392,7 +392,7 @@ return neutrinoContainer;
 
 			for (unsigned i = 0; i < vdi.size(); ++i) {
 				// iterates through the iterations
-				for (unsigned var = 0; var < dilep_iterations; ++var) {
+				//for (unsigned var = 0; var < dilep_iterations; ++var) {
 					DilepInput di = vdi[i];
 					vector<myvector> *result;
 					int hasSolution = 0;
@@ -400,7 +400,7 @@ return neutrinoContainer;
 					double in_mpx[2], in_mpy[2], in_mpz[2], t_mass[2], w_mass[2];
 					TLorentzVector lep_a, lep_b, bl_a, bl_b;
 
-					di.applyVariance();
+				//	di.applyVariance(RESOLUTION);
 
 					in_mpx[0] = di.getInMpx(0);
 					in_mpx[1] = di.getInMpx(1);
@@ -426,9 +426,11 @@ return neutrinoContainer;
 						++hasSolution;  // increment solution counter
 					}
 
-					vdi[i].setHasSol(var, hasSolution);
-					vdi[i].setResult(var, result);
-				}
+				//	vdi[i].setHasSol(var, hasSolution);
+				//	vdi[i].setResult(var, result);
+					vdi[i].setHasSol(hasSolution);
+					vdi[i].setResult(result);
+				//}
 			}
 
 			// time measurement

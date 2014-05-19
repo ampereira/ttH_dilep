@@ -4745,7 +4745,7 @@ void ttH_dilep::ttDilepKinFitDICE(){
 		        //cout << "Event: " << Event::event_counter << " partial: " << partial_counter << " total " << total_counter << endl;
                 for(unsigned var = 0; var < dilep_iterations; ++var) {
                 di = inputs[total_counter];
-                di.applyVariance();
+                di.applyVariance(RESOLUTION);
 
 		        // result on local variable since it will be accessed plenty of times
 		        *result = di.getResult(var);
