@@ -5658,6 +5658,7 @@ void ttH_dilep::ttDilepKinFit(){
     best = ttH::KinFit::reduce(best_sols);
     // end of pragma omp parallel
     }
+}
 
 
 
